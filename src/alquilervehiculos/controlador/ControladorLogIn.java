@@ -8,6 +8,7 @@ package alquilervehiculos.controlador;
 import alquilervehiculos.excepciones.LogInException;
 import alquilervehiculos.modelo.usuario.TipoUsuario;
 import alquilervehiculos.modelo.usuario.Usuario;
+import alquilervehiculos.utilidades.ExportarCSV;
 import alquilervehiculos.utilidades.ImportarCSV;
 import java.io.Serializable;
 import java.util.List;
@@ -52,25 +53,22 @@ public class ControladorLogIn implements Serializable {
                 if (usuarioEncontrado.getCorreo().compareTo(correo) == 0
                         && usuarioEncontrado.getPassword().compareTo(password) == 0) {
                     return true;
-                } else {
-                    // No encontró el usuario en la lista:
-                    throw new LogInException("Usuario ingresado no existe");
-                }
+                } 
             }
+            throw new LogInException("Usuario ingresado no existe");
         }
-        return false;
     }
     
     
     // Métodos para el Registro de un nuevo usuario:
     
     public void agregarUsuario(Usuario user) throws LogInException {
-        // Falta VALIDAR con RegExp y guardarlo en el CSV:
+        // Falta VALIDAR con RegExp:
         if (validarExistenciaUsuario(user)) {
              throw new LogInException("Usuario ingresado ya existe");
         } else {
             usuarios.add(user);
-            
+            ExportarCSV.agregarUsuarioCSV(usuarios);
         }
     }
     

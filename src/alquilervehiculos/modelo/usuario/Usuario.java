@@ -14,6 +14,7 @@ import java.io.Serializable;
  * @author Santy
  */
 public class Usuario extends Tercero implements Serializable {
+
     // Usuario son los datos requeridos para ingresar al sistema:
     private String correo;
     private String password;
@@ -52,9 +53,12 @@ public class Usuario extends Tercero implements Serializable {
         this.tipousuario = tipousuario;
     }
 
-    @Override
-    public String toString() {
-        return this.getNombre().toUpperCase() + " " + this.getApellido().toUpperCase();
+    public String[] getArray() {
+        // La idea es retornar un arreglo de String con todos las variables:
+        byte tipo = getTipousuario().getCodigo();
+        String[] datos = {correo, password, Byte.toString(tipo), getNombre(), 
+            getApellido(), getCedula(), Byte.toString(getEdad()), 
+            Boolean.toString(isProblemasvision()), Boolean.toString(isProblemasauditivos())};
+        return datos;
     }
-
 }

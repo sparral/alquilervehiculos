@@ -13,6 +13,7 @@ import java.io.Serializable;
  */
 public abstract class Vehiculo implements Serializable {
 
+    // Variables que todo vehículo tiene:
     private String matricula;
     private int kilometraje;
     private boolean estado;
@@ -80,5 +81,4 @@ public abstract class Vehiculo implements Serializable {
     }
 
     // Métodos del VEHÍCULO, las comparten todos los "Tipos" que existen:
-    
 }

@@ -1,0 +1,5 @@
+﻿Tipo,Matrícula,Kilometraje,Estado,Marca,Año,ValorAlquiler
+Auto,CMV678,20000,true,Kia,2018,100000
+Moto,MDX456,5000,true,Susuki,2020,30000
+Auto,FMK793,40000,false,Mazda,2015,120000
+Moto,FQM348,2500,false,Yamaha,2019,40000

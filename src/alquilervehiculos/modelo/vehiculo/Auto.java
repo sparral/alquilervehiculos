@@ -14,12 +14,10 @@ public class Auto extends Vehiculo {
     private boolean extras;
 
     // Contructor:
-
     public Auto(boolean extras, String matricula, int kilometraje, boolean estado, String marca, int año, double valorAlquiler) {
         super(matricula, kilometraje, estado, marca, año, valorAlquiler);
         this.extras = extras;
     }
-    
 
     //  Métodos (Getter&Setter):
     public boolean isExtras() {

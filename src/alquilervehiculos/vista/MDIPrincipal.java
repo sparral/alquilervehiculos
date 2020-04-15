@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  */
 public class MDIPrincipal extends javax.swing.JFrame {
 
-    private ControladorLogIn controlLogin;
+    private final ControladorLogIn controlLogin;
 
     /**
      * Creates new form MDIPrincipal
@@ -393,8 +393,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         // Obteniendo datos ingresados:
         String correo = txtUsuario.getText();
         String password = new String(txtPassword.getPassword());
-        controlLogin = new ControladorLogIn();
-
+        
         try {
             if (controlLogin.validarUsuario(correo, password)) {
                 mnuArchivo.setEnabled(true);
@@ -414,7 +413,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         String nuevoApellido = txtNuevoApellido.getText();
         String nuevaCedula = txtNuevaCedula.getText();
         String nuevoCorreo = txtNuevoCorreo.getText();
-        String nuevaPassword = new String(txtPassword.getPassword());
+        String nuevaPassword = new String(txtNuevaPassword.getPassword());
         byte nuevaEdad = Byte.parseByte(spnNuevaEdad.getValue().toString());
         boolean auditivo = checkbxAuditivo.isSelected();
         boolean vision = checkbxVision.isSelected();
@@ -427,6 +426,9 @@ public class MDIPrincipal extends javax.swing.JFrame {
         try {
             controlLogin.agregarUsuario(usuarioNuevo);
             limpiarRegistroUsuario();
+            JOptionPane.showMessageDialog(this,
+                          "Usuario Registrado", "¡Registro exitoso!", 1);
+            jfrmRegistrarUsuario.hide();
         } catch (LogInException ex) {
             JOptionPane.showMessageDialog(this,
                     ex.getMessage(), "Error en Registro", 0);
