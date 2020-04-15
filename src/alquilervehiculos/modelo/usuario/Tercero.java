@@ -80,5 +80,12 @@ public abstract class Tercero implements Serializable {
     public void setProblemasauditivos(boolean problemasauditivas) {
         this.problemasauditivos = problemasauditivas;
     }
+
+    @Override
+    public String toString() {
+        return this.nombre + " " + this.apellido;
+    }
      
+    
+    
 }

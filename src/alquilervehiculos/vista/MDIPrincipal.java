@@ -66,9 +66,24 @@ public class MDIPrincipal extends javax.swing.JFrame {
         spnNuevaEdad = new javax.swing.JSpinner();
         txtNuevoNombre = new javax.swing.JTextField();
         checkbxTerminos = new javax.swing.JCheckBox();
+        jfrmPrincipalAdmin = new javax.swing.JInternalFrame();
+        btnCargarVehiculos = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblVehiculosAdmin = new javax.swing.JTable();
+        btnGenerarPDF = new javax.swing.JButton();
+        btnValidarVehiculo = new javax.swing.JButton();
+        btnListaVehiculos = new javax.swing.JButton();
+        jfrmPrincipalUsuario = new javax.swing.JInternalFrame();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblVehiculosUsuario = new javax.swing.JTable();
+        combobxTipoVehiculo = new javax.swing.JComboBox<>();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        btnFiltros = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         mnuArchivo = new javax.swing.JMenu();
-        exitMenuItem = new javax.swing.JMenuItem();
+        menuActualizarDatos = new javax.swing.JMenuItem();
+        mnuCerrar = new javax.swing.JMenuItem();
         mnuSalir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -272,9 +287,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNuevaPassword)
-                            .addGroup(jfrmRegistrarUsuarioLayout.createSequentialGroup()
-                                .addComponent(btnRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addComponent(btnRegistrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jfrmRegistrarUsuarioLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -291,7 +304,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                                     .addComponent(spnNuevaEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(checkbxVision))
                             .addComponent(checkbxTerminos))
-                        .addContainerGap(12, Short.MAX_VALUE))))
+                        .addContainerGap(27, Short.MAX_VALUE))))
         );
         jfrmRegistrarUsuarioLayout.setVerticalGroup(
             jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,18 +350,185 @@ public class MDIPrincipal extends javax.swing.JFrame {
         desktopPane.add(jfrmRegistrarUsuario);
         jfrmRegistrarUsuario.setBounds(200, 10, 450, 440);
 
+        jfrmPrincipalAdmin.setMaximizable(true);
+        jfrmPrincipalAdmin.setTitle("Principal Administrador");
+        jfrmPrincipalAdmin.setVisible(false);
+
+        btnCargarVehiculos.setText("+");
+
+        tblVehiculosAdmin.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Disponible", "Tipo", "Marca", "Año", "Matrícula", "Usuario", "Entrega", "Activar"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblVehiculosAdmin);
+
+        btnGenerarPDF.setText("GENERAR PDF");
+
+        btnValidarVehiculo.setText("VALIDAR");
+
+        btnListaVehiculos.setText("LISTA");
+        btnListaVehiculos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListaVehiculosActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jfrmPrincipalAdminLayout = new javax.swing.GroupLayout(jfrmPrincipalAdmin.getContentPane());
+        jfrmPrincipalAdmin.getContentPane().setLayout(jfrmPrincipalAdminLayout);
+        jfrmPrincipalAdminLayout.setHorizontalGroup(
+            jfrmPrincipalAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jfrmPrincipalAdminLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jfrmPrincipalAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 624, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jfrmPrincipalAdminLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnListaVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72)
+                        .addComponent(btnCargarVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jfrmPrincipalAdminLayout.createSequentialGroup()
+                        .addComponent(btnValidarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnGenerarPDF)))
+                .addContainerGap())
+        );
+        jfrmPrincipalAdminLayout.setVerticalGroup(
+            jfrmPrincipalAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jfrmPrincipalAdminLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jfrmPrincipalAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnCargarVehiculos, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(btnListaVehiculos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jfrmPrincipalAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnValidarVehiculo, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(btnGenerarPDF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        desktopPane.add(jfrmPrincipalAdmin);
+        jfrmPrincipalAdmin.setBounds(50, 20, 660, 480);
+
+        jfrmPrincipalUsuario.setMaximizable(true);
+        jfrmPrincipalUsuario.setTitle("Principal Usuario");
+        jfrmPrincipalUsuario.setVisible(false);
+
+        tblVehiculosUsuario.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Disponible", "Tipo", "Marca", "Año"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tblVehiculosUsuario);
+
+        combobxTipoVehiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Auto", "Moto", "Furgoneta" }));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel11.setText("FILTROS DE BÚSQUEDA");
+
+        jLabel12.setText("Tipo:");
+
+        btnFiltros.setText("APLICAR FILTROS");
+
+        javax.swing.GroupLayout jfrmPrincipalUsuarioLayout = new javax.swing.GroupLayout(jfrmPrincipalUsuario.getContentPane());
+        jfrmPrincipalUsuario.getContentPane().setLayout(jfrmPrincipalUsuarioLayout);
+        jfrmPrincipalUsuarioLayout.setHorizontalGroup(
+            jfrmPrincipalUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jfrmPrincipalUsuarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jfrmPrincipalUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnFiltros)
+                    .addComponent(jLabel11)
+                    .addGroup(jfrmPrincipalUsuarioLayout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addGap(18, 18, 18)
+                        .addComponent(combobxTipoVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jfrmPrincipalUsuarioLayout.setVerticalGroup(
+            jfrmPrincipalUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jfrmPrincipalUsuarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jfrmPrincipalUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jfrmPrincipalUsuarioLayout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addGap(18, 18, 18)
+                        .addGroup(jfrmPrincipalUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(combobxTipoVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12))
+                        .addGap(302, 302, 302)
+                        .addComponent(btnFiltros, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        desktopPane.add(jfrmPrincipalUsuario);
+        jfrmPrincipalUsuario.setBounds(70, 20, 640, 450);
+
         mnuArchivo.setMnemonic('f');
         mnuArchivo.setText("Archivo");
         mnuArchivo.setEnabled(false);
 
-        exitMenuItem.setMnemonic('x');
-        exitMenuItem.setText("Cerrar Sesión");
-        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        menuActualizarDatos.setText("Actualizar Datos");
+        mnuArchivo.add(menuActualizarDatos);
+
+        mnuCerrar.setMnemonic('x');
+        mnuCerrar.setText("Cerrar Sesión");
+        mnuCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitMenuItemActionPerformed(evt);
+                mnuCerrarActionPerformed(evt);
             }
         });
-        mnuArchivo.add(exitMenuItem);
+        mnuArchivo.add(mnuCerrar);
 
         mnuSalir.setMnemonic('a');
         mnuSalir.setText("Salir");
@@ -366,26 +546,28 @@ public class MDIPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(desktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
+    private void mnuCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCerrarActionPerformed
         mnuArchivo.setEnabled(false);
-
         // Resetear variables:
         txtUsuario.setText("");
         txtPassword.setText("");
 
         jfrmLogin.show();
-    }//GEN-LAST:event_exitMenuItemActionPerformed
+    }//GEN-LAST:event_mnuCerrarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         // Al dar en el botón de Registrar en el LogIn:
         jfrmRegistrarUsuario.show();
         btnRegistrarUsuario.setEnabled(false);
+
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
@@ -393,12 +575,31 @@ public class MDIPrincipal extends javax.swing.JFrame {
         // Obteniendo datos ingresados:
         String correo = txtUsuario.getText();
         String password = new String(txtPassword.getPassword());
-        
+
         try {
-            if (controlLogin.validarUsuario(correo, password)) {
-                mnuArchivo.setEnabled(true);
-                jfrmLogin.hide();
+            Usuario usuarioAutenticado = controlLogin.validarUsuario(correo, password);
+
+            // Si sigue el programa, significa que encontró y validó el usuario:
+            JOptionPane.showMessageDialog(this, "Bienvenido " + usuarioAutenticado,
+                     usuarioAutenticado.getTipousuario().getDescripcion(), 1);
+            mnuArchivo.setEnabled(true);
+            jfrmLogin.hide();
+            // Dependiendo del tipo de usuario, muestra las X ventanas:
+            byte tipo = usuarioAutenticado.getTipousuario().getCodigo();
+            switch (tipo) {
+                case 1:
+                    jfrmPrincipalAdmin.show();
+                    break;
+                case 2:
+                    jfrmPrincipalUsuario.show();
+                    break;
+                case 3:
+                    jfrmPrincipalUsuario.show();
+                    break;
             }
+            // FALTA....
+            // Crear una forma de cerrar todas las ventanas al CERRAR SESIÓN...
+
         } catch (LogInException ex) {
             JOptionPane.showMessageDialog(this,
                     ex.getMessage(), "Error en LogIn", 0);
@@ -418,7 +619,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         boolean auditivo = checkbxAuditivo.isSelected();
         boolean vision = checkbxVision.isSelected();
 
-        TipoUsuario tipo = new TipoUsuario((byte) 1, "Usuario");
+        TipoUsuario tipo = new TipoUsuario((byte) 2, "Usuario");
 
         Usuario usuarioNuevo = new Usuario(nuevoCorreo, nuevaPassword, tipo,
                 NuevoNombre, nuevoApellido, nuevaCedula, nuevaEdad, vision, auditivo);
@@ -427,7 +628,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
             controlLogin.agregarUsuario(usuarioNuevo);
             limpiarRegistroUsuario();
             JOptionPane.showMessageDialog(this,
-                          "Usuario Registrado", "¡Registro exitoso!", 1);
+                    "Usuario Registrado", "¡Registro exitoso!", 1);
             jfrmRegistrarUsuario.hide();
         } catch (LogInException ex) {
             JOptionPane.showMessageDialog(this,
@@ -481,6 +682,10 @@ public class MDIPrincipal extends javax.swing.JFrame {
         habilitarbtnRegistro();
     }//GEN-LAST:event_txtNuevaPasswordKeyReleased
 
+    private void btnListaVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaVehiculosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnListaVehiculosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -518,17 +723,24 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarRegistro;
+    private javax.swing.JButton btnCargarVehiculos;
+    private javax.swing.JButton btnFiltros;
+    private javax.swing.JButton btnGenerarPDF;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnInvitado;
+    private javax.swing.JButton btnListaVehiculos;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnRegistrarUsuario;
+    private javax.swing.JButton btnValidarVehiculo;
     private javax.swing.JCheckBox checkbxAuditivo;
     private javax.swing.JCheckBox checkbxTerminos;
     private javax.swing.JCheckBox checkbxVision;
+    private javax.swing.JComboBox<String> combobxTipoVehiculo;
     private javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -537,13 +749,21 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JInternalFrame jfrmLogin;
+    private javax.swing.JInternalFrame jfrmPrincipalAdmin;
+    private javax.swing.JInternalFrame jfrmPrincipalUsuario;
     private javax.swing.JInternalFrame jfrmRegistrarUsuario;
+    private javax.swing.JMenuItem menuActualizarDatos;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu mnuArchivo;
+    private javax.swing.JMenuItem mnuCerrar;
     private javax.swing.JMenuItem mnuSalir;
     private javax.swing.JSpinner spnNuevaEdad;
+    private javax.swing.JTable tblVehiculosAdmin;
+    private javax.swing.JTable tblVehiculosUsuario;
     private javax.swing.JTextField txtNuevaCedula;
     private javax.swing.JPasswordField txtNuevaPassword;
     private javax.swing.JTextField txtNuevoApellido;

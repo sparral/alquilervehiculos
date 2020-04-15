@@ -5,8 +5,6 @@
  */
 package alquilervehiculos.modelo.usuario;
 
-import alquilervehiculos.modelo.usuario.TipoUsuario;
-import alquilervehiculos.modelo.usuario.Tercero;
 import java.io.Serializable;
 
 /**
@@ -61,4 +59,6 @@ public class Usuario extends Tercero implements Serializable {
             Boolean.toString(isProblemasvision()), Boolean.toString(isProblemasauditivos())};
         return datos;
     }
+    
+    
 }
