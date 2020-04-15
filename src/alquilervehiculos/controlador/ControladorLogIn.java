@@ -6,8 +6,8 @@
 package alquilervehiculos.controlador;
 
 import alquilervehiculos.excepciones.LogInException;
-import alquilervehiculos.modelo.TipoUsuario;
-import alquilervehiculos.modelo.Usuario;
+import alquilervehiculos.modelo.usuario.TipoUsuario;
+import alquilervehiculos.modelo.usuario.Usuario;
 import alquilervehiculos.utilidades.ImportarCSV;
 import java.io.Serializable;
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author Santy
  */
-public class ControladorLogIn implements Serializable{
+public class ControladorLogIn implements Serializable {
 
     private TipoUsuario[] tipousuarios;
     private List<Usuario> usuarios;

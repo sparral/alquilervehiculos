@@ -5,8 +5,8 @@
  */
 package alquilervehiculos.utilidades;
 
-import alquilervehiculos.modelo.TipoUsuario;
-import alquilervehiculos.modelo.Usuario;
+import alquilervehiculos.modelo.usuario.TipoUsuario;
+import alquilervehiculos.modelo.usuario.Usuario;
 import com.csvreader.CsvReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;

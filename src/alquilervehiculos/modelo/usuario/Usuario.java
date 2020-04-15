@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package alquilervehiculos.modelo;
+package alquilervehiculos.modelo.usuario;
 
+import alquilervehiculos.modelo.usuario.TipoUsuario;
+import alquilervehiculos.modelo.usuario.Tercero;
 import java.io.Serializable;
 
 /**
@@ -16,7 +18,6 @@ public class Usuario extends Tercero implements Serializable {
     private String correo;
     private String password;
     private TipoUsuario tipousuario;
-    private boolean terminos;
 
     // Constructor:
     public Usuario(String correo, String password, TipoUsuario tipousuario, String nombre, String apellido, String cedula, byte edad, boolean problemasvision, boolean problemasauditivos) {
@@ -26,7 +27,7 @@ public class Usuario extends Tercero implements Serializable {
         this.tipousuario = tipousuario;
     }
 
-    // Métodos (Setter&Getter):
+    // Métodos (Getter&Setter):
     public String getCorreo() {
         return correo;
     }
@@ -49,14 +50,6 @@ public class Usuario extends Tercero implements Serializable {
 
     public void setTipousuario(TipoUsuario tipousuario) {
         this.tipousuario = tipousuario;
-    }
-
-    public boolean isTerminos() {
-        return terminos;
-    }
-
-    public void setTerminos(boolean terminos) {
-        this.terminos = terminos;
     }
 
     @Override

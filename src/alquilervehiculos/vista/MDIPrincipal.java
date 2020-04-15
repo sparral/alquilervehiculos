@@ -7,10 +7,8 @@ package alquilervehiculos.vista;
 
 import alquilervehiculos.controlador.ControladorLogIn;
 import alquilervehiculos.excepciones.LogInException;
-import alquilervehiculos.modelo.TipoUsuario;
-import alquilervehiculos.modelo.Usuario;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import alquilervehiculos.modelo.usuario.TipoUsuario;
+import alquilervehiculos.modelo.usuario.Usuario;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,7 +18,6 @@ import javax.swing.JOptionPane;
 public class MDIPrincipal extends javax.swing.JFrame {
 
     private ControladorLogIn controlLogin;
-    private Usuario usuarioAutenticado;
 
     /**
      * Creates new form MDIPrincipal

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package alquilervehiculos.modelo;
+package alquilervehiculos.modelo.usuario;
 
 import java.io.Serializable;
 
@@ -32,7 +32,7 @@ public abstract class Tercero implements Serializable {
     }
     
 
-    // Métodos(Setter&Getter):
+    // Métodos(Getter&Setter):
     public String getNombre() {
         return nombre;
     }

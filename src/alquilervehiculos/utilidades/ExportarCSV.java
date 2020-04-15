@@ -5,7 +5,7 @@
  */
 package alquilervehiculos.utilidades;
 
-import alquilervehiculos.modelo.Usuario;
+import alquilervehiculos.modelo.usuario.Usuario;
 import com.csvreader.CsvWriter;
 import java.io.File;
 import java.io.FileWriter;
