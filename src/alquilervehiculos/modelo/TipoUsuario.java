@@ -42,5 +42,4 @@ public class TipoUsuario implements Serializable {
     public String toString() {
         return this.descripcion;
     }
- 
 }
