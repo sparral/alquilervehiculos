@@ -9,16 +9,15 @@ package alquilervehiculos.modelo.vehiculo;
  *
  * @author Santy
  */
-public class Moto extends Vehiculo {
+public class Moto extends AbstractVehiculo implements VehiculoAble {
     // Moto ES UN Vehículo, y se añade las variables de Moto:
     private boolean casco;
 
     // Contructor:
-    public Moto(boolean casco, String matricula, int kilometraje, boolean estado, String marca, int año, double valorAlquiler) {
+    public Moto(boolean casco, String matricula, int kilometraje, boolean estado, String marca, String año, double valorAlquiler) {
         super(matricula, kilometraje, estado, marca, año, valorAlquiler);
         this.casco = casco;
     }
-    
 
     // Métodos (Getter&Setter):
     public boolean isCasco() {
@@ -30,5 +29,25 @@ public class Moto extends Vehiculo {
     }
     
     // Métodos de la MOTO:
-    
+
+    @Override
+    public void alquilar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void devolver() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double calcularAlquiler() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String mostrarDatos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+ 
 }

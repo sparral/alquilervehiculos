@@ -5,24 +5,22 @@
  */
 package alquilervehiculos.modelo.vehiculo;
 
-import java.io.Serializable;
-
 /**
  *
  * @author Santy
  */
-public abstract class Vehiculo implements Serializable {
+public abstract class AbstractVehiculo {
 
     // Variables que todo vehículo tiene:
     private String matricula;
     private int kilometraje;
     private boolean estado;
     private String marca;
-    private int año;
+    private String año;
     private double valorAlquiler;
 
     // Contructor:
-    public Vehiculo(String matricula, int kilometraje, boolean estado, String marca, int año, double valorAlquiler) {
+    public AbstractVehiculo(String matricula, int kilometraje, boolean estado, String marca, String año, double valorAlquiler) {
         this.matricula = matricula;
         this.kilometraje = kilometraje;
         this.estado = estado;
@@ -64,11 +62,11 @@ public abstract class Vehiculo implements Serializable {
         this.marca = marca;
     }
 
-    public int getAño() {
+    public String getAño() {
         return año;
     }
 
-    public void setAño(int año) {
+    public void setAño(String año) {
         this.año = año;
     }
 
@@ -79,6 +77,16 @@ public abstract class Vehiculo implements Serializable {
     public void setValorAlquiler(double valorAlquiler) {
         this.valorAlquiler = valorAlquiler;
     }
-
-    // Métodos del VEHÍCULO, las comparten todos los "Tipos" que existen:
+    
+    // Adicionalmente:
+    
+    public  Object [] ObtenerArregloAdmin() {
+        // Me obtiene el arreglo para adicionarlo en la tabla:
+        
+        // MODIFICAR ESTO:
+        Object [] datos= {isEstado(), getClass().getSimpleName(), getMatricula(),
+            getMarca(), getAño(), "danielh", "02-15-2019",true};
+        return datos;
+    }
+    
 }

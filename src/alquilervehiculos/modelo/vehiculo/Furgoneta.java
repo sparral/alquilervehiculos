@@ -9,16 +9,16 @@ package alquilervehiculos.modelo.vehiculo;
  *
  * @author Santy
  */
-public class Furgoneta extends Vehiculo {
+public class Furgoneta extends AbstractVehiculo implements VehiculoAble {
+
     // Furgoneta ES UN Vehículo, y se añaden las variables de Furgoneta:
     private short capacidad;
 
     // Contructor:
-    public Furgoneta(short capacidad, String matricula, int kilometraje, boolean estado, String marca, int año, double valorAlquiler) {
+    public Furgoneta(short capacidad, String matricula, int kilometraje, boolean estado, String marca, String año, double valorAlquiler) {
         super(matricula, kilometraje, estado, marca, año, valorAlquiler);
         this.capacidad = capacidad;
     }
-
 
     // Métodos (Getter&Setter):
     public short getCapacidad() {
@@ -28,7 +28,26 @@ public class Furgoneta extends Vehiculo {
     public void setCapacidad(short capacidad) {
         this.capacidad = capacidad;
     }
-    
+
     // Métodos de la FURGONETA:
-    
+    @Override
+    public void alquilar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void devolver() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double calcularAlquiler() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String mostrarDatos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

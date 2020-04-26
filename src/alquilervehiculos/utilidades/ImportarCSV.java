@@ -7,7 +7,7 @@ package alquilervehiculos.utilidades;
 
 import alquilervehiculos.modelo.usuario.TipoUsuario;
 import alquilervehiculos.modelo.usuario.Usuario;
-import alquilervehiculos.modelo.vehiculo.Vehiculo;
+import alquilervehiculos.modelo.vehiculo.AbstractVehiculo;
 import com.csvreader.CsvReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -58,8 +58,8 @@ public class ImportarCSV {
         return listadoUsuarios;
     }
 
-    public static List<Vehiculo> cargarVehiculos() {
-        List<Vehiculo> listadoVehiculos = new ArrayList<>();
+    public static List<AbstractVehiculo> cargarVehiculos() {
+        List<AbstractVehiculo> listadoVehiculos = new ArrayList<>();
         try {
             // Para encontrar el archivo CSV:
             CsvReader leerVehiculos = new CsvReader("src/vehiculos.csv");
@@ -72,12 +72,10 @@ public class ImportarCSV {
                 int kilometraje = Integer.parseInt(leerVehiculos.get(2));
                 boolean estado= Boolean.parseBoolean(leerVehiculos.get(3));
                 String marca= leerVehiculos.get(4);
-                int año = Integer.parseInt(leerVehiculos.get(5));
+                String año= leerVehiculos.get(5);
                 double valorAlquiler= Double.parseDouble(leerVehiculos.get(6));
                 
                 // Necesito identificar si agregar un auto, furgoneta o moto:
-                
-                
 
             }
             leerVehiculos.close();           // Cerrar el archivo
