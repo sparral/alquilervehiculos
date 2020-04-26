@@ -31,7 +31,7 @@ public class ExportarCSV {
             salidaCSV.write("Nombre");
             salidaCSV.write("Apellido");
             salidaCSV.write("Edad");
-            salidaCSV.write("Visión");
+            salidaCSV.write("Vision");
             salidaCSV.write("Auditivo");
 
             salidaCSV.endRecord();          // Deja de escribir en el archivo

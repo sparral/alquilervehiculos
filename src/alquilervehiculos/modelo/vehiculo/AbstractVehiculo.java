@@ -77,19 +77,39 @@ public abstract class AbstractVehiculo {
     public void setValorAlquiler(double valorAlquiler) {
         this.valorAlquiler = valorAlquiler;
     }
-    
+
     // Adicionalmente:
-    
-    public  Object [] ObtenerArregloAdmin() {
+    /*
+    public Object[] obtenerArregloObjeto(String rol) {
+        Object [] datos;
+        switch (rol) {
+            case "Administrador":
+                break;
+            case "Usuario":
+                break;
+            case "CRUD":
+                break;   
+        }
+        return null;
+    }
+    */
+
+    public Object[] ObtenerArregloAdmin() {
         // MODIFICAR ESTO:
-        Object [] datos= {isEstado(), getClass().getSimpleName(), getMatricula(),
-            getMarca(), getAnio(), "danielh", "02-15-2019",true};
+        Object[] datos = {isEstado(), getClass().getSimpleName(), getMatricula(),
+            getMarca(), getAnio(), "danielh", "02-15-2019", true};
         return datos;
     }
-    
-    public Object [] ObtenerArregloUsuario() {
-        Object [] datos= {isEstado(),getClass().getSimpleName(),getMarca(),getAnio()};
+
+    public Object[] ObtenerArregloUsuario() {
+        Object[] datos = {isEstado(), getClass().getSimpleName(), getMarca(), getAnio()};
         return datos;
     }
-    
+
+    public Object[] ObtenerArregloCRUD() {
+        // MODIFICAR ESTO:
+        Object[] datos = {getMatricula(), getMarca(), getAnio(), getKilometraje(), true};
+        return datos;
+    }
+
 }
