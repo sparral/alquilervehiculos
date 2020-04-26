@@ -16,16 +16,16 @@ public abstract class AbstractVehiculo {
     private int kilometraje;
     private boolean estado;
     private String marca;
-    private String año;
+    private String anio;
     private double valorAlquiler;
 
     // Contructor:
-    public AbstractVehiculo(String matricula, int kilometraje, boolean estado, String marca, String año, double valorAlquiler) {
+    public AbstractVehiculo(String matricula, int kilometraje, boolean estado, String marca, String anio, double valorAlquiler) {
         this.matricula = matricula;
         this.kilometraje = kilometraje;
         this.estado = estado;
         this.marca = marca;
-        this.año = año;
+        this.anio = anio;
         this.valorAlquiler = valorAlquiler;
     }
 
@@ -62,12 +62,12 @@ public abstract class AbstractVehiculo {
         this.marca = marca;
     }
 
-    public String getAño() {
-        return año;
+    public String getAnio() {
+        return anio;
     }
 
-    public void setAño(String año) {
-        this.año = año;
+    public void setAnio(String anio) {
+        this.anio = anio;
     }
 
     public double getValorAlquiler() {
@@ -81,11 +81,14 @@ public abstract class AbstractVehiculo {
     // Adicionalmente:
     
     public  Object [] ObtenerArregloAdmin() {
-        // Me obtiene el arreglo para adicionarlo en la tabla:
-        
         // MODIFICAR ESTO:
         Object [] datos= {isEstado(), getClass().getSimpleName(), getMatricula(),
-            getMarca(), getAño(), "danielh", "02-15-2019",true};
+            getMarca(), getAnio(), "danielh", "02-15-2019",true};
+        return datos;
+    }
+    
+    public Object [] ObtenerArregloUsuario() {
+        Object [] datos= {isEstado(),getClass().getSimpleName(),getMarca(),getAnio()};
         return datos;
     }
     

@@ -79,6 +79,7 @@ public class ControladorLogIn implements Serializable {
     }
 
     // Métodos para el Registro de un nuevo usuario:
+    
     public void agregarUsuario(Usuario user) throws LogInException {
         // Falta VALIDAR con RegExp el documento:
         Pattern emailPattern = Pattern.compile(REGEXP);
@@ -102,10 +103,8 @@ public class ControladorLogIn implements Serializable {
         for (Usuario usuarioExistente : this.usuarios) {
             // Validación por medio de correo y cedula:
             String correo = usuarioExistente.getCorreo();
-            String cedula = usuarioExistente.getCedula();
 
-            if (correo.compareTo(user.getCorreo()) == 0
-                    || cedula.compareTo(user.getCedula()) == 0) {
+            if (correo.compareTo(user.getCorreo()) == 0) {
                 // Usuario existente:
                 return true;
             }

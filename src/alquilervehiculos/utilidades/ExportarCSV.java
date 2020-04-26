@@ -30,7 +30,6 @@ public class ExportarCSV {
             salidaCSV.write("Tipo");
             salidaCSV.write("Nombre");
             salidaCSV.write("Apellido");
-            salidaCSV.write("Cédula");
             salidaCSV.write("Edad");
             salidaCSV.write("Visión");
             salidaCSV.write("Auditivo");

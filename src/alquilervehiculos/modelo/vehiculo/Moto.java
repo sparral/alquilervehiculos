@@ -14,8 +14,8 @@ public class Moto extends AbstractVehiculo implements VehiculoAble {
     private boolean casco;
 
     // Contructor:
-    public Moto(boolean casco, String matricula, int kilometraje, boolean estado, String marca, String año, double valorAlquiler) {
-        super(matricula, kilometraje, estado, marca, año, valorAlquiler);
+    public Moto(boolean casco, String matricula, int kilometraje, boolean estado, String marca, String anio, double valorAlquiler) {
+        super(matricula, kilometraje, estado, marca, anio, valorAlquiler);
         this.casco = casco;
     }
 

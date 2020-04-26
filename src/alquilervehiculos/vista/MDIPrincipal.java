@@ -29,7 +29,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
     public MDIPrincipal() {
         initComponents();
         controlLogin = new ControladorLogIn();
-        controlVehiculo= new ControladorVehiculo();
+        controlVehiculo = new ControladorVehiculo();
     }
 
     /**
@@ -58,8 +58,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtNuevoApellido = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        txtNuevaCedula = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtNuevoCorreo = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -263,14 +261,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("* Documento:");
-
-        txtNuevaCedula.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtNuevaCedulaKeyReleased(evt);
-            }
-        });
-
         jLabel8.setText("* Correo:");
 
         txtNuevoCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -325,29 +315,32 @@ public class MDIPrincipal extends javax.swing.JFrame {
             jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jfrmRegistrarUsuarioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jfrmRegistrarUsuarioLayout.createSequentialGroup()
+                        .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8)
+                            .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel6)))
                         .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNuevoApellido)
-                            .addComponent(txtNuevoNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)))
+                            .addGroup(jfrmRegistrarUsuarioLayout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(txtNuevoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jfrmRegistrarUsuarioLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(txtNuevoApellido))
+                            .addGroup(jfrmRegistrarUsuarioLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtNuevoCorreo))))
                     .addGroup(jfrmRegistrarUsuarioLayout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNuevaCedula))
-                    .addGroup(jfrmRegistrarUsuarioLayout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNuevoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(69, 69, 69)
+                        .addComponent(btnAceptarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jfrmRegistrarUsuarioLayout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNuevaPassword)
-                            .addComponent(btnAceptarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(txtNuevaPassword)))
                 .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jfrmRegistrarUsuarioLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -364,7 +357,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                                     .addComponent(spnNuevaEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(checkbxVision))
                             .addComponent(checkbxTerminos))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(10, Short.MAX_VALUE))))
         );
         jfrmRegistrarUsuarioLayout.setVerticalGroup(
             jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -373,42 +366,39 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtNuevoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNuevoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel10)
-                    .addComponent(spnNuevaEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
                 .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jfrmRegistrarUsuarioLayout.createSequentialGroup()
-                        .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNuevaCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addGap(29, 29, 29)
-                        .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNuevoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
                         .addGap(28, 28, 28)
-                        .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel9)
-                            .addComponent(txtNuevaPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jfrmRegistrarUsuarioLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(checkbxVision)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(checkbxAuditivo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(checkbxTerminos)))
-                .addGap(43, 43, 43)
+                        .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(spnNuevaEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(40, 40, 40))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jfrmRegistrarUsuarioLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(txtNuevoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)))
+                .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(checkbxVision)
+                    .addComponent(jLabel8)
+                    .addComponent(txtNuevoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(checkbxAuditivo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(checkbxTerminos)
+                    .addComponent(jLabel9)
+                    .addComponent(txtNuevaPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(73, 73, 73)
                 .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnCancelarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                     .addComponent(btnAceptarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         desktopPane.add(jfrmRegistrarUsuario);
-        jfrmRegistrarUsuario.setBounds(200, 10, 460, 440);
+        jfrmRegistrarUsuario.setBounds(200, 10, 470, 440);
 
         jfrmPrincipalAdmin.setMaximizable(true);
         jfrmPrincipalAdmin.setTitle("Principal Administrador");
@@ -918,7 +908,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                             .addComponent(jLabel31)
                             .addComponent(jLabel32)))
                     .addComponent(btnCancelarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
         jfrmRegistrarVehiculoLayout.setVerticalGroup(
             jfrmRegistrarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1018,10 +1008,10 @@ public class MDIPrincipal extends javax.swing.JFrame {
         txtUsuario.setText("");
         txtPassword.setText("");
         // Esconder todas las ventanas posibles:
-        
+
         jfrmPrincipalAdmin.hide();
         jfrmValidarVehiculo.hide();
-        
+
         jfrmPrincipalUsuario.hide();
         jfrmLogin.show();
     }//GEN-LAST:event_mnuCerrarActionPerformed
@@ -1034,17 +1024,27 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void llenarTablaAdmin() {
-        DefaultTableModel model= (DefaultTableModel) tblVehiculosAdmin.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblVehiculosAdmin.getModel();
         model.getDataVector().removeAllElements();
-        
-        for (AbstractVehiculo seleccionado: controlVehiculo.obtenerVehiculos()) 
-        {
+
+        for (AbstractVehiculo seleccionado : controlVehiculo.obtenerListaVehiculos()) {
             // Estoy dentro de cada vehículo en la LISTA ENTERA, 
             model.addRow(seleccionado.ObtenerArregloAdmin());
         }
         tblVehiculosAdmin.setModel(model);
     }
-    
+
+    private void llenarTablaUsuario() {
+        DefaultTableModel model = (DefaultTableModel) tblVehiculosUsuario.getModel();
+        model.getDataVector().removeAllElements();
+
+        for (AbstractVehiculo seleccionado : controlVehiculo.obtenerListaVehiculos()) {
+            // Estoy dentro de cada vehículo en la LISTA ENTERA, 
+            model.addRow(seleccionado.ObtenerArregloUsuario());
+        }
+        tblVehiculosUsuario.setModel(model);
+    }
+
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
 
         // Obteniendo datos ingresados:
@@ -1056,14 +1056,14 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
             // Si sigue el programa, significa que encontró y validó el usuario:
             JOptionPane.showMessageDialog(this, "Bienvenido " + usuarioAutenticado,
-                     usuarioAutenticado.getTipousuario().getDescripcion(), 1);
+                    usuarioAutenticado.getTipousuario().getDescripcion(), 1);
             mnuGeneral.setEnabled(true);
             // Ocultar posibles ventanas:
             jfrmRegistrarUsuario.hide();
             jfrmLogin.hide();
-            
-            controlVehiculo= new ControladorVehiculo();
-            
+
+            controlVehiculo = new ControladorVehiculo();
+
             // Dependiendo del tipo de usuario, muestra las X ventanas:
             byte tipo = usuarioAutenticado.getTipousuario().getCodigo();
             switch (tipo) {
@@ -1074,14 +1074,13 @@ public class MDIPrincipal extends javax.swing.JFrame {
                     break;
                 case 2:
                     jfrmPrincipalUsuario.show();
-                    // Falta llenar la tabla de vehículos usuario...
+                    llenarTablaUsuario();
                     break;
                 case 3:
                     jfrmPrincipalUsuario.show();
+                    llenarTablaUsuario();
                     break;
             }
-            // FALTA....
-            // Crear una forma de cerrar todas las ventanas al CERRAR SESIÓN...
 
         } catch (LogInException ex) {
             JOptionPane.showMessageDialog(this,
@@ -1095,7 +1094,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
         // Obteniendo los datos ingresados:
         String NuevoNombre = txtNuevoNombre.getText();
         String nuevoApellido = txtNuevoApellido.getText();
-        String nuevaCedula = txtNuevaCedula.getText();
         String nuevoCorreo = txtNuevoCorreo.getText();
         String nuevaPassword = new String(txtNuevaPassword.getPassword());
         byte nuevaEdad = Byte.parseByte(spnNuevaEdad.getValue().toString());
@@ -1105,7 +1103,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         TipoUsuario tipo = new TipoUsuario((byte) 2, "Usuario");
 
         Usuario usuarioNuevo = new Usuario(nuevoCorreo, nuevaPassword, tipo,
-                NuevoNombre, nuevoApellido, nuevaCedula, nuevaEdad, vision, auditivo);
+                NuevoNombre, nuevoApellido, nuevaEdad, vision, auditivo);
 
         try {
             controlLogin.agregarUsuario(usuarioNuevo);
@@ -1113,7 +1111,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
             jfrmRegistrarUsuario.hide();
             JOptionPane.showMessageDialog(this,
                     "Usuario Registrado", "¡Registro exitoso!", 1);
-            
+
         } catch (LogInException ex) {
             JOptionPane.showMessageDialog(this,
                     ex.getMessage(), "Error en Registro", 0);
@@ -1123,8 +1121,9 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private void habilitarbtnRegistro() {
         // Cuando el usuario documenta todos los campos Y acepta los términos:
         if (!txtNuevoNombre.getText().isEmpty() && !txtNuevoApellido.getText().isEmpty()
-                && !txtNuevoCorreo.getText().isEmpty() && !txtNuevaCedula.getText().isEmpty()
-                && txtNuevaPassword.getPassword().length != 0 && checkbxTerminos.isSelected() == true) {
+                && !txtNuevoCorreo.getText().isEmpty()
+                && txtNuevaPassword.getPassword().length != 0
+                && checkbxTerminos.isSelected() == true) {
             btnAceptarUsuario.setEnabled(true);
         }
     }
@@ -1132,7 +1131,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
     public void limpiarRegistroUsuario() {
         txtNuevoNombre.setText("");
         txtNuevoApellido.setText("");
-        txtNuevaCedula.setText("");
         txtNuevoCorreo.setText("");
         txtNuevaPassword.setText("");
         spnNuevaEdad.setValue(18);
@@ -1153,10 +1151,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private void txtNuevoApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNuevoApellidoKeyReleased
         habilitarbtnRegistro();
     }//GEN-LAST:event_txtNuevoApellidoKeyReleased
-
-    private void txtNuevaCedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNuevaCedulaKeyReleased
-        habilitarbtnRegistro();
-    }//GEN-LAST:event_txtNuevaCedulaKeyReleased
 
     private void txtNuevoCorreoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNuevoCorreoKeyReleased
         habilitarbtnRegistro();
@@ -1275,7 +1269,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
@@ -1313,7 +1306,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JTable tblVehiculosUsuario;
     private javax.swing.JTextField txtKilometrajevalidar;
     private javax.swing.JTextField txtMatriculaValidar;
-    private javax.swing.JTextField txtNuevaCedula;
     private javax.swing.JTextField txtNuevaMatricula;
     private javax.swing.JPasswordField txtNuevaPassword;
     private javax.swing.JTextField txtNuevoApellido;

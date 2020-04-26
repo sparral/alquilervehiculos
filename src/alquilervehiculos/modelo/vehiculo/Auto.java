@@ -15,8 +15,8 @@ public class Auto extends AbstractVehiculo implements VehiculoAble {
     private boolean extras;
 
     // Contructor:
-    public Auto(boolean extras, String matricula, int kilometraje, boolean estado, String marca, String año, double valorAlquiler) {
-        super(matricula, kilometraje, estado, marca, año, valorAlquiler);
+    public Auto(boolean extras, String matricula, int kilometraje, boolean estado, String marca, String anio, double valorAlquiler) {
+        super(matricula, kilometraje, estado, marca, anio, valorAlquiler);
         this.extras = extras;
     }
 

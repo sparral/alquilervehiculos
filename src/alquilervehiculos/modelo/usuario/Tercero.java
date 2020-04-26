@@ -15,23 +15,20 @@ public abstract class Tercero implements Serializable {
     // Tercero son los datos personales del usuario:
     private String nombre;
     private String apellido;
-    private String cedula;
     private byte edad;    
     private boolean problemasvision;
     private boolean problemasauditivos;
 
     // Constructor:
-
-    public Tercero(String nombre, String apellido, String cedula, byte edad, boolean problemasvision, boolean problemasauditivas) {
+    public Tercero(String nombre, String apellido, byte edad, boolean problemasvision, boolean problemasauditivos) {
         this.nombre = nombre;
         this.apellido = apellido;
-        this.cedula = cedula;
         this.edad = edad;
         this.problemasvision = problemasvision;
-        this.problemasauditivos = problemasauditivas;
+        this.problemasauditivos = problemasauditivos;
     }
-    
 
+    
     // Métodos(Getter&Setter):
     public String getNombre() {
         return nombre;
@@ -47,14 +44,6 @@ public abstract class Tercero implements Serializable {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
-    }
-
-    public String getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
     }
 
     public byte getEdad() {

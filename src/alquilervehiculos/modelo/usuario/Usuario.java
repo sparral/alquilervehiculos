@@ -19,8 +19,9 @@ public class Usuario extends Tercero implements Serializable {
     private TipoUsuario tipousuario;
 
     // Constructor:
-    public Usuario(String correo, String password, TipoUsuario tipousuario, String nombre, String apellido, String cedula, byte edad, boolean problemasvision, boolean problemasauditivos) {
-        super(nombre, apellido, cedula, edad, problemasvision, problemasauditivos);
+
+    public Usuario(String correo, String password, TipoUsuario tipousuario, String nombre, String apellido, byte edad, boolean problemasvision, boolean problemasauditivos) {
+        super(nombre, apellido, edad, problemasvision, problemasauditivos);
         this.correo = correo;
         this.password = password;
         this.tipousuario = tipousuario;
@@ -55,7 +56,7 @@ public class Usuario extends Tercero implements Serializable {
         // La idea es retornar un arreglo de String con todos las variables:
         byte tipo = getTipousuario().getCodigo();
         String[] datos = {correo, password, Byte.toString(tipo), getNombre(), 
-            getApellido(), getCedula(), Byte.toString(getEdad()), 
+            getApellido(), Byte.toString(getEdad()), 
             Boolean.toString(isProblemasvision()), Boolean.toString(isProblemasauditivos())};
         return datos;
     }
