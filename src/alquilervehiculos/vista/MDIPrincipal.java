@@ -548,11 +548,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
         btnGenerarPDF.setText("GENERAR PDF");
 
         btnValidarVehiculo.setText("VALIDAR");
-        btnValidarVehiculo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnValidarVehiculoActionPerformed(evt);
-            }
-        });
 
         jMenu1.setText("Archivo");
 
@@ -1520,7 +1515,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jLabel47.setText("* Edad:");
 
         btnEliminarUsuario.setText("ELIMINAR");
-        btnEliminarUsuario.setEnabled(false);
 
         btnGuardarUsuario.setText("GUARDAR");
         btnGuardarUsuario.setEnabled(false);
@@ -1531,7 +1525,11 @@ public class MDIPrincipal extends javax.swing.JFrame {
         });
 
         btnEditarUsuario.setText("EDITAR");
-        btnEditarUsuario.setEnabled(false);
+        btnEditarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarUsuarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PanelDatosUsuarioLayout = new javax.swing.GroupLayout(PanelDatosUsuario);
         PanelDatosUsuario.setLayout(PanelDatosUsuarioLayout);
@@ -1655,7 +1653,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+            .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jfrmUsuariosCRUDLayout = new javax.swing.GroupLayout(jfrmUsuariosCRUD.getContentPane());
@@ -1726,12 +1724,12 @@ public class MDIPrincipal extends javax.swing.JFrame {
         // Resetear variables:
         txtUsuario.setText("");
         txtPassword.setText("");
-        // Esconder todas las ventanas posibles:
 
+        // Esconder todas las ventanas posibles:
         jfrmPrincipalAdmin.hide();
         jfrmValidarVehiculo.hide();
-
         jfrmPrincipalUsuario.hide();
+
         jfrmLogin.show();
     }//GEN-LAST:event_mnuCerrarSesionActionPerformed
 
@@ -1739,7 +1737,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
         // Al dar en el botón de Registrar en el LogIn:
         jfrmRegistrarUsuario.show();
         btnAceptarRegistro.setEnabled(false);
-
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void llenarTablaAdmin() {
@@ -1802,7 +1799,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
             Usuario usuarioAutenticado = controlLogin.validarUsuario(correo, password);
 
             // Si sigue el programa, significa que encontró y validó el usuario:
-            JOptionPane.showMessageDialog(this, "Bienvenido " + usuarioAutenticado,
+            JOptionPane.showMessageDialog(this, "Bienvenido, " + usuarioAutenticado,
                     usuarioAutenticado.getTipousuario().getDescripcion(), 1);
             mnuGeneral.setEnabled(true);
             // Ocultar posibles ventanas:
@@ -1841,10 +1838,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_mnuSalirActionPerformed
 
-    private void btnValidarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarVehiculoActionPerformed
-        jfrmValidarVehiculo.show();
-    }//GEN-LAST:event_btnValidarVehiculoActionPerformed
-
     private void mnuEditarVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuEditarVehiculosActionPerformed
         jfrmVehiculosCRUD.show();
         llenarTablasVehiculosCRUD();
@@ -1852,7 +1845,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
     private void btnCancelarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarRegistroActionPerformed
         jfrmRegistrarUsuario.hide();
-        limpiarRegistroUsuario();
+        limpiarCampos("Registro");
     }//GEN-LAST:event_btnCancelarRegistroActionPerformed
 
     private void btnAceptarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarRegistroActionPerformed
@@ -1877,7 +1870,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                         nuevoNombre, nuevoApellido, nuevaEdad, vision, auditivo);
 
                 controlLogin.agregarUsuario(usuarioNuevo);
-                limpiarRegistroUsuario();
+                limpiarCampos("Registro");
                 jfrmRegistrarUsuario.hide();
                 JOptionPane.showMessageDialog(this,
                         "Usuario Registrado", "¡Registro exitoso!", 1);
@@ -1891,18 +1884,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAceptarRegistroActionPerformed
 
-    public void limpiarRegistroUsuario() {
-        txtNuevoNombre.setText("");
-        txtNuevoApellido.setText("");
-        txtNuevoCorreo.setText("");
-        txtNuevaPassword.setText("");
-        txtConfirmarPassword.setText("");
-        spnNuevaEdad.setValue(18);
-        cbxAuditivoRegistro.setSelected(false);
-        cbxVisionRegistro.setSelected(false);
-        cbxTerminos.setSelected(false);
-    }
-
     private void txtCamposRegistroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCamposRegistroKeyTyped
         habilitarBotones();
     }//GEN-LAST:event_txtCamposRegistroKeyTyped
@@ -1914,13 +1895,14 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private void mnuEditarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuEditarUsuariosActionPerformed
         jfrmUsuariosCRUD.show();
         llenarTablaUsuarioCRUD();
+        habilitarBotones();
     }//GEN-LAST:event_mnuEditarUsuariosActionPerformed
 
     private void llenarTablaUsuarioCRUD() {
         DefaultTableModel model = (DefaultTableModel) tblUsuarioCRUD.getModel();
         model.getDataVector().removeAllElements();
 
-        for (Usuario seleccionado : controlLogin.usuarios) {
+        for (Usuario seleccionado : controlLogin.getUsuarios()) {
             model.addRow(seleccionado.getObjectUsuario());
         }
         tblUsuarioCRUD.setModel(model);
@@ -1936,8 +1918,9 @@ public class MDIPrincipal extends javax.swing.JFrame {
         byte nuevaEdad = Byte.parseByte(spnEdadUsuario.getValue().toString());
         boolean auditivo = cbxAuditivoCRUD.isSelected();
         boolean vision = cbxVisionCRUD.isSelected();
+        byte index = (byte) combobxTipoUsuario.getSelectedIndex();
 
-        TipoUsuario tipo = new TipoUsuario((byte) combobxTipoUsuario.getSelectedIndex(),
+        TipoUsuario tipo = new TipoUsuario((byte) (index + 1),
                 combobxTipoUsuario.getSelectedItem().toString());
 
         Usuario usuarioNuevo = new Usuario(nuevoCorreo, nuevaPassword, tipo,
@@ -1947,14 +1930,12 @@ public class MDIPrincipal extends javax.swing.JFrame {
             controlLogin.agregarUsuario(usuarioNuevo);
             JOptionPane.showMessageDialog(this,
                     "Usuario Registrado", "¡Registro exitoso!", 1);
-            
-            // Para observar los cambios en la tabla:
+
+            // Para observar los cambios tabla y reseteo de CRUD:
             llenarTablaUsuarioCRUD();
-            habilitarBotones();
-             limpiarUsuarioCRUD();
-            // jfrmUsuariosCRUD.repaint();
-            
-            
+            limpiarCampos("Usuario");
+            btnGuardarUsuario.setEnabled(false);
+
         } catch (LogInException ex) {
             JOptionPane.showMessageDialog(this,
                     ex.getMessage(), "Error en Registro", 0);
@@ -1969,29 +1950,63 @@ public class MDIPrincipal extends javax.swing.JFrame {
         habilitarBotones();
     }//GEN-LAST:event_combobxTipoUsuarioActionPerformed
 
-    public void limpiarUsuarioCRUD() {
-        txtNombreUsuario.setText("");
-        txtApellidoUsuario.setText("");
-        txtCorreoUsuario.setText("");
-        txtPasswordUsuario.setText("");
-        spnEdadUsuario.setValue(18);
-        cbxAuditivoCRUD.setSelected(false);
-        cbxVisionCRUD.setSelected(false);
-    }
+    private void btnEditarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarUsuarioActionPerformed
+        // TODO add your handling code here:
+        int seleccionado = tblUsuarioCRUD.getSelectedRow();
+        if (seleccionado == -1) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un usuario",
+                    "Error en CRUD", 0);
+        } else {
+            // El Admin ha seleccionado UN usuario de la tabla:
+            
+        }
+    }//GEN-LAST:event_btnEditarUsuarioActionPerformed
 
     private void habilitarBotones() {
-        // Cuando el usuario documenta TODOS los campos y acepta los Términos:
+        // Cuando el usuario documenta TODOS los campos necesarios:
         if (!txtNuevoNombre.getText().isEmpty() && !txtNuevoApellido.getText().isEmpty()
                 && !txtNuevoCorreo.getText().isEmpty() && cbxTerminos.isSelected() == true
                 && txtNuevaPassword.getPassword().length != 0 && txtConfirmarPassword.getPassword().length != 0) {
             btnAceptarRegistro.setEnabled(true);
-        } 
-        else if (!txtNombreUsuario.getText().isEmpty() && !txtApellidoUsuario.getText().isEmpty()
-            && !txtCorreoUsuario.getText().isEmpty() && combobxTipoUsuario.getSelectedIndex() != 0
+        } else if (!txtNombreUsuario.getText().isEmpty() && !txtApellidoUsuario.getText().isEmpty()
+                && !txtCorreoUsuario.getText().isEmpty() && combobxTipoUsuario.getSelectedIndex() != 0
                 && txtPasswordUsuario.getPassword().length != 0) {
             btnGuardarUsuario.setEnabled(true);
         } else {
             btnAceptarRegistro.setEnabled(false);
+            btnGuardarUsuario.setEnabled(false);
+        }
+    }
+
+    public void limpiarCampos(String tipo) {
+        switch (tipo) {
+            case "Registro":
+                txtNuevoNombre.setText("");
+                txtNuevoApellido.setText("");
+                txtNuevoCorreo.setText("");
+                txtNuevaPassword.setText("");
+                txtConfirmarPassword.setText("");
+                spnNuevaEdad.setValue(18);
+                cbxAuditivoRegistro.setSelected(false);
+                cbxVisionRegistro.setSelected(false);
+                cbxTerminos.setSelected(false);
+                break;
+
+            case "Usuario":
+                txtNombreUsuario.setText("");
+                txtApellidoUsuario.setText("");
+                txtCorreoUsuario.setText("");
+                txtPasswordUsuario.setText("");
+                spnEdadUsuario.setValue(18);
+                cbxAuditivoCRUD.setSelected(false);
+                cbxVisionCRUD.setSelected(false);
+                break;
+            case "Auto":
+                break;
+            case "Moto":
+                break;
+            case "Furgoneta":
+                break;
         }
     }
 
@@ -2020,10 +2035,8 @@ public class MDIPrincipal extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MDIPrincipal().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new MDIPrincipal().setVisible(true);
         });
     }
 

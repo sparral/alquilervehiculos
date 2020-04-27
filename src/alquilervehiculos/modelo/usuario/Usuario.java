@@ -17,7 +17,7 @@ public class Usuario extends Tercero implements Serializable {
     private String correo;
     private String password;
     private TipoUsuario tipousuario;
-
+    
     // Constructor:
 
     public Usuario(String correo, String password, TipoUsuario tipousuario, String nombre, String apellido, byte edad, boolean problemasvision, boolean problemasauditivos) {
@@ -69,5 +69,5 @@ public class Usuario extends Tercero implements Serializable {
                                      getEdad(), getTipousuario().toString()};
         return datos;
     }
-    
+        
 }

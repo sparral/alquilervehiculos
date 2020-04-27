@@ -618,9 +618,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="VALIDAR"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnValidarVehiculoActionPerformed"/>
-              </Events>
             </Component>
             <Menu class="javax.swing.JMenuBar" name="mnuBarAdmin">
               <SubComponents>
@@ -2403,7 +2400,6 @@
                 <Component class="javax.swing.JToggleButton" name="btnEliminarUsuario">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="ELIMINAR"/>
-                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JToggleButton" name="btnGuardarUsuario">
@@ -2418,8 +2414,10 @@
                 <Component class="javax.swing.JToggleButton" name="btnEditarUsuario">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="EDITAR"/>
-                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarUsuarioActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -2433,7 +2431,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane8" alignment="0" pref="206" max="32767" attributes="0"/>
+                      <Component id="jScrollPane8" alignment="0" pref="210" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>

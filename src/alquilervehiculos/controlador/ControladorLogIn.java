@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 public class ControladorLogIn implements Serializable {
 
     private TipoUsuario[] tipousuarios;
-    public List<Usuario> usuarios;
+    private List<Usuario> usuarios;
     private final String REGEXP;
 
     public ControladorLogIn() {
@@ -37,6 +37,10 @@ public class ControladorLogIn implements Serializable {
         llenarUsuarios();
     }
 
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
     // Métodos del ControladorLogIn:
     private void llenarTiposUsuario() {
         tipousuarios = new TipoUsuario[3];
@@ -45,15 +49,12 @@ public class ControladorLogIn implements Serializable {
         tipousuarios[2] = new TipoUsuario((byte) 3, "Invitado");
     }
 
-    public void llenarUsuarios() {
+    private void llenarUsuarios() {
         if (usuarios == null || usuarios.isEmpty()) {
             usuarios = ImportarCSV.cargarUsuarios(tipousuarios);
         }
     }
 
-    // Método para llenar la tabla CRUD de Usuarios:
-    
-    
     public Usuario validarUsuario(String correo, String password) throws LogInException {
         // Método para ingresar al sistema:
         if (correo == null || correo.compareTo("") == 0) {
@@ -80,8 +81,6 @@ public class ControladorLogIn implements Serializable {
             throw new LogInException("Usuario ingresado no existe");
         }
     }
-    
-    
 
     // Métodos para el REGISTRO de un NUEVO USUARIO:
     public void agregarUsuario(Usuario user) throws LogInException {
@@ -91,7 +90,7 @@ public class ControladorLogIn implements Serializable {
 
         if (matcher.find()) {
             // Formato de correo válido:
-            if (validarExistenciaUsuario(user)) {
+            if (buscarUsuario(user) == null) {
                 throw new LogInException("Usuario ingresado ya existe");
             } else {
                 usuarios.add(user);
@@ -102,18 +101,17 @@ public class ControladorLogIn implements Serializable {
         }
     }
 
-    private boolean validarExistenciaUsuario(Usuario user) {
+    public Usuario buscarUsuario(Usuario user) {
 
-        for (Usuario usuarioExistente : this.usuarios) {
+        for (Usuario usuarioEncontrado : this.usuarios) {
             // Validación por medio de correo y cedula:
-            String correo = usuarioExistente.getCorreo();
+            String correo = usuarioEncontrado.getCorreo();
 
             if (correo.compareTo(user.getCorreo()) == 0) {
                 // Usuario existente:
-                return true;
+                return usuarioEncontrado;
             }
         }
-
-        return false;
+        return null;
     }
 }
