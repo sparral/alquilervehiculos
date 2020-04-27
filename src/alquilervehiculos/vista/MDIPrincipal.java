@@ -57,19 +57,22 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jfrmRegistrarUsuario = new javax.swing.JInternalFrame();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtNuevoApellido = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        txtNuevoCorreo = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        txtNuevaPassword = new javax.swing.JPasswordField();
         jLabel10 = new javax.swing.JLabel();
-        checkbxVision = new javax.swing.JCheckBox();
-        checkbxAuditivo = new javax.swing.JCheckBox();
-        btnAceptarUsuario = new javax.swing.JButton();
-        btnCancelarUsuario = new javax.swing.JButton();
+        btnAceptarRegistro = new javax.swing.JButton();
+        btnCancelarRegistro = new javax.swing.JButton();
         spnNuevaEdad = new javax.swing.JSpinner();
+        jLabel41 = new javax.swing.JLabel();
         txtNuevoNombre = new javax.swing.JTextField();
-        checkbxTerminos = new javax.swing.JCheckBox();
+        txtNuevoApellido = new javax.swing.JTextField();
+        txtNuevoCorreo = new javax.swing.JTextField();
+        txtNuevaPassword = new javax.swing.JPasswordField();
+        txtConfirmarPassword = new javax.swing.JPasswordField();
+        jPanel1 = new javax.swing.JPanel();
+        cbxAuditivoRegistro = new javax.swing.JCheckBox();
+        cbxVisionRegistro = new javax.swing.JCheckBox();
+        cbxTerminos = new javax.swing.JCheckBox();
         jfrmPrincipalAdmin = new javax.swing.JInternalFrame();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblVehiculosAdmin = new javax.swing.JTable();
@@ -92,9 +95,9 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         btnFiltros = new javax.swing.JButton();
-        checkbxVisionUsuario = new javax.swing.JCheckBox();
-        checkbxAuditivoUsuario = new javax.swing.JCheckBox();
-        checkcbxDisponibleUsuario = new javax.swing.JCheckBox();
+        cbxVisionUsuario = new javax.swing.JCheckBox();
+        cbxAuditivoUsuario = new javax.swing.JCheckBox();
+        cbxDisponibleUsuario = new javax.swing.JCheckBox();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         radiobtnDias = new javax.swing.JRadioButton();
@@ -130,72 +133,94 @@ public class MDIPrincipal extends javax.swing.JFrame {
         PanelDatosAuto = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        MatriculaAuto = new javax.swing.JTextField();
+        txtMatriculaAuto = new javax.swing.JTextField();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel23 = new javax.swing.JLabel();
-        GuardarAuto = new javax.swing.JToggleButton();
-        EditarAuto = new javax.swing.JToggleButton();
-        EliminarAuto = new javax.swing.JToggleButton();
+        btnGuardarAuto = new javax.swing.JToggleButton();
+        btnEditarAuto = new javax.swing.JToggleButton();
+        btnEliminarAuto = new javax.swing.JToggleButton();
         jLabel24 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         spnAnioAuto = new javax.swing.JSpinner();
         jLabel22 = new javax.swing.JLabel();
-        KilometrajeAuto = new javax.swing.JTextField();
-        checkbxExtras = new javax.swing.JCheckBox();
-        TarifaxDiaAuto = new javax.swing.JSlider();
-        TarifaxKmAuto = new javax.swing.JSlider();
+        txtKilometrajeAuto = new javax.swing.JTextField();
+        cbxExtras = new javax.swing.JCheckBox();
+        sldTarifaxDiaAuto = new javax.swing.JSlider();
+        sldTarifaxKmAuto = new javax.swing.JSlider();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tblAutosCRUD = new javax.swing.JTable();
+        tblAutoCRUD = new javax.swing.JTable();
         PanelMoto = new javax.swing.JPanel();
         PanelDatosMoto = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
-        MatriculaMoto = new javax.swing.JTextField();
+        txtMatriculaMoto = new javax.swing.JTextField();
         jComboBox3 = new javax.swing.JComboBox<>();
         jLabel28 = new javax.swing.JLabel();
-        GuardarMoto = new javax.swing.JToggleButton();
-        EditarMoto = new javax.swing.JToggleButton();
-        EliminarMoto = new javax.swing.JToggleButton();
+        btnGuardarMoto = new javax.swing.JToggleButton();
+        btnEditarMoto = new javax.swing.JToggleButton();
+        btnEliminarMoto = new javax.swing.JToggleButton();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         spnAnioMoto = new javax.swing.JSpinner();
         jLabel32 = new javax.swing.JLabel();
-        KilometrajeMoto = new javax.swing.JTextField();
-        checkbxCasco = new javax.swing.JCheckBox();
-        TarifaxDiaMoto = new javax.swing.JSlider();
-        TarifaxKmMoto = new javax.swing.JSlider();
+        txtKilometrajeMoto = new javax.swing.JTextField();
+        ckbxCasco = new javax.swing.JCheckBox();
+        sldTarifaxDiaMoto = new javax.swing.JSlider();
+        sldTarifaxKmMoto = new javax.swing.JSlider();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        tblMotosCRUD = new javax.swing.JTable();
+        tblMotoCRUD = new javax.swing.JTable();
         PanelFurgoneta = new javax.swing.JPanel();
         PanelDatosFurgoneta = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
-        MatriculaFurgoneta = new javax.swing.JTextField();
+        txtMatriculaFurgoneta = new javax.swing.JTextField();
         jComboBox4 = new javax.swing.JComboBox<>();
         jLabel35 = new javax.swing.JLabel();
-        GuardarFurgoneta = new javax.swing.JToggleButton();
-        EditarFurgoneta = new javax.swing.JToggleButton();
-        EliminarFurgoneta = new javax.swing.JToggleButton();
+        btnGuardarFurgoneta = new javax.swing.JToggleButton();
+        btnEditarFurgoneta = new javax.swing.JToggleButton();
+        btnEliminarFurgoneta = new javax.swing.JToggleButton();
         jLabel36 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
         spnAnioFurgoneta = new javax.swing.JSpinner();
         jLabel39 = new javax.swing.JLabel();
-        KilometrajeFurgoneta = new javax.swing.JTextField();
-        TarifaxDiaFurgoneta = new javax.swing.JSlider();
-        TarifaxKmFurgoneta = new javax.swing.JSlider();
+        txtKilometrajeFurgoneta = new javax.swing.JTextField();
+        sldTarifaxDiaFurgoneta = new javax.swing.JSlider();
+        sldTarifaxKmFurgoneta = new javax.swing.JSlider();
         jLabel40 = new javax.swing.JLabel();
-        CapacidadFurgoneta = new javax.swing.JSlider();
+        sldCapacidadFurgoneta = new javax.swing.JSlider();
         jPanel9 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
         tblFurgonetaCRUD = new javax.swing.JTable();
+        jfrmUsuariosCRUD = new javax.swing.JInternalFrame();
+        PanelDatosUsuario = new javax.swing.JPanel();
+        jLabel42 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        txtNombreUsuario = new javax.swing.JTextField();
+        txtApellidoUsuario = new javax.swing.JTextField();
+        txtPasswordUsuario = new javax.swing.JPasswordField();
+        txtCorreoUsuario = new javax.swing.JTextField();
+        combobxTipoUsuario = new javax.swing.JComboBox<>();
+        jLabel46 = new javax.swing.JLabel();
+        spnEdadUsuario = new javax.swing.JSpinner();
+        cbxAuditivoCRUD = new javax.swing.JCheckBox();
+        cbxVisionCRUD = new javax.swing.JCheckBox();
+        jLabel47 = new javax.swing.JLabel();
+        btnEliminarUsuario = new javax.swing.JToggleButton();
+        btnGuardarUsuario = new javax.swing.JToggleButton();
+        btnEditarUsuario = new javax.swing.JToggleButton();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        tblUsuarioCRUD = new javax.swing.JTable();
         menuBar = new javax.swing.JMenuBar();
         mnuGeneral = new javax.swing.JMenu();
-        mnuCerrar = new javax.swing.JMenuItem();
+        mnuCerrarSesion = new javax.swing.JMenuItem();
         mnuSalir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -299,59 +324,97 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         jLabel6.setText("* Apellido:");
 
-        txtNuevoApellido.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtNuevoApellidoKeyReleased(evt);
-            }
-        });
-
         jLabel8.setText("* Correo:");
 
-        txtNuevoCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtNuevoCorreoKeyReleased(evt);
-            }
-        });
-
-        jLabel9.setText("* Password:");
-
-        txtNuevaPassword.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtNuevaPasswordKeyReleased(evt);
-            }
-        });
+        jLabel9.setText("* Contraseña:");
 
         jLabel10.setText("* Edad:");
 
-        checkbxVision.setText("Problemas de Visión");
-
-        checkbxAuditivo.setText("Problemas Auditivos");
-
-        btnAceptarUsuario.setText("REGISTRAR");
-        btnAceptarUsuario.setEnabled(false);
-        btnAceptarUsuario.addActionListener(new java.awt.event.ActionListener() {
+        btnAceptarRegistro.setText("REGISTRAR");
+        btnAceptarRegistro.setEnabled(false);
+        btnAceptarRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAceptarUsuarioActionPerformed(evt);
+                btnAceptarRegistroActionPerformed(evt);
             }
         });
 
-        btnCancelarUsuario.setText("CANCELAR");
-        btnCancelarUsuario.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelarRegistro.setText("CANCELAR");
+        btnCancelarRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarUsuarioActionPerformed(evt);
+                btnCancelarRegistroActionPerformed(evt);
             }
         });
 
         spnNuevaEdad.setModel(new javax.swing.SpinnerNumberModel(Byte.valueOf((byte)18), Byte.valueOf((byte)15), Byte.valueOf((byte)90), Byte.valueOf((byte)2)));
         spnNuevaEdad.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        jLabel41.setText("* Confirmar:");
+        jLabel41.setToolTipText("");
+
         txtNuevoNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtNuevoNombreKeyReleased(evt);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCamposRegistroKeyTyped(evt);
             }
         });
 
-        checkbxTerminos.setText("Términos y Condiciones *");
+        txtNuevoApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCamposRegistroKeyTyped(evt);
+            }
+        });
+
+        txtNuevoCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCamposRegistroKeyTyped(evt);
+            }
+        });
+
+        txtNuevaPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCamposRegistroKeyTyped(evt);
+            }
+        });
+
+        txtConfirmarPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCamposRegistroKeyTyped(evt);
+            }
+        });
+
+        cbxAuditivoRegistro.setText("Problemas Auditivos");
+
+        cbxVisionRegistro.setText("Problemas de Visión");
+
+        cbxTerminos.setText("Términos y Condiciones *");
+        cbxTerminos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxTerminosActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbxAuditivoRegistro)
+                    .addComponent(cbxVisionRegistro)
+                    .addComponent(cbxTerminos))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(cbxAuditivoRegistro)
+                .addGap(18, 18, 18)
+                .addComponent(cbxVisionRegistro)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addComponent(cbxTerminos)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout jfrmRegistrarUsuarioLayout = new javax.swing.GroupLayout(jfrmRegistrarUsuario.getContentPane());
         jfrmRegistrarUsuario.getContentPane().setLayout(jfrmRegistrarUsuarioLayout);
@@ -361,47 +424,45 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jfrmRegistrarUsuarioLayout.createSequentialGroup()
-                        .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel8)
-                            .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel6)))
-                        .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jfrmRegistrarUsuarioLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(txtNuevoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jfrmRegistrarUsuarioLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(txtNuevoApellido))
-                            .addGroup(jfrmRegistrarUsuarioLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtNuevoCorreo))))
-                    .addGroup(jfrmRegistrarUsuarioLayout.createSequentialGroup()
                         .addGap(69, 69, 69)
-                        .addComponent(btnAceptarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jfrmRegistrarUsuarioLayout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNuevaPassword)))
-                .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jfrmRegistrarUsuarioLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCancelarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jfrmRegistrarUsuarioLayout.createSequentialGroup()
-                        .addGap(49, 49, 49)
+                        .addComponent(btnAceptarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                         .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(checkbxAuditivo)
-                            .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jfrmRegistrarUsuarioLayout.createSequentialGroup()
-                                    .addComponent(jLabel10)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(spnNuevaEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(checkbxVision))
-                            .addComponent(checkbxTerminos))
-                        .addContainerGap(10, Short.MAX_VALUE))))
+                            .addGroup(jfrmRegistrarUsuarioLayout.createSequentialGroup()
+                                .addComponent(btnCancelarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(105, 105, 105))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jfrmRegistrarUsuarioLayout.createSequentialGroup()
+                                .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jfrmRegistrarUsuarioLayout.createSequentialGroup()
+                                        .addComponent(jLabel10)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(spnNuevaEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap())))
+                    .addGroup(jfrmRegistrarUsuarioLayout.createSequentialGroup()
+                        .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jfrmRegistrarUsuarioLayout.createSequentialGroup()
+                                .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel41, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNuevaPassword)
+                                    .addComponent(txtConfirmarPassword)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jfrmRegistrarUsuarioLayout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtNuevoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jfrmRegistrarUsuarioLayout.createSequentialGroup()
+                                .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel6))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtNuevoApellido)
+                                    .addComponent(txtNuevoCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jfrmRegistrarUsuarioLayout.setVerticalGroup(
             jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -415,30 +476,32 @@ public class MDIPrincipal extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
-                            .addComponent(spnNuevaEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jfrmRegistrarUsuarioLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(spnNuevaEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jfrmRegistrarUsuarioLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
                         .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(txtNuevoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(34, 34, 34)))
+                            .addComponent(txtNuevoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(17, 17, 17)
+                .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jfrmRegistrarUsuarioLayout.createSequentialGroup()
+                        .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(txtNuevoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
+                        .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(txtNuevaPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14)
+                        .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtConfirmarPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                 .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(checkbxVision)
-                    .addComponent(jLabel8)
-                    .addComponent(txtNuevoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(checkbxAuditivo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(checkbxTerminos)
-                    .addComponent(jLabel9)
-                    .addComponent(txtNuevaPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(73, 73, 73)
-                .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnCancelarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(btnAceptarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(80, Short.MAX_VALUE))
+                    .addComponent(btnAceptarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29))
         );
 
         desktopPane.add(jfrmRegistrarUsuario);
@@ -514,6 +577,11 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jMenu2.setText("Editar");
 
         mnuEditarUsuarios.setText("Usuarios");
+        mnuEditarUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuEditarUsuariosActionPerformed(evt);
+            }
+        });
         jMenu2.add(mnuEditarUsuarios);
 
         mnuEditarVehiculos.setText("Vehiculos");
@@ -599,12 +667,12 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         btnFiltros.setText("APLICAR FILTROS");
 
-        checkbxVisionUsuario.setText("Problemas de Visión");
+        cbxVisionUsuario.setText("Problemas de Visión");
 
-        checkbxAuditivoUsuario.setText("Condiciones Auditivas");
+        cbxAuditivoUsuario.setText("Condiciones Auditivas");
 
-        checkcbxDisponibleUsuario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        checkcbxDisponibleUsuario.setText("Disponible");
+        cbxDisponibleUsuario.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        cbxDisponibleUsuario.setText("Disponible");
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel13.setText("MARCA:");
@@ -661,9 +729,9 @@ public class MDIPrincipal extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(combobxTipoVehiculo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(jfrmPrincipalUsuarioLayout.createSequentialGroup()
-                                        .addComponent(checkbxVisionUsuario)
+                                        .addComponent(cbxVisionUsuario)
                                         .addGap(35, 35, 35)
-                                        .addComponent(checkcbxDisponibleUsuario))))
+                                        .addComponent(cbxDisponibleUsuario))))
                             .addGroup(jfrmPrincipalUsuarioLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel13)
@@ -685,7 +753,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jfrmPrincipalUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jfrmPrincipalUsuarioLayout.createSequentialGroup()
-                                .addComponent(checkbxAuditivoUsuario)
+                                .addComponent(cbxAuditivoUsuario)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jSeparator1))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -705,10 +773,10 @@ public class MDIPrincipal extends javax.swing.JFrame {
                             .addComponent(jLabel12))
                         .addGap(18, 18, 18)
                         .addGroup(jfrmPrincipalUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(checkbxVisionUsuario)
-                            .addComponent(checkcbxDisponibleUsuario))
+                            .addComponent(cbxVisionUsuario)
+                            .addComponent(cbxDisponibleUsuario))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(checkbxAuditivoUsuario)
+                        .addComponent(cbxAuditivoUsuario)
                         .addGap(1, 1, 1)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -724,7 +792,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                         .addGroup(jfrmPrincipalUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jCheckBox3)
                             .addComponent(jCheckBox6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(radiobtnDias)
@@ -873,11 +941,11 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         jLabel23.setText("Tarifas:");
 
-        GuardarAuto.setText("GUARDAR");
+        btnGuardarAuto.setText("GUARDAR");
 
-        EditarAuto.setText("EDITAR");
+        btnEditarAuto.setText("EDITAR");
 
-        EliminarAuto.setText("ELIMINAR");
+        btnEliminarAuto.setText("ELIMINAR");
 
         jLabel24.setText("Día:");
 
@@ -887,7 +955,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         jLabel22.setText("* Kilometraje:");
 
-        checkbxExtras.setText("Extras");
+        cbxExtras.setText("Extras");
 
         javax.swing.GroupLayout PanelDatosAutoLayout = new javax.swing.GroupLayout(PanelDatosAuto);
         PanelDatosAuto.setLayout(PanelDatosAutoLayout);
@@ -904,10 +972,10 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 .addGroup(PanelDatosAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelDatosAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jComboBox2, 0, 130, Short.MAX_VALUE)
-                        .addComponent(MatriculaAuto)
+                        .addComponent(txtMatriculaAuto)
                         .addComponent(spnAnioAuto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(KilometrajeAuto))
-                    .addComponent(checkbxExtras))
+                        .addComponent(txtKilometrajeAuto))
+                    .addComponent(cbxExtras))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(PanelDatosAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -917,17 +985,17 @@ public class MDIPrincipal extends javax.swing.JFrame {
                                 .addComponent(jLabel24))
                             .addGap(18, 18, 18)
                             .addGroup(PanelDatosAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(TarifaxKmAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(TarifaxDiaAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(sldTarifaxKmAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(sldTarifaxDiaAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(14, 14, 14))
                         .addComponent(jLabel23))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosAutoLayout.createSequentialGroup()
                         .addGroup(PanelDatosAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(GuardarAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGuardarAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(PanelDatosAutoLayout.createSequentialGroup()
-                                .addComponent(EditarAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnEditarAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(EliminarAuto)))
+                                .addComponent(btnEliminarAuto)))
                         .addContainerGap())))
         );
         PanelDatosAutoLayout.setVerticalGroup(
@@ -940,7 +1008,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                             .addGroup(PanelDatosAutoLayout.createSequentialGroup()
                                 .addGroup(PanelDatosAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel7)
-                                    .addComponent(MatriculaAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtMatriculaAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(32, 32, 32))
                             .addGroup(PanelDatosAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -953,29 +1021,29 @@ public class MDIPrincipal extends javax.swing.JFrame {
                         .addGroup(PanelDatosAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel22)
                             .addGroup(PanelDatosAutoLayout.createSequentialGroup()
-                                .addComponent(KilometrajeAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtKilometrajeAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(checkbxExtras))))
+                                .addComponent(cbxExtras))))
                     .addGroup(PanelDatosAutoLayout.createSequentialGroup()
                         .addComponent(jLabel23)
                         .addGap(4, 4, 4)
                         .addGroup(PanelDatosAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel24)
-                            .addComponent(TarifaxDiaAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(sldTarifaxDiaAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(PanelDatosAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TarifaxKmAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sldTarifaxKmAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel26))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(GuardarAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnGuardarAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(PanelDatosAutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(EliminarAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(EditarAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnEliminarAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEditarAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
-        tblAutosCRUD.setModel(new javax.swing.table.DefaultTableModel(
+        tblAutoCRUD.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -1001,7 +1069,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane4.setViewportView(tblAutosCRUD);
+        jScrollPane4.setViewportView(tblAutoCRUD);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -1012,7 +1080,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1043,11 +1111,11 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         jLabel28.setText("Tarifas:");
 
-        GuardarMoto.setText("GUARDAR");
+        btnGuardarMoto.setText("GUARDAR");
 
-        EditarMoto.setText("EDITAR");
+        btnEditarMoto.setText("EDITAR");
 
-        EliminarMoto.setText("ELIMINAR");
+        btnEliminarMoto.setText("ELIMINAR");
 
         jLabel29.setText("Día:");
 
@@ -1057,7 +1125,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         jLabel32.setText("* Kilometraje:");
 
-        checkbxCasco.setText("Casco");
+        ckbxCasco.setText("Casco");
 
         javax.swing.GroupLayout PanelDatosMotoLayout = new javax.swing.GroupLayout(PanelDatosMoto);
         PanelDatosMoto.setLayout(PanelDatosMotoLayout);
@@ -1074,10 +1142,10 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 .addGroup(PanelDatosMotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelDatosMotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jComboBox3, 0, 130, Short.MAX_VALUE)
-                        .addComponent(MatriculaMoto)
+                        .addComponent(txtMatriculaMoto)
                         .addComponent(spnAnioMoto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(KilometrajeMoto))
-                    .addComponent(checkbxCasco))
+                        .addComponent(txtKilometrajeMoto))
+                    .addComponent(ckbxCasco))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                 .addGroup(PanelDatosMotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosMotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1087,17 +1155,17 @@ public class MDIPrincipal extends javax.swing.JFrame {
                                 .addComponent(jLabel29))
                             .addGap(18, 18, 18)
                             .addGroup(PanelDatosMotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(TarifaxKmMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(TarifaxDiaMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(sldTarifaxKmMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(sldTarifaxDiaMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(14, 14, 14))
                         .addComponent(jLabel28))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosMotoLayout.createSequentialGroup()
                         .addGroup(PanelDatosMotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(GuardarMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGuardarMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(PanelDatosMotoLayout.createSequentialGroup()
-                                .addComponent(EditarMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnEditarMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(EliminarMoto)))
+                                .addComponent(btnEliminarMoto)))
                         .addContainerGap())))
         );
         PanelDatosMotoLayout.setVerticalGroup(
@@ -1110,7 +1178,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                             .addGroup(PanelDatosMotoLayout.createSequentialGroup()
                                 .addGroup(PanelDatosMotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel25)
-                                    .addComponent(MatriculaMoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtMatriculaMoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(32, 32, 32))
                             .addGroup(PanelDatosMotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1123,29 +1191,29 @@ public class MDIPrincipal extends javax.swing.JFrame {
                         .addGroup(PanelDatosMotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel32)
                             .addGroup(PanelDatosMotoLayout.createSequentialGroup()
-                                .addComponent(KilometrajeMoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtKilometrajeMoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(checkbxCasco))))
+                                .addComponent(ckbxCasco))))
                     .addGroup(PanelDatosMotoLayout.createSequentialGroup()
                         .addComponent(jLabel28)
                         .addGap(4, 4, 4)
                         .addGroup(PanelDatosMotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel29)
-                            .addComponent(TarifaxDiaMoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(sldTarifaxDiaMoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(PanelDatosMotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TarifaxKmMoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sldTarifaxKmMoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel30))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(GuardarMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnGuardarMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(PanelDatosMotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(EliminarMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(EditarMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnEliminarMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEditarMoto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
-        tblMotosCRUD.setModel(new javax.swing.table.DefaultTableModel(
+        tblMotoCRUD.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -1171,7 +1239,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane6.setViewportView(tblMotosCRUD);
+        jScrollPane6.setViewportView(tblMotoCRUD);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -1182,7 +1250,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1213,11 +1281,11 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         jLabel35.setText("Tarifas:");
 
-        GuardarFurgoneta.setText("GUARDAR");
+        btnGuardarFurgoneta.setText("GUARDAR");
 
-        EditarFurgoneta.setText("EDITAR");
+        btnEditarFurgoneta.setText("EDITAR");
 
-        EliminarFurgoneta.setText("ELIMINAR");
+        btnEliminarFurgoneta.setText("ELIMINAR");
 
         jLabel36.setText("Día:");
 
@@ -1248,10 +1316,10 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(PanelDatosFurgonetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jComboBox4, 0, 130, Short.MAX_VALUE)
-                    .addComponent(MatriculaFurgoneta)
+                    .addComponent(txtMatriculaFurgoneta)
                     .addComponent(spnAnioFurgoneta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(KilometrajeFurgoneta)
-                    .addComponent(CapacidadFurgoneta, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(txtKilometrajeFurgoneta)
+                    .addComponent(sldCapacidadFurgoneta, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(PanelDatosFurgonetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosFurgonetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1261,17 +1329,17 @@ public class MDIPrincipal extends javax.swing.JFrame {
                                 .addComponent(jLabel36))
                             .addGap(18, 18, 18)
                             .addGroup(PanelDatosFurgonetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(TarifaxKmFurgoneta, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(TarifaxDiaFurgoneta, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(sldTarifaxKmFurgoneta, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(sldTarifaxDiaFurgoneta, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(14, 14, 14))
                         .addComponent(jLabel35))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosFurgonetaLayout.createSequentialGroup()
                         .addGroup(PanelDatosFurgonetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(GuardarFurgoneta, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGuardarFurgoneta, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(PanelDatosFurgonetaLayout.createSequentialGroup()
-                                .addComponent(EditarFurgoneta, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnEditarFurgoneta, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(EliminarFurgoneta)))
+                                .addComponent(btnEliminarFurgoneta)))
                         .addContainerGap())))
         );
         PanelDatosFurgonetaLayout.setVerticalGroup(
@@ -1284,7 +1352,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                             .addGroup(PanelDatosFurgonetaLayout.createSequentialGroup()
                                 .addGroup(PanelDatosFurgonetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel33)
-                                    .addComponent(MatriculaFurgoneta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtMatriculaFurgoneta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(32, 32, 32))
                             .addGroup(PanelDatosFurgonetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1296,27 +1364,27 @@ public class MDIPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(PanelDatosFurgonetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel39)
-                            .addComponent(KilometrajeFurgoneta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtKilometrajeFurgoneta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(PanelDatosFurgonetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CapacidadFurgoneta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sldCapacidadFurgoneta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel40)))
                     .addGroup(PanelDatosFurgonetaLayout.createSequentialGroup()
                         .addComponent(jLabel35)
                         .addGap(4, 4, 4)
                         .addGroup(PanelDatosFurgonetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel36)
-                            .addComponent(TarifaxDiaFurgoneta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(sldTarifaxDiaFurgoneta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(PanelDatosFurgonetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TarifaxKmFurgoneta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sldTarifaxKmFurgoneta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel37))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(GuardarFurgoneta, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnGuardarFurgoneta, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(PanelDatosFurgonetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(EliminarFurgoneta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(EditarFurgoneta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnEliminarFurgoneta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEditarFurgoneta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -1357,7 +1425,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1392,18 +1460,234 @@ public class MDIPrincipal extends javax.swing.JFrame {
         desktopPane.add(jfrmVehiculosCRUD);
         jfrmVehiculosCRUD.setBounds(250, 10, 550, 558);
 
+        jfrmUsuariosCRUD.setClosable(true);
+        jfrmUsuariosCRUD.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        jfrmUsuariosCRUD.setIconifiable(true);
+        jfrmUsuariosCRUD.setMaximizable(true);
+        jfrmUsuariosCRUD.setTitle("Crear/Editar Usuario");
+        jfrmUsuariosCRUD.setVisible(false);
+
+        PanelDatosUsuario.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
+
+        jLabel42.setText("* Nombre:");
+
+        jLabel43.setText("* Apellido:");
+
+        jLabel44.setText("* Correo:");
+
+        jLabel45.setText("* Contraseña:");
+
+        txtNombreUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCamposCrudUsuario(evt);
+            }
+        });
+
+        txtApellidoUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCamposCrudUsuario(evt);
+            }
+        });
+
+        txtPasswordUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCamposCrudUsuario(evt);
+            }
+        });
+
+        txtCorreoUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCamposCrudUsuario(evt);
+            }
+        });
+
+        combobxTipoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Usuario", "Administrador" }));
+        combobxTipoUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combobxTipoUsuarioActionPerformed(evt);
+            }
+        });
+
+        jLabel46.setText("* Tipo:");
+
+        spnEdadUsuario.setModel(new javax.swing.SpinnerNumberModel(Byte.valueOf((byte)18), Byte.valueOf((byte)15), Byte.valueOf((byte)90), Byte.valueOf((byte)2)));
+        spnEdadUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        cbxAuditivoCRUD.setText("Problemas Auditivos");
+
+        cbxVisionCRUD.setText("Problemas de Visión");
+
+        jLabel47.setText("* Edad:");
+
+        btnEliminarUsuario.setText("ELIMINAR");
+        btnEliminarUsuario.setEnabled(false);
+
+        btnGuardarUsuario.setText("GUARDAR");
+        btnGuardarUsuario.setEnabled(false);
+        btnGuardarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarUsuarioActionPerformed(evt);
+            }
+        });
+
+        btnEditarUsuario.setText("EDITAR");
+        btnEditarUsuario.setEnabled(false);
+
+        javax.swing.GroupLayout PanelDatosUsuarioLayout = new javax.swing.GroupLayout(PanelDatosUsuario);
+        PanelDatosUsuario.setLayout(PanelDatosUsuarioLayout);
+        PanelDatosUsuarioLayout.setHorizontalGroup(
+            PanelDatosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelDatosUsuarioLayout.createSequentialGroup()
+                .addGroup(PanelDatosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelDatosUsuarioLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(PanelDatosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel43)
+                            .addComponent(jLabel44))
+                        .addGap(18, 18, 18)
+                        .addGroup(PanelDatosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtCorreoUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                            .addComponent(txtApellidoUsuario)))
+                    .addGroup(PanelDatosUsuarioLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel46)
+                        .addGap(18, 18, 18)
+                        .addComponent(combobxTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosUsuarioLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(PanelDatosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosUsuarioLayout.createSequentialGroup()
+                                .addComponent(jLabel42)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosUsuarioLayout.createSequentialGroup()
+                                .addComponent(jLabel45)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtPasswordUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                .addGroup(PanelDatosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosUsuarioLayout.createSequentialGroup()
+                        .addComponent(jLabel47)
+                        .addGap(18, 18, 18)
+                        .addComponent(spnEdadUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosUsuarioLayout.createSequentialGroup()
+                        .addGroup(PanelDatosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbxAuditivoCRUD, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(cbxVisionCRUD, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosUsuarioLayout.createSequentialGroup()
+                                .addComponent(btnEditarUsuario)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnEliminarUsuario))
+                            .addComponent(btnGuardarUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
+        );
+        PanelDatosUsuarioLayout.setVerticalGroup(
+            PanelDatosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelDatosUsuarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PanelDatosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(combobxTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel46)
+                    .addComponent(jLabel47)
+                    .addComponent(spnEdadUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(PanelDatosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel42)
+                    .addComponent(txtNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxAuditivoCRUD))
+                .addGap(11, 11, 11)
+                .addGroup(PanelDatosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel43)
+                    .addComponent(txtApellidoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxVisionCRUD))
+                .addGap(18, 18, 18)
+                .addGroup(PanelDatosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelDatosUsuarioLayout.createSequentialGroup()
+                        .addGroup(PanelDatosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel44)
+                            .addComponent(txtCorreoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(PanelDatosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtPasswordUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel45)))
+                    .addGroup(PanelDatosUsuarioLayout.createSequentialGroup()
+                        .addComponent(btnGuardarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(PanelDatosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnEliminarUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEditarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        tblUsuarioCRUD.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Usuario", "Nombre", "Apellido", "Edad", "Tiipo"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Byte.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane8.setViewportView(tblUsuarioCRUD);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane8)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jfrmUsuariosCRUDLayout = new javax.swing.GroupLayout(jfrmUsuariosCRUD.getContentPane());
+        jfrmUsuariosCRUD.getContentPane().setLayout(jfrmUsuariosCRUDLayout);
+        jfrmUsuariosCRUDLayout.setHorizontalGroup(
+            jfrmUsuariosCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(PanelDatosUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jfrmUsuariosCRUDLayout.setVerticalGroup(
+            jfrmUsuariosCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jfrmUsuariosCRUDLayout.createSequentialGroup()
+                .addComponent(PanelDatosUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        desktopPane.add(jfrmUsuariosCRUD);
+        jfrmUsuariosCRUD.setBounds(80, 14, 520, 480);
+
         mnuGeneral.setMnemonic('f');
         mnuGeneral.setText("General");
         mnuGeneral.setEnabled(false);
 
-        mnuCerrar.setMnemonic('x');
-        mnuCerrar.setText("Cerrar Sesión");
-        mnuCerrar.addActionListener(new java.awt.event.ActionListener() {
+        mnuCerrarSesion.setMnemonic('x');
+        mnuCerrarSesion.setText("Cerrar Sesión");
+        mnuCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuCerrarActionPerformed(evt);
+                mnuCerrarSesionActionPerformed(evt);
             }
         });
-        mnuGeneral.add(mnuCerrar);
+        mnuGeneral.add(mnuCerrarSesion);
 
         mnuSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
         mnuSalir.setMnemonic('a');
@@ -1437,7 +1721,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mnuCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCerrarActionPerformed
+    private void mnuCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCerrarSesionActionPerformed
         mnuGeneral.setEnabled(false);
         // Resetear variables:
         txtUsuario.setText("");
@@ -1449,12 +1733,12 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         jfrmPrincipalUsuario.hide();
         jfrmLogin.show();
-    }//GEN-LAST:event_mnuCerrarActionPerformed
+    }//GEN-LAST:event_mnuCerrarSesionActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         // Al dar en el botón de Registrar en el LogIn:
         jfrmRegistrarUsuario.show();
-        btnAceptarUsuario.setEnabled(false);
+        btnAceptarRegistro.setEnabled(false);
 
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -1480,24 +1764,24 @@ public class MDIPrincipal extends javax.swing.JFrame {
         tblVehiculosUsuario.setModel(model);
     }
 
-    private void llenarTablasCRUD() {
+    private void llenarTablasVehiculosCRUD() {
         // Para los autos:
-        DefaultTableModel model = (DefaultTableModel) tblAutosCRUD.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblAutoCRUD.getModel();
         model.getDataVector().removeAllElements();
 
         for (AbstractVehiculo seleccionado : controlVehiculo.obtenerListaVehiculos("Auto")) {
             model.addRow(seleccionado.ObtenerArregloCRUD());
         }
-        tblAutosCRUD.setModel(model);
+        tblAutoCRUD.setModel(model);
 
         // Para las motos:
-        DefaultTableModel model2 = (DefaultTableModel) tblMotosCRUD.getModel();
+        DefaultTableModel model2 = (DefaultTableModel) tblMotoCRUD.getModel();
         model2.getDataVector().removeAllElements();
 
         for (AbstractVehiculo seleccionado : controlVehiculo.obtenerListaVehiculos("Moto")) {
             model2.addRow(seleccionado.ObtenerArregloCRUD());
         }
-        tblMotosCRUD.setModel(model2);
+        tblMotoCRUD.setModel(model2);
 
         // Para las furgonetas:
         DefaultTableModel model3 = (DefaultTableModel) tblFurgonetaCRUD.getModel();
@@ -1536,6 +1820,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                     llenarTablaAdmin();
                     break;
                 case 2:
+                    // USUARIO REGULAR:
                     jfrmPrincipalUsuario.show();
                     llenarTablaUsuario();
                     break;
@@ -1551,93 +1836,164 @@ public class MDIPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
 
-    private void btnAceptarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarUsuarioActionPerformed
-        // Al dar en el botón de Registrar para Crear Usuario:
-
-        // Obteniendo los datos ingresados:
-        String NuevoNombre = txtNuevoNombre.getText();
-        String nuevoApellido = txtNuevoApellido.getText();
-        String nuevoCorreo = txtNuevoCorreo.getText();
-        String nuevaPassword = new String(txtNuevaPassword.getPassword());
-        byte nuevaEdad = Byte.parseByte(spnNuevaEdad.getValue().toString());
-        boolean auditivo = checkbxAuditivo.isSelected();
-        boolean vision = checkbxVision.isSelected();
-
-        TipoUsuario tipo = new TipoUsuario((byte) 2, "Usuario");
-
-        Usuario usuarioNuevo = new Usuario(nuevoCorreo, nuevaPassword, tipo,
-                NuevoNombre, nuevoApellido, nuevaEdad, vision, auditivo);
-
-        try {
-            controlLogin.agregarUsuario(usuarioNuevo);
-            limpiarRegistroUsuario();
-            jfrmRegistrarUsuario.hide();
-            JOptionPane.showMessageDialog(this,
-                    "Usuario Registrado", "¡Registro exitoso!", 1);
-
-        } catch (LogInException ex) {
-            JOptionPane.showMessageDialog(this,
-                    ex.getMessage(), "Error en Registro", 0);
-        }
-    }//GEN-LAST:event_btnAceptarUsuarioActionPerformed
-
-    private void habilitarbtnRegistro() {
-        // Cuando el usuario documenta todos los campos Y acepta los términos:
-        if (!txtNuevoNombre.getText().isEmpty() && !txtNuevoApellido.getText().isEmpty()
-                && !txtNuevoCorreo.getText().isEmpty()
-                && txtNuevaPassword.getPassword().length != 0
-                && checkbxTerminos.isSelected() == true) {
-            btnAceptarUsuario.setEnabled(true);
-        }
-    }
-
-    public void limpiarRegistroUsuario() {
-        txtNuevoNombre.setText("");
-        txtNuevoApellido.setText("");
-        txtNuevoCorreo.setText("");
-        txtNuevaPassword.setText("");
-        spnNuevaEdad.setValue(18);
-        checkbxAuditivo.setSelected(false);
-        checkbxVision.setSelected(false);
-        checkbxTerminos.setSelected(false);
-    }
-
-    private void btnCancelarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarUsuarioActionPerformed
-        jfrmRegistrarUsuario.hide();
-        limpiarRegistroUsuario();
-    }//GEN-LAST:event_btnCancelarUsuarioActionPerformed
-
-    private void txtNuevoNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNuevoNombreKeyReleased
-        habilitarbtnRegistro();
-    }//GEN-LAST:event_txtNuevoNombreKeyReleased
-
-    private void txtNuevoApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNuevoApellidoKeyReleased
-        habilitarbtnRegistro();
-    }//GEN-LAST:event_txtNuevoApellidoKeyReleased
-
-    private void txtNuevoCorreoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNuevoCorreoKeyReleased
-        habilitarbtnRegistro();
-    }//GEN-LAST:event_txtNuevoCorreoKeyReleased
-
-    private void txtNuevaPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNuevaPasswordKeyReleased
-        habilitarbtnRegistro();
-    }//GEN-LAST:event_txtNuevaPasswordKeyReleased
-
     private void mnuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuSalirActionPerformed
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_mnuSalirActionPerformed
 
     private void btnValidarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarVehiculoActionPerformed
-        // TODO add your handling code here:
         jfrmValidarVehiculo.show();
     }//GEN-LAST:event_btnValidarVehiculoActionPerformed
 
     private void mnuEditarVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuEditarVehiculosActionPerformed
-        // TODO add your handling code here:
         jfrmVehiculosCRUD.show();
-        llenarTablasCRUD();
+        llenarTablasVehiculosCRUD();
     }//GEN-LAST:event_mnuEditarVehiculosActionPerformed
+
+    private void btnCancelarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarRegistroActionPerformed
+        jfrmRegistrarUsuario.hide();
+        limpiarRegistroUsuario();
+    }//GEN-LAST:event_btnCancelarRegistroActionPerformed
+
+    private void btnAceptarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarRegistroActionPerformed
+        // Al dar en el botón de Registrar para Crear Usuario:
+
+        // Obteniendo los datos ingresados:
+        String nuevoNombre = txtNuevoNombre.getText();
+        String nuevoApellido = txtNuevoApellido.getText();
+        String nuevoCorreo = txtNuevoCorreo.getText();
+        String nuevaPassword = new String(txtNuevaPassword.getPassword());
+        String repPassword = new String(txtConfirmarPassword.getPassword());
+        byte nuevaEdad = Byte.parseByte(spnNuevaEdad.getValue().toString());
+        boolean auditivo = cbxAuditivoRegistro.isSelected();
+        boolean vision = cbxVisionRegistro.isSelected();
+
+        TipoUsuario tipo = new TipoUsuario((byte) 2, "Usuario");
+
+        try {
+            if (nuevaPassword.compareTo(repPassword) == 0) {
+                // Usuario diligenció contraseña bien, 
+                Usuario usuarioNuevo = new Usuario(nuevoCorreo, nuevaPassword, tipo,
+                        nuevoNombre, nuevoApellido, nuevaEdad, vision, auditivo);
+
+                controlLogin.agregarUsuario(usuarioNuevo);
+                limpiarRegistroUsuario();
+                jfrmRegistrarUsuario.hide();
+                JOptionPane.showMessageDialog(this,
+                        "Usuario Registrado", "¡Registro exitoso!", 1);
+            } else {
+                throw new LogInException("Contraseñas ingresadas no coinciden");
+            }
+
+        } catch (LogInException ex) {
+            JOptionPane.showMessageDialog(this,
+                    ex.getMessage(), "Error en Registro", 0);
+        }
+    }//GEN-LAST:event_btnAceptarRegistroActionPerformed
+
+    public void limpiarRegistroUsuario() {
+        txtNuevoNombre.setText("");
+        txtNuevoApellido.setText("");
+        txtNuevoCorreo.setText("");
+        txtNuevaPassword.setText("");
+        txtConfirmarPassword.setText("");
+        spnNuevaEdad.setValue(18);
+        cbxAuditivoRegistro.setSelected(false);
+        cbxVisionRegistro.setSelected(false);
+        cbxTerminos.setSelected(false);
+    }
+
+    private void txtCamposRegistroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCamposRegistroKeyTyped
+        habilitarBotones();
+    }//GEN-LAST:event_txtCamposRegistroKeyTyped
+
+    private void cbxTerminosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTerminosActionPerformed
+        habilitarBotones();
+    }//GEN-LAST:event_cbxTerminosActionPerformed
+
+    private void mnuEditarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuEditarUsuariosActionPerformed
+        jfrmUsuariosCRUD.show();
+        llenarTablaUsuarioCRUD();
+    }//GEN-LAST:event_mnuEditarUsuariosActionPerformed
+
+    private void llenarTablaUsuarioCRUD() {
+        DefaultTableModel model = (DefaultTableModel) tblUsuarioCRUD.getModel();
+        model.getDataVector().removeAllElements();
+
+        for (Usuario seleccionado : controlLogin.usuarios) {
+            model.addRow(seleccionado.getObjectUsuario());
+        }
+        tblUsuarioCRUD.setModel(model);
+    }
+
+    private void btnGuardarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarUsuarioActionPerformed
+
+        // Obteniendo los datos ingresados:
+        String nuevoNombre = txtNombreUsuario.getText();
+        String nuevoApellido = txtApellidoUsuario.getText();
+        String nuevoCorreo = txtCorreoUsuario.getText();
+        String nuevaPassword = new String(txtPasswordUsuario.getPassword());
+        byte nuevaEdad = Byte.parseByte(spnEdadUsuario.getValue().toString());
+        boolean auditivo = cbxAuditivoCRUD.isSelected();
+        boolean vision = cbxVisionCRUD.isSelected();
+
+        TipoUsuario tipo = new TipoUsuario((byte) combobxTipoUsuario.getSelectedIndex(),
+                combobxTipoUsuario.getSelectedItem().toString());
+
+        Usuario usuarioNuevo = new Usuario(nuevoCorreo, nuevaPassword, tipo,
+                nuevoNombre, nuevoApellido, nuevaEdad, vision, auditivo);
+
+        try {
+            controlLogin.agregarUsuario(usuarioNuevo);
+            JOptionPane.showMessageDialog(this,
+                    "Usuario Registrado", "¡Registro exitoso!", 1);
+            
+            // Para observar los cambios en la tabla:
+            llenarTablaUsuarioCRUD();
+            habilitarBotones();
+             limpiarUsuarioCRUD();
+            // jfrmUsuariosCRUD.repaint();
+            
+            
+        } catch (LogInException ex) {
+            JOptionPane.showMessageDialog(this,
+                    ex.getMessage(), "Error en Registro", 0);
+        }
+    }//GEN-LAST:event_btnGuardarUsuarioActionPerformed
+
+    private void txtCamposCrudUsuario(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCamposCrudUsuario
+        habilitarBotones();
+    }//GEN-LAST:event_txtCamposCrudUsuario
+
+    private void combobxTipoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combobxTipoUsuarioActionPerformed
+        habilitarBotones();
+    }//GEN-LAST:event_combobxTipoUsuarioActionPerformed
+
+    public void limpiarUsuarioCRUD() {
+        txtNombreUsuario.setText("");
+        txtApellidoUsuario.setText("");
+        txtCorreoUsuario.setText("");
+        txtPasswordUsuario.setText("");
+        spnEdadUsuario.setValue(18);
+        cbxAuditivoCRUD.setSelected(false);
+        cbxVisionCRUD.setSelected(false);
+    }
+
+    private void habilitarBotones() {
+        // Cuando el usuario documenta TODOS los campos y acepta los Términos:
+        if (!txtNuevoNombre.getText().isEmpty() && !txtNuevoApellido.getText().isEmpty()
+                && !txtNuevoCorreo.getText().isEmpty() && cbxTerminos.isSelected() == true
+                && txtNuevaPassword.getPassword().length != 0 && txtConfirmarPassword.getPassword().length != 0) {
+            btnAceptarRegistro.setEnabled(true);
+        } 
+        else if (!txtNombreUsuario.getText().isEmpty() && !txtApellidoUsuario.getText().isEmpty()
+            && !txtCorreoUsuario.getText().isEmpty() && combobxTipoUsuario.getSelectedIndex() != 0
+                && txtPasswordUsuario.getPassword().length != 0) {
+            btnGuardarUsuario.setEnabled(true);
+        } else {
+            btnAceptarRegistro.setEnabled(false);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -1655,15 +2011,12 @@ public class MDIPrincipal extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MDIPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MDIPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MDIPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException
+                | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MDIPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+
         //</editor-fold>
 
         /* Create and display the form */
@@ -1675,57 +2028,51 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JSlider CapacidadFurgoneta;
-    private javax.swing.JToggleButton EditarAuto;
-    private javax.swing.JToggleButton EditarFurgoneta;
-    private javax.swing.JToggleButton EditarMoto;
-    private javax.swing.JToggleButton EliminarAuto;
-    private javax.swing.JToggleButton EliminarFurgoneta;
-    private javax.swing.JToggleButton EliminarMoto;
-    private javax.swing.JToggleButton GuardarAuto;
-    private javax.swing.JToggleButton GuardarFurgoneta;
-    private javax.swing.JToggleButton GuardarMoto;
-    private javax.swing.JTextField KilometrajeAuto;
-    private javax.swing.JTextField KilometrajeFurgoneta;
-    private javax.swing.JTextField KilometrajeMoto;
-    private javax.swing.JTextField MatriculaAuto;
-    private javax.swing.JTextField MatriculaFurgoneta;
-    private javax.swing.JTextField MatriculaMoto;
     private javax.swing.JPanel PanelAuto;
     private javax.swing.JPanel PanelDatosAuto;
     private javax.swing.JPanel PanelDatosFurgoneta;
     private javax.swing.JPanel PanelDatosMoto;
+    private javax.swing.JPanel PanelDatosUsuario;
     private javax.swing.JPanel PanelFurgoneta;
     private javax.swing.JPanel PanelMoto;
-    private javax.swing.JSlider TarifaxDiaAuto;
-    private javax.swing.JSlider TarifaxDiaFurgoneta;
-    private javax.swing.JSlider TarifaxDiaMoto;
-    private javax.swing.JSlider TarifaxKmAuto;
-    private javax.swing.JSlider TarifaxKmFurgoneta;
-    private javax.swing.JSlider TarifaxKmMoto;
-    private javax.swing.JButton btnAceptarUsuario;
+    private javax.swing.JButton btnAceptarRegistro;
     private javax.swing.JButton btnAceptarValidacion;
-    private javax.swing.JButton btnCancelarUsuario;
+    private javax.swing.JButton btnCancelarRegistro;
     private javax.swing.JButton btnCancelarValidacion;
+    private javax.swing.JToggleButton btnEditarAuto;
+    private javax.swing.JToggleButton btnEditarFurgoneta;
+    private javax.swing.JToggleButton btnEditarMoto;
+    private javax.swing.JToggleButton btnEditarUsuario;
+    private javax.swing.JToggleButton btnEliminarAuto;
+    private javax.swing.JToggleButton btnEliminarFurgoneta;
+    private javax.swing.JToggleButton btnEliminarMoto;
+    private javax.swing.JToggleButton btnEliminarUsuario;
     private javax.swing.JButton btnFiltros;
     private javax.swing.JButton btnGenerarPDF;
     private javax.swing.ButtonGroup btnGrupoMarca;
     private javax.swing.ButtonGroup btnGrupoTarifa;
+    private javax.swing.JToggleButton btnGuardarAuto;
+    private javax.swing.JToggleButton btnGuardarFurgoneta;
+    private javax.swing.JToggleButton btnGuardarMoto;
+    private javax.swing.JToggleButton btnGuardarUsuario;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnInvitado;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnValidarVehiculo;
+    private javax.swing.JCheckBox cbxAuditivoCRUD;
+    private javax.swing.JCheckBox cbxAuditivoRegistro;
+    private javax.swing.JCheckBox cbxAuditivoUsuario;
+    private javax.swing.JCheckBox cbxDisponibleUsuario;
+    private javax.swing.JCheckBox cbxExtras;
+    private javax.swing.JCheckBox cbxTerminos;
+    private javax.swing.JCheckBox cbxVisionCRUD;
+    private javax.swing.JCheckBox cbxVisionRegistro;
+    private javax.swing.JCheckBox cbxVisionUsuario;
     private javax.swing.JCheckBox checkbvLimpieza;
-    private javax.swing.JCheckBox checkbxAuditivo;
-    private javax.swing.JCheckBox checkbxAuditivoUsuario;
-    private javax.swing.JCheckBox checkbxCasco;
     private javax.swing.JCheckBox checkbxEspejos;
-    private javax.swing.JCheckBox checkbxExtras;
     private javax.swing.JCheckBox checkbxGasolina;
-    private javax.swing.JCheckBox checkbxTerminos;
-    private javax.swing.JCheckBox checkbxVision;
-    private javax.swing.JCheckBox checkbxVisionUsuario;
-    private javax.swing.JCheckBox checkcbxDisponibleUsuario;
+    private javax.swing.JCheckBox ckbxCasco;
+    private javax.swing.JComboBox<String> combobxTipoUsuario;
     private javax.swing.JComboBox<String> combobxTipoVehiculo;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JCheckBox jCheckBox1;
@@ -1773,6 +2120,13 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1785,6 +2139,8 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
@@ -1794,6 +2150,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -1801,11 +2158,12 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JInternalFrame jfrmPrincipalAdmin;
     private javax.swing.JInternalFrame jfrmPrincipalUsuario;
     private javax.swing.JInternalFrame jfrmRegistrarUsuario;
+    private javax.swing.JInternalFrame jfrmUsuariosCRUD;
     private javax.swing.JInternalFrame jfrmValidarVehiculo;
     private javax.swing.JInternalFrame jfrmVehiculosCRUD;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuBar mnuBarAdmin;
-    private javax.swing.JMenuItem mnuCerrar;
+    private javax.swing.JMenuItem mnuCerrarSesion;
     private javax.swing.JMenuItem mnuEditarUsuarios;
     private javax.swing.JMenuItem mnuEditarVehiculos;
     private javax.swing.JMenu mnuGeneral;
@@ -1813,23 +2171,43 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JRadioButton radiobtnDias;
     private javax.swing.JRadioButton radiobtnHoras;
     private javax.swing.JRadioButton radiobtnKilometraje;
+    private javax.swing.JSlider sldCapacidadFurgoneta;
+    private javax.swing.JSlider sldTarifaxDiaAuto;
+    private javax.swing.JSlider sldTarifaxDiaFurgoneta;
+    private javax.swing.JSlider sldTarifaxDiaMoto;
+    private javax.swing.JSlider sldTarifaxKmAuto;
+    private javax.swing.JSlider sldTarifaxKmFurgoneta;
+    private javax.swing.JSlider sldTarifaxKmMoto;
     private javax.swing.JSpinner spnAnioAuto;
     private javax.swing.JSpinner spnAnioFurgoneta;
     private javax.swing.JSpinner spnAnioMoto;
+    private javax.swing.JSpinner spnEdadUsuario;
     private javax.swing.JSpinner spnNuevaEdad;
-    private javax.swing.JTable tblAutosCRUD;
+    private javax.swing.JTable tblAutoCRUD;
     private javax.swing.JTable tblFurgonetaCRUD;
-    private javax.swing.JTable tblMotosCRUD;
+    private javax.swing.JTable tblMotoCRUD;
+    private javax.swing.JTable tblUsuarioCRUD;
     private javax.swing.JTable tblVehiculosAdmin;
     private javax.swing.JTable tblVehiculosUsuario;
+    private javax.swing.JTextField txtApellidoUsuario;
+    private javax.swing.JPasswordField txtConfirmarPassword;
+    private javax.swing.JTextField txtCorreoUsuario;
+    private javax.swing.JTextField txtKilometrajeAuto;
+    private javax.swing.JTextField txtKilometrajeFurgoneta;
+    private javax.swing.JTextField txtKilometrajeMoto;
     private javax.swing.JTextField txtKilometrajevalidar;
+    private javax.swing.JTextField txtMatriculaAuto;
+    private javax.swing.JTextField txtMatriculaFurgoneta;
+    private javax.swing.JTextField txtMatriculaMoto;
     private javax.swing.JTextField txtMatriculaValidar;
+    private javax.swing.JTextField txtNombreUsuario;
     private javax.swing.JPasswordField txtNuevaPassword;
     private javax.swing.JTextField txtNuevoApellido;
     private javax.swing.JTextField txtNuevoCorreo;
     private javax.swing.JTextField txtNuevoNombre;
     private javax.swing.JTextArea txtObservaciones;
     private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JPasswordField txtPasswordUsuario;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 

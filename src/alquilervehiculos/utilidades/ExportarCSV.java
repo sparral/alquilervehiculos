@@ -7,6 +7,7 @@ package alquilervehiculos.utilidades;
 
 import alquilervehiculos.modelo.usuario.Usuario;
 import com.csvreader.CsvWriter;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -20,11 +21,17 @@ public class ExportarCSV {
 
     public static void agregarUsuarioCSV(List<Usuario> usuarios) {
 
-        // Nombre del archivo
-        String salidaArchivo = "src/Usuarios.csv";
+        String salidaArchivo = "src/Usuarios.csv";         // Nombre del archivo
+        boolean existe = new File(salidaArchivo).exists(); // Verifica si existe
+
+        // Si existe un archivo llamado asi lo borra
+        if (existe) {
+            File archivoUsuarios = new File(salidaArchivo);
+            archivoUsuarios.delete();
+        }
         try {
             CsvWriter salidaCSV = new CsvWriter(salidaArchivo);
-            // Datos para escribir las columnas
+            // Datos para escribir las columnas:
             salidaCSV.write("Correo");
             salidaCSV.write("Password");
             salidaCSV.write("Tipo");
@@ -35,10 +42,10 @@ public class ExportarCSV {
             salidaCSV.write("Auditivo");
 
             salidaCSV.endRecord();          // Deja de escribir en el archivo
-            
+
             // Luego, recorre la lista, extrae los datos y escribe en el CSV:
             for (Usuario user : usuarios) {
-                String[] datos = user.getArray();
+                String[] datos = user.getArrayUsuario();
                 salidaCSV.writeRecord(datos);
             }
 

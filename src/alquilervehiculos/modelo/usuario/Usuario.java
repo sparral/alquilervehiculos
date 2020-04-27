@@ -52,7 +52,9 @@ public class Usuario extends Tercero implements Serializable {
         this.tipousuario = tipousuario;
     }
 
-    public String[] getArray() {
+    
+    // Para obtener los arreglos:
+    public String[] getArrayUsuario() {
         // La idea es retornar un arreglo de String con todos las variables:
         byte tipo = getTipousuario().getCodigo();
         String[] datos = {correo, password, Byte.toString(tipo), getNombre(), 
@@ -61,5 +63,11 @@ public class Usuario extends Tercero implements Serializable {
         return datos;
     }
     
+        public Object[] getObjectUsuario() {
+        // MODIFICAR ESTO:
+        Object[] datos = {"@danielh", getNombre(), getApellido(), 
+                                     getEdad(), getTipousuario().toString()};
+        return datos;
+    }
     
 }

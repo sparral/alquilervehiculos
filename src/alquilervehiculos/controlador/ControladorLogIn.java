@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 public class ControladorLogIn implements Serializable {
 
     private TipoUsuario[] tipousuarios;
-    private List<Usuario> usuarios;
+    public List<Usuario> usuarios;
     private final String REGEXP;
 
     public ControladorLogIn() {
@@ -45,14 +45,17 @@ public class ControladorLogIn implements Serializable {
         tipousuarios[2] = new TipoUsuario((byte) 3, "Invitado");
     }
 
-    private void llenarUsuarios() {
+    public void llenarUsuarios() {
         if (usuarios == null || usuarios.isEmpty()) {
             usuarios = ImportarCSV.cargarUsuarios(tipousuarios);
         }
     }
 
+    // Método para llenar la tabla CRUD de Usuarios:
+    
+    
     public Usuario validarUsuario(String correo, String password) throws LogInException {
-
+        // Método para ingresar al sistema:
         if (correo == null || correo.compareTo("") == 0) {
             throw new LogInException("Debe diligenciar el correo");
         } else if (password.length() == 0) {
@@ -77,16 +80,17 @@ public class ControladorLogIn implements Serializable {
             throw new LogInException("Usuario ingresado no existe");
         }
     }
-
-    // Métodos para el Registro de un nuevo usuario:
     
+    
+
+    // Métodos para el REGISTRO de un NUEVO USUARIO:
     public void agregarUsuario(Usuario user) throws LogInException {
         // Falta VALIDAR con RegExp el documento:
         Pattern emailPattern = Pattern.compile(REGEXP);
         Matcher matcher = emailPattern.matcher(user.getCorreo());
 
         if (matcher.find()) {
-            // Formato de correo válido (y falta documento): 
+            // Formato de correo válido:
             if (validarExistenciaUsuario(user)) {
                 throw new LogInException("Usuario ingresado ya existe");
             } else {
