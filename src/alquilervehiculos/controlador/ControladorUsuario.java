@@ -19,13 +19,13 @@ import java.util.regex.Pattern;
  *
  * @author Santy
  */
-public class ControladorLogIn implements Serializable {
+public class ControladorUsuario implements Serializable {
 
     private TipoUsuario[] tipousuarios;
     private List<Usuario> usuarios;
     private final String REGEXP;
 
-    public ControladorLogIn() {
+    public ControladorUsuario() {
 
         // 2. emailPattern    "^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@" +
         //            "[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$"
@@ -41,7 +41,6 @@ public class ControladorLogIn implements Serializable {
         return usuarios;
     }
 
-    // Métodos del ControladorLogIn:
     private void llenarTiposUsuario() {
         tipousuarios = new TipoUsuario[3];
         tipousuarios[0] = new TipoUsuario((byte) 1, "Administrador");
@@ -55,8 +54,8 @@ public class ControladorLogIn implements Serializable {
         }
     }
 
+    // Método para ingresar al sistema:
     public Usuario validarUsuario(String correo, String password) throws LogInException {
-        // Método para ingresar al sistema:
         if (correo == null || correo.compareTo("") == 0) {
             throw new LogInException("Debe diligenciar el correo");
         } else if (password.length() == 0) {
@@ -84,34 +83,54 @@ public class ControladorLogIn implements Serializable {
 
     // Métodos para el REGISTRO de un NUEVO USUARIO:
     public void agregarUsuario(Usuario user) throws LogInException {
-        // Falta VALIDAR con RegExp el documento:
         Pattern emailPattern = Pattern.compile(REGEXP);
         Matcher matcher = emailPattern.matcher(user.getCorreo());
 
         if (matcher.find()) {
             // Formato de correo válido:
-            if (buscarUsuario(user) == null) {
-                throw new LogInException("Usuario ingresado ya existe");
-            } else {
+            if (verificarUsuario(user.getCorreo()) == null) {
                 usuarios.add(user);
                 ExportarCSV.agregarUsuarioCSV(usuarios);
+            } else {
+                throw new LogInException("Usuario ingresado ya existe");
             }
         } else {
             throw new LogInException("Correo no tiene formato válido");
         }
     }
 
-    public Usuario buscarUsuario(Usuario user) {
+    public Usuario verificarUsuario(String correo) {
 
         for (Usuario usuarioEncontrado : this.usuarios) {
-            // Validación por medio de correo y cedula:
-            String correo = usuarioEncontrado.getCorreo();
-
-            if (correo.compareTo(user.getCorreo()) == 0) {
-                // Usuario existente:
+            // Validación por medio de correo:           
+            if (correo.compareTo(usuarioEncontrado.getCorreo()) == 0) {
                 return usuarioEncontrado;
             }
         }
         return null;
+    }
+
+    // Métodos para el CRUD de Usuarios:
+    public Usuario buscarUsuarioTabla(String userID) {
+
+        for (Usuario usuarioEncontrado : this.usuarios) {
+            // Encuentra el usuario comparando con el userID dado en la tabla:
+            if (userID.compareTo(usuarioEncontrado.getUserID()) == 0) {
+                return usuarioEncontrado;
+            }
+        }
+        return null;
+    }
+
+    public void editarUsuario(Object[] datos) {
+        Usuario user=verificarUsuario((String)datos[0]);
+        
+        // {correo, password, tipo, nombre, apellido, edad, vision, auditivo}
+        user.setPassword((String)datos[1]);
+        user.setNombre((String)datos[3]);
+        user.setApellido((String)datos[4]);
+        user.setEdad((Byte)datos[5]);
+        user.setProblemasvision((Boolean)datos[6]);
+        user.setProblemasauditivos((Boolean)datos[7]);
     }
 }

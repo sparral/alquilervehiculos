@@ -5,7 +5,7 @@
  */
 package alquilervehiculos.vista;
 
-import alquilervehiculos.controlador.ControladorLogIn;
+import alquilervehiculos.controlador.ControladorUsuario;
 import alquilervehiculos.controlador.ControladorVehiculo;
 import alquilervehiculos.excepciones.LogInException;
 import alquilervehiculos.modelo.usuario.TipoUsuario;
@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MDIPrincipal extends javax.swing.JFrame {
 
-    private final ControladorLogIn controlLogin;
+    private final ControladorUsuario controlUsuario;
     private ControladorVehiculo controlVehiculo;
 
     /**
@@ -28,7 +28,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
      */
     public MDIPrincipal() {
         initComponents();
-        controlLogin = new ControladorLogIn();
+        controlUsuario = new ControladorUsuario();
         controlVehiculo = new ControladorVehiculo();
     }
 
@@ -1515,6 +1515,11 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jLabel47.setText("* Edad:");
 
         btnEliminarUsuario.setText("ELIMINAR");
+        btnEliminarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarUsuarioActionPerformed(evt);
+            }
+        });
 
         btnGuardarUsuario.setText("GUARDAR");
         btnGuardarUsuario.setEnabled(false);
@@ -1625,7 +1630,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Usuario", "Nombre", "Apellido", "Edad", "Tiipo"
+                "Usuario", "Nombre", "Apellido", "Edad", "Tipo"
             }
         ) {
             Class[] types = new Class [] {
@@ -1796,7 +1801,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         String password = new String(txtPassword.getPassword());
 
         try {
-            Usuario usuarioAutenticado = controlLogin.validarUsuario(correo, password);
+            Usuario usuarioAutenticado = controlUsuario.validarUsuario(correo, password);
 
             // Si sigue el programa, significa que encontró y validó el usuario:
             JOptionPane.showMessageDialog(this, "Bienvenido, " + usuarioAutenticado,
@@ -1869,7 +1874,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 Usuario usuarioNuevo = new Usuario(nuevoCorreo, nuevaPassword, tipo,
                         nuevoNombre, nuevoApellido, nuevaEdad, vision, auditivo);
 
-                controlLogin.agregarUsuario(usuarioNuevo);
+                controlUsuario.agregarUsuario(usuarioNuevo);
                 limpiarCampos("Registro");
                 jfrmRegistrarUsuario.hide();
                 JOptionPane.showMessageDialog(this,
@@ -1902,7 +1907,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tblUsuarioCRUD.getModel();
         model.getDataVector().removeAllElements();
 
-        for (Usuario seleccionado : controlLogin.getUsuarios()) {
+        for (Usuario seleccionado : controlUsuario.getUsuarios()) {
             model.addRow(seleccionado.getObjectUsuario());
         }
         tblUsuarioCRUD.setModel(model);
@@ -1911,35 +1916,47 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private void btnGuardarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarUsuarioActionPerformed
 
         // Obteniendo los datos ingresados:
-        String nuevoNombre = txtNombreUsuario.getText();
-        String nuevoApellido = txtApellidoUsuario.getText();
-        String nuevoCorreo = txtCorreoUsuario.getText();
-        String nuevaPassword = new String(txtPasswordUsuario.getPassword());
-        byte nuevaEdad = Byte.parseByte(spnEdadUsuario.getValue().toString());
+        String nombre = txtNombreUsuario.getText();
+        String apellido = txtApellidoUsuario.getText();
+        String correo = txtCorreoUsuario.getText();
+        String password = new String(txtPasswordUsuario.getPassword());
+        byte edad = Byte.parseByte(spnEdadUsuario.getValue().toString());
         boolean auditivo = cbxAuditivoCRUD.isSelected();
         boolean vision = cbxVisionCRUD.isSelected();
         byte index = (byte) combobxTipoUsuario.getSelectedIndex();
 
-        TipoUsuario tipo = new TipoUsuario((byte) (index + 1),
+        TipoUsuario tipo = new TipoUsuario((byte) index,
                 combobxTipoUsuario.getSelectedItem().toString());
 
-        Usuario usuarioNuevo = new Usuario(nuevoCorreo, nuevaPassword, tipo,
-                nuevoNombre, nuevoApellido, nuevaEdad, vision, auditivo);
-
-        try {
-            controlLogin.agregarUsuario(usuarioNuevo);
+        // Como GUARDAR sirve para editar datos o instanciar uno nuevo:
+        if (controlUsuario.verificarUsuario(correo) != null) {
+            Object[] datos = {correo, password, tipo,
+                nombre, apellido, edad, vision, auditivo};
+            controlUsuario.editarUsuario(datos);
             JOptionPane.showMessageDialog(this,
-                    "Usuario Registrado", "¡Registro exitoso!", 1);
+                    "Usuario Editado", "¡Modifiación exitosa!", 1);
+            habilitarCampos("Usuario", true);
 
-            // Para observar los cambios tabla y reseteo de CRUD:
-            llenarTablaUsuarioCRUD();
-            limpiarCampos("Usuario");
-            btnGuardarUsuario.setEnabled(false);
+        } else {
+            try {
+                Usuario usuarioNuevo = new Usuario(correo, password, tipo,
+                        nombre, apellido, edad, vision, auditivo);
+                controlUsuario.agregarUsuario(usuarioNuevo);
+                JOptionPane.showMessageDialog(this,
+                        "Usuario Registrado", "¡Registro exitoso!", 1);
 
-        } catch (LogInException ex) {
-            JOptionPane.showMessageDialog(this,
-                    ex.getMessage(), "Error en Registro", 0);
+            } catch (LogInException ex) {
+                JOptionPane.showMessageDialog(this,
+                        ex.getMessage(), "Error en Registro", 0);
+            }
         }
+
+        // Para observar los cambios en tabla y reseteo de CRUD:
+        llenarTablaUsuarioCRUD();
+        limpiarCampos("Usuario");
+        btnGuardarUsuario.setEnabled(false);
+        btnGuardarUsuario.setSelected(false);
+
     }//GEN-LAST:event_btnGuardarUsuarioActionPerformed
 
     private void txtCamposCrudUsuario(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCamposCrudUsuario
@@ -1951,16 +1968,52 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_combobxTipoUsuarioActionPerformed
 
     private void btnEditarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarUsuarioActionPerformed
-        // TODO add your handling code here:
+
         int seleccionado = tblUsuarioCRUD.getSelectedRow();
         if (seleccionado == -1) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un usuario",
                     "Error en CRUD", 0);
         } else {
+
             // El Admin ha seleccionado UN usuario de la tabla:
-            
+            String userID = (String) tblUsuarioCRUD.getValueAt(seleccionado, 0);
+
+            // Obtener el usuario por medio del userID:
+            Usuario user = controlUsuario.buscarUsuarioTabla(userID);
+            habilitarCampos("Usuario", false);
+
+            combobxTipoUsuario.setSelectedIndex(user.getTipousuario().getCodigo());
+            txtNombreUsuario.setText(user.getNombre());
+            txtApellidoUsuario.setText(user.getApellido());
+            txtCorreoUsuario.setText(user.getCorreo());
+            txtPasswordUsuario.setText(user.getPassword());
+            spnEdadUsuario.setValue(user.getEdad());
+            cbxAuditivoCRUD.setSelected(user.isProblemasauditivos());
+            cbxVisionCRUD.setSelected(user.isProblemasvision());
         }
+        btnEditarUsuario.setSelected(false);
     }//GEN-LAST:event_btnEditarUsuarioActionPerformed
+
+    private void btnEliminarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarUsuarioActionPerformed
+
+        int seleccionado = tblUsuarioCRUD.getSelectedRow();
+        if (seleccionado == -1) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un usuario",
+                    "Error en CRUD", 0);
+        } else {
+            int opcion = JOptionPane.showConfirmDialog(this, "¿Está seguro de borrar este usuario?",
+                    "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+
+            if (opcion==0) {
+                // Usuario confirma eliminar el usuario,
+                String userID = (String) tblUsuarioCRUD.getValueAt(seleccionado, 0);
+                Usuario user = controlUsuario.buscarUsuarioTabla(userID);
+                
+                
+            }
+        }
+        btnEliminarUsuario.setSelected(false);
+    }//GEN-LAST:event_btnEliminarUsuarioActionPerformed
 
     private void habilitarBotones() {
         // Cuando el usuario documenta TODOS los campos necesarios:
@@ -1975,6 +2028,21 @@ public class MDIPrincipal extends javax.swing.JFrame {
         } else {
             btnAceptarRegistro.setEnabled(false);
             btnGuardarUsuario.setEnabled(false);
+        }
+    }
+
+    public void habilitarCampos(String tipo, boolean indicado) {
+        switch (tipo) {
+            case "Usuario":
+                combobxTipoUsuario.setEnabled(indicado);
+                txtCorreoUsuario.setEnabled(indicado);
+                break;
+            case "Auto":
+                break;
+            case "Moto":
+                break;
+            case "Furgoneta":
+                break;
         }
     }
 
@@ -1993,6 +2061,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 break;
 
             case "Usuario":
+                combobxTipoUsuario.setSelectedIndex(0);
                 txtNombreUsuario.setText("");
                 txtApellidoUsuario.setText("");
                 txtCorreoUsuario.setText("");
