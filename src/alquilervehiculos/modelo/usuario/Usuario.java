@@ -17,7 +17,6 @@ public class Usuario extends Tercero implements Serializable {
     private String correo;
     private String password;
     private TipoUsuario tipousuario;
-    //private final String userID;
 
     // Constructor:
 
@@ -26,7 +25,6 @@ public class Usuario extends Tercero implements Serializable {
         this.correo = correo;
         this.password = password;
         this.tipousuario = tipousuario;
-        // this.userID= this.correo.substring(0, this.correo.indexOf("@"));
     }
 
     // Métodos (Getter&Setter):
@@ -57,7 +55,7 @@ public class Usuario extends Tercero implements Serializable {
     public String getUserID() {
         int posicion= this.correo.indexOf("@");
         return this.correo.substring(0, posicion);
-    }
+    }    
     
     // Para obtener los arreglos:
     public String[] getArrayUsuario() {
@@ -70,7 +68,6 @@ public class Usuario extends Tercero implements Serializable {
     }
     
         public Object[] getObjectUsuario() {
-        // MODIFICAR ESTO:
         Object[] datos = {getUserID(), getNombre(), getApellido(), 
                                      getEdad(), getTipousuario().toString()};
         return datos;

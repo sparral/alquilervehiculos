@@ -125,12 +125,12 @@ public class ControladorUsuario implements Serializable {
     public void editarUsuario(Object[] datos) {
         Usuario user=verificarUsuario((String)datos[0]);
         
-        // {correo, password, tipo, nombre, apellido, edad, vision, auditivo}
+        // {correo, password, nombre, apellido, edad, vision, auditivo}
         user.setPassword((String)datos[1]);
-        user.setNombre((String)datos[3]);
-        user.setApellido((String)datos[4]);
-        user.setEdad((Byte)datos[5]);
-        user.setProblemasvision((Boolean)datos[6]);
-        user.setProblemasauditivos((Boolean)datos[7]);
+        user.setNombre((String)datos[2]);
+        user.setApellido((String)datos[3]);
+        user.setEdad((Byte)datos[4]);
+        user.setProblemasvision((Boolean)datos[5]);
+        user.setProblemasauditivos((Boolean)datos[6]);
     }
 }

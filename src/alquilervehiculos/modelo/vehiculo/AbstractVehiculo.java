@@ -78,22 +78,8 @@ public abstract class AbstractVehiculo {
         this.valorAlquiler = valorAlquiler;
     }
 
-    // Adicionalmente:
-    /*
-    public Object[] obtenerArregloObjeto(String rol) {
-        Object [] datos;
-        switch (rol) {
-            case "Administrador":
-                break;
-            case "Usuario":
-                break;
-            case "CRUD":
-                break;   
-        }
-        return null;
-    }
-    */
-
+    // Para obtener los datos de las tablas
+    
     public Object[] ObtenerArregloAdmin() {
         // MODIFICAR ESTO:
         Object[] datos = {isEstado(), getClass().getSimpleName(), getMatricula(),
