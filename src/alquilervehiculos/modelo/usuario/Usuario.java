@@ -56,10 +56,21 @@ public class Usuario extends Tercero implements Serializable {
         int posicion= this.correo.indexOf("@");
         return this.correo.substring(0, posicion);
     }    
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Usuario) {
+            if (((Usuario)obj).correo.compareTo(this.correo)==0) {
+                // Correos son iguales, por tanto el usuario ya existe:
+                return true;
+            }
+        }
+        return false;
+    }
     
     // Para obtener los arreglos:
     public String[] getArrayUsuario() {
-        // La idea es retornar un arreglo de String con todos las variables:
+        // La idea es retornar un arreglo de String con todas las variables:
         byte tipo = getTipousuario().getCodigo();
         String[] datos = {correo, password, Byte.toString(tipo), getNombre(), 
             getApellido(), Byte.toString(getEdad()), 

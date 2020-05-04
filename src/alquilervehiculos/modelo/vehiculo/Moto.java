@@ -9,7 +9,7 @@ package alquilervehiculos.modelo.vehiculo;
  *
  * @author Santy
  */
-public class Moto extends AbstractVehiculo implements VehiculoAble {
+public class Moto extends AbstractVehiculo {
     // Moto ES UN Vehículo, y se añade las variables de Moto:
     private boolean casco;
 

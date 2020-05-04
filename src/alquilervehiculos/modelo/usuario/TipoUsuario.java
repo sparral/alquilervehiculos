@@ -12,8 +12,8 @@ import java.io.Serializable;
  * @author Santy
  */
 public class TipoUsuario implements Serializable {
-    private byte codigo;
-    private String descripcion;
+    private final byte codigo;
+    private final String descripcion;
 
     // Constructor: 
     public TipoUsuario(byte codigo, String descripcion) {
@@ -26,16 +26,8 @@ public class TipoUsuario implements Serializable {
         return codigo;
     }
 
-    public void setCodigo(byte codigo) {
-        this.codigo = codigo;
-    }
-
     public String getDescripcion() {
         return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
     }
 
     @Override

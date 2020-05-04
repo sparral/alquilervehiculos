@@ -500,7 +500,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="50" y="20" width="660" height="480"/>
+              <AbsoluteConstraints x="50" y="20" width="660" height="500"/>
             </Constraint>
           </Constraints>
 
@@ -510,11 +510,14 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" alignment="0" pref="624" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="624" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="btnValidarVehiculo" min="-2" pref="110" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnGenerarPDF" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnValidarVehiculo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -526,10 +529,11 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="376" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnValidarVehiculo" max="32767" attributes="0"/>
-                          <Component id="btnGenerarPDF" max="32767" attributes="0"/>
+                          <Component id="btnValidarVehiculo" pref="45" max="32767" attributes="0"/>
+                          <Component id="jButton2" max="32767" attributes="0"/>
+                          <Component id="jButton3" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -609,14 +613,19 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="btnGenerarPDF">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="GENERAR PDF"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JButton" name="btnValidarVehiculo">
               <Properties>
                 <Property name="text" type="java.lang.String" value="VALIDAR"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="ALQUILAR"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="GENERAR PDF"/>
               </Properties>
             </Component>
             <Menu class="javax.swing.JMenuBar" name="mnuBarAdmin">
@@ -1407,8 +1416,8 @@
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="3">
                         <StringItem index="0" value="Seleccionar"/>
-                        <StringItem index="1" value="Usuario"/>
-                        <StringItem index="2" value="Administrador"/>
+                        <StringItem index="1" value="Administrador"/>
+                        <StringItem index="2" value="Usuario"/>
                       </StringArray>
                     </Property>
                     <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
@@ -1577,7 +1586,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="110" y="0" width="680" height="560"/>
+              <AbsoluteConstraints x="110" y="0" width="690" height="560"/>
             </Constraint>
           </Constraints>
 
@@ -1616,15 +1625,12 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane5" alignment="1" pref="659" max="32767" attributes="0"/>
+                          <Component id="jScrollPane5" alignment="1" pref="669" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jScrollPane5" min="-2" pref="95" max="-2" attributes="0"/>
-                              <EmptySpace pref="100" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jScrollPane5" alignment="0" pref="195" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -1697,7 +1703,7 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane10" alignment="1" pref="659" max="32767" attributes="0"/>
+                          <Component id="jScrollPane10" alignment="1" pref="669" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
@@ -1775,7 +1781,7 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane9" alignment="1" pref="659" max="32767" attributes="0"/>
+                          <Component id="jScrollPane9" alignment="1" pref="669" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
@@ -1864,17 +1870,8 @@
                                   <Component id="sldCapacidad" min="-2" pref="136" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jLabelCapacidad" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="btnGuardarVehiculo" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="btnEditarVehiculo" min="-2" pref="75" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="btnEliminarVehiculo" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
                               </Group>
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                       <Group type="102" attributes="0">
                                           <Component id="jLabel40" min="-2" max="-2" attributes="0"/>
@@ -1898,38 +1895,54 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="jLabel37" alignment="1" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel38" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" attributes="0">
+                                              <Component id="cbxCasco" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="cbxExtras" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="btnEditarVehiculo" min="-2" pref="75" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="btnEliminarVehiculo" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="btnGuardarVehiculo" min="-2" pref="166" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="jLabel37" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                                   <Component id="sldTarifaDia" min="-2" pref="173" max="-2" attributes="0"/>
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="jLabelTarifaDia" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="jLabel36" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
+                                                  <Component id="jLabelTarifaDia" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                                               </Group>
-                                              <Group type="102" attributes="0">
-                                                  <Component id="sldTarifaKm" min="-2" pref="173" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="jLabelTarifaKm" min="-2" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="jLabel36" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="cbxCasco" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="cbxExtras" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                                          <Component id="tbtnTarifaKm" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="jLabel38" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                          <Component id="sldTarifaKm" min="-2" pref="173" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jLabelTarifaKm" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1940,38 +1953,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="226" max="-2" attributes="0"/>
                                   <Component id="jLabel48" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel36" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="17" max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                          <Component id="sldTarifaDia" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel37" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="jLabelTarifaDia" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="jLabel38" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
-                                          <Component id="jLabelCapacidad" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="sldTarifaKm" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabelTarifaKm" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="btnGuardarVehiculo" min="-2" pref="35" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="btnEliminarVehiculo" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
-                                              <Component id="btnEditarVehiculo" alignment="0" min="-2" pref="40" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
@@ -1990,29 +1972,67 @@
                                       <Component id="combobxMarca" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="jycVehiculo" min="-2" pref="28" max="-2" attributes="0"/>
+                                      <Component id="jLabel39" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="txtKilometraje" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel40" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                  <Component id="sldCapacidad" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jLabel36" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="8" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="cbxExtras" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="cbxCasco" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="jLabel37" min="-2" max="-2" attributes="0"/>
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="jycVehiculo" min="-2" pref="28" max="-2" attributes="0"/>
-                                              <Component id="jLabel39" min="-2" max="-2" attributes="0"/>
+                                              <Component id="sldTarifaDia" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabelTarifaDia" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="txtKilometraje" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel40" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Group type="103" groupAlignment="3" attributes="0">
+                                                          <Component id="jLabel38" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="tbtnTarifaKm" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="jLabelTarifaKm" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="sldTarifaKm" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                          <Component id="sldCapacidad" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                                                  <Component id="btnGuardarVehiculo" min="-2" pref="35" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                                  <Component id="cbxExtras" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="cbxCasco" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                                                  <Component id="btnEditarVehiculo" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                                  <Component id="btnEliminarVehiculo" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="jLabelCapacidad" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="29" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2035,19 +2055,7 @@
                 </Component>
                 <Component class="javax.swing.JComboBox" name="combobxMarca">
                   <Properties>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="9">
-                        <StringItem index="0" value="Seleccionar"/>
-                        <StringItem index="1" value="Chevrolet"/>
-                        <StringItem index="2" value="Ford"/>
-                        <StringItem index="3" value="Honda"/>
-                        <StringItem index="4" value="Hyundai"/>
-                        <StringItem index="5" value="Kia"/>
-                        <StringItem index="6" value="Mazda"/>
-                        <StringItem index="7" value="Nissan"/>
-                        <StringItem index="8" value="Renault"/>
-                      </StringArray>
-                    </Property>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -2122,38 +2130,6 @@
                     <Property name="text" type="java.lang.String" value="* Tipo:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="jLabel37">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="* D&#xed;a:"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JSlider" name="sldTarifaDia">
-                  <Properties>
-                    <Property name="majorTickSpacing" type="int" value="50000"/>
-                    <Property name="maximum" type="int" value="200000"/>
-                    <Property name="minimum" type="int" value="50000"/>
-                    <Property name="paintTicks" type="boolean" value="true"/>
-                    <Property name="value" type="int" value="100000"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="sldTarifaDiaStateChanged"/>
-                  </Events>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel38">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Km:"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabelTarifaDia">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="$100000 COP/d&#xed;a&#xa;"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel36">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Tarifas:"/>
-                  </Properties>
-                </Component>
                 <Component class="javax.swing.JToggleButton" name="btnEditarVehiculo">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="EDITAR"/>
@@ -2179,6 +2155,7 @@
                     <Property name="maximum" type="int" value="100000"/>
                     <Property name="paintTicks" type="boolean" value="true"/>
                     <Property name="value" type="int" value="30000"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="sldTarifaKmStateChanged"/>
@@ -2187,6 +2164,26 @@
                 <Component class="javax.swing.JLabel" name="jLabelTarifaKm">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="$30000 COP/km"/>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel38">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Km:"/>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JToggleButton" name="tbtnTarifaKm">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="+"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbtnTarifaKmActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabelTarifaDia">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="$100000 COP/d&#xed;a&#xa;"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="cbxExtras">
@@ -2199,6 +2196,28 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Casco"/>
                     <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel36">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Tarifas:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JSlider" name="sldTarifaDia">
+                  <Properties>
+                    <Property name="majorTickSpacing" type="int" value="50000"/>
+                    <Property name="maximum" type="int" value="200000"/>
+                    <Property name="minimum" type="int" value="50000"/>
+                    <Property name="paintTicks" type="boolean" value="true"/>
+                    <Property name="value" type="int" value="100000"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="sldTarifaDiaStateChanged"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel37">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="* D&#xed;a:"/>
                   </Properties>
                 </Component>
               </SubComponents>

@@ -9,10 +9,10 @@ package alquilervehiculos.modelo.vehiculo;
  *
  * @author Santy
  */
-public abstract class AbstractVehiculo {
+public abstract class AbstractVehiculo implements VehiculoAble {
 
     // Variables que todo vehículo tiene:
-    private String matricula;
+    private final String matricula;
     private int kilometraje;
     private boolean estado;
     private String marca;
@@ -32,10 +32,6 @@ public abstract class AbstractVehiculo {
     // Métodos (Getter&Setter):
     public String getMatricula() {
         return matricula;
-    }
-
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
     }
 
     public int getKilometraje() {
@@ -80,19 +76,19 @@ public abstract class AbstractVehiculo {
 
     // Para obtener los datos de las tablas
     
-    public Object[] ObtenerArregloAdmin() {
+    public Object[] getObjectAdmin() {
         // MODIFICAR ESTO:
         Object[] datos = {isEstado(), getClass().getSimpleName(), getMatricula(),
             getMarca(), getAnio(), "danielh", "02-15-2019", true};
         return datos;
     }
 
-    public Object[] ObtenerArregloUsuario() {
+    public Object[] getObjectUsuario() {
         Object[] datos = {isEstado(), getClass().getSimpleName(), getMarca(), getAnio()};
         return datos;
     }
 
-    public Object[] ObtenerArregloCRUD() {
+    public Object[] getObjectCRUD() {
         // MODIFICAR ESTO:
         Object[] datos = {getMatricula(), getMarca(), getAnio(), getKilometraje(), true};
         return datos;

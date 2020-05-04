@@ -88,7 +88,7 @@ public class ControladorUsuario implements Serializable {
 
         if (matcher.find()) {
             // Formato de correo válido:
-            if (verificarUsuario(user.getCorreo()) == null) {
+            if (encontrarUsuario(user.getCorreo()) == null) {
                 usuarios.add(user);
                 ExportarCSV.agregarUsuarioCSV(usuarios);
             } else {
@@ -99,7 +99,7 @@ public class ControladorUsuario implements Serializable {
         }
     }
 
-    public Usuario verificarUsuario(String correo) {
+    public Usuario encontrarUsuario(String correo) {
 
         for (Usuario usuarioEncontrado : this.usuarios) {
             // Validación por medio de correo:           
@@ -121,16 +121,17 @@ public class ControladorUsuario implements Serializable {
         }
         return null;
     }
-
-    public void editarUsuario(Object[] datos) {
-        Usuario user=verificarUsuario((String)datos[0]);
+    
+    
+    public void eliminarUsuario(String userID) {
         
-        // {correo, password, nombre, apellido, edad, vision, auditivo}
-        user.setPassword((String)datos[1]);
-        user.setNombre((String)datos[2]);
-        user.setApellido((String)datos[3]);
-        user.setEdad((Byte)datos[4]);
-        user.setProblemasvision((Boolean)datos[5]);
-        user.setProblemasauditivos((Boolean)datos[6]);
+        for(Usuario user:this.usuarios) {
+            if (user.getUserID().compareTo(userID)==0) {
+                // Al encontrar el usuario por el userID, lo elimina:
+                this.usuarios.remove(user);
+                
+                // FALTA ELIMINARLO DEL CSV...
+            }
+        } 
     }
 }

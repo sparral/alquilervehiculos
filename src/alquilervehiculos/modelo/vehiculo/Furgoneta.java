@@ -9,8 +9,7 @@ package alquilervehiculos.modelo.vehiculo;
  *
  * @author Santy
  */
-public class Furgoneta extends AbstractVehiculo implements VehiculoAble {
-
+public class Furgoneta extends AbstractVehiculo {
     // Furgoneta ES UN Vehículo, y se añaden las variables de Furgoneta:
     private short capacidad;
 
@@ -30,6 +29,7 @@ public class Furgoneta extends AbstractVehiculo implements VehiculoAble {
     }
 
     // Métodos de la FURGONETA:
+
     @Override
     public void alquilar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

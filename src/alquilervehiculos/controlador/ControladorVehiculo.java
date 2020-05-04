@@ -5,8 +5,6 @@
  */
 package alquilervehiculos.controlador;
 
-import alquilervehiculos.modelo.vehiculo.Auto;
-import alquilervehiculos.modelo.vehiculo.Moto;
 import alquilervehiculos.modelo.vehiculo.AbstractVehiculo;
 import alquilervehiculos.utilidades.ImportarCSV;
 import java.io.Serializable;
@@ -18,23 +16,26 @@ import java.util.List;
  * @author Santy
  */
 public class ControladorVehiculo implements Serializable {
-    
-    private List <AbstractVehiculo> vehiculos;
+
+    private List<AbstractVehiculo> vehiculos;
 
     public ControladorVehiculo() {
         llenarVehiculos();
     }
-    
-    private void llenarVehiculos () {
-        vehiculos=ImportarCSV.cargarVehiculos();
+
+    private void llenarVehiculos() {
+        if (vehiculos == null || vehiculos.isEmpty()) {
+            vehiculos = ImportarCSV.cargarVehiculos();
+        }
     }
-    
+
     public List<AbstractVehiculo> obtenerListaVehiculos(String tipo) {
         // Me obtiene la lista correspondiente de vehículos para la tabla:        
-        List <AbstractVehiculo> listaTemp = new ArrayList<>();
-        
-        for (AbstractVehiculo seleccionado: vehiculos) {
-            if (seleccionado.getClass().getSimpleName().compareTo(tipo)==0) {
+        List<AbstractVehiculo> listaTemp = new ArrayList<>();
+
+        for (AbstractVehiculo seleccionado : this.vehiculos) {
+
+            if (seleccionado.getClass().getSimpleName().compareTo(tipo) == 0) {
                 // Es selectivo con respecto al tipo de vehículo,
                 listaTemp.add(seleccionado);
             } else if (tipo.isEmpty()) {
@@ -42,8 +43,8 @@ public class ControladorVehiculo implements Serializable {
                 listaTemp.add(seleccionado);
             }
         }
-        
+
         return listaTemp;
     }
-    
+
 }

@@ -9,8 +9,7 @@ package alquilervehiculos.modelo.vehiculo;
  *
  * @author Santy
  */
-public class Auto extends AbstractVehiculo implements VehiculoAble {
-
+public class Auto extends AbstractVehiculo{
     // Auto ES UN Vehículo, y se añade las variables del auto:
     private boolean extras;
 
@@ -30,6 +29,7 @@ public class Auto extends AbstractVehiculo implements VehiculoAble {
     }
 
     // Métodos del AUTO:
+
     @Override
     public void alquilar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
