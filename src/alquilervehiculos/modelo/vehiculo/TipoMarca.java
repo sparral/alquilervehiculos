@@ -14,12 +14,26 @@ import java.io.Serializable;
 public class TipoMarca implements Serializable {
     // private byte codigo;
     private String tipoVehiculo;
-    private String marca;
+    private String marca;    
 
     public TipoMarca(String tipoVehiculo, String marca) {
         this.tipoVehiculo = tipoVehiculo;
         this.marca = marca;
     }
+
+    public String getTipoVehiculo() {
+        return tipoVehiculo;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    @Override
+    public String toString() {
+        return this.marca;
+    }
+
     
     
 }

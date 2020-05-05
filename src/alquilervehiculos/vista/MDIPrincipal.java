@@ -11,8 +11,9 @@ import alquilervehiculos.excepciones.LogInException;
 import alquilervehiculos.modelo.usuario.TipoUsuario;
 import alquilervehiculos.modelo.usuario.Usuario;
 import alquilervehiculos.modelo.vehiculo.AbstractVehiculo;
-import java.util.List;
+import alquilervehiculos.modelo.vehiculo.TipoMarca;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -44,8 +45,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnGrupoMarca = new javax.swing.ButtonGroup();
-        btnGrupoTarifa = new javax.swing.ButtonGroup();
         desktopPane = new javax.swing.JDesktopPane();
         jfrmLogin = new javax.swing.JInternalFrame();
         jLabel1 = new javax.swing.JLabel();
@@ -77,18 +76,39 @@ public class MDIPrincipal extends javax.swing.JFrame {
         cbxVisionRegistro = new javax.swing.JCheckBox();
         cbxTerminos = new javax.swing.JCheckBox();
         jfrmPrincipalAdmin = new javax.swing.JInternalFrame();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblVehiculosAdmin = new javax.swing.JTable();
-        btnValidarVehiculo = new javax.swing.JButton();
+        PanelFiltrosAdmin = new javax.swing.JPanel();
+        jCheckBox7 = new javax.swing.JCheckBox();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jComboBox4 = new javax.swing.JComboBox<>();
+        jTextField2 = new javax.swing.JTextField();
+        jComboBox5 = new javax.swing.JComboBox<>();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jDateChooser3 = new com.toedter.calendar.JDateChooser();
+        jLabel23 = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jCheckBox8 = new javax.swing.JCheckBox();
+        jCheckBox9 = new javax.swing.JCheckBox();
+        jSeparator2 = new javax.swing.JSeparator();
+        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        PanelTablaAdmin = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblVehiculosAdmin = new javax.swing.JTable();
         mnuBarAdmin = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         mnuEditarUsuarios = new javax.swing.JMenuItem();
         mnuEditarVehiculos = new javax.swing.JMenuItem();
@@ -104,16 +124,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         cbxDisponibleUsuario = new javax.swing.JCheckBox();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        radiobtnDias = new javax.swing.JRadioButton();
-        radiobtnHoras = new javax.swing.JRadioButton();
-        radiobtnKilometraje = new javax.swing.JRadioButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jCheckBox1 = new javax.swing.JCheckBox();
         jfrmValidarVehiculo = new javax.swing.JInternalFrame();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -484,25 +495,155 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jfrmPrincipalAdmin.setTitle("Principal Administrador");
         jfrmPrincipalAdmin.setVisible(false);
 
+        PanelFiltrosAdmin.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Filtros de búsqueda", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+
+        jCheckBox7.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
+        jCheckBox7.setText("Disponible");
+
+        jLabel7.setText("Tipo:");
+
+        jLabel20.setText("Marca:");
+
+        jLabel21.setText("Matricula:");
+
+        jLabel22.setText("Fechas:");
+
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Auto", "Moto", "Furgoneta" }));
+
+        jComboBox5.setEnabled(false);
+
+        jDateChooser3.setEnabled(false);
+
+        jLabel23.setText("Tarifa:");
+
+        jRadioButton1.setText("Km");
+
+        jRadioButton2.setText("Día");
+
+        jCheckBox8.setText("Problemas Visión");
+
+        jCheckBox9.setText("Problemas Auditivos");
+
+        jButton1.setText("FILTRAR");
+
+        jButton2.setText("LIMPIAR");
+
+        jButton3.setText("ALQUILAR");
+
+        jButton4.setText("VALIDAR");
+
+        javax.swing.GroupLayout PanelFiltrosAdminLayout = new javax.swing.GroupLayout(PanelFiltrosAdmin);
+        PanelFiltrosAdmin.setLayout(PanelFiltrosAdminLayout);
+        PanelFiltrosAdminLayout.setHorizontalGroup(
+            PanelFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelFiltrosAdminLayout.createSequentialGroup()
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(PanelFiltrosAdminLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PanelFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelFiltrosAdminLayout.createSequentialGroup()
+                        .addComponent(jLabel23)
+                        .addGap(18, 18, 18)
+                        .addGroup(PanelFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jRadioButton2)
+                            .addComponent(jRadioButton1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(PanelFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBox7)
+                            .addComponent(jCheckBox9)
+                            .addComponent(jCheckBox8)))
+                    .addGroup(PanelFiltrosAdminLayout.createSequentialGroup()
+                        .addGroup(PanelFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelFiltrosAdminLayout.createSequentialGroup()
+                                    .addComponent(jLabel21)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jTextField2))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelFiltrosAdminLayout.createSequentialGroup()
+                                    .addComponent(jLabel20)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jComboBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelFiltrosAdminLayout.createSequentialGroup()
+                                    .addComponent(jLabel7)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(PanelFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(PanelFiltrosAdminLayout.createSequentialGroup()
+                                    .addComponent(jLabel22)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(PanelFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(PanelFiltrosAdminLayout.createSequentialGroup()
+                                        .addGroup(PanelFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(PanelFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jButton3)
+                                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        PanelFiltrosAdminLayout.setVerticalGroup(
+            PanelFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelFiltrosAdminLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PanelFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(PanelFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(PanelFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(PanelFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBox7)
+                    .addComponent(jLabel23)
+                    .addComponent(jRadioButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PanelFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBox9)
+                    .addComponent(jRadioButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBox8)
+                .addGap(18, 18, 18)
+                .addGroup(PanelFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel22)
+                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addGroup(PanelFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         tblVehiculosAdmin.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Disponible", "Tipo", "Matrícula", "Marca", "Año", "Usuario", "Entrega", "Activar"
+                "Disponible", "Tipo", "Matrícula", "Marca", "Año", "Usuario", "Entrega"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+                java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -513,21 +654,24 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblVehiculosAdmin.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tblVehiculosAdmin);
         if (tblVehiculosAdmin.getColumnModel().getColumnCount() > 0) {
             tblVehiculosAdmin.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        btnValidarVehiculo.setText("VALIDAR");
-
-        jButton2.setText("ALQUILAR");
-
-        jButton3.setText("GENERAR PDF");
+        javax.swing.GroupLayout PanelTablaAdminLayout = new javax.swing.GroupLayout(PanelTablaAdmin);
+        PanelTablaAdmin.setLayout(PanelTablaAdminLayout);
+        PanelTablaAdminLayout.setHorizontalGroup(
+            PanelTablaAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+        );
+        PanelTablaAdminLayout.setVerticalGroup(
+            PanelTablaAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
 
         jMenu1.setText("Archivo");
-
-        jMenuItem1.setText("Agregar Admin");
-        jMenu1.add(jMenuItem1);
 
         jMenu3.setText("Cargar CSV");
 
@@ -541,6 +685,15 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jMenu3.add(jMenuItem6);
 
         jMenu1.add(jMenu3);
+
+        jMenuItem3.setText("Generar PDF");
+        jMenu1.add(jMenuItem3);
+
+        jMenuItem2.setText("Reporte");
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem1.setText("Solicitudes");
+        jMenu1.add(jMenuItem1);
 
         mnuBarAdmin.add(jMenu1);
 
@@ -571,33 +724,21 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jfrmPrincipalAdminLayout.setHorizontalGroup(
             jfrmPrincipalAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jfrmPrincipalAdminLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jfrmPrincipalAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 624, Short.MAX_VALUE)
-                    .addGroup(jfrmPrincipalAdminLayout.createSequentialGroup()
-                        .addComponent(btnValidarVehiculo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addComponent(PanelFiltrosAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(PanelTablaAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jfrmPrincipalAdminLayout.setVerticalGroup(
             jfrmPrincipalAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jfrmPrincipalAdminLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jfrmPrincipalAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnValidarVehiculo, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addGroup(jfrmPrincipalAdminLayout.createSequentialGroup()
+                .addGroup(jfrmPrincipalAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(PanelFiltrosAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PanelTablaAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         desktopPane.add(jfrmPrincipalAdmin);
-        jfrmPrincipalAdmin.setBounds(50, 20, 660, 500);
+        jfrmPrincipalAdmin.setBounds(10, 0, 840, 550);
 
         jfrmPrincipalUsuario.setMaximizable(true);
         jfrmPrincipalUsuario.setTitle("Principal Usuario");
@@ -654,27 +795,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel14.setText("TARIFA POR:");
 
-        btnGrupoTarifa.add(radiobtnDias);
-        radiobtnDias.setText("Días");
-
-        btnGrupoTarifa.add(radiobtnHoras);
-        radiobtnHoras.setText("Horas");
-
-        btnGrupoTarifa.add(radiobtnKilometraje);
-        radiobtnKilometraje.setText("Kilometraje");
-
-        jCheckBox2.setText("Chevrolet");
-
-        jCheckBox3.setText("Audi");
-
-        jCheckBox4.setText("Nissan");
-
-        jCheckBox5.setText("Susuki");
-
-        jCheckBox6.setText("Yamaha");
-
-        jCheckBox1.setText("Mazda");
-
         javax.swing.GroupLayout jfrmPrincipalUsuarioLayout = new javax.swing.GroupLayout(jfrmPrincipalUsuario.getContentPane());
         jfrmPrincipalUsuario.getContentPane().setLayout(jfrmPrincipalUsuarioLayout);
         jfrmPrincipalUsuarioLayout.setHorizontalGroup(
@@ -684,17 +804,11 @@ public class MDIPrincipal extends javax.swing.JFrame {
                     .addGroup(jfrmPrincipalUsuarioLayout.createSequentialGroup()
                         .addGroup(jfrmPrincipalUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jfrmPrincipalUsuarioLayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addGroup(jfrmPrincipalUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jfrmPrincipalUsuarioLayout.createSequentialGroup()
-                                        .addGap(53, 53, 53)
-                                        .addComponent(jLabel11))
-                                    .addGroup(jfrmPrincipalUsuarioLayout.createSequentialGroup()
-                                        .addGap(74, 74, 74)
-                                        .addComponent(btnFiltros))
-                                    .addComponent(radiobtnDias)
-                                    .addComponent(radiobtnKilometraje)
-                                    .addComponent(radiobtnHoras)))
+                                .addGap(63, 63, 63)
+                                .addComponent(jLabel11))
+                            .addGroup(jfrmPrincipalUsuarioLayout.createSequentialGroup()
+                                .addGap(84, 84, 84)
+                                .addComponent(btnFiltros))
                             .addGroup(jfrmPrincipalUsuarioLayout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addGroup(jfrmPrincipalUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -708,17 +822,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                                         .addComponent(cbxDisponibleUsuario))))
                             .addGroup(jfrmPrincipalUsuarioLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jLabel13)
-                                .addGap(18, 18, 18)
-                                .addGroup(jfrmPrincipalUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBox3)
-                                    .addComponent(jCheckBox2)
-                                    .addComponent(jCheckBox1))
-                                .addGap(18, 18, 18)
-                                .addGroup(jfrmPrincipalUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBox4)
-                                    .addComponent(jCheckBox5)
-                                    .addComponent(jCheckBox6)))
+                                .addComponent(jLabel13))
                             .addGroup(jfrmPrincipalUsuarioLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel14)))
@@ -738,7 +842,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
             .addGroup(jfrmPrincipalUsuarioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jfrmPrincipalUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jfrmPrincipalUsuarioLayout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addGap(18, 18, 18)
@@ -754,27 +857,13 @@ public class MDIPrincipal extends javax.swing.JFrame {
                         .addGap(1, 1, 1)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jfrmPrincipalUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel13)
-                            .addComponent(jCheckBox4)
-                            .addComponent(jCheckBox1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jfrmPrincipalUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCheckBox2)
-                            .addComponent(jCheckBox5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jfrmPrincipalUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCheckBox3)
-                            .addComponent(jCheckBox6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
                         .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(radiobtnDias)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(radiobtnHoras)
-                        .addGap(3, 3, 3)
-                        .addComponent(radiobtnKilometraje)))
-                .addGap(18, 18, 18)
+                        .addGap(97, 97, 97))
+                    .addGroup(jfrmPrincipalUsuarioLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addComponent(btnFiltros, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1112,7 +1201,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+            .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jfrmUsuariosCRUDLayout = new javax.swing.GroupLayout(jfrmUsuariosCRUD.getContentPane());
@@ -1476,7 +1565,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                         .addComponent(sldCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosLayout.createSequentialGroup()
                         .addComponent(jLabel36)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                         .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel37)
                             .addGroup(PanelDatosLayout.createSequentialGroup()
@@ -1619,14 +1708,12 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 case 1:
                     // ADMINISTRADOR:
                     jfrmPrincipalAdmin.show();
-                    llenarTablaVehiculo("Administrador", tblVehiculosAdmin,
-                            controlVehiculo.obtenerListaVehiculos(""));
+                    llenarTablaPrincipal("Administrador", tblVehiculosAdmin);
                     break;
                 case 2:
                     // USUARIO REGULAR:
                     jfrmPrincipalUsuario.show();
-                    llenarTablaVehiculo("Usuario", tblVehiculosUsuario,
-                            controlVehiculo.obtenerListaVehiculos(""));
+                    llenarTablaPrincipal("Usuario", tblVehiculosUsuario);
                     break;
             }
 
@@ -1645,9 +1732,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jfrmVehiculosCRUD.show();
         String[] tipo = {"Auto", "Moto", "Furgoneta"};
         JTable[] tablas = {tblAutoCRUD, tblMotoCRUD, tblFurgonetaCRUD};
-        for (int i = 0; i < tipo.length; i++) {
-            llenarTablaVehiculo(tipo[i], tablas[i], controlVehiculo.obtenerListaVehiculos(tipo[i]));
-        }
+        llenarVehiculosCRUD(tipo, tablas);
     }//GEN-LAST:event_mnuEditarVehiculosActionPerformed
 
     private void btnCancelarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarRegistroActionPerformed
@@ -1660,10 +1745,10 @@ public class MDIPrincipal extends javax.swing.JFrame {
         String nuevaPassword = new String(txtNuevaPassword.getPassword());
         String repPassword = new String(txtConfirmarPassword.getPassword());
         TipoUsuario tipo = new TipoUsuario((byte) 2, "Usuario");
-        
-        Usuario usuarioNuevo = new Usuario(txtNuevoCorreo.getText(), nuevaPassword, 
-                tipo, txtNuevoNombre.getText(), txtNuevoApellido.getText(), 
-                Byte.parseByte(spnNuevaEdad.getValue().toString()), 
+
+        Usuario usuarioNuevo = new Usuario(txtNuevoCorreo.getText(), nuevaPassword,
+                tipo, txtNuevoNombre.getText(), txtNuevoApellido.getText(),
+                Byte.parseByte(spnNuevaEdad.getValue().toString()),
                 cbxVisionRegistro.isSelected(), cbxAuditivoRegistro.isSelected());
         try {
             if (nuevaPassword.compareTo(repPassword) == 0) {
@@ -1694,7 +1779,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
     private void mnuEditarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuEditarUsuariosActionPerformed
         jfrmUsuariosCRUD.show();
-        llenarTablaUsuarios();
+        llenarUsuariosCRUD();
         habilitarBotones();
     }//GEN-LAST:event_mnuEditarUsuariosActionPerformed
 
@@ -1719,7 +1804,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(this,
                     "Usuario Editado", "¡Modifiación exitosa!", 1);
-            habilitarCampos("Usuario", true);
+            habilitarCamposEditar("Usuario", true);
 
         } else {
             // Instanciar nuevo Usuario y guardar:
@@ -1740,7 +1825,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         }
 
         // Para observar los cambios en tabla y reseteo de CRUD:
-        llenarTablaUsuarios();
+        llenarUsuariosCRUD();
         limpiarCampos("Usuario");
         btnGuardarUsuario.setEnabled(false);
         btnGuardarUsuario.setSelected(false);
@@ -1767,7 +1852,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
             // Obtener el usuario por medio del userID:
             Usuario user = controlUsuario.buscarUsuarioTabla(userID);
-            habilitarCampos("Usuario", false);
+            habilitarCamposEditar("Usuario", false);
 
             combobxTipoUsuario.setSelectedIndex(user.getTipousuario().getCodigo());
             txtNombreUsuario.setText(user.getNombre());
@@ -1795,8 +1880,8 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 // Usuario confirma eliminar el usuario,
                 String userID = (String) tblUsuarioCRUD.getValueAt(seleccionado, 0);
                 controlUsuario.eliminarUsuario(userID);
-                llenarTablaUsuarios();
-                
+                llenarUsuariosCRUD();
+
                 JOptionPane.showMessageDialog(this, "Usuario eliminado con éxito");
             }
         }
@@ -1828,72 +1913,38 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_sldCapacidadStateChanged
 
     private void combobxTipoVehiculoCRUDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combobxTipoVehiculoCRUDItemStateChanged
-        // Activar/Desactivar botones del CRUD vehículos, dependiendo del tipo: 
-        switch ((String) combobxTipoVehiculoCRUD.getSelectedItem()) {
-            case "Auto":
-                cbxExtras.setEnabled(true);
-                cbxCasco.setEnabled(false);
-                jLabel48.setEnabled(false);
-                sldCapacidad.setEnabled(false);
-                jLabelCapacidad.setEnabled(false);
-                break;
-            case "Moto":
-                cbxCasco.setEnabled(true);
-                cbxExtras.setEnabled(false);
-                jLabel48.setEnabled(false);
-                sldCapacidad.setEnabled(false);
-                jLabelCapacidad.setEnabled(false);
-                break;
-            case "Furgoneta":
-                jLabel48.setEnabled(true);
-                sldCapacidad.setEnabled(true);
-                jLabelCapacidad.setEnabled(true);
-                cbxExtras.setEnabled(false);
-                cbxCasco.setEnabled(false);
-                break;
-            default:
-                cbxExtras.setEnabled(false);
-                cbxCasco.setEnabled(false);
-                jLabel48.setEnabled(false);
-                sldCapacidad.setEnabled(false);
-                jLabelCapacidad.setEnabled(false);
-                combobxMarca.setEnabled(false);
-        }
 
         // Activar las marcas del vehiculo:
         combobxMarca.setEnabled(true);
-        llenarCombobxMarcaVehiculo();
-    }//GEN-LAST:event_combobxTipoVehiculoCRUDItemStateChanged
+        llenarCombobxMarcas(combobxTipoVehiculoCRUD);
 
-    private void llenarCombobxMarcaVehiculo() {
-        DefaultComboBoxModel model = new DefaultComboBoxModel();
-        model.removeAllElements();
-        model.addElement("Seleccionar");
-        // POSTERIOR MODIFICACIÓN...
+        // Activar/Desactivar botones del CRUD vehículos, dependiendo del tipo: 
         switch ((String) combobxTipoVehiculoCRUD.getSelectedItem()) {
             case "Auto":
-                model.addElement("Chevrolet");
-                model.addElement("Ford");
-                model.addElement("Honda");
-                model.addElement("Kia");
-                model.addElement("Mazda");
-                model.addElement("Nissan");
+                // Activar solo Extras,
+                activarCamposCRUD(true, false, false);
                 break;
             case "Moto":
-                model.addElement("AKT");
-                model.addElement("Honda");
-                model.addElement("Kawasaki");
-                model.addElement("Susuki");
-                model.addElement("Yamaha");
+                // Activar solo Casco,
+                activarCamposCRUD(false, true, false);
                 break;
             case "Furgoneta":
-                model.addElement("Fiat");
-                model.addElement("Ford");
-                model.addElement("Mercedes");
-                model.addElement("Renault");
+                // Activar solo Capacidad,
+                activarCamposCRUD(false, false, true);
                 break;
+            default:
+                // En caso de estar en "Seleccionar":
+                activarCamposCRUD(false, false, false);
+                combobxMarca.setEnabled(false);
         }
-        combobxMarca.setModel(model);
+    }//GEN-LAST:event_combobxTipoVehiculoCRUDItemStateChanged
+
+    private void activarCamposCRUD(boolean extras, boolean casco, boolean capacidad) {
+        cbxExtras.setEnabled(extras);
+        cbxCasco.setEnabled(casco);
+        jLabel48.setEnabled(capacidad);
+        sldCapacidad.setEnabled(capacidad);
+        jLabelCapacidad.setEnabled(capacidad);
     }
 
     private void txtCamposCrudVehiculo(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCamposCrudVehiculo
@@ -1918,12 +1969,24 @@ public class MDIPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tbtnTarifaKmActionPerformed
 
-    private void llenarTablaVehiculo(String tipo, JTable table, List<AbstractVehiculo> lista) {
+    private void llenarCombobxMarcas(JComboBox combobx) {
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        model.removeAllElements();
+        model.addElement("Seleccionar");
+        for (TipoMarca seleccionado: controlVehiculo.getMarcas()) {
+            if (seleccionado.getTipoVehiculo().compareTo((String) combobx.getSelectedItem())==0) {
+                model.addElement(seleccionado);
+            }
+        }
+        combobxMarca.setModel(model);
+    }
+
+    private void llenarTablaPrincipal(String tipo, JTable table) {
         // Obtener modelo de tabla y vaciar:
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.getDataVector().removeAllElements();
         // Luego, recorrer la lista correspondiente:
-        for (AbstractVehiculo seleccionado : lista) {
+        for (AbstractVehiculo seleccionado : controlVehiculo.obtenerListaVehiculos("")) {
             // Dependiendo del tipo de tabla, llena lo necesario:
             switch (tipo) {
                 case "Administrador":
@@ -1932,21 +1995,25 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 case "Usuario":
                     model.addRow(seleccionado.getObjectUsuario());
                     break;
-                case "Auto":
-                    model.addRow(seleccionado.getObjectCRUD());
-                    break;
-                case "Moto":
-                    model.addRow(seleccionado.getObjectCRUD());
-                    break;
-                case "Furgoneta":
-                    model.addRow(seleccionado.getObjectCRUD());
-                    break;
             }
         }
         table.setModel(model);
     }
 
-    private void llenarTablaUsuarios() {
+    private void llenarVehiculosCRUD(String[] tipo, JTable[] table) {
+        // Array de tablas:
+        for (int i = 0; i < table.length; i++) {
+            DefaultTableModel model = (DefaultTableModel) table[i].getModel();
+            model.getDataVector().removeAllElements();
+
+            for (AbstractVehiculo seleccionado : controlVehiculo.obtenerListaVehiculos(tipo[i])) {
+                model.addRow(seleccionado.getObjectVehiculo());
+            }
+            table[i].setModel(model);
+        }
+    }
+
+    private void llenarUsuariosCRUD() {
         DefaultTableModel model = (DefaultTableModel) tblUsuarioCRUD.getModel();
         model.getDataVector().removeAllElements();
         for (Usuario seleccionado : controlUsuario.getUsuarios()) {
@@ -1972,10 +2039,10 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 && txtPasswordUsuario.getPassword().length != 0) {
 
             btnGuardarUsuario.setEnabled(true);
-        } else if (combobxTipoVehiculoCRUD.getSelectedIndex() == 0
-                && txtMatricula.getText().isEmpty()
-                && combobxMarca.getSelectedIndex() == 0
-                && txtKilometraje.getText().isEmpty()) {
+        } else if (combobxTipoVehiculoCRUD.getSelectedIndex() != 0
+                && !txtMatricula.getText().isEmpty()
+                && combobxMarca.getSelectedIndex() != 0
+                && !txtKilometraje.getText().isEmpty()) {
 
             btnGuardarVehiculo.setEnabled(true);
         } else {
@@ -1985,7 +2052,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         }
     }
 
-    public void habilitarCampos(String tipo, boolean indicado) {
+    public void habilitarCamposEditar(String tipo, boolean indicado) {
         switch (tipo) {
             case "Usuario":
                 combobxTipoUsuario.setEnabled(indicado);
@@ -2070,6 +2137,8 @@ public class MDIPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelDatos;
     private javax.swing.JPanel PanelDatosUsuario;
+    private javax.swing.JPanel PanelFiltrosAdmin;
+    private javax.swing.JPanel PanelTablaAdmin;
     private javax.swing.JButton btnAceptarRegistro;
     private javax.swing.JButton btnAceptarValidacion;
     private javax.swing.JButton btnCancelarRegistro;
@@ -2079,14 +2148,11 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnEliminarUsuario;
     private javax.swing.JToggleButton btnEliminarVehiculo;
     private javax.swing.JButton btnFiltros;
-    private javax.swing.ButtonGroup btnGrupoMarca;
-    private javax.swing.ButtonGroup btnGrupoTarifa;
     private javax.swing.JToggleButton btnGuardarUsuario;
     private javax.swing.JToggleButton btnGuardarVehiculo;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnInvitado;
     private javax.swing.JButton btnRegistrar;
-    private javax.swing.JButton btnValidarVehiculo;
     private javax.swing.JCheckBox cbxAuditivoCRUD;
     private javax.swing.JCheckBox cbxAuditivoRegistro;
     private javax.swing.JCheckBox cbxAuditivoUsuario;
@@ -2105,15 +2171,18 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> combobxTipoVehiculo;
     private javax.swing.JComboBox<String> combobxTipoVehiculoCRUD;
     private javax.swing.JDesktopPane desktopPane;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JCheckBox jCheckBox7;
+    private javax.swing.JCheckBox jCheckBox8;
+    private javax.swing.JCheckBox jCheckBox9;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JComboBox<String> jComboBox5;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private com.toedter.calendar.JDateChooser jDateChooser3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2126,6 +2195,10 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
@@ -2146,6 +2219,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelCapacidad;
@@ -2155,6 +2229,8 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
@@ -2163,6 +2239,8 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
@@ -2171,7 +2249,9 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JInternalFrame jfrmLogin;
     private javax.swing.JInternalFrame jfrmPrincipalAdmin;
     private javax.swing.JInternalFrame jfrmPrincipalUsuario;
@@ -2188,9 +2268,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuEditarVehiculos;
     private javax.swing.JMenu mnuGeneral;
     private javax.swing.JMenuItem mnuSalir;
-    private javax.swing.JRadioButton radiobtnDias;
-    private javax.swing.JRadioButton radiobtnHoras;
-    private javax.swing.JRadioButton radiobtnKilometraje;
     private javax.swing.JSlider sldCapacidad;
     private javax.swing.JSlider sldTarifaDia;
     private javax.swing.JSlider sldTarifaKm;
