@@ -20,56 +20,51 @@ public class ControladorVehiculo implements Serializable {
 
     private List<AbstractVehiculo> vehiculos;
     private List<TipoMarca> marcas;
-    
-    
+
     public ControladorVehiculo() {
-        llenarVehiculos();
         llenarMarcas();
+        llenarVehiculos();
     }
 
     private void llenarVehiculos() {
         if (vehiculos == null || vehiculos.isEmpty()) {
-            vehiculos = ImportarCSV.cargarVehiculos();
+            vehiculos = ImportarCSV.cargarVehiculos(marcas);
         }
-    }
-    
-    private void llenarMarcas() {
-        //                      **MODIFICAR ESTO**
-        marcas= new ArrayList<>();
-        //String [] tiposVehiculo={"Auto","Moto","Furgoneta"};
-        //String [] marcasAuto= {"Chevrolet","Kia","Mazda","Nissan"};
-        //String [] marcasMoto= {"AKT","Honda","Kawasaki","Susuki","Yamaha"};
-        //String [] marcasFurgoneta= {"Fiat","Ford","Mercedes","Renault"};
-        
-        // Marcas de Autos:
-        marcas.add(new TipoMarca("Auto", "Chevrolet"));
-        marcas.add(new TipoMarca("Auto", "Kia"));
-        marcas.add(new TipoMarca("Auto", "Mazda"));
-        marcas.add(new TipoMarca("Auto", "Nissan"));
-        
-        // Marcas de Motos:
-        marcas.add(new TipoMarca("Moto", "AKT"));
-        marcas.add(new TipoMarca("Moto", "Honda"));
-        marcas.add(new TipoMarca("Moto", "Kawasaki"));
-        marcas.add(new TipoMarca("Moto", "Susuki"));
-        marcas.add(new TipoMarca("Moto", "Yamaha"));
-        
-        // Marcas de Furgonetas:
-        marcas.add(new TipoMarca("Furgoneta", "Fiat"));
-        marcas.add(new TipoMarca("Furgoneta", "Ford"));
-        marcas.add(new TipoMarca("Furgoneta", "Hyundai"));
-        marcas.add(new TipoMarca("Furgoneta", "Mercedes"));
-        marcas.add(new TipoMarca("Furgoneta", "Renault"));
     }
 
     public List<AbstractVehiculo> getVehiculos() {
         return vehiculos;
     }
 
+    private void llenarMarcas() {
+        marcas = new ArrayList<>();
+        byte cont=0;
+        // Marcas de Autos:
+        String[] marcasAuto = {"Chevrolet", "Kia", "Mazda", "Nissan"};
+        for (String marcaEspecifica : marcasAuto) {
+            marcas.add(new TipoMarca(cont,"Auto", marcaEspecifica));
+            cont++;
+        }
+        
+        // Marcas de Motos:
+        String[] marcasMoto = {"AKT", "Honda", "Kawasaki", "Susuki", "Yamaha"};
+        for (String marcaEspecifica : marcasMoto) {
+            marcas.add(new TipoMarca(cont,"Moto", marcaEspecifica));
+            cont++;
+        }
+
+        // Marcas de Furgonetas:
+        String[] marcasFurgoneta = {"Fiat", "Ford", "Mercedes", "Renault"};
+        for (String marcaEspecifica : marcasFurgoneta) {
+            marcas.add(new TipoMarca(cont,"Furgoneta", marcaEspecifica));
+            cont++;
+        }
+    }
+
     public List<TipoMarca> getMarcas() {
         return marcas;
     }
-    
+
     public List<AbstractVehiculo> obtenerListaVehiculos(String tipo) {
         // Me obtiene la lista correspondiente de vehículos para la tabla:        
         List<AbstractVehiculo> listaTemp = new ArrayList<>();

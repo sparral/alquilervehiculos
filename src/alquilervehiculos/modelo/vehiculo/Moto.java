@@ -14,11 +14,12 @@ public class Moto extends AbstractVehiculo {
     private boolean casco;
 
     // Contructor:
-    public Moto(boolean casco, String matricula, int kilometraje, boolean estado, String marca, String anio, double valorAlquiler) {
+
+    public Moto(boolean casco, String matricula, int kilometraje, boolean estado, TipoMarca marca, String anio, double valorAlquiler) {
         super(matricula, kilometraje, estado, marca, anio, valorAlquiler);
         this.casco = casco;
     }
-
+    
     // Métodos (Getter&Setter):
     public boolean isCasco() {
         return casco;

@@ -14,7 +14,7 @@ public class Furgoneta extends AbstractVehiculo {
     private short capacidad;
 
     // Contructor:
-    public Furgoneta(short capacidad, String matricula, int kilometraje, boolean estado, String marca, String anio, double valorAlquiler) {
+    public Furgoneta(short capacidad, String matricula, int kilometraje, boolean estado, TipoMarca marca, String anio, double valorAlquiler) {    
         super(matricula, kilometraje, estado, marca, anio, valorAlquiler);
         this.capacidad = capacidad;
     }

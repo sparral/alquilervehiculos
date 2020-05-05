@@ -11,6 +11,7 @@ import alquilervehiculos.modelo.vehiculo.AbstractVehiculo;
 import alquilervehiculos.modelo.vehiculo.Auto;
 import alquilervehiculos.modelo.vehiculo.Furgoneta;
 import alquilervehiculos.modelo.vehiculo.Moto;
+import alquilervehiculos.modelo.vehiculo.TipoMarca;
 import com.csvreader.CsvReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -60,65 +61,58 @@ public class ImportarCSV {
         return listadoUsuarios;
     }
 
-    public static List<AbstractVehiculo> cargarVehiculos() {
+    public static List<AbstractVehiculo> cargarVehiculos(List<TipoMarca> marcas) {
         List<AbstractVehiculo> listadoVehiculos = new ArrayList<>();
+        String[] vehiculo = {"Auto", "Moto", "Furgoneta"};
+        String[] srcs = {"src/Autos.csv", "src/Motos.csv", "src/Furgonetas.csv"};
+        int cont=0;
         try {
-            // Para cargar los AUTOS:
-            CsvReader leerAutos = new CsvReader("src/Autos.csv");
-            leerAutos.readHeaders();
+            for (String ubicacion : srcs) {
+                // Para encontrar el archivo CSV:
+                CsvReader leer = new CsvReader(ubicacion);
+                leer.readHeaders();
 
-            while (leerAutos.readRecord()) {
-                boolean estado = Boolean.parseBoolean(leerAutos.get(0));
-                String matricula = leerAutos.get(1);
-                String marca = leerAutos.get(2);
-                String anio = leerAutos.get(3);
-                int kilometraje = Integer.parseInt(leerAutos.get(4));
-                double valorAlquiler = Double.parseDouble(leerAutos.get(5));
-                boolean extras = Boolean.parseBoolean(leerAutos.get(6));
+                // Se cargan los datos de los vehiculos mientras existan líneas:
+                while (leer.readRecord()) {
+                    boolean estado = Boolean.parseBoolean(leer.get(0));
+                    String matricula = leer.get(1);
+                    String anio = leer.get(3);
+                    int kilometraje = Integer.parseInt(leer.get(4));
+                    double valorAlquiler = Double.parseDouble(leer.get(5));
+                    
+                    byte index=0; 
+                    for (TipoMarca seleccionado: marcas) {
+                        if (seleccionado.getMarca().compareTo(leer.get(2))==0 &&
+                            seleccionado.getTipoVehiculo().compareTo(vehiculo[cont])==0) {
+                            index= seleccionado.getIndex();
+                        }
+                    }
 
-                listadoVehiculos.add(new Auto(extras, matricula, kilometraje,
-                        estado, marca, anio, valorAlquiler));
+                    // Valores que dependen del Vehiculo: 
+                    switch (ubicacion) {
+                        case "src/Autos.csv":
+                            boolean extras = Boolean.parseBoolean(leer.get(6));
 
+                            listadoVehiculos.add(new Auto(extras, matricula,
+                                    kilometraje, estado, marcas.get(index), anio, valorAlquiler));
+                            break;
+                        case "src/Motos.csv":
+                            boolean casco = Boolean.parseBoolean(leer.get(6));
+
+                            listadoVehiculos.add(new Moto(casco, matricula,
+                                    kilometraje, estado, marcas.get(index), anio, valorAlquiler));
+                            break;
+                        case "src/Furgonetas.csv":
+                            short capacidad = Short.parseShort(leer.get(6));
+
+                            listadoVehiculos.add(new Furgoneta(capacidad, matricula,
+                                    kilometraje, estado, marcas.get(index), anio, valorAlquiler));
+                            break;
+                    }
+                }
+                leer.close();           // Cerrar el archivo
+                cont++;
             }
-            leerAutos.close();           // Cerrar el archivo
-
-            // Para cargar las FURGONETAS:
-            CsvReader leerFurgonetas = new CsvReader("src/Furgonetas.csv");
-            leerFurgonetas.readHeaders();
-
-            while (leerFurgonetas.readRecord()) {
-                boolean estado = Boolean.parseBoolean(leerFurgonetas.get(0));
-                String matricula = leerFurgonetas.get(1);
-                String marca = leerFurgonetas.get(2);
-                String anio = leerFurgonetas.get(3);
-                int kilometraje = Integer.parseInt(leerFurgonetas.get(4));
-                double valorAlquiler = Double.parseDouble(leerFurgonetas.get(5));
-                short capacidad = Short.parseShort(leerFurgonetas.get(6));
-
-                listadoVehiculos.add(new Furgoneta(capacidad, matricula,
-                        kilometraje, estado, marca, anio, valorAlquiler));
-
-            }
-            leerFurgonetas.close();           // Cerrar el archivo
-
-            // Para cargar las MOTOS:
-            CsvReader leerMotos = new CsvReader("src/Motos.csv");
-            leerMotos.readHeaders();
-
-            while (leerMotos.readRecord()) {
-                boolean estado = Boolean.parseBoolean(leerMotos.get(0));
-                String matricula = leerMotos.get(1);
-                String marca = leerMotos.get(2);
-                String anio = leerMotos.get(3);
-                int kilometraje = Integer.parseInt(leerMotos.get(4));
-                double valorAlquiler = Double.parseDouble(leerMotos.get(5));
-                boolean casco= Boolean.parseBoolean(leerMotos.get(6));
-
-                listadoVehiculos.add(new Moto(casco, matricula, kilometraje, 
-                        estado, marca, anio, valorAlquiler));
-
-            }
-            leerMotos.close();           // Cerrar el archivo
 
         } catch (FileNotFoundException ex) {
             System.out.println("Archivo" + ex.getMessage());

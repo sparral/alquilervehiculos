@@ -14,7 +14,7 @@ public class Auto extends AbstractVehiculo{
     private boolean extras;
 
     // Contructor:
-    public Auto(boolean extras, String matricula, int kilometraje, boolean estado, String marca, String anio, double valorAlquiler) {
+    public Auto(boolean extras, String matricula, int kilometraje, boolean estado, TipoMarca marca, String anio, double valorAlquiler) {
         super(matricula, kilometraje, estado, marca, anio, valorAlquiler);
         this.extras = extras;
     }

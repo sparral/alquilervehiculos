@@ -37,10 +37,6 @@ public class ControladorUsuario implements Serializable {
         llenarUsuarios();
     }
 
-    public List<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
     private void llenarTiposUsuario() {
         tipousuarios = new TipoUsuario[3];
         tipousuarios[0] = new TipoUsuario((byte) 1, "Administrador");
@@ -48,10 +44,18 @@ public class ControladorUsuario implements Serializable {
         tipousuarios[2] = new TipoUsuario((byte) 3, "Invitado");
     }
 
+    public TipoUsuario[] getTipousuarios() {
+        return tipousuarios;
+    }
+    
     private void llenarUsuarios() {
         if (usuarios == null || usuarios.isEmpty()) {
             usuarios = ImportarCSV.cargarUsuarios(tipousuarios);
         }
+    }
+    
+    public List<Usuario> getUsuarios() {
+        return usuarios;
     }
 
     // Método para ingresar al sistema:
@@ -81,7 +85,8 @@ public class ControladorUsuario implements Serializable {
         }
     }
 
-    // Métodos para el REGISTRO de un NUEVO USUARIO:
+    // Métodos para el CRUD de Usuarios:
+    
     public void agregarUsuario(Usuario user) throws LogInException {
         Pattern emailPattern = Pattern.compile(REGEXP);
         Matcher matcher = emailPattern.matcher(user.getCorreo());
@@ -110,7 +115,6 @@ public class ControladorUsuario implements Serializable {
         return null;
     }
 
-    // Métodos para el CRUD de Usuarios:
     public Usuario buscarUsuarioTabla(String userID) {
 
         for (Usuario usuarioEncontrado : this.usuarios) {
@@ -121,8 +125,7 @@ public class ControladorUsuario implements Serializable {
         }
         return null;
     }
-    
-    
+      
     public void eliminarUsuario(String userID) {
         
         for(Usuario user:this.usuarios) {

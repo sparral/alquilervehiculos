@@ -12,11 +12,13 @@ import java.io.Serializable;
  * @author Santy
  */
 public class TipoMarca implements Serializable {
-    // private byte codigo;
-    private String tipoVehiculo;
-    private String marca;    
 
-    public TipoMarca(String tipoVehiculo, String marca) {
+    private final byte index;
+    private String tipoVehiculo;
+    private String marca;
+
+    public TipoMarca(byte index, String tipoVehiculo, String marca) {
+        this.index = index;
         this.tipoVehiculo = tipoVehiculo;
         this.marca = marca;
     }
@@ -29,11 +31,21 @@ public class TipoMarca implements Serializable {
         return marca;
     }
 
+    public byte getIndex() {
+        return index;
+    }
+
+    public void setTipoVehiculo(String tipoVehiculo) {
+        this.tipoVehiculo = tipoVehiculo;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
     @Override
     public String toString() {
         return this.marca;
     }
 
-    
-    
 }

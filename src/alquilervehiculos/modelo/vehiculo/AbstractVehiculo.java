@@ -15,12 +15,12 @@ public abstract class AbstractVehiculo implements VehiculoAble {
     private final String matricula;
     private int kilometraje;
     private boolean estado;
-    private String marca;
+    private TipoMarca marca;
     private String anio;
     private double valorAlquiler;
 
     // Contructor:
-    public AbstractVehiculo(String matricula, int kilometraje, boolean estado, String marca, String anio, double valorAlquiler) {
+    public AbstractVehiculo(String matricula, int kilometraje, boolean estado, TipoMarca marca, String anio, double valorAlquiler) {
         this.matricula = matricula;
         this.kilometraje = kilometraje;
         this.estado = estado;
@@ -50,11 +50,11 @@ public abstract class AbstractVehiculo implements VehiculoAble {
         this.estado = estado;
     }
 
-    public String getMarca() {
+    public TipoMarca getMarca() {
         return marca;
     }
 
-    public void setMarca(String marca) {
+    public void setMarca(TipoMarca marca) {
         this.marca = marca;
     }
 
@@ -79,7 +79,7 @@ public abstract class AbstractVehiculo implements VehiculoAble {
     public Object[] getObjectAdmin() {
         // MODIFICAR ESTO:
         Object[] datos = {isEstado(), getClass().getSimpleName(), getMatricula(),
-            getMarca(), getAnio(), "danielh", "02-15-2019"};
+            getMarca(), getAnio(), "danielh", "02-15-2019",};
         return datos;
     }
 
