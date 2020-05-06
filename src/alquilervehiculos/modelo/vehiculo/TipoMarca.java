@@ -13,12 +13,10 @@ import java.io.Serializable;
  */
 public class TipoMarca implements Serializable {
 
-    private final byte index;
     private String tipoVehiculo;
     private String marca;
 
-    public TipoMarca(byte index, String tipoVehiculo, String marca) {
-        this.index = index;
+    public TipoMarca(String tipoVehiculo, String marca) {
         this.tipoVehiculo = tipoVehiculo;
         this.marca = marca;
     }
@@ -29,10 +27,6 @@ public class TipoMarca implements Serializable {
 
     public String getMarca() {
         return marca;
-    }
-
-    public byte getIndex() {
-        return index;
     }
 
     public void setTipoVehiculo(String tipoVehiculo) {
@@ -48,4 +42,16 @@ public class TipoMarca implements Serializable {
         return this.marca;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof TipoMarca) {
+            // El objeto ya se puede comportar como un TipoMarca:
+            TipoMarca other=(TipoMarca)obj;
+            if (other.marca.compareTo(this.marca)==0 && 
+                    other.tipoVehiculo.compareTo(this.tipoVehiculo)==0) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

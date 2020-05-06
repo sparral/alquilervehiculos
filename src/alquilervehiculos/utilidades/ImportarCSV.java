@@ -63,9 +63,7 @@ public class ImportarCSV {
 
     public static List<AbstractVehiculo> cargarVehiculos(List<TipoMarca> marcas) {
         List<AbstractVehiculo> listadoVehiculos = new ArrayList<>();
-        String[] vehiculo = {"Auto", "Moto", "Furgoneta"};
         String[] srcs = {"src/Autos.csv", "src/Motos.csv", "src/Furgonetas.csv"};
-        int cont=0;
         try {
             for (String ubicacion : srcs) {
                 // Para encontrar el archivo CSV:
@@ -80,38 +78,39 @@ public class ImportarCSV {
                     int kilometraje = Integer.parseInt(leer.get(4));
                     double valorAlquiler = Double.parseDouble(leer.get(5));
                     
-                    byte index=0; 
-                    for (TipoMarca seleccionado: marcas) {
-                        if (seleccionado.getMarca().compareTo(leer.get(2))==0 &&
-                            seleccionado.getTipoVehiculo().compareTo(vehiculo[cont])==0) {
-                            index= seleccionado.getIndex();
-                        }
-                    }
-
                     // Valores que dependen del Vehiculo: 
                     switch (ubicacion) {
-                        case "src/Autos.csv":
+                        case "src/Autos.csv": {
+                            TipoMarca marca=marcas.get(marcas.indexOf(new TipoMarca("Auto",leer.get(2))));
                             boolean extras = Boolean.parseBoolean(leer.get(6));
 
                             listadoVehiculos.add(new Auto(extras, matricula,
-                                    kilometraje, estado, marcas.get(index), anio, valorAlquiler));
+                                    kilometraje, estado, 
+                                    marcas.get(marcas.indexOf(new TipoMarca("Auto",leer.get(2)))), 
+                                    anio, valorAlquiler));
                             break;
-                        case "src/Motos.csv":
+                        }
+                        case "src/Motos.csv": {
                             boolean casco = Boolean.parseBoolean(leer.get(6));
 
                             listadoVehiculos.add(new Moto(casco, matricula,
-                                    kilometraje, estado, marcas.get(index), anio, valorAlquiler));
+                                    kilometraje, estado, 
+                                    marcas.get(marcas.indexOf(new TipoMarca("Moto",leer.get(2)))), 
+                                    anio, valorAlquiler));
                             break;
-                        case "src/Furgonetas.csv":
+                        }
+                        case "src/Furgonetas.csv": {
                             short capacidad = Short.parseShort(leer.get(6));
 
                             listadoVehiculos.add(new Furgoneta(capacidad, matricula,
-                                    kilometraje, estado, marcas.get(index), anio, valorAlquiler));
+                                    kilometraje, estado, 
+                                    marcas.get(marcas.indexOf(new TipoMarca("Furgoneta",leer.get(2)))), 
+                                    anio, valorAlquiler));
                             break;
+                        }
                     }
                 }
                 leer.close();           // Cerrar el archivo
-                cont++;
             }
 
         } catch (FileNotFoundException ex) {

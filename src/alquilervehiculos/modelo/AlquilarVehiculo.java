@@ -5,10 +5,19 @@
  */
 package alquilervehiculos.modelo;
 
+import alquilervehiculos.modelo.usuario.Usuario;
+import alquilervehiculos.modelo.vehiculo.AbstractVehiculo;
+
 /**
  *
  * @author Santy
  */
 public class AlquilarVehiculo {
-    
+
+    public AlquilarVehiculo(AbstractVehiculo vehiculo, Usuario user) {
+        // Relaciona la clase "AbstractVehiculo" con "Usuario",
+        
+        
+    }
+        
 }

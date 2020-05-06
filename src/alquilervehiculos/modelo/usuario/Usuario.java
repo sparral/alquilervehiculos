@@ -68,8 +68,8 @@ public class Usuario extends Tercero implements Serializable {
         return false;
     }
     
-    // Para obtener los arreglos:
-    public String[] getArrayUsuario() {
+    // Para obtener los arreglos necesarios:
+    public String[] getArrayCSV() {
         // La idea es retornar un arreglo de String con todas las variables:
         byte tipo = getTipousuario().getCodigo();
         String[] datos = {correo, password, Byte.toString(tipo), getNombre(), 

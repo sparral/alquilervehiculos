@@ -9,10 +9,10 @@ package alquilervehiculos.excepciones;
  *
  * @author Santy
  */
-public class CrudException extends Exception {
+public class UsuarioException extends Exception {
 
-    public CrudException(String message) {
+    public UsuarioException(String message) {
         super(message);
     }
-    
+
 }

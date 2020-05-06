@@ -9,10 +9,10 @@ package alquilervehiculos.excepciones;
  *
  * @author Santy
  */
-public class LogInException extends Exception {
+public class VehiculoException extends Exception {
 
-    public LogInException(String message) {
+    public VehiculoException(String message) {
         super(message);
     }
-
+    
 }

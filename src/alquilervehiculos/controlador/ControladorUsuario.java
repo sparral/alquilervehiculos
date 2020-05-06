@@ -5,7 +5,7 @@
  */
 package alquilervehiculos.controlador;
 
-import alquilervehiculos.excepciones.LogInException;
+import alquilervehiculos.excepciones.UsuarioException;
 import alquilervehiculos.modelo.usuario.TipoUsuario;
 import alquilervehiculos.modelo.usuario.Usuario;
 import alquilervehiculos.utilidades.ExportarCSV;
@@ -31,6 +31,7 @@ public class ControladorUsuario implements Serializable {
         //            "[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$"
         // 3. emailPattern   "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
         //                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
+        
         this.REGEXP = "^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@"
                 + "[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$";
         llenarTiposUsuario();
@@ -59,11 +60,11 @@ public class ControladorUsuario implements Serializable {
     }
 
     // Método para ingresar al sistema:
-    public Usuario validarUsuario(String correo, String password) throws LogInException {
+    public Usuario validarUsuario(String correo, String password) throws UsuarioException {
         if (correo == null || correo.compareTo("") == 0) {
-            throw new LogInException("Debe diligenciar el correo");
+            throw new UsuarioException("Debe diligenciar el correo");
         } else if (password.length() == 0) {
-            throw new LogInException("Debe diligenciar la contraseña");
+            throw new UsuarioException("Debe diligenciar la contraseña");
         } else {
             // Significa que diligenció correo y contraseña:
             Pattern emailPattern = Pattern.compile(REGEXP);
@@ -78,29 +79,30 @@ public class ControladorUsuario implements Serializable {
                     }
                 }
             } else {
-                throw new LogInException("Correo no tiene formato válido");
+                throw new UsuarioException("Correo no tiene formato válido");
             }
 
-            throw new LogInException("Usuario ingresado no existe");
+            throw new UsuarioException("Usuario ingresado no existe");
         }
     }
 
     // Métodos para el CRUD de Usuarios:
     
-    public void agregarUsuario(Usuario user) throws LogInException {
+    public void agregarUsuario(Usuario user) throws UsuarioException {
         Pattern emailPattern = Pattern.compile(REGEXP);
         Matcher matcher = emailPattern.matcher(user.getCorreo());
 
         if (matcher.find()) {
             // Formato de correo válido:
             if (encontrarUsuario(user.getCorreo()) == null) {
+                // No existe un usuario con ese correo, lo agrego a la lista:
                 usuarios.add(user);
                 ExportarCSV.agregarUsuarioCSV(usuarios);
             } else {
-                throw new LogInException("Usuario ingresado ya existe");
+                throw new UsuarioException("Usuario ingresado ya existe");
             }
         } else {
-            throw new LogInException("Correo no tiene formato válido");
+            throw new UsuarioException("Correo no tiene formato válido");
         }
     }
 

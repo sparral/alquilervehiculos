@@ -9,7 +9,8 @@ package alquilervehiculos.modelo.vehiculo;
  *
  * @author Santy
  */
-public class Auto extends AbstractVehiculo{
+public class Auto extends AbstractVehiculo {
+
     // Auto ES UN Vehículo, y se añade las variables del auto:
     private boolean extras;
 
@@ -29,6 +30,14 @@ public class Auto extends AbstractVehiculo{
     }
 
     // Métodos del AUTO:
+    public String[] getArrayCSV() {
+        // La idea es retornar un arreglo de String con todas las variables:
+        String marca = getMarca().getMarca();
+        String[] datos = {Boolean.toString(isEstado()), getMatricula(), 
+            marca, getAnio(), Integer.toString(getKilometraje()), 
+            Double.toString(getValorAlquiler()), Boolean.toString(extras)};
+        return datos;
+    }
 
     @Override
     public void alquilar() {
@@ -49,5 +58,5 @@ public class Auto extends AbstractVehiculo{
     public String mostrarDatos() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

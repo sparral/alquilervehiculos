@@ -79,7 +79,7 @@ public abstract class AbstractVehiculo implements VehiculoAble {
     public Object[] getObjectAdmin() {
         // MODIFICAR ESTO:
         Object[] datos = {isEstado(), getClass().getSimpleName(), getMatricula(),
-            getMarca(), getAnio(), "danielh", "02-15-2019",};
+            getMarca(), getAnio(), "---", "---",};
         return datos;
     }
 
