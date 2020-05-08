@@ -14,10 +14,8 @@ public interface VehiculoAble {
     
     public void alquilar();
     
-    public void devolver();
+    public void devolver(int kilometraje);
     
-    public double calcularAlquiler();
-    
-    public String mostrarDatos();
+    public double calcularAlquiler(String tipo, int valor);
     
 }

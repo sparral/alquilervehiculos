@@ -17,10 +17,10 @@ public abstract class AbstractVehiculo implements VehiculoAble {
     private boolean estado;
     private TipoMarca marca;
     private String anio;
-    private double valorAlquiler;
+    private double [] valorAlquiler;
 
     // Contructor:
-    public AbstractVehiculo(String matricula, int kilometraje, boolean estado, TipoMarca marca, String anio, double valorAlquiler) {
+    public AbstractVehiculo(String matricula, int kilometraje, boolean estado, TipoMarca marca, String anio, double[] valorAlquiler) {
         this.matricula = matricula;
         this.kilometraje = kilometraje;
         this.estado = estado;
@@ -66,16 +66,15 @@ public abstract class AbstractVehiculo implements VehiculoAble {
         this.anio = anio;
     }
 
-    public double getValorAlquiler() {
+    public double[] getValorAlquiler() {
         return valorAlquiler;
     }
 
-    public void setValorAlquiler(double valorAlquiler) {
+    public void setValorAlquiler(double[] valorAlquiler) {
         this.valorAlquiler = valorAlquiler;
     }
 
-    // Para obtener los datos de las tablas
-    
+    // Para obtener los datos de las tabla:  
     public Object[] getObjectAdmin() {
         // MODIFICAR ESTO:
         Object[] datos = {isEstado(), getClass().getSimpleName(), getMatricula(),
@@ -94,4 +93,15 @@ public abstract class AbstractVehiculo implements VehiculoAble {
         return datos;
     }
 
+    // Finalmente, sobreescribo los métodos de VehiculoAble:
+    @Override
+    public abstract double calcularAlquiler(String tipo, int valor);
+
+    @Override
+    public abstract void devolver(int kilometraje);
+
+    @Override
+    public abstract void alquilar();
+    
+    
 }

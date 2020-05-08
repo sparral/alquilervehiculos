@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author Santy
  */
-public class Usuario extends Tercero implements Serializable {
+public class Usuario extends AbstractTercero implements Serializable {
 
     // Usuario son los datos requeridos para ingresar al sistema:
     private String correo;

@@ -11,8 +11,8 @@ import java.io.Serializable;
  *
  * @author Santy
  */
-public abstract class Tercero implements Serializable {
-    // Tercero son los datos personales del usuario:
+public abstract class AbstractTercero implements Serializable {
+    // AbstractTercero son los datos personales del usuario:
     private String nombre;
     private String apellido;
     private byte edad;    
@@ -20,7 +20,7 @@ public abstract class Tercero implements Serializable {
     private boolean problemasauditivos;
 
     // Constructor:
-    public Tercero(String nombre, String apellido, byte edad, boolean problemasvision, boolean problemasauditivos) {
+    public AbstractTercero(String nombre, String apellido, byte edad, boolean problemasvision, boolean problemasauditivos) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;

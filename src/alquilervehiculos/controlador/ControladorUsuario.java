@@ -31,7 +31,6 @@ public class ControladorUsuario implements Serializable {
         //            "[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$"
         // 3. emailPattern   "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
         //                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"
-        
         this.REGEXP = "^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@"
                 + "[a-z0-9-]+(\\.[a-z0-9-]+)*(\\.[a-z]{2,4})$";
         llenarTiposUsuario();
@@ -48,13 +47,13 @@ public class ControladorUsuario implements Serializable {
     public TipoUsuario[] getTipousuarios() {
         return tipousuarios;
     }
-    
+
     private void llenarUsuarios() {
         if (usuarios == null || usuarios.isEmpty()) {
             usuarios = ImportarCSV.cargarUsuarios(tipousuarios);
         }
     }
-    
+
     public List<Usuario> getUsuarios() {
         return usuarios;
     }
@@ -87,7 +86,6 @@ public class ControladorUsuario implements Serializable {
     }
 
     // Métodos para el CRUD de Usuarios:
-    
     public void agregarUsuario(Usuario user) throws UsuarioException {
         Pattern emailPattern = Pattern.compile(REGEXP);
         Matcher matcher = emailPattern.matcher(user.getCorreo());
@@ -117,26 +115,47 @@ public class ControladorUsuario implements Serializable {
         return null;
     }
 
-    public Usuario buscarUsuarioTabla(String userID) {
+    public Object[] buscarUsuarioTabla(String userID) {
 
-        for (Usuario usuarioEncontrado : this.usuarios) {
+        for (Usuario user : this.usuarios) {
             // Encuentra el usuario comparando con el userID dado en la tabla:
-            if (userID.compareTo(usuarioEncontrado.getUserID()) == 0) {
-                return usuarioEncontrado;
+            if (userID.compareTo(user.getUserID()) == 0) {
+                // Retorna los valores del usuario:
+                Object[] obj = {user.getCorreo(), user.getPassword(),
+                    user.getTipousuario().getCodigo(), user.getNombre(),
+                    user.getApellido(), user.getEdad(), user.isProblemasvision(),
+                    user.isProblemasauditivos()};
+                return obj;
+
             }
         }
         return null;
     }
-      
-    public void eliminarUsuario(String userID) {
+
+    public void editarUsuario(Object[] valores) {
+        // {String correo, String password, String nombre, String apellido, byte edad, 
+        // boolean problemasvision, boolean problemasauditivos}        
+        Usuario user=encontrarUsuario((String)valores[0]);
         
-        for(Usuario user:this.usuarios) {
-            if (user.getUserID().compareTo(userID)==0) {
+        // Luego, edito los valores del usuario:
+        user.setPassword((String) valores[1]);
+        user.setNombre((String) valores[2]);
+        user.setApellido((String) valores[3]);
+        user.setEdad((byte) valores[4]);
+        user.setProblemasvision((boolean) valores[5]);
+        user.setProblemasauditivos((boolean) valores[6]);
+    }
+
+    public boolean eliminarUsuario(String userID) {
+
+        for (Usuario user : this.usuarios) {
+            if (user.getUserID().compareTo(userID) == 0) {
                 // Al encontrar el usuario por el userID, lo elimina:
-                this.usuarios.remove(user);
-                
+                return this.usuarios.remove(user);
+
                 // FALTA ELIMINARLO DEL CSV...
             }
-        } 
+        }
+        return false;
     }
 }

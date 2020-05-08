@@ -10,12 +10,11 @@ package alquilervehiculos.modelo.vehiculo;
  * @author Santy
  */
 public class Furgoneta extends AbstractVehiculo {
-
     // Furgoneta ES UN Vehículo, y se añaden las variables de Furgoneta:
     private short capacidad;
 
     // Contructor:
-    public Furgoneta(short capacidad, String matricula, int kilometraje, boolean estado, TipoMarca marca, String anio, double valorAlquiler) {
+    public Furgoneta(short capacidad, String matricula, int kilometraje, boolean estado, TipoMarca marca, String anio, double[] valorAlquiler) {
         super(matricula, kilometraje, estado, marca, anio, valorAlquiler);
         this.capacidad = capacidad;
     }
@@ -35,28 +34,33 @@ public class Furgoneta extends AbstractVehiculo {
         String marca = getMarca().getMarca();
         String[] datos = {Boolean.toString(isEstado()), getMatricula(),
             marca, getAnio(), Integer.toString(getKilometraje()),
-            Double.toString(getValorAlquiler()), Short.toString(capacidad)};
+            Double.toString(getValorAlquiler()[0]), 
+            Double.toString(getValorAlquiler()[1]), Short.toString(capacidad)};
         return datos;
     }
 
     @Override
+    public double calcularAlquiler(String tipo, int valor) {
+        switch (tipo) {
+            case "Dia":
+                return getValorAlquiler()[0]*valor;
+            case "Km":
+                return getValorAlquiler()[1]*valor;
+        }
+        // Si no es ninguno de los dos, no lo calcula:
+        return 0;
+    }
+
+    @Override
+    public void devolver(int kilometraje) {
+        setKilometraje(kilometraje);
+        setEstado(true);
+    }
+
+    @Override
     public void alquilar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        setEstado(false);
     }
-
-    @Override
-    public void devolver() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public double calcularAlquiler() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String mostrarDatos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
+    
 }

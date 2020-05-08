@@ -75,7 +75,8 @@ public class ExportarCSV {
             salidaCSV.write("Marca");
             salidaCSV.write("Anio");
             salidaCSV.write("Kilometraje");
-            salidaCSV.write("ValorAlquiler");
+            salidaCSV.write("ValorDia");
+            salidaCSV.write("ValorKm");
 
             switch (salidaArchivo) {
                 case "src/Autos.csv": {

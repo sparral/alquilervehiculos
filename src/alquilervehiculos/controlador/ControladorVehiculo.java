@@ -85,12 +85,11 @@ public class ControladorVehiculo implements Serializable {
     }
 
     // Métodos del CRUD Vehiculos:
-    
     public void agregarVehiculo(AbstractVehiculo obj) throws VehiculoException {
         // Objecto ingresado se puede comportar como AbstractVehiculo:
-        
+
         String matricula = ((AbstractVehiculo) obj).getMatricula();
-        if (!validarVehiculo(matricula)) {
+        if (encontrarVehiculo(matricula) == null) {
             // No existe un vehiculo con esa matricula, lo agrego a la lista:
 
             String[] srcs = {"src/Autos.csv", "src/Motos.csv", "src/Furgonetas.csv"};
@@ -110,12 +109,78 @@ public class ControladorVehiculo implements Serializable {
         }
     }
 
-    public boolean validarVehiculo(String matricula) {
+    public AbstractVehiculo encontrarVehiculo(String matricula) {
 
         for (AbstractVehiculo vehiculoEncontrado : this.vehiculos) {
             // Encuentra el vehiculo comparando con la matricula:
             if (vehiculoEncontrado.getMatricula().compareTo(matricula) == 0) {
-                return true;
+                return vehiculoEncontrado;
+            }
+        }
+        return null;
+    }
+
+    public Object[] buscarVehiculoTabla(String matricula) {
+
+        for (AbstractVehiculo vehiculo : this.vehiculos) {
+            // Encuentra el vehiculo comparando con la matricula:
+            if (vehiculo.getMatricula().compareTo(matricula) == 0) {
+                // Retorna los valores del vehiculo,
+                Object[] obj = {"", vehiculo.getMatricula(),
+                    vehiculo.getKilometraje(), vehiculo.getMarca().getMarca(),
+                    vehiculo.getAnio(), vehiculo.getValorAlquiler()[0],
+                    vehiculo.getValorAlquiler()[1]};
+
+                // Reescribo el primer valor de acuerdo al tipo de vehiculo,
+                if (vehiculo instanceof Auto) {
+                    boolean extras = ((Auto) vehiculo).isExtras();
+                    obj[0] = extras;
+                } else if (vehiculo instanceof Moto) {
+                    boolean casco = ((Moto) vehiculo).isCasco();
+                    obj[0] = casco;
+                } else if (vehiculo instanceof Furgoneta) {
+                    short capacidad = ((Furgoneta) vehiculo).getCapacidad();
+                    obj[0] = capacidad;
+                }
+                return obj;
+            }
+        }
+        return null;
+    }
+
+    public void EditarVehiculo(Object[] valores) {
+        // {adicional ,String matricula, int kilometraje, String marca, 
+        // String anio, double valorAlquiler}
+
+        for (AbstractVehiculo vehiculo : vehiculos) {
+            // Encuentra el vehiculo comparando con la matricula:
+            if (vehiculo.getMatricula().compareTo((String) valores[1]) == 0) {
+
+                vehiculo.setKilometraje((int) valores[2]);
+                vehiculo.setMarca(marcas.get((int) valores[2]));
+                vehiculo.setAnio((String) valores[4]);
+
+                double[] valoresAlquiler = {(double) valores[5], (double) valores[6]};
+                vehiculo.setValorAlquiler(valoresAlquiler);
+
+                // Reescribo el valor faltante de acuerdo al tipo de vehiculo,
+                if (vehiculo instanceof Auto) {
+                    ((Auto) vehiculo).setExtras((boolean) valores[0]);
+
+                } else if (vehiculo instanceof Moto) {
+                    ((Moto) vehiculo).setCasco((boolean) valores[0]);
+                } else if (vehiculo instanceof Furgoneta) {
+                    ((Furgoneta) vehiculo).setCapacidad((short) valores[0]);
+                }
+            }
+        }
+    }
+
+    public boolean EliminarVehiculo(String matricula) {
+        for (AbstractVehiculo vehiculo : this.vehiculos) {
+            // Encuentra el vehiculo comparando con la matricula:
+            if (vehiculo.getMatricula().compareTo(matricula) == 0) {
+                return this.vehiculos.remove(vehiculo);
             }
         }
         return false;

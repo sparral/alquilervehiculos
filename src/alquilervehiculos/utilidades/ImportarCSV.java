@@ -76,13 +76,13 @@ public class ImportarCSV {
                     String matricula = leer.get(1);
                     String anio = leer.get(3);
                     int kilometraje = Integer.parseInt(leer.get(4));
-                    double valorAlquiler = Double.parseDouble(leer.get(5));
+                    double [] valorAlquiler = {Double.parseDouble(leer.get(5)),
+                        Double.parseDouble(leer.get(6))};
                     
                     // Valores que dependen del Vehiculo: 
                     switch (ubicacion) {
                         case "src/Autos.csv": {
-                            TipoMarca marca=marcas.get(marcas.indexOf(new TipoMarca("Auto",leer.get(2))));
-                            boolean extras = Boolean.parseBoolean(leer.get(6));
+                            boolean extras = Boolean.parseBoolean(leer.get(7));
 
                             listadoVehiculos.add(new Auto(extras, matricula,
                                     kilometraje, estado, 
@@ -91,7 +91,7 @@ public class ImportarCSV {
                             break;
                         }
                         case "src/Motos.csv": {
-                            boolean casco = Boolean.parseBoolean(leer.get(6));
+                            boolean casco = Boolean.parseBoolean(leer.get(7));
 
                             listadoVehiculos.add(new Moto(casco, matricula,
                                     kilometraje, estado, 
@@ -100,7 +100,7 @@ public class ImportarCSV {
                             break;
                         }
                         case "src/Furgonetas.csv": {
-                            short capacidad = Short.parseShort(leer.get(6));
+                            short capacidad = Short.parseShort(leer.get(7));
 
                             listadoVehiculos.add(new Furgoneta(capacidad, matricula,
                                     kilometraje, estado, 
