@@ -17,7 +17,7 @@ public abstract class AbstractVehiculo implements VehiculoAble {
     private boolean estado;
     private TipoMarca marca;
     private String anio;
-    private double [] valorAlquiler;
+    private double[] valorAlquiler;
 
     // Contructor:
     public AbstractVehiculo(String matricula, int kilometraje, boolean estado, TipoMarca marca, String anio, double[] valorAlquiler) {
@@ -91,7 +91,14 @@ public abstract class AbstractVehiculo implements VehiculoAble {
         // MODIFICAR ESTO:
         Object[] datos = {getMatricula(), getMarca(), getAnio(), getKilometraje(), true};
         return datos;
-    } 
+    }
+
+    public String getArrayDatos() {
+        String datos = "Datos de " +getClass().getSimpleName()+ ": \n"
+                +marca.getMarca()+" "+anio+", "+Integer.toString(kilometraje)
+                +"\n";
+        return datos;
+    }
 
     // Finalmente, sobreescribo los métodos de VehiculoAble:
     @Override
@@ -102,6 +109,5 @@ public abstract class AbstractVehiculo implements VehiculoAble {
 
     @Override
     public abstract void alquilar();
-    
-    
+
 }

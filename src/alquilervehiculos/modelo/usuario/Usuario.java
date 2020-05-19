@@ -84,7 +84,7 @@ public class Usuario extends AbstractTercero implements Serializable {
     }
 
     public Object[] getObjectAlquilar() {
-        Object[] datos = {getUserID(), getNombre(), getApellido(), getEdad()};
+        Object[] datos = {getUserID(), getNombre()+" "+getApellido(), getEdad()};
         return datos;
     }
 

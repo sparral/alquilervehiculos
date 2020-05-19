@@ -5,10 +5,9 @@
  */
 package alquilervehiculos.vista;
 
-import alquilervehiculos.controlador.ControladorUsuario;
-import alquilervehiculos.controlador.ControladorVehiculo;
-import alquilervehiculos.excepciones.UsuarioException;
-import alquilervehiculos.excepciones.VehiculoException;
+import alquilervehiculos.controlador.*;
+import alquilervehiculos.excepciones.*;
+import alquilervehiculos.modelo.AlquilarVehiculo;
 import alquilervehiculos.modelo.usuario.TipoUsuario;
 import alquilervehiculos.modelo.usuario.Usuario;
 import alquilervehiculos.modelo.vehiculo.AbstractVehiculo;
@@ -16,6 +15,8 @@ import alquilervehiculos.modelo.vehiculo.Auto;
 import alquilervehiculos.modelo.vehiculo.Furgoneta;
 import alquilervehiculos.modelo.vehiculo.Moto;
 import alquilervehiculos.modelo.vehiculo.TipoMarca;
+import alquilervehiculos.utilidades.ConvertirFecha;
+import java.time.LocalDate;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -30,6 +31,9 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
     private final ControladorUsuario controlUsuario;
     private ControladorVehiculo controlVehiculo;
+    private ConvertirFecha convertirFecha;
+    private AlquilarVehiculo alquilar;
+    private boolean bandera = false;
 
     /**
      * Creates new form MDIPrincipal
@@ -49,8 +53,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btngEstadoAdmin = new javax.swing.ButtonGroup();
-        btngTarifaAdmin = new javax.swing.ButtonGroup();
         btngTarifaAlquilar = new javax.swing.ButtonGroup();
         desktopPane = new javax.swing.JDesktopPane();
         jfrmLogin = new javax.swing.JInternalFrame();
@@ -89,8 +91,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
         btnLimpiarAdmin = new javax.swing.JButton();
         btnAlquilarAdmin = new javax.swing.JButton();
         jLabel24 = new javax.swing.JLabel();
-        rbtnDisponibleAdmin = new javax.swing.JRadioButton();
-        rbtnAlquiladoAdmin = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
         combobxVehiculoAdmin = new javax.swing.JComboBox<>();
         jLabel20 = new javax.swing.JLabel();
@@ -98,11 +98,9 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         txtMatriculaAdmin = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
-        jLabel23 = new javax.swing.JLabel();
-        rbtnTarifaDiaAdmin = new javax.swing.JRadioButton();
-        rbtnTarifaKmAdmin = new javax.swing.JRadioButton();
         jdcInicialAdmin = new com.toedter.calendar.JDateChooser();
         jdcFinalAdmin = new com.toedter.calendar.JDateChooser();
+        combobxEstadoAdmin = new javax.swing.JComboBox<>();
         jpTablaAdmin = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblVehiculosAdmin = new javax.swing.JTable();
@@ -527,8 +525,18 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jLabel22.setText("Fechas:");
 
         btnValidarAdmin.setText("VALIDAR");
+        btnValidarAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnValidarAdminActionPerformed(evt);
+            }
+        });
 
         btnLimpiarAdmin.setText("LIMPIAR");
+        btnLimpiarAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarAdminActionPerformed(evt);
+            }
+        });
 
         btnAlquilarAdmin.setText("ALQUILAR");
         btnAlquilarAdmin.addActionListener(new java.awt.event.ActionListener() {
@@ -540,31 +548,32 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel24.setText("Estado:");
 
-        btngEstadoAdmin.add(rbtnDisponibleAdmin);
-        rbtnDisponibleAdmin.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
-        rbtnDisponibleAdmin.setText("Disponible");
-
-        btngEstadoAdmin.add(rbtnAlquiladoAdmin);
-        rbtnAlquiladoAdmin.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
-        rbtnAlquiladoAdmin.setText("Alquilado");
-
         jLabel7.setText("Tipo:");
 
         combobxVehiculoAdmin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Auto", "Moto", "Furgoneta" }));
+        combobxVehiculoAdmin.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combobxVehiculoAdminItemStateChanged(evt);
+            }
+        });
 
         jLabel20.setText("Marca:");
 
         combobxMarcaAdmin.setEnabled(false);
+        combobxMarcaAdmin.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combobxMarcaAdminItemStateChanged(evt);
+            }
+        });
 
         jLabel21.setText("Matricula:");
 
-        jLabel23.setText("Tarifa:");
-
-        btngTarifaAdmin.add(rbtnTarifaDiaAdmin);
-        rbtnTarifaDiaAdmin.setText("Día");
-
-        btngTarifaAdmin.add(rbtnTarifaKmAdmin);
-        rbtnTarifaKmAdmin.setText("Km");
+        combobxEstadoAdmin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Disponibles", "Alquilados" }));
+        combobxEstadoAdmin.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combobxEstadoAdminItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpFiltrosAdminLayout = new javax.swing.GroupLayout(jpFiltrosAdmin);
         jpFiltrosAdmin.setLayout(jpFiltrosAdminLayout);
@@ -577,38 +586,28 @@ public class MDIPrincipal extends javax.swing.JFrame {
                     .addGroup(jpFiltrosAdminLayout.createSequentialGroup()
                         .addGroup(jpFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jpFiltrosAdminLayout.createSequentialGroup()
-                                .addComponent(jLabel24)
-                                .addGap(18, 18, 18)
-                                .addComponent(rbtnDisponibleAdmin)
-                                .addGap(18, 18, 18)
-                                .addComponent(rbtnAlquiladoAdmin))
-                            .addGroup(jpFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpFiltrosAdminLayout.createSequentialGroup()
-                                    .addComponent(jLabel21)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtMatriculaAdmin))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpFiltrosAdminLayout.createSequentialGroup()
-                                    .addComponent(jLabel20)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(combobxMarcaAdmin, 0, 191, Short.MAX_VALUE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpFiltrosAdminLayout.createSequentialGroup()
-                                    .addComponent(jLabel7)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(combobxVehiculoAdmin, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(jpFiltrosAdminLayout.createSequentialGroup()
-                                .addComponent(jLabel23)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(rbtnTarifaDiaAdmin)
-                                .addGap(18, 18, 18)
-                                .addComponent(rbtnTarifaKmAdmin))
-                            .addGroup(jpFiltrosAdminLayout.createSequentialGroup()
                                 .addGap(22, 22, 22)
                                 .addGroup(jpFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jpFiltrosAdminLayout.createSequentialGroup()
                                         .addComponent(btnLimpiarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(btnValidarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(btnAlquilarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(btnAlquilarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jpFiltrosAdminLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(jpFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel20)
+                                    .addComponent(jLabel24))
+                                .addGap(18, 18, 18)
+                                .addGroup(jpFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(combobxVehiculoAdmin, 0, 169, Short.MAX_VALUE)
+                                    .addComponent(combobxMarcaAdmin, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(combobxEstadoAdmin, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jpFiltrosAdminLayout.createSequentialGroup()
+                                .addComponent(jLabel21)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtMatriculaAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)))
                         .addGap(0, 6, Short.MAX_VALUE))
                     .addGroup(jpFiltrosAdminLayout.createSequentialGroup()
                         .addComponent(jLabel22)
@@ -624,28 +623,22 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jpFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24)
-                    .addComponent(rbtnDisponibleAdmin)
-                    .addComponent(rbtnAlquiladoAdmin))
+                    .addComponent(combobxEstadoAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jpFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(combobxVehiculoAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addGroup(jpFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
                     .addComponent(combobxMarcaAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addGroup(jpFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
                     .addComponent(txtMatriculaAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(35, 35, 35)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jpFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel23)
-                    .addComponent(rbtnTarifaDiaAdmin)
-                    .addComponent(rbtnTarifaKmAdmin))
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addGroup(jpFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel22)
                     .addComponent(jdcInicialAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -657,7 +650,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 .addGroup(jpFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnValidarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpiarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         tblVehiculosAdmin.setModel(new javax.swing.table.DefaultTableModel(
@@ -684,6 +677,16 @@ public class MDIPrincipal extends javax.swing.JFrame {
             }
         });
         tblVehiculosAdmin.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblVehiculosAdmin.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                tblVehiculosAdminMouseDragged(evt);
+            }
+        });
+        tblVehiculosAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblVehiculosAdminMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblVehiculosAdmin);
         if (tblVehiculosAdmin.getColumnModel().getColumnCount() > 0) {
             tblVehiculosAdmin.getColumnModel().getColumn(2).setResizable(false);
@@ -697,7 +700,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         );
         jpTablaAdminLayout.setVerticalGroup(
             jpTablaAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
         );
 
         jmnuArchivo.setText("Archivo");
@@ -906,23 +909,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jfrmUsuariosCRUD.setMaximizable(true);
         jfrmUsuariosCRUD.setTitle("Crear/Editar Usuario");
         jfrmUsuariosCRUD.setVisible(false);
-        jfrmUsuariosCRUD.addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-                jfrmUsuariosCRUDInternalFrameClosed(evt);
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-            }
-        });
 
         jpDatosUsuario.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
 
@@ -1144,7 +1130,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jpUsuarioCRUDLayout.setVerticalGroup(
             jpUsuarioCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpUsuarioCRUDLayout.createSequentialGroup()
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1171,23 +1157,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jfrmVehiculosCRUD.setIconifiable(true);
         jfrmVehiculosCRUD.setTitle("Crear/Editar Vehiculo");
         jfrmVehiculosCRUD.setVisible(false);
-        jfrmVehiculosCRUD.addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-                jfrmVehiculosCRUDInternalFrameClosed(evt);
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-            }
-        });
 
         jpAutoCRUD.setName("Auto"); // NOI18N
 
@@ -1552,7 +1521,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabelCapacidad))
                             .addGroup(jpDatosVehiculoLayout.createSequentialGroup()
-                                .addGap(0, 38, Short.MAX_VALUE)
+                                .addGap(0, 40, Short.MAX_VALUE)
                                 .addGroup(jpDatosVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(btnGuardarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnLimpiarVehiculoCRUD, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1587,8 +1556,8 @@ public class MDIPrincipal extends javax.swing.JFrame {
                             .addGroup(jpDatosVehiculoLayout.createSequentialGroup()
                                 .addGap(57, 57, 57)
                                 .addComponent(jLabel48)
-                                .addGap(0, 11, Short.MAX_VALUE)))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                                .addGap(0, 23, Short.MAX_VALUE)))))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jfrmVehiculosCRUDLayout = new javax.swing.GroupLayout(jfrmVehiculosCRUD.getContentPane());
@@ -1624,9 +1593,21 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         jLabel28.setText("* Cliente:");
 
+        txtClienteAlquilar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtClienteAlquilarKeyTyped(evt);
+            }
+        });
+
         jLabel27.setText("* Fechas:");
 
         jLabel25.setText("* Matricula:");
+
+        txtMatriculaAlquilar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMatriculaAlquilarKeyTyped(evt);
+            }
+        });
 
         jLabel26.setText("* Tarifa:");
 
@@ -1639,8 +1620,18 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         btnAceptarAlquilar.setText("ACEPTAR");
         btnAceptarAlquilar.setEnabled(false);
+        btnAceptarAlquilar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarAlquilarActionPerformed(evt);
+            }
+        });
 
         btnCancelarAlquilar.setText("CANCELAR");
+        btnCancelarAlquilar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarAlquilarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpDatosAlquilarLayout = new javax.swing.GroupLayout(jpDatosAlquilar);
         jpDatosAlquilar.setLayout(jpDatosAlquilarLayout);
@@ -1707,7 +1698,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                     .addComponent(jdcInicialAlquilar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jdcFinalAlquilar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addGroup(jpDatosAlquilarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptarAlquilar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelarAlquilar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1716,20 +1707,20 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         tblUsuarioAlquilar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "userID", "Nombre", "Apellido", "Edad"
+                "userID", "Nombre", "Edad"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Byte.class
+                java.lang.String.class, java.lang.String.class, java.lang.Byte.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1752,6 +1743,13 @@ public class MDIPrincipal extends javax.swing.JFrame {
             }
         });
         jScrollPane7.setViewportView(tblUsuarioAlquilar);
+        if (tblUsuarioAlquilar.getColumnModel().getColumnCount() > 0) {
+            tblUsuarioAlquilar.getColumnModel().getColumn(0).setResizable(false);
+            tblUsuarioAlquilar.getColumnModel().getColumn(1).setResizable(false);
+            tblUsuarioAlquilar.getColumnModel().getColumn(1).setPreferredWidth(100);
+            tblUsuarioAlquilar.getColumnModel().getColumn(2).setResizable(false);
+            tblUsuarioAlquilar.getColumnModel().getColumn(2).setPreferredWidth(30);
+        }
 
         atxtDatosVehiculo.setEditable(false);
         atxtDatosVehiculo.setColumns(20);
@@ -1830,6 +1828,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         txtObservaciones.setColumns(15);
         txtObservaciones.setRows(5);
+        txtObservaciones.setWrapStyleWord(true);
         jScrollPane3.setViewportView(txtObservaciones);
 
         btnAceptarValidacion.setText("ACEPTAR");
@@ -1913,7 +1912,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                         .addComponent(btnCancelarValidacion, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         desktopPane.add(jfrmValidarVehiculo);
@@ -1973,8 +1972,11 @@ public class MDIPrincipal extends javax.swing.JFrame {
         // Esconder todas las ventanas posibles:
         jfrmPrincipalAdmin.hide();
         jfrmValidarVehiculo.hide();
-        jfrmPrincipalUsuario.hide();
+        jfrmAlquilarVehiculo.hide();
+        jfrmUsuariosCRUD.hide();
+        jfrmVehiculosCRUD.hide();
 
+        jfrmPrincipalUsuario.hide();
         jfrmLogin.show();
     }//GEN-LAST:event_mnuCerrarSesionActionPerformed
 
@@ -2147,19 +2149,16 @@ public class MDIPrincipal extends javax.swing.JFrame {
         } else {
             // Obtener el usuario por medio del userID:
             String userID = (String) tblUsuarioCRUD.getValueAt(seleccionado, 0);
-            Object[] valores = controlUsuario.buscarUsuarioTabla(userID);
+            Usuario user = controlUsuario.buscarUsuarioTabla(userID);
 
-            // {String correo, String password, TipoUsuario tipousuario, 
-            // String nombre, String apellido, byte edad, 
-            // boolean problemasvision, boolean problemasauditivos}
-            txtCorreoUsuario.setText((String) valores[0]);
-            txtPasswordUsuario.setText((String) valores[1]);
-            combobxTipoUsuario.setSelectedIndex((int) valores[2]);
-            txtNombreUsuario.setText((String) valores[3]);
-            txtApellidoUsuario.setText((String) valores[4]);
-            spnEdadUsuario.setValue((byte) valores[5]);
-            cbxVisionCRUD.setSelected((boolean) valores[6]);
-            cbxAuditivoCRUD.setSelected((boolean) valores[7]);
+            txtCorreoUsuario.setText(user.getCorreo());
+            txtPasswordUsuario.setText(user.getPassword());
+            combobxTipoUsuario.setSelectedIndex(user.getTipousuario().getCodigo());
+            txtNombreUsuario.setText(user.getNombre());
+            txtApellidoUsuario.setText(user.getApellido());
+            spnEdadUsuario.setValue(user.getEdad());
+            cbxVisionCRUD.setSelected(user.isProblemasvision());
+            cbxAuditivoCRUD.setSelected(user.isProblemasauditivos());
 
             // Deshabilito los campos correspondientes:
             combobxTipoUsuario.setEnabled(false);
@@ -2289,7 +2288,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private void combobxVehiculoCRUDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combobxVehiculoCRUDItemStateChanged
         // Activar las marcas del vehiculo:
         combobxMarcaCRUD.setEnabled(true);
-        llenarCombobxMarcas(combobxVehiculoCRUD);
+        llenarCombobxMarcas(combobxMarcaCRUD, combobxVehiculoCRUD);
 
         // Activar/Desactivar botones del CRUD vehículos, dependiendo del tipo: 
         switch ((String) combobxVehiculoCRUD.getSelectedItem()) {
@@ -2322,12 +2321,10 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }
 
     private void txtCamposVehiculoCRUD(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCamposVehiculoCRUD
-        // TODO add your handling code here:
         habilitarBotones();
     }//GEN-LAST:event_txtCamposVehiculoCRUD
 
     private void combosbxVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combosbxVehiculoActionPerformed
-        // TODO add your handling code here:
         habilitarBotones();
     }//GEN-LAST:event_combosbxVehiculoActionPerformed
 
@@ -2452,28 +2449,17 @@ public class MDIPrincipal extends javax.swing.JFrame {
         tblMotoCRUD.clearSelection();
     }//GEN-LAST:event_tblFurgonetaCRUDFocusGained
 
-    private void jfrmUsuariosCRUDInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_jfrmUsuariosCRUDInternalFrameClosed
-        limpiarCampos("Usuario");
-    }//GEN-LAST:event_jfrmUsuariosCRUDInternalFrameClosed
-
-    private void jfrmVehiculosCRUDInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_jfrmVehiculosCRUDInternalFrameClosed
-        limpiarCampos("Vehiculo");
-    }//GEN-LAST:event_jfrmVehiculosCRUDInternalFrameClosed
-
 // ----------------------- ALQUILAR VEHICULO ----------------------------------
     private void btnAlquilarAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlquilarAdminActionPerformed
         jfrmAlquilarVehiculo.show();
         llenarTablaAlquilar();
-
         // Obtiene los valores que ya estaban en los filtros del Admin:
         txtMatriculaAlquilar.setText(txtMatriculaAdmin.getText());
-        // Faltan los btn
         jdcInicialAlquilar.setDate(jdcInicialAdmin.getDate());
         jdcFinalAlquilar.setDate(jdcFinalAdmin.getDate());
 
-        if (!txtMatriculaAlquilar.getText().isEmpty()) {
+        if (!txtMatriculaAlquilar.getText().isEmpty())
             verificarVehiculo();
-        }
     }//GEN-LAST:event_btnAlquilarAdminActionPerformed
 
     private void tblUsuarioAlquilarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsuarioAlquilarMouseDragged
@@ -2490,14 +2476,46 @@ public class MDIPrincipal extends javax.swing.JFrame {
         txtClienteAlquilar.setText(cliente);
     }//GEN-LAST:event_tblUsuarioAlquilarMouseClicked
 
+    private void txtMatriculaAlquilarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMatriculaAlquilarKeyTyped
+        verificarVehiculo();
+    }//GEN-LAST:event_txtMatriculaAlquilarKeyTyped
+
+    private void txtClienteAlquilarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClienteAlquilarKeyTyped
+        verificarUsuario();
+    }//GEN-LAST:event_txtClienteAlquilarKeyTyped
+
+    private void btnCancelarAlquilarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarAlquilarActionPerformed
+        limpiarCampos("Alquilar");
+    }//GEN-LAST:event_btnCancelarAlquilarActionPerformed
+
+    private void btnAceptarAlquilarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarAlquilarActionPerformed
+        String userID = txtClienteAlquilar.getText();
+        Usuario user = controlUsuario.buscarUsuarioTabla(userID);
+
+        String matricula = txtMatriculaAlquilar.getText();
+
+        LocalDate fechaInicial = convertirFecha.ConvertirFecha(jdcInicialAlquilar.getDate());
+        LocalDate fechaFinal = convertirFecha.ConvertirFecha(jdcFinalAlquilar.getDate());
+
+        alquilar.AlquilarVehiculo(controlVehiculo.encontrarVehiculo(matricula),
+                user, fechaInicial, fechaFinal);
+
+        JOptionPane.showMessageDialog(this, "Vehiculo alquilado con éxito");
+
+        // Borrar todos los valores y campos:
+        jfrmAlquilarVehiculo.hide();
+        limpiarCampos("Alquilar");
+        limpiarCampos("Administrador");
+    }//GEN-LAST:event_btnAceptarAlquilarActionPerformed
+
     private void verificarVehiculo() {
         // Verificar que el vehiculo sea válido y mostrar valores en text area:
         String matricula = txtMatriculaAlquilar.getText();
         for (AbstractVehiculo vehiculo : controlVehiculo.getVehiculos("")) {
             if (vehiculo.getMatricula().compareTo(matricula) == 0) {
-                // Vehiculo válido:
                 habilitarBotones();
-                // ----------Falta mostrar los valores en text area-------------
+                // Para mostrar valores en text area:
+                atxtDatosVehiculo.setText(vehiculo.getArrayDatos());
             }
         }
     }
@@ -2507,22 +2525,96 @@ public class MDIPrincipal extends javax.swing.JFrame {
         String cliente = txtClienteAlquilar.getText();
         for (Usuario user : controlUsuario.getUsuarios("")) {
             if (user.getUserID().compareTo(cliente) == 0) {
-                // Usuario válido:
                 habilitarBotones();
                 // tblUsuarioAlquilar -----> Falta mostrarlo en la tabla
             }
         }
     }
 
+//---------------------------- FILTROS ADMIN ----------------------------------- 
+    private void tblVehiculosAdminMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblVehiculosAdminMouseDragged
+        // Obtener el usuario que el administrador ha seleccionado:
+        int index = tblVehiculosAdmin.getSelectedRow();
+        String matricula = (String) tblVehiculosAdmin.getValueAt(index, 2);
+
+// -----------------------** FALTA TERMINAR ** ---------------------------------
+        // combobxVehiculoAdmin.set
+        // combobxMarcaAdmin.set
+        txtMatriculaAdmin.setText(matricula);
+    }//GEN-LAST:event_tblVehiculosAdminMouseDragged
+
+    private void tblVehiculosAdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblVehiculosAdminMouseClicked
+        // Obtener el usuario que el administrador ha seleccionado:
+        int index = tblVehiculosAdmin.getSelectedRow();
+        String matricula = (String) tblVehiculosAdmin.getValueAt(index, 2);
+
+// -----------------------** FALTA TERMINAR ** ---------------------------------
+        // combobxVehiculoAdmin.set
+        // combobxMarcaAdmin.set
+        txtMatriculaAdmin.setText(matricula);
+    }//GEN-LAST:event_tblVehiculosAdminMouseClicked
+
+    private void combobxEstadoAdminItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combobxEstadoAdminItemStateChanged
+        llenarTablaPrincipal("Administrador", tblVehiculosAdmin);
+        txtMatriculaAdmin.setText("");
+    }//GEN-LAST:event_combobxEstadoAdminItemStateChanged
+
+    private void combobxVehiculoAdminItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combobxVehiculoAdminItemStateChanged
+        // Activar las marcas del vehiculo:
+        combobxMarcaAdmin.setEnabled(true);
+        llenarCombobxMarcas(combobxMarcaAdmin, combobxVehiculoAdmin);
+
+        if (combobxVehiculoAdmin.getSelectedIndex() == 0) {
+            combobxMarcaAdmin.setEnabled(false);
+            combobxMarcaAdmin.setSelectedIndex(0);
+        }
+
+        bandera = true;
+        llenarTablaPrincipal("Administrador", tblVehiculosAdmin);
+        txtMatriculaAdmin.setText("");
+    }//GEN-LAST:event_combobxVehiculoAdminItemStateChanged
+
+    private void combobxMarcaAdminItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combobxMarcaAdminItemStateChanged
+        llenarTablaPrincipal("Administrador", tblVehiculosAdmin);
+        txtMatriculaAdmin.setText("");
+    }//GEN-LAST:event_combobxMarcaAdminItemStateChanged
+
+    private void btnLimpiarAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarAdminActionPerformed
+        limpiarCampos("Administrador");
+    }//GEN-LAST:event_btnLimpiarAdminActionPerformed
+
+// ------------------------- ** VALIDAR VEHICULO ** ----------------------------
+    private void btnValidarAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarAdminActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btnValidarAdminActionPerformed
+
 // ----------------------- LLENAR TABLAS ---------------------------------------
     private void llenarTablaPrincipal(String tipo, JTable table) {
-        // Obtener modelo de tabla y vaciar:
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.getDataVector().removeAllElements();
-        // ----------------- **REALIZAR EL CAMBIO DE FILTROS** -----------------
+
+        // Obtener los valores para el filtro:
+        byte estado = 0;
+        String vehiculo = "";
+        String marca = "";
+        
+        switch (tipo) {
+            case "Administrador": {
+                estado = (byte) combobxEstadoAdmin.getSelectedIndex();
+                vehiculo = combobxVehiculoAdmin.getSelectedItem().toString();
+                if (bandera) {
+                    marca = combobxMarcaAdmin.getSelectedItem().toString();
+                }
+            }
+            case "Usuario": {
+
+            }
+        }
 
         // Luego, recorrer la lista DINÁMICA correspondiente:
-        for (AbstractVehiculo seleccionado : controlVehiculo.getVehiculos("")) {
+        for (AbstractVehiculo seleccionado
+                : controlVehiculo.getVehiculosFiltro(estado, vehiculo, marca)) {
             // Dependiendo del tipo de tabla, llena lo necesario:
             switch (tipo) {
                 case "Administrador":
@@ -2534,6 +2626,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
             }
         }
         table.setModel(model);
+        table.repaint();
     }
 
     private void llenarVehiculosCRUD() {
@@ -2572,21 +2665,21 @@ public class MDIPrincipal extends javax.swing.JFrame {
         tblUsuarioCRUD.setModel(model);
     }
 
-    private void llenarCombobxMarcas(JComboBox combobx) {
+    private void llenarCombobxMarcas(JComboBox combobx, JComboBox tipo) {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         model.removeAllElements();
         model.addElement("Seleccionar");
 
         // Llena el combobx de acuerdo al tipo de vehiculo, en el otro combobx
         for (TipoMarca seleccionado : controlVehiculo.getMarcas()) {
-            if (seleccionado.getTipoVehiculo().compareTo((String) combobx.getSelectedItem()) == 0) {
+            if (seleccionado.getTipoVehiculo().compareTo((String) tipo.getSelectedItem()) == 0) {
                 model.addElement(seleccionado);
             }
         }
-        combobxMarcaCRUD.setModel(model);
+        combobx.setModel(model);
     }
-// ------------------------------ MÉTODOS VARIOS ------------------------------
 
+// ------------------------------ MÉTODOS VARIOS ------------------------------
     private void habilitarBotones() {
         // Cuando el usuario/admin documenta TODOS los campos necesarios:
         if (!txtNuevoNombre.getText().isEmpty()
@@ -2612,8 +2705,8 @@ public class MDIPrincipal extends javax.swing.JFrame {
             btnGuardarVehiculo.setEnabled(true);
         } else if (!txtMatriculaAlquilar.getText().isEmpty()
                 && !txtClienteAlquilar.getText().isEmpty()) {
-                //&& !jdcInicialAlquilar.getDate().toString().isEmpty()
-                //&& !jdcFinalAlquilar.getDate().toString().isEmpty()) {
+            //&& !jdcInicialAlquilar.getDate().toString().isEmpty()
+            //&& !jdcFinalAlquilar.getDate().toString().isEmpty()) {
 
             btnAceptarAlquilar.setEnabled(true);
         } else {
@@ -2638,6 +2731,18 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 cbxVisionRegistro.setSelected(false);
                 cbxTerminos.setSelected(false);
                 break;
+            }
+            case "Administrador": {
+                combobxEstadoAdmin.setSelectedIndex(0);
+                combobxVehiculoAdmin.setSelectedIndex(0);
+                combobxMarcaAdmin.setSelectedIndex(0);
+                combobxMarcaAdmin.setEnabled(false);
+                txtMatriculaAdmin.setText("");
+                jdcInicialAdmin.cleanup();
+                jdcFinalAdmin.cleanup();
+
+                tblVehiculosAdmin.clearSelection();
+                llenarTablaPrincipal("Administrador", tblVehiculosAdmin);
             }
             case "Usuario": {
                 combobxTipoUsuario.setSelectedIndex(0);
@@ -2668,6 +2773,14 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 tblMotoCRUD.clearSelection();
                 tblFurgonetaCRUD.clearSelection();
                 break;
+            }
+            case "Alquilar": {
+                txtMatriculaAlquilar.setText("");
+                atxtDatosVehiculo.setText("Datos del vehiculo: ");
+                txtClienteAlquilar.setText("");
+                jdcInicialAlquilar.cleanup();
+                jdcFinalAlquilar.cleanup();
+                tblUsuarioAlquilar.clearSelection();
             }
         }
     }
@@ -2725,8 +2838,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnLimpiarVehiculoCRUD;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnValidarAdmin;
-    private javax.swing.ButtonGroup btngEstadoAdmin;
-    private javax.swing.ButtonGroup btngTarifaAdmin;
     private javax.swing.ButtonGroup btngTarifaAlquilar;
     private javax.swing.JCheckBox cbxAuditivoCRUD;
     private javax.swing.JCheckBox cbxAuditivoRegistro;
@@ -2741,6 +2852,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JCheckBox checkbvLimpieza;
     private javax.swing.JCheckBox checkbxEspejos;
     private javax.swing.JCheckBox checkbxGasolina;
+    private javax.swing.JComboBox<String> combobxEstadoAdmin;
     private javax.swing.JComboBox<String> combobxMarcaAdmin;
     private javax.swing.JComboBox<String> combobxMarcaCRUD;
     private javax.swing.JComboBox<String> combobxTipoUsuario;
@@ -2764,7 +2876,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
@@ -2850,11 +2961,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuEditarVehiculos;
     private javax.swing.JMenu mnuGeneral;
     private javax.swing.JMenuItem mnuSalir;
-    private javax.swing.JRadioButton rbtnAlquiladoAdmin;
-    private javax.swing.JRadioButton rbtnDisponibleAdmin;
-    private javax.swing.JRadioButton rbtnTarifaDiaAdmin;
     private javax.swing.JRadioButton rbtnTarifaDiaAlquilar;
-    private javax.swing.JRadioButton rbtnTarifaKmAdmin;
     private javax.swing.JRadioButton rbtnTarifaKmAlquilar;
     private javax.swing.JSlider sldCapacidadCRUD;
     private javax.swing.JSlider sldTarifaDiaCRUD;

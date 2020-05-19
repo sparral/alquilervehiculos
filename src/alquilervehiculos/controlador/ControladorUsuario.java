@@ -25,7 +25,7 @@ public class ControladorUsuario implements Serializable {
 
     private TipoUsuario[] tipousuarios;
     private List<Usuario> usuarios;
-    // private List<Cliente> clientes;
+    private List<Cliente> clientes;
     private final String REGEXP;
 
     public ControladorUsuario() {
@@ -72,6 +72,10 @@ public class ControladorUsuario implements Serializable {
             }
         }
         return listaTemp;
+    }
+
+    public List<Cliente> getClientes() {
+        return clientes;
     }
 
     // Método para ingresar al sistema:
@@ -131,18 +135,13 @@ public class ControladorUsuario implements Serializable {
         return null;
     }
 
-    public Object[] buscarUsuarioTabla(String userID) {
+    public Usuario buscarUsuarioTabla(String userID) {
 
         for (Usuario user : this.usuarios) {
             // Encuentra el usuario comparando con el userID dado en la tabla:
             if (userID.compareTo(user.getUserID()) == 0) {
-                // Retorna los valores del usuario:
-                Object[] obj = {user.getCorreo(), user.getPassword(),
-                    user.getTipousuario().getCodigo(), user.getNombre(),
-                    user.getApellido(), user.getEdad(), user.isProblemasvision(),
-                    user.isProblemasauditivos()};
-                return obj;
-
+                // Retorna el usuario encontrado:
+                return user;
             }
         }
         return null;

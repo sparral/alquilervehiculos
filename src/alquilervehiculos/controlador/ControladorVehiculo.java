@@ -54,6 +54,63 @@ public class ControladorVehiculo implements Serializable {
         return listaTemp;
     }
 
+    public List<AbstractVehiculo> getVehiculosFiltro(byte estado, String tipo,
+            String marca) {
+        // Me obtiene la lista correspondiente de vehículos:  
+        if (estado == 0 && tipo.compareTo("Seleccionar") == 0) {
+            return vehiculos;
+        } else {
+            List<AbstractVehiculo> listaTemp = new ArrayList<>();
+
+            for (AbstractVehiculo vehiculo : vehiculos) {
+
+                if (estado == 0) {                                  // TODOS
+
+                    // Vehiculo y marca seleccionado:
+                    if (vehiculo.getClass().getSimpleName().compareTo(tipo) == 0
+                            && vehiculo.getMarca().getMarca().compareTo(marca) == 0) {
+                        listaTemp.add(vehiculo);
+                    } // Vehiculo seleccionado sin marca:
+                    else if (vehiculo.getClass().getSimpleName().compareTo(tipo) == 0
+                            && marca.compareTo("Seleccionar") == 0) {
+                        listaTemp.add(vehiculo);
+                    }
+
+                } else if (estado == 1 && vehiculo.isEstado()) {    // DISPONIBLES
+
+                    // Vehiculo y marca seleccionado:
+                    if (vehiculo.getClass().getSimpleName().compareTo(tipo) == 0
+                            && vehiculo.getMarca().getMarca().compareTo(marca) == 0) {
+                        listaTemp.add(vehiculo);
+                    } // Vehiculo seleccionado sin marca:
+                    else if (vehiculo.getClass().getSimpleName().compareTo(tipo) == 0
+                            && marca.compareTo("Seleccionar") == 0) {
+                        listaTemp.add(vehiculo);
+                    } else {
+                        // Solo que esté disponible:
+                        listaTemp.add(vehiculo);
+                    }
+
+                } else if (estado == 2 && !vehiculo.isEstado()) {   // ALQUILADOS
+
+                    // Vehiculo y marca seleccionado:
+                    if (vehiculo.getClass().getSimpleName().compareTo(tipo) == 0
+                            && vehiculo.getMarca().getMarca().compareTo(marca) == 0) {
+                        listaTemp.add(vehiculo);
+                    } // Vehiculo seleccionado sin marca:
+                    else if (vehiculo.getClass().getSimpleName().compareTo(tipo) == 0
+                            && marca.compareTo("Seleccionar") == 0) {
+                        listaTemp.add(vehiculo);
+                    } else {
+                        // Solo que esté alquilado:
+                        listaTemp.add(vehiculo);
+                    }
+                }
+            }
+            return listaTemp;
+        }
+    }
+
     private void llenarMarcas() {
         marcas = new ArrayList<>();
         // Marcas de Autos:
@@ -79,7 +136,7 @@ public class ControladorVehiculo implements Serializable {
         return marcas;
     }
 
-    // Métodos del CRUD Vehiculos:
+//-----------------------** Métodos del CRUD **---------------------------------
     public void agregarVehiculo(AbstractVehiculo obj) throws VehiculoException {
         // Objecto ingresado se puede comportar como AbstractVehiculo:
 
