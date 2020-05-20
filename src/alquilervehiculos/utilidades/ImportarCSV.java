@@ -76,8 +76,8 @@ public class ImportarCSV {
                     String matricula = leer.get(1);
                     String anio = leer.get(3);
                     int kilometraje = Integer.parseInt(leer.get(4));
-                    double [] valorAlquiler = {Double.parseDouble(leer.get(5)),
-                        Double.parseDouble(leer.get(6))};
+                    int [] valorAlquiler = {Integer.parseInt(leer.get(5)),
+                        Integer.parseInt(leer.get(6))};
                     
                     // Valores que dependen del Vehiculo: 
                     switch (ubicacion) {

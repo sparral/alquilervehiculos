@@ -13,36 +13,27 @@ import java.time.LocalDate;
  */
 public class Cliente {
     // Clase específica que maneja los usuarios que alquilaron un vehiculo
-    private final String userID;
-    private final String nombre;
-    private final String tipoVehiculo; 
-    private final String vehiculo;
+    private final String userID; 
+    private final String matricula;
     private LocalDate fechaAlquiler;
     private LocalDate fechaDevolucion;
 
-    public Cliente(String userID, String nombre, String tipoVehiculo, String vehiculo, LocalDate fechaAlquiler, LocalDate fechaDevolucion) {
+    // Constructor:
+
+    public Cliente(String userID, String matricula, LocalDate fechaAlquiler, LocalDate fechaDevolucion) {
         this.userID = userID;
-        this.nombre = nombre;
-        this.tipoVehiculo = tipoVehiculo;
-        this.vehiculo = vehiculo;
+        this.matricula = matricula;
         this.fechaAlquiler = fechaAlquiler;
         this.fechaDevolucion = fechaDevolucion;
     }
-
+    
+    // Getter & Setter:
     public String getUserID() {
         return userID;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getTipoVehiculo() {
-        return tipoVehiculo;
-    }
-
-    public String getVehiculo() {
-        return vehiculo;
+    public String getMatricula() {
+        return matricula;
     }
 
     public LocalDate getFechaAlquiler() {

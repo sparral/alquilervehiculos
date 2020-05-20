@@ -14,7 +14,7 @@ public class Moto extends AbstractVehiculo {
     private boolean casco;
 
     // Contructor:
-    public Moto(boolean casco, String matricula, int kilometraje, boolean estado, TipoMarca marca, String anio, double[] valorAlquiler) {
+    public Moto(boolean casco, String matricula, int kilometraje, boolean estado, TipoMarca marca, String anio, int[] valorAlquiler) {
         super(matricula, kilometraje, estado, marca, anio, valorAlquiler);
         this.casco = casco;
     }
@@ -34,8 +34,8 @@ public class Moto extends AbstractVehiculo {
         String marca = getMarca().getMarca();
         String[] datos = {Boolean.toString(isEstado()), getMatricula(),
             marca, getAnio(), Integer.toString(getKilometraje()),
-            Double.toString(getValorAlquiler()[0]), 
-            Double.toString(getValorAlquiler()[1]), Boolean.toString(casco)};
+            Integer.toString(getValorAlquiler()[0]), 
+            Integer.toString(getValorAlquiler()[1]), Boolean.toString(casco)};
         return datos;
     }
 

@@ -179,7 +179,7 @@ public class ControladorVehiculo implements Serializable {
             if (vehiculo.getMatricula().compareTo(matricula) == 0) {
                 // Retorna los valores del vehiculo,
                 Object[] obj = {"", vehiculo.getMatricula(),
-                    vehiculo.getKilometraje(), vehiculo.getMarca().getMarca(),
+                    vehiculo.getKilometraje(), vehiculo.getMarca(),
                     vehiculo.getAnio(), vehiculo.getValorAlquiler()[0],
                     vehiculo.getValorAlquiler()[1]};
 
@@ -200,7 +200,7 @@ public class ControladorVehiculo implements Serializable {
         return null;
     }
 
-    public void EditarVehiculo(Object[] valores) {
+    public void editarVehiculo(Object[] valores) {
         // {adicional ,String matricula, int kilometraje, String marca, 
         // String anio, double valorAlquiler}
 
@@ -212,7 +212,7 @@ public class ControladorVehiculo implements Serializable {
                 vehiculo.setMarca(marcas.get((int) valores[2]));
                 vehiculo.setAnio((String) valores[4]);
 
-                double[] valoresAlquiler = {(double) valores[5], (double) valores[6]};
+                int[] valoresAlquiler = {(int) valores[5],(int) valores[6]};
                 vehiculo.setValorAlquiler(valoresAlquiler);
 
                 // Reescribo el valor faltante de acuerdo al tipo de vehiculo,
@@ -228,7 +228,7 @@ public class ControladorVehiculo implements Serializable {
         }
     }
 
-    public boolean EliminarVehiculo(String matricula) {
+    public boolean eliminarVehiculo(String matricula) {
         for (AbstractVehiculo vehiculo : this.vehiculos) {
             // Encuentra el vehiculo comparando con la matricula:
             if (vehiculo.getMatricula().compareTo(matricula) == 0) {

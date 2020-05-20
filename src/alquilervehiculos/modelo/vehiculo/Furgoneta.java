@@ -14,11 +14,11 @@ public class Furgoneta extends AbstractVehiculo {
     private short capacidad;
 
     // Contructor:
-    public Furgoneta(short capacidad, String matricula, int kilometraje, boolean estado, TipoMarca marca, String anio, double[] valorAlquiler) {
+    public Furgoneta(short capacidad, String matricula, int kilometraje, boolean estado, TipoMarca marca, String anio, int[] valorAlquiler) {
         super(matricula, kilometraje, estado, marca, anio, valorAlquiler);
         this.capacidad = capacidad;
     }
-
+    
     // Métodos (Getter&Setter):
     public short getCapacidad() {
         return capacidad;
@@ -34,8 +34,8 @@ public class Furgoneta extends AbstractVehiculo {
         String marca = getMarca().getMarca();
         String[] datos = {Boolean.toString(isEstado()), getMatricula(),
             marca, getAnio(), Integer.toString(getKilometraje()),
-            Double.toString(getValorAlquiler()[0]), 
-            Double.toString(getValorAlquiler()[1]), Short.toString(capacidad)};
+            Integer.toString(getValorAlquiler()[0]), 
+            Integer.toString(getValorAlquiler()[1]), Short.toString(capacidad)};
         return datos;
     }
 

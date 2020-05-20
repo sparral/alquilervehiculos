@@ -5,22 +5,26 @@
  */
 package alquilervehiculos.modelo.vehiculo;
 
+//import alquilervehiculos.modelo.AlquilarVehiculo;
+//import alquilervehiculos.modelo.Cliente;
+
 /**
  *
  * @author Santy
  */
 public abstract class AbstractVehiculo implements VehiculoAble {
-
     // Variables que todo vehículo tiene:
     private final String matricula;
     private int kilometraje;
     private boolean estado;
     private TipoMarca marca;
     private String anio;
-    private double[] valorAlquiler;
+    private int[] valorAlquiler;
+    
+    // private final AlquilarVehiculo alquilarVehiculo= new AlquilarVehiculo();
 
     // Contructor:
-    public AbstractVehiculo(String matricula, int kilometraje, boolean estado, TipoMarca marca, String anio, double[] valorAlquiler) {
+    public AbstractVehiculo(String matricula, int kilometraje, boolean estado, TipoMarca marca, String anio, int[] valorAlquiler) {
         this.matricula = matricula;
         this.kilometraje = kilometraje;
         this.estado = estado;
@@ -66,19 +70,26 @@ public abstract class AbstractVehiculo implements VehiculoAble {
         this.anio = anio;
     }
 
-    public double[] getValorAlquiler() {
+    public int[] getValorAlquiler() {
         return valorAlquiler;
     }
 
-    public void setValorAlquiler(double[] valorAlquiler) {
+    public void setValorAlquiler(int[] valorAlquiler) {
         this.valorAlquiler = valorAlquiler;
     }
 
     // Para obtener los datos de las tabla:  
     public Object[] getObjectAdmin() {
-        // MODIFICAR ESTO:
+        String cliente = "";
+        String fecha = "";
+//        if (!estado) {
+//            Cliente user = alquilarVehiculo.buscarCliente(matricula);
+//            cliente= user.getUserID();
+//            fecha= user.getFechaDevolucion().toString();
+//        }
+        
         Object[] datos = {isEstado(), getClass().getSimpleName(), getMatricula(),
-            getMarca(), getAnio(), "---", "---",};
+            getMarca(), getAnio(), cliente, fecha};
         return datos;
     }
 
@@ -94,9 +105,9 @@ public abstract class AbstractVehiculo implements VehiculoAble {
     }
 
     public String getArrayDatos() {
-        String datos = "Datos de " +getClass().getSimpleName()+ ": \n"
-                +marca.getMarca()+" "+anio+", "+Integer.toString(kilometraje)
-                +"\n";
+        String datos = "Datos de " + getClass().getSimpleName() + ": \n"
+                + marca.getMarca() + ", " + anio
+                + "\n " + Integer.toString(kilometraje) + " km \n";
         return datos;
     }
 

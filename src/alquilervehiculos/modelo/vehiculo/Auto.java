@@ -14,10 +14,11 @@ public class Auto extends AbstractVehiculo {
     private boolean extras;
 
     // Contructor:
-    public Auto(boolean extras, String matricula, int kilometraje, boolean estado, TipoMarca marca, String anio, double[] valorAlquiler) {
+    public Auto(boolean extras, String matricula, int kilometraje, boolean estado, TipoMarca marca, String anio, int[] valorAlquiler) {
         super(matricula, kilometraje, estado, marca, anio, valorAlquiler);
         this.extras = extras;
     }
+    
     
     //  Métodos (Getter&Setter):
     public boolean isExtras() {
@@ -34,8 +35,8 @@ public class Auto extends AbstractVehiculo {
         String marca = getMarca().getMarca();
         String[] datos = {Boolean.toString(isEstado()), getMatricula(), 
             marca, getAnio(), Integer.toString(getKilometraje()), 
-            Double.toString(getValorAlquiler()[0]), 
-            Double.toString(getValorAlquiler()[1]), Boolean.toString(extras)};
+            Integer.toString(getValorAlquiler()[0]), 
+            Integer.toString(getValorAlquiler()[1]), Boolean.toString(extras)};
         return datos;
     }
 

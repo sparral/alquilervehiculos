@@ -5,10 +5,10 @@
  */
 package alquilervehiculos.modelo;
 
-import alquilervehiculos.controlador.ControladorUsuario;
 import alquilervehiculos.modelo.usuario.Usuario;
 import alquilervehiculos.modelo.vehiculo.AbstractVehiculo;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,16 +17,38 @@ import java.util.List;
  */
 public class AlquilarVehiculo {
     // Relaciona la clase "AbstractVehiculo" con "Usuario",
-    private ControladorUsuario controlUsuario;
-    private final List<Cliente> clientes = controlUsuario.getClientes();
+    private List<Cliente> clientes;
 
-    public void AlquilarVehiculo(AbstractVehiculo vehiculo, Usuario user,
+    public AlquilarVehiculo() {
+        llenarClientes();
+    }
+
+    public void llenarClientes() {
+        if (clientes==null || clientes.isEmpty()) {
+            clientes = new ArrayList<>();
+        }
+    }
+    
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
+    
+    public Cliente buscarCliente(String matricula) {
+        // Dada la matricula del vehiculo, retorna el cliente:
+        for (Cliente seleccionado: clientes) {
+            if (seleccionado.getMatricula().compareTo(matricula)==0) {
+                return seleccionado;
+            }
+        }
+        return null;
+    }
+    
+    public void alquilarVehiculo(AbstractVehiculo vehiculo, Usuario user,
             LocalDate fechaInicial, LocalDate fechaFinal) {
         
         vehiculo.alquilar();
-        Cliente nuevoCliente = new Cliente(user.getUserID(), user.getNombre(),
-                vehiculo.getClass().getSimpleName(), vehiculo.getMatricula(),
-                fechaInicial, fechaFinal);
+        Cliente nuevoCliente = new Cliente(user.getUserID(), 
+                vehiculo.getMatricula(), fechaInicial, fechaFinal);
 
         clientes.add(nuevoCliente);
     }

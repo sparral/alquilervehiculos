@@ -6,7 +6,6 @@
 package alquilervehiculos.controlador;
 
 import alquilervehiculos.excepciones.UsuarioException;
-import alquilervehiculos.modelo.Cliente;
 import alquilervehiculos.modelo.usuario.TipoUsuario;
 import alquilervehiculos.modelo.usuario.Usuario;
 import alquilervehiculos.utilidades.ExportarCSV;
@@ -25,7 +24,6 @@ public class ControladorUsuario implements Serializable {
 
     private TipoUsuario[] tipousuarios;
     private List<Usuario> usuarios;
-    private List<Cliente> clientes;
     private final String REGEXP;
 
     public ControladorUsuario() {
@@ -72,10 +70,6 @@ public class ControladorUsuario implements Serializable {
             }
         }
         return listaTemp;
-    }
-
-    public List<Cliente> getClientes() {
-        return clientes;
     }
 
     // Método para ingresar al sistema:
@@ -167,8 +161,6 @@ public class ControladorUsuario implements Serializable {
             if (user.getUserID().compareTo(userID) == 0) {
                 // Al encontrar el usuario por el userID, lo elimina:
                 return this.usuarios.remove(user);
-
-                // FALTA ELIMINARLO DEL CSV...
             }
         }
         return false;
