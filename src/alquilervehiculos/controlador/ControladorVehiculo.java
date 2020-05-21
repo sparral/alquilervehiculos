@@ -144,16 +144,16 @@ public class ControladorVehiculo implements Serializable {
         if (encontrarVehiculo(matricula) == null) {
             // No existe un vehiculo con esa matricula, lo agrego a la lista:
 
-            String[] srcs = {"src/Autos.csv", "src/Motos.csv", "src/Furgonetas.csv"};
+            // String[] srcs = {"src/Autos.csv", "src/Motos.csv", "src/Furgonetas.csv"};
             if (obj instanceof Auto) {
                 vehiculos.add((Auto) obj);
-                ExportarCSV.agregarVehiculoCSV(getVehiculos("Auto"), srcs[0]);
+                ExportarCSV.agregarVehiculoCSV(getVehiculos("Auto"));
             } else if (obj instanceof Moto) {
                 vehiculos.add((Moto) obj);
-                ExportarCSV.agregarVehiculoCSV(getVehiculos("Moto"), srcs[1]);
+                ExportarCSV.agregarVehiculoCSV(getVehiculos("Moto"));
             } else if (obj instanceof Furgoneta) {
                 vehiculos.add((Furgoneta) obj);
-                ExportarCSV.agregarVehiculoCSV(getVehiculos("Furgoneta"), srcs[2]);
+                ExportarCSV.agregarVehiculoCSV(getVehiculos("Furgoneta"));
             }
 
         } else {
@@ -201,28 +201,38 @@ public class ControladorVehiculo implements Serializable {
     }
 
     public void editarVehiculo(Object[] valores) {
-        // {adicional ,String matricula, int kilometraje, String marca, 
-        // String anio, double valorAlquiler}
+        // {adicional, matricula, kilometraje, index de marca, anio, 
+        //        valorAlquiler[0], valorAlquiler[1]}
 
         for (AbstractVehiculo vehiculo : vehiculos) {
             // Encuentra el vehiculo comparando con la matricula:
             if (vehiculo.getMatricula().compareTo((String) valores[1]) == 0) {
-
                 vehiculo.setKilometraje((int) valores[2]);
-                vehiculo.setMarca(marcas.get((int) valores[2]));
                 vehiculo.setAnio((String) valores[4]);
 
-                int[] valoresAlquiler = {(int) valores[5],(int) valores[6]};
+                int[] valoresAlquiler = {(int) valores[5], (int) valores[6]};
                 vehiculo.setValorAlquiler(valoresAlquiler);
 
-                // Reescribo el valor faltante de acuerdo al tipo de vehiculo,
+                // Reescribo valores faltantes de acuerdo al tipo de vehiculo y
+                // lo sobreescribo en el CSV correspondiente:
                 if (vehiculo instanceof Auto) {
                     ((Auto) vehiculo).setExtras((boolean) valores[0]);
+                    vehiculo.setMarca(marcas.get(marcas.indexOf(
+                            new TipoMarca("Auto", (String) valores[3]))));
+                    ExportarCSV.agregarVehiculoCSV(getVehiculos("Auto"));
 
                 } else if (vehiculo instanceof Moto) {
                     ((Moto) vehiculo).setCasco((boolean) valores[0]);
+                    vehiculo.setMarca(marcas.get(marcas.indexOf(
+                            new TipoMarca("Moto", (String) valores[3]))));
+                    ExportarCSV.agregarVehiculoCSV(getVehiculos("Moto"));
+
                 } else if (vehiculo instanceof Furgoneta) {
                     ((Furgoneta) vehiculo).setCapacidad((short) valores[0]);
+                    vehiculo.setMarca(marcas.get(marcas.indexOf(
+                            new TipoMarca("Furgoneta", (String) valores[3]))));
+                    ExportarCSV.agregarVehiculoCSV(getVehiculos("Furgoneta"));
+
                 }
             }
         }
@@ -233,6 +243,16 @@ public class ControladorVehiculo implements Serializable {
             // Encuentra el vehiculo comparando con la matricula:
             if (vehiculo.getMatricula().compareTo(matricula) == 0) {
                 return this.vehiculos.remove(vehiculo);
+            }
+        }
+        return false;
+    }
+
+    public boolean estadoVehiculo(String matricula) {
+        for (AbstractVehiculo vehiculo : this.vehiculos) {
+            // Valida el estado del vehiculo:
+            if (vehiculo.getMatricula().compareTo(matricula) == 0 && vehiculo.isEstado()) {
+                return true;
             }
         }
         return false;

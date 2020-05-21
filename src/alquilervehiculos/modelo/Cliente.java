@@ -12,21 +12,21 @@ import java.time.LocalDate;
  * @author Santy
  */
 public class Cliente {
+
     // Clase específica que maneja los usuarios que alquilaron un vehiculo
-    private final String userID; 
+    private final String userID;
     private final String matricula;
     private LocalDate fechaAlquiler;
     private LocalDate fechaDevolucion;
 
     // Constructor:
-
     public Cliente(String userID, String matricula, LocalDate fechaAlquiler, LocalDate fechaDevolucion) {
         this.userID = userID;
         this.matricula = matricula;
         this.fechaAlquiler = fechaAlquiler;
         this.fechaDevolucion = fechaDevolucion;
     }
-    
+
     // Getter & Setter:
     public String getUserID() {
         return userID;
@@ -51,5 +51,12 @@ public class Cliente {
     public void setFechaDevolucion(LocalDate fechaDevolucion) {
         this.fechaDevolucion = fechaDevolucion;
     }
-    
+
+    public String[] getArrayCSV() {
+        // La idea es retornar un arreglo de String con todas las variables:
+        String[] datos = {getUserID(), getMatricula(), 
+            getFechaAlquiler().toString(),getFechaAlquiler().toString()};
+        return datos;
+    }
+
 }

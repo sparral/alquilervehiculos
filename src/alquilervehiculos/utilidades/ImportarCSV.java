@@ -5,6 +5,7 @@
  */
 package alquilervehiculos.utilidades;
 
+import alquilervehiculos.modelo.Cliente;
 import alquilervehiculos.modelo.usuario.TipoUsuario;
 import alquilervehiculos.modelo.usuario.Usuario;
 import alquilervehiculos.modelo.vehiculo.AbstractVehiculo;
@@ -15,6 +16,7 @@ import alquilervehiculos.modelo.vehiculo.TipoMarca;
 import com.csvreader.CsvReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -120,5 +122,33 @@ public class ImportarCSV {
         }
 
         return listadoVehiculos;
+    }
+    
+        public static List<Cliente> cargarClientes() {
+        List<Cliente> listadoClientes = new ArrayList<>();
+        try {
+            // Para encontrar el archivo CSV:
+            CsvReader leerClientes = new CsvReader("src/Clientes.csv");
+            leerClientes.readHeaders();
+
+            // Se cargan los datos de los usuarios mientras existan líneas:
+            while (leerClientes.readRecord()) {
+                String userID = leerClientes.get(0);
+                String matricula = leerClientes.get(1);
+                LocalDate fechaInicial = LocalDate.parse(leerClientes.get(2));
+                LocalDate fechaFinal = LocalDate.parse(leerClientes.get(3));
+                
+                listadoClientes.add(new Cliente(userID, matricula, fechaInicial, 
+                                                fechaFinal));
+
+            }
+            leerClientes.close();           // Cerrar el archivo
+        } catch (FileNotFoundException ex) {
+            System.out.println("Archivo" + ex.getMessage());
+        } catch (IOException ex) {
+            Logger.getLogger(ImportarCSV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return listadoClientes;
     }
 }

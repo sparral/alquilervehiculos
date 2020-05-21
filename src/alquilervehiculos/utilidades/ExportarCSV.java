@@ -5,6 +5,7 @@
  */
 package alquilervehiculos.utilidades;
 
+import alquilervehiculos.modelo.Cliente;
 import alquilervehiculos.modelo.usuario.Usuario;
 import alquilervehiculos.modelo.vehiculo.AbstractVehiculo;
 import alquilervehiculos.modelo.vehiculo.Auto;
@@ -59,8 +60,16 @@ public class ExportarCSV {
         }
     }
 
-    public static void agregarVehiculoCSV(List<AbstractVehiculo> vehiculos, String salidaArchivo) {
-
+    public static void agregarVehiculoCSV(List<AbstractVehiculo> vehiculos) {
+        String salidaArchivo = "";                      // Nombre del archivo
+        if (vehiculos.get(0) instanceof Auto) {
+            salidaArchivo = "src/Autos.csv";
+        } else if(vehiculos.get(0) instanceof Moto) {
+            salidaArchivo = "src/Motos.csv";
+        } else if (vehiculos.get(0) instanceof Furgoneta) {
+            salidaArchivo = "src/Furgonetas.csv";
+        }
+        
         boolean existe = new File(salidaArchivo).exists(); // Verifica si existe
         // Si existe un archivo llamado asi lo borra
         if (existe) {
@@ -93,7 +102,7 @@ public class ExportarCSV {
                 }
             }
             salidaCSV.endRecord();     // Deja de escribir en el archivo
-            
+
             // Luego, recorre la lista, extrae los datos y escribe en el CSV:
             for (AbstractVehiculo vehiculo : vehiculos) {
                 switch (salidaArchivo) {
@@ -121,4 +130,35 @@ public class ExportarCSV {
         }
     }
 
+    public static void agregarClienteCSV(List<Cliente> clientes) {
+
+        String salidaArchivo = "src/Clientes.csv";         // Nombre del archivo
+        boolean existe = new File(salidaArchivo).exists(); // Verifica si existe
+
+        // Si existe un archivo llamado asi lo borra
+        if (existe) {
+            File archivoClientes = new File(salidaArchivo);
+            archivoClientes.delete();
+        }
+        try {
+            CsvWriter salidaCSV = new CsvWriter(salidaArchivo);
+            // Datos para escribir las columnas:
+            salidaCSV.write("userID");
+            salidaCSV.write("Matricula");
+            salidaCSV.write("FechaInicial");
+            salidaCSV.write("FechaFinal");
+
+            salidaCSV.endRecord();          // Deja de escribir en el archivo
+
+            // Luego, recorre la lista, extrae los datos y escribe en el CSV:
+            for (Cliente user: clientes) {
+                String[] datos = user.getArrayCSV();
+                salidaCSV.writeRecord(datos);
+            }
+            salidaCSV.endRecord();      // Deja de escribir en el archivo
+            salidaCSV.close();
+        } catch (IOException ex) {
+            Logger.getLogger(ExportarCSV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

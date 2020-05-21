@@ -22,6 +22,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -36,6 +37,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
     private boolean banderaMarcas = false;
     private boolean banderaAlquilar = false;
+    private boolean banderaValidar = false;
     private final ConvertirFecha convertir = new ConvertirFecha();
     Date fechaActual = new Date();
 
@@ -217,24 +219,26 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         tblUsuarioAlquilar = new javax.swing.JTable();
         jScrollPane11 = new javax.swing.JScrollPane();
-        atxtDatosVehiculo = new javax.swing.JTextArea();
+        atxtDatosAlquilar = new javax.swing.JTextArea();
         jfrmValidarVehiculo = new javax.swing.JInternalFrame();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         txtMatriculaValidar = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        combobxEstadoValidar = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
         txtKilometrajevalidar = new javax.swing.JTextField();
         checkbvLimpieza = new javax.swing.JCheckBox();
         checkbxGasolina = new javax.swing.JCheckBox();
         checkbxEspejos = new javax.swing.JCheckBox();
-        jSeparator3 = new javax.swing.JSeparator();
         jLabel19 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtObservaciones = new javax.swing.JTextArea();
         btnAceptarValidacion = new javax.swing.JButton();
         btnCancelarValidacion = new javax.swing.JButton();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        atxtDatosValidar = new javax.swing.JTextArea();
+        jSeparator5 = new javax.swing.JSeparator();
         menuBar = new javax.swing.JMenuBar();
         mnuGeneral = new javax.swing.JMenu();
         mnuCerrarSesion = new javax.swing.JMenuItem();
@@ -531,6 +535,11 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jpFiltrosAdmin.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Filtros de búsqueda", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
         btnValidarAdmin.setText("VALIDAR");
+        btnValidarAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnValidarAdminActionPerformed(evt);
+            }
+        });
 
         btnLimpiarAdmin.setText("LIMPIAR");
         btnLimpiarAdmin.addActionListener(new java.awt.event.ActionListener() {
@@ -583,30 +592,29 @@ public class MDIPrincipal extends javax.swing.JFrame {
             .addGroup(jpFiltrosAdminLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jpFiltrosAdminLayout.createSequentialGroup()
-                            .addGap(22, 22, 22)
-                            .addGroup(jpFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jpFiltrosAdminLayout.createSequentialGroup()
-                                    .addComponent(btnLimpiarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(btnValidarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(btnAlquilarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jpFiltrosAdminLayout.createSequentialGroup()
-                            .addGap(6, 6, 6)
-                            .addGroup(jpFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel20)
-                                .addComponent(jLabel24))
-                            .addGap(18, 18, 18)
-                            .addGroup(jpFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(combobxVehiculoAdmin, 0, 169, Short.MAX_VALUE)
-                                .addComponent(combobxMarcaAdmin, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(combobxEstadoAdmin, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(jpFiltrosAdminLayout.createSequentialGroup()
-                            .addComponent(jLabel21)
-                            .addGap(18, 18, 18)
-                            .addComponent(txtMatriculaAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)))
+                    .addGroup(jpFiltrosAdminLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(jpFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpFiltrosAdminLayout.createSequentialGroup()
+                                .addComponent(btnLimpiarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnValidarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnAlquilarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jpFiltrosAdminLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(jpFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel20)
+                            .addComponent(jLabel24))
+                        .addGap(18, 18, 18)
+                        .addGroup(jpFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(combobxVehiculoAdmin, 0, 169, Short.MAX_VALUE)
+                            .addComponent(combobxMarcaAdmin, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(combobxEstadoAdmin, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jpFiltrosAdminLayout.createSequentialGroup()
+                        .addComponent(jLabel21)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtMatriculaAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE))
                     .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
@@ -1821,13 +1829,13 @@ public class MDIPrincipal extends javax.swing.JFrame {
             tblUsuarioAlquilar.getColumnModel().getColumn(2).setPreferredWidth(30);
         }
 
-        atxtDatosVehiculo.setEditable(false);
-        atxtDatosVehiculo.setColumns(20);
-        atxtDatosVehiculo.setRows(5);
-        atxtDatosVehiculo.setText("Datos del vehiculo:");
-        atxtDatosVehiculo.setToolTipText("Datos del vehiculo");
-        atxtDatosVehiculo.setEnabled(false);
-        jScrollPane11.setViewportView(atxtDatosVehiculo);
+        atxtDatosAlquilar.setEditable(false);
+        atxtDatosAlquilar.setColumns(20);
+        atxtDatosAlquilar.setRows(5);
+        atxtDatosAlquilar.setText("Datos del vehiculo:");
+        atxtDatosAlquilar.setToolTipText("Datos del vehiculo");
+        atxtDatosAlquilar.setEnabled(false);
+        jScrollPane11.setViewportView(atxtDatosAlquilar);
 
         javax.swing.GroupLayout jpDatosMostrarLayout = new javax.swing.GroupLayout(jpDatosMostrar);
         jpDatosMostrar.setLayout(jpDatosMostrarLayout);
@@ -1882,11 +1890,28 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         jLabel16.setText("* Matrícula:");
 
+        txtMatriculaValidar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtMatriculaValidarKeyReleased(evt);
+            }
+        });
+
         jLabel17.setText("* Estado del Vehículo:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Bueno", "Regular", "Malo" }));
+        combobxEstadoValidar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Excelente", "Bueno", "Regular", "Malo" }));
+        combobxEstadoValidar.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combobxEstadoValidarItemStateChanged(evt);
+            }
+        });
 
         jLabel18.setText("* Kilometraje:");
+
+        txtKilometrajevalidar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtKilometrajevalidarKeyTyped(evt);
+            }
+        });
 
         checkbvLimpieza.setText("Limpieza");
 
@@ -1906,6 +1931,16 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         btnCancelarValidacion.setText("CANCELAR");
 
+        atxtDatosValidar.setEditable(false);
+        atxtDatosValidar.setColumns(20);
+        atxtDatosValidar.setLineWrap(true);
+        atxtDatosValidar.setRows(3);
+        atxtDatosValidar.setText("Vehiculo no válido o no está alquilado.");
+        atxtDatosValidar.setToolTipText("Datos del vehiculo");
+        atxtDatosValidar.setWrapStyleWord(true);
+        atxtDatosValidar.setEnabled(false);
+        jScrollPane12.setViewportView(atxtDatosValidar);
+
         javax.swing.GroupLayout jfrmValidarVehiculoLayout = new javax.swing.GroupLayout(jfrmValidarVehiculo.getContentPane());
         jfrmValidarVehiculo.getContentPane().setLayout(jfrmValidarVehiculoLayout);
         jfrmValidarVehiculoLayout.setHorizontalGroup(
@@ -1917,72 +1952,77 @@ public class MDIPrincipal extends javax.swing.JFrame {
                         .addComponent(jLabel19)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
+                        .addGap(44, 44, 44)
                         .addGroup(jfrmValidarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnCancelarValidacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAceptarValidacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 85, Short.MAX_VALUE))
+                            .addComponent(btnAceptarValidacion, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jfrmValidarVehiculoLayout.createSequentialGroup()
-                        .addGroup(jfrmValidarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15)
+                        .addComponent(jLabel15)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jfrmValidarVehiculoLayout.createSequentialGroup()
+                        .addGroup(jfrmValidarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jfrmValidarVehiculoLayout.createSequentialGroup()
+                                .addComponent(jLabel18)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtKilometrajevalidar))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jfrmValidarVehiculoLayout.createSequentialGroup()
+                                .addComponent(jLabel17)
+                                .addGap(18, 18, 18)
+                                .addComponent(combobxEstadoValidar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jfrmValidarVehiculoLayout.createSequentialGroup()
+                                .addComponent(jLabel16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtMatriculaValidar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jfrmValidarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jfrmValidarVehiculoLayout.createSequentialGroup()
-                                .addGroup(jfrmValidarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jfrmValidarVehiculoLayout.createSequentialGroup()
-                                        .addComponent(jLabel18)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtKilometrajevalidar))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jfrmValidarVehiculoLayout.createSequentialGroup()
-                                        .addComponent(jLabel17)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jfrmValidarVehiculoLayout.createSequentialGroup()
-                                        .addComponent(jLabel16)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtMatriculaValidar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(61, 61, 61)
-                                .addGroup(jfrmValidarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(checkbxGasolina)
-                                    .addComponent(checkbvLimpieza)
-                                    .addComponent(checkbxEspejos))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addComponent(jSeparator3)
+                                .addComponent(checkbxGasolina)
+                                .addGap(18, 18, 18)
+                                .addComponent(checkbvLimpieza)
+                                .addGap(18, 18, 18)
+                                .addComponent(checkbxEspejos))
+                            .addComponent(jScrollPane12))
+                        .addGap(22, 22, 22))))
+            .addComponent(jSeparator5)
         );
         jfrmValidarVehiculoLayout.setVerticalGroup(
             jfrmValidarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jfrmValidarVehiculoLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jLabel15)
-                .addGap(18, 18, 18)
-                .addGroup(jfrmValidarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(txtMatriculaValidar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jfrmValidarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(29, 29, 29)
+                .addGroup(jfrmValidarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jfrmValidarVehiculoLayout.createSequentialGroup()
                         .addGroup(jfrmValidarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel16)
+                            .addComponent(txtMatriculaValidar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addGroup(jfrmValidarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(combobxEstadoValidar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jfrmValidarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel18)
                             .addComponent(txtKilometrajevalidar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jfrmValidarVehiculoLayout.createSequentialGroup()
-                        .addComponent(checkbvLimpieza)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(checkbxGasolina)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(checkbxEspejos)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jfrmValidarVehiculoLayout.createSequentialGroup()
+                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addGroup(jfrmValidarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(checkbvLimpieza)
+                            .addComponent(checkbxEspejos)
+                            .addComponent(checkbxGasolina))))
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(jfrmValidarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel19)
                     .addGroup(jfrmValidarVehiculoLayout.createSequentialGroup()
                         .addComponent(btnAceptarValidacion, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
-                        .addComponent(btnCancelarValidacion, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel19))
-                .addContainerGap(55, Short.MAX_VALUE))
+                        .addComponent(btnCancelarValidacion, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         desktopPane.add(jfrmValidarVehiculo);
@@ -2279,8 +2319,8 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         if (controlVehiculo.encontrarVehiculo(matricula) != null) {
             // Vehiculo existente, se modifican los valores:
-            Object[] valores = {"", kilometraje, index, anio, valorAlquiler[0],
-                valorAlquiler[1]};
+            Object[] valores = {"", matricula, kilometraje, marca, anio,
+                valorAlquiler[0], valorAlquiler[1]};
             switch (tipo) {
                 case "Auto":
                     valores[0] = cbxExtrasCRUD.isSelected();
@@ -2522,20 +2562,24 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
 // ----------------------- ALQUILAR VEHICULO ----------------------------------
     private void btnAlquilarAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlquilarAdminActionPerformed
-        jfrmAlquilarVehiculo.show();
-        llenarTablaAlquilar();
-        // Obtiene los valores que ya estaban en los filtros del Admin:
-        txtMatriculaAlquilar.setText(txtMatriculaAdmin.getText());
+        // Primero, verificar que el vehiculo seleccionado está disponible:
+        if (!controlVehiculo.estadoVehiculo(txtMatriculaAdmin.getText())
+                && !txtMatriculaAdmin.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vehiculo no disponible");
+        } else {
+            jfrmAlquilarVehiculo.show();
+            llenarTablaAlquilar();
+            txtMatriculaAlquilar.setText(txtMatriculaAdmin.getText());
+            if (!txtMatriculaAlquilar.getText().isEmpty()) {
+                verificarVehiculo(atxtDatosAlquilar, "Alquilar");
+            }
 
-        if (!txtMatriculaAlquilar.getText().isEmpty()) {
-            verificarVehiculo();
+            jdcInicialAlquilar.setDate(fechaActual);
+            jdcInicialAlquilar.setMinSelectableDate(fechaActual);
+            jdcFinalAlquilar.setMinSelectableDate(fechaActual);
+
+            banderaAlquilar = true;
         }
-
-        jdcInicialAlquilar.setDate(fechaActual);
-        jdcInicialAlquilar.setMinSelectableDate(fechaActual);
-        jdcFinalAlquilar.setMinSelectableDate(fechaActual);
-
-        banderaAlquilar = true;
     }//GEN-LAST:event_btnAlquilarAdminActionPerformed
 
     private void tblUsuarioAlquilarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsuarioAlquilarMouseDragged
@@ -2581,7 +2625,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
     private void txtMatriculaAlquilarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMatriculaAlquilarKeyReleased
         habilitarBotones();
-        verificarVehiculo();
+        verificarVehiculo(atxtDatosAlquilar, "Alquilar");
     }//GEN-LAST:event_txtMatriculaAlquilarKeyReleased
 
     private void txtClienteAlquilarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClienteAlquilarKeyReleased
@@ -2596,31 +2640,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private void jdcFinalAlquilarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdcFinalAlquilarPropertyChange
         habilitarBotones();
     }//GEN-LAST:event_jdcFinalAlquilarPropertyChange
-
-    private boolean verificarVehiculo() {
-        // Verificar que el vehiculo sea válido y mostrar valores en text area:
-        atxtDatosVehiculo.setText("Datos del vehiculo: ");
-        String matricula = txtMatriculaAlquilar.getText();
-        for (AbstractVehiculo vehiculo : controlVehiculo.getVehiculos("")) {
-            if (vehiculo.getMatricula().compareTo(matricula) == 0) {
-                // Para mostrar valores en text area:
-                atxtDatosVehiculo.setText(vehiculo.getArrayDatos());
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean verificarUsuario() {
-        // Verificar que el usuario sea válido:
-        String cliente = txtClienteAlquilar.getText();
-        for (Usuario user : controlUsuario.getUsuarios("")) {
-            if (user.getUserID().compareTo(cliente) == 0) {
-                return true;
-            }
-        }
-        return false;
-    }
 
 //---------------------------- FILTROS ADMIN ----------------------------------- 
     private void tblVehiculosAdminMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblVehiculosAdminMouseDragged
@@ -2698,11 +2717,41 @@ public class MDIPrincipal extends javax.swing.JFrame {
         llenarTablaPrincipal("Usuario", tblVehiculosUsuario);
     }//GEN-LAST:event_cbxDisponibleUsuarioActionPerformed
 
+// ------------------------- VALIDAR VEHICULO ----------------------------------
+    private void btnValidarAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarAdminActionPerformed
+        // Primero, verificar que el vehiculo seleccionado está alquilado:
+        if (controlVehiculo.estadoVehiculo(txtMatriculaAdmin.getText())
+                && !txtMatriculaAdmin.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vehiculo no se ha alquilado");
+        } else {
+            jfrmValidarVehiculo.show();
+            txtMatriculaValidar.setText(txtMatriculaValidar.getText());
+
+            if (!txtMatriculaValidar.getText().isEmpty()) {
+                verificarVehiculo(atxtDatosValidar, "Validar");
+            }
+
+            banderaValidar = true;
+        }
+    }//GEN-LAST:event_btnValidarAdminActionPerformed
+
+    private void txtMatriculaValidarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMatriculaValidarKeyReleased
+        verificarVehiculo(atxtDatosValidar, "Validar");
+        habilitarBotones();
+    }//GEN-LAST:event_txtMatriculaValidarKeyReleased
+
+    private void combobxEstadoValidarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combobxEstadoValidarItemStateChanged
+        habilitarBotones();
+    }//GEN-LAST:event_combobxEstadoValidarItemStateChanged
+
+    private void txtKilometrajevalidarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKilometrajevalidarKeyTyped
+        habilitarBotones();
+    }//GEN-LAST:event_txtKilometrajevalidarKeyTyped
+
 // ----------------------- LLENAR TABLAS ---------------------------------------
     private void llenarTablaPrincipal(String tipo, JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.getDataVector().removeAllElements();
-
         // Obtener los valores para el filtro:
         byte estado = 0;
         String vehiculo = "";
@@ -2790,6 +2839,50 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }
 
 // ------------------------------ MÉTODOS VARIOS ------------------------------
+    private boolean verificarVehiculo(JTextArea atxt, String tipo) {
+        // Verificar que el vehiculo sea válido y mostrar valores en text area:
+        String matricula = "";
+        switch (tipo) {
+            case "Alquilar": {
+                matricula = txtMatriculaAlquilar.getText();
+                atxt.setText("Datos del vehiculo: ");
+                break;
+            }
+            case "Validar": {
+                matricula = txtMatriculaValidar.getText();
+                atxt.setText("Vehiculo no válido o no está alquilado.");
+                break;
+            }
+        }
+        for (AbstractVehiculo vehiculo : controlVehiculo.getVehiculos("")) {
+            if (vehiculo.getMatricula().compareTo(matricula) == 0) {
+                // Para mostrar valores en text area:
+                switch (tipo) {
+                    case "Alquilar": {
+                        atxt.setText(vehiculo.getArrayDatos());
+                        break;
+                    }
+                    case "Validar": {
+                        break;
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean verificarUsuario() {
+        // Verificar que el usuario sea válido:
+        String cliente = txtClienteAlquilar.getText();
+        for (Usuario user : controlUsuario.getUsuarios("")) {
+            if (user.getUserID().compareTo(cliente) == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void habilitarBotones() {
         // Cuando el usuario/admin documenta TODOS los campos necesarios:
         if (!txtNuevoNombre.getText().isEmpty()
@@ -2814,17 +2907,24 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
             btnGuardarVehiculo.setEnabled(true);
         } else if (banderaAlquilar && verificarUsuario()
-                && verificarVehiculo()
+                && verificarVehiculo(atxtDatosAlquilar, "Alquilar")
                 && jdcInicialAlquilar.getDate() != null
                 && jdcFinalAlquilar.getDate() != null) {
 
             btnAceptarAlquilar.setEnabled(true);
+        } else if (banderaValidar
+                && verificarVehiculo(atxtDatosValidar, "Validar")
+                && combobxEstadoValidar.getSelectedIndex() != 0
+                && !txtKilometrajevalidar.getText().isEmpty()) {
+
+            btnAceptarValidacion.setEnabled(true);
         } else {
             btnAceptarRegistro.setEnabled(false);
             btnGuardarUsuario.setEnabled(false);
             btnGuardarVehiculo.setEnabled(false);
 
             btnAceptarAlquilar.setEnabled(false);
+            btnAceptarValidacion.setEnabled(false);
         }
     }
 
@@ -2883,7 +2983,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
             }
             case "Alquilar": {
                 txtMatriculaAlquilar.setText("");
-                atxtDatosVehiculo.setText("Datos del vehiculo: ");
+                atxtDatosAlquilar.setText("Datos del vehiculo: ");
                 txtClienteAlquilar.setText("");
                 jdcInicialAlquilar.setDate(null);
                 jdcFinalAlquilar.setDate(null);
@@ -2925,7 +3025,8 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea atxtDatosVehiculo;
+    private javax.swing.JTextArea atxtDatosAlquilar;
+    private javax.swing.JTextArea atxtDatosValidar;
     private javax.swing.JButton btnAceptarAlquilar;
     private javax.swing.JButton btnAceptarRegistro;
     private javax.swing.JButton btnAceptarValidacion;
@@ -2959,6 +3060,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JCheckBox checkbxEspejos;
     private javax.swing.JCheckBox checkbxGasolina;
     private javax.swing.JComboBox<String> combobxEstadoAdmin;
+    private javax.swing.JComboBox<String> combobxEstadoValidar;
     private javax.swing.JComboBox<String> combobxMarcaAdmin;
     private javax.swing.JComboBox<String> combobxMarcaCRUD;
     private javax.swing.JComboBox<String> combobxMarcaUsuario;
@@ -2969,7 +3071,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -3026,6 +3127,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
@@ -3034,8 +3136,8 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private com.toedter.calendar.JDateChooser jdcFinalAlquilar;
     private com.toedter.calendar.JDateChooser jdcFinalUsuario;
     private com.toedter.calendar.JDateChooser jdcInicialAlquilar;

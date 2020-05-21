@@ -18,7 +18,7 @@ public class Furgoneta extends AbstractVehiculo {
         super(matricula, kilometraje, estado, marca, anio, valorAlquiler);
         this.capacidad = capacidad;
     }
-    
+
     // Métodos (Getter&Setter):
     public short getCapacidad() {
         return capacidad;
@@ -34,7 +34,7 @@ public class Furgoneta extends AbstractVehiculo {
         String marca = getMarca().getMarca();
         String[] datos = {Boolean.toString(isEstado()), getMatricula(),
             marca, getAnio(), Integer.toString(getKilometraje()),
-            Integer.toString(getValorAlquiler()[0]), 
+            Integer.toString(getValorAlquiler()[0]),
             Integer.toString(getValorAlquiler()[1]), Short.toString(capacidad)};
         return datos;
     }
@@ -43,9 +43,9 @@ public class Furgoneta extends AbstractVehiculo {
     public double calcularAlquiler(String tipo, int valor) {
         switch (tipo) {
             case "Dia":
-                return getValorAlquiler()[0]*valor;
+                return getValorAlquiler()[0] * valor;
             case "Km":
-                return getValorAlquiler()[1]*valor;
+                return getValorAlquiler()[1] * valor;
         }
         // Si no es ninguno de los dos, no lo calcula:
         return 0;
@@ -61,6 +61,5 @@ public class Furgoneta extends AbstractVehiculo {
     public void alquilar() {
         setEstado(false);
     }
-    
-    
+
 }

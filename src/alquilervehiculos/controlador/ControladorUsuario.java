@@ -24,6 +24,7 @@ public class ControladorUsuario implements Serializable {
 
     private TipoUsuario[] tipousuarios;
     private List<Usuario> usuarios;
+
     private final String REGEXP;
 
     public ControladorUsuario() {
@@ -61,7 +62,7 @@ public class ControladorUsuario implements Serializable {
 
         for (Usuario seleccionado : this.usuarios) {
 
-            if (seleccionado.getTipousuario().getDescripcion().compareTo(tipo)==0) {
+            if (seleccionado.getTipousuario().getDescripcion().compareTo(tipo) == 0) {
                 // Es selectivo con respecto al tipo de usuario,
                 listaTemp.add(seleccionado);
             } else if (tipo.isEmpty()) {
@@ -144,8 +145,8 @@ public class ControladorUsuario implements Serializable {
     public void editarUsuario(Object[] valores) {
         // {String correo, String password, String nombre, String apellido, byte edad, 
         // boolean problemasvision, boolean problemasauditivos}        
-        Usuario user=encontrarUsuario((String)valores[0]);
-        
+        Usuario user = encontrarUsuario((String) valores[0]);
+
         // Luego, edito los valores del usuario:
         user.setPassword((String) valores[1]);
         user.setNombre((String) valores[2]);
@@ -153,6 +154,9 @@ public class ControladorUsuario implements Serializable {
         user.setEdad((byte) valores[4]);
         user.setProblemasvision((boolean) valores[5]);
         user.setProblemasauditivos((boolean) valores[6]);
+        
+        // Finalmente, sobreescribir usuario en el CSV:
+        ExportarCSV.agregarUsuarioCSV(usuarios);
     }
 
     public boolean eliminarUsuario(String userID) {

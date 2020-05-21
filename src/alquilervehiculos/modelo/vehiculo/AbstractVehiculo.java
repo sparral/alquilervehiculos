@@ -5,8 +5,8 @@
  */
 package alquilervehiculos.modelo.vehiculo;
 
-//import alquilervehiculos.modelo.AlquilarVehiculo;
-//import alquilervehiculos.modelo.Cliente;
+import alquilervehiculos.modelo.AlquilarVehiculo;
+import alquilervehiculos.modelo.Cliente;
 
 /**
  *
@@ -20,8 +20,6 @@ public abstract class AbstractVehiculo implements VehiculoAble {
     private TipoMarca marca;
     private String anio;
     private int[] valorAlquiler;
-    
-    // private final AlquilarVehiculo alquilarVehiculo= new AlquilarVehiculo();
 
     // Contructor:
     public AbstractVehiculo(String matricula, int kilometraje, boolean estado, TipoMarca marca, String anio, int[] valorAlquiler) {
@@ -82,11 +80,12 @@ public abstract class AbstractVehiculo implements VehiculoAble {
     public Object[] getObjectAdmin() {
         String cliente = "";
         String fecha = "";
-//        if (!estado) {
-//            Cliente user = alquilarVehiculo.buscarCliente(matricula);
-//            cliente= user.getUserID();
-//            fecha= user.getFechaDevolucion().toString();
-//        }
+        if (!estado) {
+            AlquilarVehiculo buscar= new AlquilarVehiculo();
+            Cliente user= buscar.buscarCliente(matricula);
+            cliente= user.getUserID();
+            fecha= user.getFechaDevolucion().toString();
+        }
         
         Object[] datos = {isEstado(), getClass().getSimpleName(), getMatricula(),
             getMarca(), getAnio(), cliente, fecha};
