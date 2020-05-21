@@ -137,9 +137,10 @@ public class ImportarCSV {
                 String matricula = leerClientes.get(1);
                 LocalDate fechaInicial = LocalDate.parse(leerClientes.get(2));
                 LocalDate fechaFinal = LocalDate.parse(leerClientes.get(3));
+                String pago= leerClientes.get(4);
                 
                 listadoClientes.add(new Cliente(userID, matricula, fechaInicial, 
-                                                fechaFinal));
+                                                fechaFinal,pago));
 
             }
             leerClientes.close();           // Cerrar el archivo

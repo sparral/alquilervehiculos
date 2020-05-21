@@ -18,14 +18,17 @@ public class Cliente {
     private final String matricula;
     private LocalDate fechaAlquiler;
     private LocalDate fechaDevolucion;
+    private String tipoPago;
 
     // Constructor:
-    public Cliente(String userID, String matricula, LocalDate fechaAlquiler, LocalDate fechaDevolucion) {
+    public Cliente(String userID, String matricula, LocalDate fechaAlquiler, LocalDate fechaDevolucion, String tipoPago) {
         this.userID = userID;
         this.matricula = matricula;
         this.fechaAlquiler = fechaAlquiler;
         this.fechaDevolucion = fechaDevolucion;
+        this.tipoPago = tipoPago;
     }
+    
 
     // Getter & Setter:
     public String getUserID() {
@@ -44,6 +47,10 @@ public class Cliente {
         return fechaDevolucion;
     }
 
+    public String getTipoPago() {
+        return tipoPago;
+    }
+
     public void setFechaAlquiler(LocalDate fechaAlquiler) {
         this.fechaAlquiler = fechaAlquiler;
     }
@@ -55,7 +62,7 @@ public class Cliente {
     public String[] getArrayCSV() {
         // La idea es retornar un arreglo de String con todas las variables:
         String[] datos = {getUserID(), getMatricula(), 
-            getFechaAlquiler().toString(),getFechaAlquiler().toString()};
+            getFechaAlquiler().toString(),getFechaDevolucion().toString(), getTipoPago()};
         return datos;
     }
 

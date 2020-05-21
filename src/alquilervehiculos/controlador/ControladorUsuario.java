@@ -110,7 +110,7 @@ public class ControladorUsuario implements Serializable {
             if (encontrarUsuario(user.getCorreo()) == null) {
                 // No existe un usuario con ese correo, lo agrego a la lista:
                 usuarios.add(user);
-                ExportarCSV.agregarUsuarioCSV(usuarios);
+                ExportarCSV.usuarioCSV(usuarios);
             } else {
                 throw new UsuarioException("Usuario ingresado ya existe");
             }
@@ -156,7 +156,7 @@ public class ControladorUsuario implements Serializable {
         user.setProblemasauditivos((boolean) valores[6]);
         
         // Finalmente, sobreescribir usuario en el CSV:
-        ExportarCSV.agregarUsuarioCSV(usuarios);
+        ExportarCSV.usuarioCSV(usuarios);
     }
 
     public boolean eliminarUsuario(String userID) {

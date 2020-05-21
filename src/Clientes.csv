@@ -1,3 +1,6 @@
-userID,Matricula,FechaInicial,FechaFinal
-alejox76,DGS934,2020-05-20,2020-05-22
+userID,Matricula,FechaInicial,FechaFinal,TipoPago
+alejox76,DGS934,2020-05-20,2020-05-22,Dia
+sebas1992,KVT923,2020-05-26,2020-05-29,Dia
+prami14,DMR946,2020-05-29,2020-05-31,Km
+fervelez1105,JF34L,2020-05-23,2020-05-25,Dia
 

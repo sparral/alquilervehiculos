@@ -147,13 +147,13 @@ public class ControladorVehiculo implements Serializable {
             // String[] srcs = {"src/Autos.csv", "src/Motos.csv", "src/Furgonetas.csv"};
             if (obj instanceof Auto) {
                 vehiculos.add((Auto) obj);
-                ExportarCSV.agregarVehiculoCSV(getVehiculos("Auto"));
+                ExportarCSV.vehiculoCSV(getVehiculos("Auto"));
             } else if (obj instanceof Moto) {
                 vehiculos.add((Moto) obj);
-                ExportarCSV.agregarVehiculoCSV(getVehiculos("Moto"));
+                ExportarCSV.vehiculoCSV(getVehiculos("Moto"));
             } else if (obj instanceof Furgoneta) {
                 vehiculos.add((Furgoneta) obj);
-                ExportarCSV.agregarVehiculoCSV(getVehiculos("Furgoneta"));
+                ExportarCSV.vehiculoCSV(getVehiculos("Furgoneta"));
             }
 
         } else {
@@ -201,13 +201,14 @@ public class ControladorVehiculo implements Serializable {
     }
 
     public void editarVehiculo(Object[] valores) {
-        // {adicional, matricula, kilometraje, index de marca, anio, 
+        // {adicional, matricula, kilometraje, marca, anio, 
         //        valorAlquiler[0], valorAlquiler[1]}
 
         for (AbstractVehiculo vehiculo : vehiculos) {
             // Encuentra el vehiculo comparando con la matricula:
             if (vehiculo.getMatricula().compareTo((String) valores[1]) == 0) {
                 vehiculo.setKilometraje((int) valores[2]);
+                String marca = valores[3].toString();
                 vehiculo.setAnio((String) valores[4]);
 
                 int[] valoresAlquiler = {(int) valores[5], (int) valores[6]};
@@ -218,20 +219,20 @@ public class ControladorVehiculo implements Serializable {
                 if (vehiculo instanceof Auto) {
                     ((Auto) vehiculo).setExtras((boolean) valores[0]);
                     vehiculo.setMarca(marcas.get(marcas.indexOf(
-                            new TipoMarca("Auto", (String) valores[3]))));
-                    ExportarCSV.agregarVehiculoCSV(getVehiculos("Auto"));
+                            new TipoMarca("Auto", marca))));
+                    ExportarCSV.vehiculoCSV(getVehiculos("Auto"));
 
                 } else if (vehiculo instanceof Moto) {
                     ((Moto) vehiculo).setCasco((boolean) valores[0]);
                     vehiculo.setMarca(marcas.get(marcas.indexOf(
-                            new TipoMarca("Moto", (String) valores[3]))));
-                    ExportarCSV.agregarVehiculoCSV(getVehiculos("Moto"));
+                            new TipoMarca("Moto", marca))));
+                    ExportarCSV.vehiculoCSV(getVehiculos("Moto"));
 
                 } else if (vehiculo instanceof Furgoneta) {
                     ((Furgoneta) vehiculo).setCapacidad((short) valores[0]);
                     vehiculo.setMarca(marcas.get(marcas.indexOf(
-                            new TipoMarca("Furgoneta", (String) valores[3]))));
-                    ExportarCSV.agregarVehiculoCSV(getVehiculos("Furgoneta"));
+                            new TipoMarca("Furgoneta", marca))));
+                    ExportarCSV.vehiculoCSV(getVehiculos("Furgoneta"));
 
                 }
             }

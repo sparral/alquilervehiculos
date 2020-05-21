@@ -12,6 +12,7 @@ import alquilervehiculos.utilidades.ExportarCSV;
 import alquilervehiculos.utilidades.ImportarCSV;
 import java.time.LocalDate;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -48,18 +49,83 @@ public class AlquilarVehiculo {
     }
 
     public void alquilarVehiculo(AbstractVehiculo vehiculo, Usuario user,
-            LocalDate fechaInicial, LocalDate fechaFinal) {
-
+            LocalDate fechaInicial, LocalDate fechaFinal, String pago) {
+        // Ingresa al sistema el nuevo cliente y actualizar estado vehiculo:
         vehiculo.alquilar();
         Cliente nuevoCliente = new Cliente(user.getUserID(),
-                vehiculo.getMatricula(), fechaInicial, fechaFinal);
+                vehiculo.getMatricula(), fechaInicial, fechaFinal, pago);
 
         clientes.add(nuevoCliente);
         actualizarVehiculo(vehiculo);
+        ExportarCSV.clienteCSV(clientes);
     }
 
-    public void devolverVehiculo() {
+    public double devolverVehiculo(AbstractVehiculo vehiculo,
+            int kilometrajeNuevo, String[] datos) {
 
+        Cliente user = buscarCliente(vehiculo.getMatricula());
+        LocalDate fechaDevolucion = LocalDate.now();
+        
+        // Indicar si la devolución es prematura o tardía:
+        int opcion = 1;
+        if (fechaDevolucion.isBefore(user.getFechaDevolucion())) {
+            // Entrega prematura
+            opcion = JOptionPane.showConfirmDialog(null, "¿Está seguro de "
+                    + "validar este vehiculo?",
+                    "Entrega prematura", JOptionPane.YES_NO_OPTION);
+            if (opcion==0) {
+                return 0;
+            } else if (opcion==1 && datos[7].isEmpty()){
+                datos[7]= "Entrega prematura";
+            }
+
+        } else if (fechaDevolucion.isAfter(user.getFechaDevolucion())) {
+            // Entrega tardía
+            opcion = JOptionPane.showConfirmDialog(null, "¿Está seguro de "
+                    + "validar este vehiculo?",
+                    "Entrega tardia", JOptionPane.YES_NO_OPTION);
+            if (opcion==0) {
+                return 0;
+            } else if (opcion==1 && datos[7].isEmpty()){
+                datos[7]= "Entrega tardia";
+            }
+        }
+
+        if (opcion == 1) {
+            // Usuario aceptó devolver el vahiculo:
+            vehiculo.devolver(kilometrajeNuevo);
+            actualizarVehiculo(vehiculo);
+            
+            // Indicar cuánto debe pagar el cliente:
+            int valor = 0;
+            switch (user.getTipoPago()) {
+                case "Dia": {
+                    valor = fechaDevolucion.compareTo(user.getFechaAlquiler());
+                    break;
+                }
+                case "Km": {
+                    valor = kilometrajeNuevo - vehiculo.getKilometraje();
+                    break;
+                }
+            }
+            
+            // Crear el CSV de registro:
+            datos[1]=user.getUserID();
+            datos[6]=Double.toString(vehiculo.calcularAlquiler(user.getTipoPago(), valor));
+            ExportarCSV.generarReporte(datos);
+            
+            // Eliminar el cliente de la lista y sobreescribir en el CSV:
+            for (Cliente seleccionado : clientes) {
+                if (seleccionado.getUserID().compareTo(user.getUserID()) == 0) {
+                    clientes.remove(seleccionado);
+                }
+            }
+            ExportarCSV.clienteCSV(clientes);
+
+            return vehiculo.calcularAlquiler(user.getTipoPago(), valor);
+        }       
+        // Admin no aceptó devolver el vehiculo:
+        return 0;
     }
 
     private void actualizarVehiculo(AbstractVehiculo vehiculo) {
@@ -72,7 +138,7 @@ public class AlquilarVehiculo {
         control.editarVehiculo(valores);
 
         vehiculos = control.getVehiculos(vehiculo.getClass().getSimpleName());
-        ExportarCSV.agregarVehiculoCSV(vehiculos);
+        ExportarCSV.vehiculoCSV(vehiculos);
     }
 
 }

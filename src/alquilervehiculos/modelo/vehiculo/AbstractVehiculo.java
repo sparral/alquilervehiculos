@@ -13,6 +13,7 @@ import alquilervehiculos.modelo.Cliente;
  * @author Santy
  */
 public abstract class AbstractVehiculo implements VehiculoAble {
+
     // Variables que todo vehículo tiene:
     private final String matricula;
     private int kilometraje;
@@ -81,12 +82,12 @@ public abstract class AbstractVehiculo implements VehiculoAble {
         String cliente = "";
         String fecha = "";
         if (!estado) {
-            AlquilarVehiculo buscar= new AlquilarVehiculo();
-            Cliente user= buscar.buscarCliente(matricula);
-            cliente= user.getUserID();
-            fecha= user.getFechaDevolucion().toString();
+            AlquilarVehiculo buscar = new AlquilarVehiculo();
+            Cliente user = buscar.buscarCliente(matricula);
+            cliente = user.getUserID();
+            fecha = user.getFechaDevolucion().toString();
         }
-        
+
         Object[] datos = {isEstado(), getClass().getSimpleName(), getMatricula(),
             getMarca(), getAnio(), cliente, fecha};
         return datos;
@@ -103,21 +104,24 @@ public abstract class AbstractVehiculo implements VehiculoAble {
         return datos;
     }
 
-    public String getArrayDatos() {
+    public String getArrayDatosAlquilar() {
         String datos = "Datos de " + getClass().getSimpleName() + ": \n"
                 + marca.getMarca() + ", " + anio
-                + "\n " + Integer.toString(kilometraje) + " km \n";
+                + " \n" + Integer.toString(kilometraje) + " km \n";
         return datos;
     }
 
-    // Finalmente, sobreescribo los métodos de VehiculoAble:
-    @Override
-    public abstract double calcularAlquiler(String tipo, int valor);
-
-    @Override
-    public abstract void devolver(int kilometraje);
-
-    @Override
-    public abstract void alquilar();
-
+    public String getArrayDatosValidar() {
+        AlquilarVehiculo buscar = new AlquilarVehiculo();
+        Cliente user = buscar.buscarCliente(matricula);
+        String fechaInicio= user.getFechaAlquiler().toString();
+        String fechaFinal = user.getFechaDevolucion().toString();
+        
+        String datos = "Datos de " + getClass().getSimpleName() + ": \n"
+                + marca.getMarca() + ", " + anio
+                + " \n" + Integer.toString(kilometraje) + " km \n"
+                + "Fecha alquilado: " + fechaInicio + "\n"
+                + "Fecha devolución: " + fechaFinal;
+        return datos;
+    }
 }
