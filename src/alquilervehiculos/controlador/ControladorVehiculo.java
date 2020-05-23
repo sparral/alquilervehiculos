@@ -171,13 +171,13 @@ public class ControladorVehiculo implements Serializable {
         return null;
     }
 
-    public Object[] buscarVehiculo(String matricula) {
+    public Object[] buscarValoresVehiculo(String matricula) {
 
         for (AbstractVehiculo vehiculo : this.vehiculos) {
             // Encuentra el vehiculo comparando con la matricula:
             if (vehiculo.getMatricula().compareTo(matricula) == 0) {
                 // Retorna los valores del vehiculo,
-                
+
                 Object[] obj = {vehiculo.toString(), vehiculo.getMatricula(),
                     vehiculo.getKilometraje(), vehiculo.getMarca(),
                     vehiculo.getAnio(), vehiculo.getValorAlquiler()[0],
@@ -200,7 +200,7 @@ public class ControladorVehiculo implements Serializable {
         return null;
     }
 
-    public void editarVehiculo (Object[] valores) {
+    public void editarVehiculo(Object[] valores) {
         // {tipo, matricula, kilometraje, marca, anio, 
         //        valorAlquiler[0], valorAlquiler[1], adicional}
 
@@ -216,24 +216,28 @@ public class ControladorVehiculo implements Serializable {
 
                 // Reescribo valores faltantes de acuerdo al tipo de vehiculo y
                 // lo sobreescribo en el CSV correspondiente:
-                if (vehiculo instanceof Auto) {
-                    ((Auto) vehiculo).setExtras((boolean) valores[7]);
-                    vehiculo.setMarca(marcas.get(marcas.indexOf(
-                            new TipoMarca("Auto", marca))));
-                    ExportarCSV.vehiculoCSV(getVehiculos("Auto"));
-
-                } else if (vehiculo instanceof Moto) {
-                    ((Moto) vehiculo).setCasco((boolean) valores[7]);
-                    vehiculo.setMarca(marcas.get(marcas.indexOf(
-                            new TipoMarca("Moto", marca))));
-                    ExportarCSV.vehiculoCSV(getVehiculos("Moto"));
-
-                } else if (vehiculo instanceof Furgoneta) {
-                    ((Furgoneta) vehiculo).setCapacidad((short) valores[7]);
-                    vehiculo.setMarca(marcas.get(marcas.indexOf(
-                            new TipoMarca("Furgoneta", marca))));
-                    ExportarCSV.vehiculoCSV(getVehiculos("Furgoneta"));
-
+                switch ((String) valores[0]) {
+                    case "Auto": {
+                        ((Auto) vehiculo).setExtras((boolean) valores[7]);
+                        vehiculo.setMarca(marcas.get(marcas.indexOf(
+                                new TipoMarca("Auto", marca))));
+                        ExportarCSV.vehiculoCSV(getVehiculos("Auto"));
+                        break;
+                    }
+                    case "Moto": {
+                        ((Moto) vehiculo).setCasco((boolean) valores[7]);
+                        vehiculo.setMarca(marcas.get(marcas.indexOf(
+                                new TipoMarca("Moto", marca))));
+                        ExportarCSV.vehiculoCSV(getVehiculos("Moto"));
+                        break;
+                    }
+                    case "Furgoneta": {
+                        ((Furgoneta) vehiculo).setCapacidad((short) valores[7]);
+                        vehiculo.setMarca(marcas.get(marcas.indexOf(
+                                new TipoMarca("Furgoneta", marca))));
+                        ExportarCSV.vehiculoCSV(getVehiculos("Furgoneta"));
+                        break;
+                    }
                 }
             }
         }
@@ -257,5 +261,5 @@ public class ControladorVehiculo implements Serializable {
             }
         }
         return false;
-    }  
+    }
 }

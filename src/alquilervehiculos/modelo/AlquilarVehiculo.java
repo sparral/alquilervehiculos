@@ -56,7 +56,7 @@ public class AlquilarVehiculo {
                 vehiculo.getMatricula(), fechaInicial, fechaFinal, pago);
 
         clientes.add(nuevoCliente);
-        actualizarVehiculo(vehiculo);
+        actualizarVehiculo(vehiculo,false);
         ExportarCSV.clienteCSV(clientes);
     }
 
@@ -92,10 +92,6 @@ public class AlquilarVehiculo {
         }
 
         if (opcion == 0) {
-            // Usuario aceptó devolver el vahiculo:
-            vehiculo.devolver(kilometrajeNuevo);
-            actualizarVehiculo(vehiculo);
-
             // Indicar cuánto debe pagar el cliente:
             int valor = 0;
             switch (user.getTipoPago()) {
@@ -122,6 +118,8 @@ public class AlquilarVehiculo {
                     break;
                 }
             }
+            vehiculo.devolver(kilometrajeNuevo);
+            actualizarVehiculo(vehiculo,true);
             ExportarCSV.clienteCSV(clientes);
 
             return vehiculo.calcularAlquiler(user.getTipoPago(), valor);
@@ -130,11 +128,18 @@ public class AlquilarVehiculo {
         return 0;
     }
 
-    private void actualizarVehiculo(AbstractVehiculo vehiculo) {
+    private void actualizarVehiculo(AbstractVehiculo vehiculo, boolean estado) {
         // Sobreescribir en el CSV, que el vehiculo está disponible/ocupado:
         ControladorVehiculo control = new ControladorVehiculo();
-
         vehiculos = control.getVehiculos(vehiculo.getClass().getSimpleName());
+        
+        for (AbstractVehiculo seleccionado: vehiculos) {
+            if (seleccionado.getMatricula().compareTo(vehiculo.getMatricula())==0) {
+                // Cambiar el estado del vehiculo a disponible/ocupado:
+                seleccionado.setEstado(estado);
+                break;
+            }
+        }
         ExportarCSV.vehiculoCSV(vehiculos);
     }
 

@@ -1,7 +1,7 @@
 Estado,Matricula,Marca,Anio,Kilometraje,ValorDia,ValorKm,Extras
 true,CMR812,Mazda,2018,40305,120000,7000,true
-false,DGS934,Kia,2017,4571,125478,8599,true
-true,FKM639,Chevrolet,2014,50127,90000,4000,true
+true,DGS934,Kia,2017,4571,125478,8599,true
+false,FKM639,Chevrolet,2014,50127,99682,6306,true
 true,HKS594,Nissan,2017,34943,117834,6000,false
 true,DLK173,Mazda,2015,55230,104459,5500,false
 true,DKR967,Mazda,2017,34087,114013,7452,true

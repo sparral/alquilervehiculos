@@ -10,7 +10,6 @@ package alquilervehiculos.modelo.vehiculo;
  * @author Santy
  */
 public class Auto extends AbstractVehiculo {
-
     // Auto ES UN Vehículo, y se añade las variables del auto:
     private boolean extras;
 

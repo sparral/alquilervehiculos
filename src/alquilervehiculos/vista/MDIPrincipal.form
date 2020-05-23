@@ -4,6 +4,8 @@
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="btngTarifaAlquilar">
     </Component>
+    <Component class="javax.swing.ButtonGroup" name="btngTarifaUsuario">
+    </Component>
     <Menu class="javax.swing.JMenuBar" name="menuBar">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="mnuGeneral">
@@ -91,7 +93,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="140" y="50" width="510" height="260"/>
+              <AbsoluteConstraints x="170" y="80" width="510" height="260"/>
             </Constraint>
           </Constraints>
 
@@ -610,7 +612,7 @@
                               <Component id="btnValidarAdmin" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                               <Component id="btnLimpiarAdmin" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="50" max="32767" attributes="0"/>
+                          <EmptySpace pref="62" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -619,6 +621,7 @@
                 <Component class="javax.swing.JButton" name="btnValidarAdmin">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="VALIDAR"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnValidarAdminActionPerformed"/>
@@ -635,6 +638,7 @@
                 <Component class="javax.swing.JButton" name="btnAlquilarAdmin">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="ALQUILAR"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAlquilarAdminActionPerformed"/>
@@ -696,6 +700,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtMatriculaAdmin">
+                  <Events>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtMatriculaAdminKeyReleased"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JSeparator" name="jSeparator2">
                 </Component>
@@ -728,7 +735,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" alignment="0" pref="492" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" alignment="0" pref="504" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -842,14 +849,6 @@
                         <Property name="text" type="java.lang.String" value="Generar PDF"/>
                       </Properties>
                       <SubComponents>
-                        <MenuItem class="javax.swing.JMenuItem" name="mnuTodosPDF">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="Todos"/>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuTodosPDFActionPerformed"/>
-                          </Events>
-                        </MenuItem>
                         <MenuItem class="javax.swing.JMenuItem" name="mnuAutosPDF">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Autos"/>
@@ -1018,9 +1017,9 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                          <Component id="jButton1" min="-2" pref="85" max="-2" attributes="0"/>
+                                          <Component id="btnLimpiarUsuario" min="-2" pref="85" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="jButton2" min="-2" pref="91" max="-2" attributes="0"/>
+                                          <Component id="btnSolicitarUsuario" min="-2" pref="91" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
@@ -1093,8 +1092,8 @@
                           <Component id="jdcFinalUsuario" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="63" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jButton1" max="32767" attributes="0"/>
-                              <Component id="jButton2" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="btnLimpiarUsuario" max="32767" attributes="0"/>
+                              <Component id="btnSolicitarUsuario" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1155,15 +1154,22 @@
                     <Property name="text" type="java.lang.String" value="Tipo:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton1">
+                <Component class="javax.swing.JButton" name="btnLimpiarUsuario">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="LIMPIAR"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimpiarUsuarioActionPerformed"/>
+                  </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton2">
+                <Component class="javax.swing.JButton" name="btnSolicitarUsuario">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="SOLICITAR"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSolicitarUsuarioActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JSeparator" name="jSeparator1">
                 </Component>
@@ -1189,11 +1195,18 @@
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="rbtnTarifaDiaUsuario">
                   <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="btngTarifaUsuario"/>
+                    </Property>
+                    <Property name="selected" type="boolean" value="true"/>
                     <Property name="text" type="java.lang.String" value="Dia"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="rbtnTarifaKmUsuario">
                   <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="btngTarifaUsuario"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Km"/>
                   </Properties>
                 </Component>
@@ -1206,7 +1219,6 @@
             <Property name="closable" type="boolean" value="true"/>
             <Property name="defaultCloseOperation" type="int" value="1"/>
             <Property name="iconifiable" type="boolean" value="true"/>
-            <Property name="maximizable" type="boolean" value="true"/>
             <Property name="title" type="java.lang.String" value="Crear/Editar Usuario"/>
             <Property name="visible" type="boolean" value="false"/>
           </Properties>
@@ -1532,7 +1544,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jScrollPane8" pref="199" max="32767" attributes="0"/>
+                          <Component id="jScrollPane8" pref="203" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -2046,7 +2058,7 @@
                                           <Component id="jLabelCapacidad" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
-                                          <EmptySpace min="0" pref="50" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="42" max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="btnGuardarVehiculo" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                               <Component id="btnLimpiarVehiculoCRUD" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
@@ -2080,7 +2092,7 @@
                                       <Component id="jycVehiculoCRUD" pref="30" max="32767" attributes="0"/>
                                       <Component id="jLabel39" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="45" max="32767" attributes="0"/>
+                                  <EmptySpace pref="38" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="txtKilometrajeCRUD" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel40" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -2092,7 +2104,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="32" max="32767" attributes="0"/>
+                          <EmptySpace pref="24" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2217,7 +2229,7 @@
                 <Component class="javax.swing.JSlider" name="sldTarifaKmCRUD">
                   <Properties>
                     <Property name="majorTickSpacing" type="int" value="5000"/>
-                    <Property name="maximum" type="int" value="30000"/>
+                    <Property name="maximum" type="int" value="25000"/>
                     <Property name="paintTicks" type="boolean" value="true"/>
                     <Property name="value" type="int" value="10000"/>
                   </Properties>
@@ -2417,7 +2429,7 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jdcFinalAlquilar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="85" max="32767" attributes="0"/>
+                          <EmptySpace pref="93" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btnAceptarAlquilar" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                               <Component id="btnCancelarAlquilar" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
@@ -2449,9 +2461,10 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtMatriculaAlquilar">
-                  <Events>
-                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtMatriculaAlquilarKeyReleased"/>
-                  </Events>
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="enabled" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel26">
                   <Properties>
@@ -2748,6 +2761,7 @@
             <Component class="javax.swing.JTextField" name="txtMatriculaValidar">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel17">
