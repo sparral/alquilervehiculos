@@ -107,7 +107,7 @@ public class ControladorUsuario implements Serializable {
 
         if (matcher.find()) {
             // Formato de correo válido:
-            if (encontrarUsuario(user.getCorreo()) == null) {
+            if (encontrarUsuarioCorreo(user.getCorreo()) == null) {
                 // No existe un usuario con ese correo, lo agrego a la lista:
                 usuarios.add(user);
                 ExportarCSV.usuarioCSV(usuarios);
@@ -119,7 +119,7 @@ public class ControladorUsuario implements Serializable {
         }
     }
 
-    public Usuario encontrarUsuario(String correo) {
+    public Usuario encontrarUsuarioCorreo(String correo) {
 
         for (Usuario usuarioEncontrado : this.usuarios) {
             // Validación por medio de correo:           
@@ -130,7 +130,7 @@ public class ControladorUsuario implements Serializable {
         return null;
     }
 
-    public Usuario buscarUsuarioTabla(String userID) {
+    public Usuario encontrarUsuarioID(String userID) {
 
         for (Usuario user : this.usuarios) {
             // Encuentra el usuario comparando con el userID dado en la tabla:
@@ -145,7 +145,7 @@ public class ControladorUsuario implements Serializable {
     public void editarUsuario(Object[] valores) {
         // {String correo, String password, String nombre, String apellido, byte edad, 
         // boolean problemasvision, boolean problemasauditivos}        
-        Usuario user = encontrarUsuario((String) valores[0]);
+        Usuario user = encontrarUsuarioCorreo((String) valores[0]);
 
         // Luego, edito los valores del usuario:
         user.setPassword((String) valores[1]);

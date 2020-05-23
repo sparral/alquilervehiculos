@@ -124,4 +124,10 @@ public abstract class AbstractVehiculo implements VehiculoAble {
                 + "Fecha devolución: " + fechaFinal;
         return datos;
     }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName();
+    }
+
 }

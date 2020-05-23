@@ -167,7 +167,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnInvitado" min="-2" pref="32" max="-2" attributes="0"/>
-                      <EmptySpace pref="25" max="32767" attributes="0"/>
+                      <EmptySpace pref="29" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -343,7 +343,7 @@
                           </Group>
                           <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="111" max="32767" attributes="0"/>
+                      <EmptySpace pref="119" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnAceptarRegistro" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                           <Component id="btnCancelarRegistro" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
@@ -610,7 +610,7 @@
                               <Component id="btnValidarAdmin" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                               <Component id="btnLimpiarAdmin" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="46" max="32767" attributes="0"/>
+                          <EmptySpace pref="50" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -728,7 +728,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" alignment="0" pref="488" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" alignment="0" pref="492" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -815,7 +815,7 @@
                     <Property name="text" type="java.lang.String" value="Archivo"/>
                   </Properties>
                   <SubComponents>
-                    <Menu class="javax.swing.JMenu" name="jMenu3">
+                    <Menu class="javax.swing.JMenu" name="jmnuCSV">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Cargar CSV"/>
                       </Properties>
@@ -837,17 +837,51 @@
                         </MenuItem>
                       </SubComponents>
                     </Menu>
-                    <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
+                    <Menu class="javax.swing.JMenu" name="jmnuPDF">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Generar PDF"/>
                       </Properties>
-                    </MenuItem>
-                    <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+                      <SubComponents>
+                        <MenuItem class="javax.swing.JMenuItem" name="mnuTodosPDF">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Todos"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuTodosPDFActionPerformed"/>
+                          </Events>
+                        </MenuItem>
+                        <MenuItem class="javax.swing.JMenuItem" name="mnuAutosPDF">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Autos"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuAutosPDFActionPerformed"/>
+                          </Events>
+                        </MenuItem>
+                        <MenuItem class="javax.swing.JMenuItem" name="mnuMotosPDF">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Motos"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuMotosPDFActionPerformed"/>
+                          </Events>
+                        </MenuItem>
+                        <MenuItem class="javax.swing.JMenuItem" name="mnuFurgonetasPDF">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Furgonetas"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuFurgonetasPDFActionPerformed"/>
+                          </Events>
+                        </MenuItem>
+                      </SubComponents>
+                    </Menu>
+                    <MenuItem class="javax.swing.JMenuItem" name="mnuReporte">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Reporte"/>
                       </Properties>
                     </MenuItem>
-                    <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+                    <MenuItem class="javax.swing.JMenuItem" name="mnuSolicitudes">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Solicitudes"/>
                       </Properties>
@@ -1498,7 +1532,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jScrollPane8" pref="187" max="32767" attributes="0"/>
+                          <Component id="jScrollPane8" pref="199" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -2012,7 +2046,7 @@
                                           <Component id="jLabelCapacidad" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
-                                          <EmptySpace min="0" pref="40" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="50" max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="btnGuardarVehiculo" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                               <Component id="btnLimpiarVehiculoCRUD" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
@@ -2046,24 +2080,19 @@
                                       <Component id="jycVehiculoCRUD" pref="30" max="32767" attributes="0"/>
                                       <Component id="jLabel39" max="32767" attributes="0"/>
                                   </Group>
+                                  <EmptySpace pref="45" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="txtKilometrajeCRUD" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel40" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="txtKilometrajeCRUD" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel40" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                          <Component id="sldCapacidadCRUD" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                                          <Component id="jLabel48" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
-                                      </Group>
+                                      <Component id="sldCapacidadCRUD" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel48" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="22" max="32767" attributes="0"/>
+                          <EmptySpace pref="32" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2080,6 +2109,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtMatriculaCRUD">
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCamposCrudVehiculo"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="combobxMarcaCRUD">
                   <Properties>
@@ -2104,7 +2136,7 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtKilometrajeCRUD">
                   <Events>
-                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCamposVehiculoCRUD"/>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCamposCrudVehiculo"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel48">
@@ -2385,7 +2417,7 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jdcFinalAlquilar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="81" max="32767" attributes="0"/>
+                          <EmptySpace pref="85" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btnAceptarAlquilar" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                               <Component id="btnCancelarAlquilar" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
@@ -2802,6 +2834,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="CANCELAR"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarValidacionActionPerformed"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane12">
               <AuxValues>

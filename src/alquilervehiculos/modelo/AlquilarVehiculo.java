@@ -65,18 +65,18 @@ public class AlquilarVehiculo {
 
         Cliente user = buscarCliente(vehiculo.getMatricula());
         LocalDate fechaDevolucion = LocalDate.now();
-        
+
         // Indicar si la devolución es prematura o tardía:
-        int opcion = 1;
+        int opcion = 0;
         if (fechaDevolucion.isBefore(user.getFechaDevolucion())) {
             // Entrega prematura
             opcion = JOptionPane.showConfirmDialog(null, "¿Está seguro de "
                     + "validar este vehiculo?",
                     "Entrega prematura", JOptionPane.YES_NO_OPTION);
-            if (opcion==0) {
+            if (opcion == 1) {
                 return 0;
-            } else if (opcion==1 && datos[7].isEmpty()){
-                datos[7]= "Entrega prematura";
+            } else if (opcion == 0 && datos[7].isEmpty()) {
+                datos[7] = "Entrega prematura";
             }
 
         } else if (fechaDevolucion.isAfter(user.getFechaDevolucion())) {
@@ -84,18 +84,18 @@ public class AlquilarVehiculo {
             opcion = JOptionPane.showConfirmDialog(null, "¿Está seguro de "
                     + "validar este vehiculo?",
                     "Entrega tardia", JOptionPane.YES_NO_OPTION);
-            if (opcion==0) {
+            if (opcion == 1) {
                 return 0;
-            } else if (opcion==1 && datos[7].isEmpty()){
-                datos[7]= "Entrega tardia";
+            } else if (opcion == 0 && datos[7].isEmpty()) {
+                datos[7] = "Entrega tardia";
             }
         }
 
-        if (opcion == 1) {
+        if (opcion == 0) {
             // Usuario aceptó devolver el vahiculo:
             vehiculo.devolver(kilometrajeNuevo);
             actualizarVehiculo(vehiculo);
-            
+
             // Indicar cuánto debe pagar el cliente:
             int valor = 0;
             switch (user.getTipoPago()) {
@@ -108,22 +108,24 @@ public class AlquilarVehiculo {
                     break;
                 }
             }
-            
+
             // Crear el CSV de registro:
-            datos[1]=user.getUserID();
-            datos[6]=Double.toString(vehiculo.calcularAlquiler(user.getTipoPago(), valor));
+            datos[0] = vehiculo.getClass().getSimpleName();
+            datos[2] = user.getUserID();
+            datos[7] = Double.toString(vehiculo.calcularAlquiler(user.getTipoPago(), valor));
             ExportarCSV.generarReporte(datos);
-            
+
             // Eliminar el cliente de la lista y sobreescribir en el CSV:
-            for (Cliente seleccionado : clientes) {
+            for (Cliente seleccionado : this.clientes) {
                 if (seleccionado.getUserID().compareTo(user.getUserID()) == 0) {
                     clientes.remove(seleccionado);
+                    break;
                 }
             }
             ExportarCSV.clienteCSV(clientes);
 
             return vehiculo.calcularAlquiler(user.getTipoPago(), valor);
-        }       
+        }
         // Admin no aceptó devolver el vehiculo:
         return 0;
     }
@@ -131,11 +133,6 @@ public class AlquilarVehiculo {
     private void actualizarVehiculo(AbstractVehiculo vehiculo) {
         // Sobreescribir en el CSV, que el vehiculo está disponible/ocupado:
         ControladorVehiculo control = new ControladorVehiculo();
-
-        // {adicional, matricula, kilometraje, marca, anio, 
-        //        valorAlquiler[0], valorAlquiler[1]}
-        Object[] valores = control.buscarVehiculoTabla(vehiculo.getMatricula());
-        control.editarVehiculo(valores);
 
         vehiculos = control.getVehiculos(vehiculo.getClass().getSimpleName());
         ExportarCSV.vehiculoCSV(vehiculos);

@@ -18,4 +18,6 @@ public interface VehiculoAble {
     
     public double calcularAlquiler(String tipo, int valor);
     
+    public String [] getArrayCSV();
+    
 }

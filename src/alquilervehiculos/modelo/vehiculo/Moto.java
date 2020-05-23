@@ -29,6 +29,7 @@ public class Moto extends AbstractVehiculo {
     }
 
     // Métodos de la MOTO:
+    @Override
     public String[] getArrayCSV() {
         // La idea es retornar un arreglo de String con todas las variables:
         String marca = getMarca().getMarca();
