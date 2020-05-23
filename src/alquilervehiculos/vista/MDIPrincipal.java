@@ -113,16 +113,11 @@ public class MDIPrincipal extends javax.swing.JFrame {
         tblVehiculosAdmin = new javax.swing.JTable();
         mnuBarAdmin = new javax.swing.JMenuBar();
         jmnuArchivo = new javax.swing.JMenu();
-        jmnuCSV = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
         jmnuPDF = new javax.swing.JMenu();
         mnuAutosPDF = new javax.swing.JMenuItem();
         mnuMotosPDF = new javax.swing.JMenuItem();
         mnuFurgonetasPDF = new javax.swing.JMenuItem();
         mnuReporte = new javax.swing.JMenuItem();
-        mnuSolicitudes = new javax.swing.JMenuItem();
         jmnuEditar = new javax.swing.JMenu();
         mnuEditarUsuarios = new javax.swing.JMenuItem();
         mnuEditarVehiculos = new javax.swing.JMenuItem();
@@ -137,7 +132,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
         combobxVehiculoUsuario = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         btnLimpiarUsuario = new javax.swing.JButton();
-        btnSolicitarUsuario = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel29 = new javax.swing.JLabel();
         jdcInicialUsuario = new com.toedter.calendar.JDateChooser();
@@ -659,7 +653,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 .addGroup(jpFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnValidarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpiarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         tblVehiculosAdmin.setModel(new javax.swing.table.DefaultTableModel(
@@ -715,23 +709,10 @@ public class MDIPrincipal extends javax.swing.JFrame {
         );
         jpTablaAdminLayout.setVerticalGroup(
             jpTablaAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
         );
 
         jmnuArchivo.setText("Archivo");
-
-        jmnuCSV.setText("Cargar CSV");
-
-        jMenuItem5.setText("Auto");
-        jmnuCSV.add(jMenuItem5);
-
-        jMenuItem4.setText("Furgoneta");
-        jmnuCSV.add(jMenuItem4);
-
-        jMenuItem6.setText("Moto");
-        jmnuCSV.add(jMenuItem6);
-
-        jmnuArchivo.add(jmnuCSV);
 
         jmnuPDF.setText("Generar PDF");
 
@@ -763,9 +744,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         mnuReporte.setText("Reporte");
         jmnuArchivo.add(mnuReporte);
-
-        mnuSolicitudes.setText("Solicitudes");
-        jmnuArchivo.add(mnuSolicitudes);
 
         mnuBarAdmin.add(jmnuArchivo);
 
@@ -896,14 +874,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnSolicitarUsuario.setText("SOLICITAR");
-        btnSolicitarUsuario.setEnabled(false);
-        btnSolicitarUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSolicitarUsuarioActionPerformed(evt);
-            }
-        });
-
         jLabel29.setText("Fechas:");
 
         jdcInicialUsuario.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -938,9 +908,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                         .addGroup(jpFiltrosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jpFiltrosUsuarioLayout.createSequentialGroup()
                                 .addGap(21, 21, 21)
-                                .addComponent(btnLimpiarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnSolicitarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnLimpiarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jpFiltrosUsuarioLayout.createSequentialGroup()
                                 .addGap(13, 13, 13)
                                 .addGroup(jpFiltrosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -995,9 +963,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jdcFinalUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                .addGroup(jpFiltrosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnLimpiarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSolicitarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnLimpiarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -2880,10 +2846,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
         limpiarCampos("Usuario");
     }//GEN-LAST:event_btnLimpiarUsuarioActionPerformed
 
-    private void btnSolicitarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSolicitarUsuarioActionPerformed
-
 // ----------------------- LLENAR TABLAS ---------------------------------------
     private void llenarTablaPrincipal(String tipo, JTable table) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -3071,11 +3033,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
             btnAlquilarAdmin.setEnabled(true);
             btnValidarAdmin.setEnabled(true);
-        } else if(bandera && jdcInicialUsuario.getDate()!=null
-                && jdcFinalUsuario!=null 
-                && tblVehiculosUsuario.getSelectedRow()!=-1) {
-            
-            btnSolicitarUsuario.setEnabled(true);
         } else if (!txtNombreUsuario.getText().isEmpty()
                 && !txtApellidoUsuario.getText().isEmpty()
                 && !txtCorreoUsuario.getText().isEmpty()
@@ -3100,7 +3057,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
             btnAceptarValidacion.setEnabled(true);
         } else {
             btnAceptarRegistro.setEnabled(false);
-            btnSolicitarUsuario.setEnabled(false);
+
             btnGuardarUsuario.setEnabled(false);
             btnGuardarVehiculo.setEnabled(false);
             btnAlquilarAdmin.setEnabled(false);
@@ -3265,7 +3222,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnLimpiarUsuarioCRUD;
     private javax.swing.JButton btnLimpiarVehiculoCRUD;
     private javax.swing.JButton btnRegistrar;
-    private javax.swing.JButton btnSolicitarUsuario;
     private javax.swing.JButton btnValidarAdmin;
     private javax.swing.ButtonGroup btngTarifaAlquilar;
     private javax.swing.ButtonGroup btngTarifaUsuario;
@@ -3335,9 +3291,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelCapacidad;
     private javax.swing.JLabel jLabelTarifaDia;
     private javax.swing.JLabel jLabelTarifaKm;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
@@ -3366,7 +3319,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JInternalFrame jfrmValidarVehiculo;
     private javax.swing.JInternalFrame jfrmVehiculosCRUD;
     private javax.swing.JMenu jmnuArchivo;
-    private javax.swing.JMenu jmnuCSV;
     private javax.swing.JMenu jmnuEditar;
     private javax.swing.JMenu jmnuPDF;
     private javax.swing.JPanel jpAutoCRUD;
@@ -3394,7 +3346,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuMotosPDF;
     private javax.swing.JMenuItem mnuReporte;
     private javax.swing.JMenuItem mnuSalir;
-    private javax.swing.JMenuItem mnuSolicitudes;
     private javax.swing.JRadioButton rbtnTarifaDiaAlquilar;
     private javax.swing.JRadioButton rbtnTarifaDiaUsuario;
     private javax.swing.JRadioButton rbtnTarifaKmAlquilar;
