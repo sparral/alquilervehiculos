@@ -5,7 +5,7 @@
  */
 package alquilervehiculos.utilidades;
 
-import alquilervehiculos.modelo.Cliente;
+import alquilervehiculos.modelo.usuario.Cliente;
 import alquilervehiculos.modelo.usuario.Usuario;
 import alquilervehiculos.modelo.vehiculo.AbstractVehiculo;
 import alquilervehiculos.modelo.vehiculo.Auto;
@@ -185,27 +185,31 @@ public class ExportarCSV {
         }
         try {
             // tipo, matricula, cliente, estadoVehiculo, gasolina, limpieza, 
-            // espejos, tipoPago, valorPago, observaciones
+            // espejos, tipoPago, valorPago, fechaInicio, fechaFinal, observaciones
 
             CsvWriter salidaCSV = new CsvWriter(salidaArchivo);
             // Datos para escribir en filas:
-            salidaCSV.write("Vehiculo : " + datos[0]);
+            salidaCSV.write("Vehiculo   : " + datos[0]);
             salidaCSV.endRecord();          // Deja de escribir en el archivo
-            salidaCSV.write("Matricula: " + datos[1]);
+            salidaCSV.write("Matricula  : " + datos[1]);
             salidaCSV.endRecord();          // Deja de escribir en el archivo
-            salidaCSV.write("Cliente  : " + datos[2]);
+            salidaCSV.write("Cliente    : " + datos[2]);
             salidaCSV.endRecord();          // Deja de escribir en el archivo
-            salidaCSV.write("Estado   : " + datos[3]);
+            salidaCSV.write("Estado     : " + datos[3]);
             salidaCSV.endRecord();          // Deja de escribir en el archivo
-            salidaCSV.write("Gasolina : " + datos[4]);
+            salidaCSV.write("Gasolina   : " + datos[4]);
             salidaCSV.endRecord();          // Deja de escribir en el archivo
-            salidaCSV.write("Limpieza : " + datos[5]);
+            salidaCSV.write("Limpieza   : " + datos[5]);
             salidaCSV.endRecord();          // Deja de escribir en el archivo
-            salidaCSV.write("Espejos  : " + datos[6]);
+            salidaCSV.write("Espejos    : " + datos[6]);
             salidaCSV.endRecord();          // Deja de escribir en el archivo
-            salidaCSV.write("TipoPago : " + datos[7]);
+            salidaCSV.write("FechaInicio: $" + datos[7]);
             salidaCSV.endRecord();          // Deja de escribir en el archivo
-            salidaCSV.write("ValorPago: $" + datos[8] + " COP");
+            salidaCSV.write("FechaFinal : $" + datos[8]);
+            salidaCSV.endRecord();          // Deja de escribir en el archivo
+            salidaCSV.write("TipoPago   : " + datos[9]);
+            salidaCSV.endRecord();          // Deja de escribir en el archivo
+            salidaCSV.write("ValorPago  : $" + datos[10] + " COP");
             salidaCSV.endRecord();          // Deja de escribir en el archivo
 
             if (!datos[8].isEmpty()) {

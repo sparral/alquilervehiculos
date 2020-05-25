@@ -264,19 +264,19 @@ public class ControladorVehiculo implements Serializable {
         return false;
     }
 
-    public void desactivarVehiculo(String matricula, boolean tipo) 
-            throws VehiculoException{
+    public void desactivarVehiculo(String matricula, boolean tipo)
+            throws VehiculoException {
         for (AbstractVehiculo vehiculo : this.vehiculos) {
             // Encuentra el vehiculo comparando con la matricula 
             // y que esté disponible:
-            if (vehiculo.getMatricula().compareTo(matricula) == 0 && 
-                    vehiculo.isEstado()==true) {
+            if (vehiculo.getMatricula().compareTo(matricula) == 0
+                    && vehiculo.isEstado() == true) {
                 vehiculo.setActivar(tipo);
                 // Finalmente, sobreescribe en el CSV el cambio:
                 ExportarCSV.vehiculoCSV(getVehiculos(vehiculo.toString()));
                 break;
-            } else if(vehiculo.getMatricula().compareTo(matricula) == 0 && 
-                    vehiculo.isEstado()==false) {
+            } else if (vehiculo.getMatricula().compareTo(matricula) == 0
+                    && vehiculo.isEstado() == false) {
                 throw new VehiculoException("No se puede desactivar este vehiculo");
             }
         }

@@ -5,8 +5,8 @@
  */
 package alquilervehiculos.modelo.vehiculo;
 
-import alquilervehiculos.modelo.AlquilarVehiculo;
-import alquilervehiculos.modelo.Cliente;
+import alquilervehiculos.modelo.usuario.Cliente;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -108,7 +108,8 @@ public abstract class AbstractVehiculo implements VehiculoAble {
             AlquilarVehiculo buscar = new AlquilarVehiculo();
             Cliente user = buscar.buscarCliente(matricula);
             cliente = user.getUserID();
-            fecha = user.getFechaDevolucion().toString();
+            fecha = user.getFechaDevolucion().
+                    format(DateTimeFormatter.ofPattern("dd/MM"));
         }
 
         Object[] datos = {isEstado(), getClass().getSimpleName(), getMatricula(),
@@ -130,17 +131,23 @@ public abstract class AbstractVehiculo implements VehiculoAble {
     }
 
     public String getArrayDatosAlquilar() {
+        AlquilarVehiculo buscar = new AlquilarVehiculo();
+        String fechas = buscar.buscarFechasCercanas(matricula);
         String datos = "Datos de " + getClass().getSimpleName() + ": \n"
                 + marca.getMarca() + ", " + anio
-                + " \n" + Integer.toString(kilometraje) + " km \n";
+                + " \n" + Integer.toString(kilometraje) + " km \n"
+                + "Fechas ocupado: " + fechas;
+
         return datos;
     }
 
     public String getArrayDatosValidar() {
         AlquilarVehiculo buscar = new AlquilarVehiculo();
         Cliente user = buscar.buscarCliente(matricula);
-        String fechaInicio = user.getFechaAlquiler().toString();
-        String fechaFinal = user.getFechaDevolucion().toString();
+        String fechaInicio = user.getFechaAlquiler().format(DateTimeFormatter
+                .ofPattern("dd/MM"));
+        String fechaFinal = user.getFechaDevolucion().format(DateTimeFormatter
+                .ofPattern("dd/MM"));
 
         String datos = "Datos de " + getClass().getSimpleName() + ": \n"
                 + marca.getMarca() + ", " + anio

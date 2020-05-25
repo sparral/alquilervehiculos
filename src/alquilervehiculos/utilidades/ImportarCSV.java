@@ -5,7 +5,7 @@
  */
 package alquilervehiculos.utilidades;
 
-import alquilervehiculos.modelo.Cliente;
+import alquilervehiculos.modelo.usuario.Cliente;
 import alquilervehiculos.modelo.usuario.TipoUsuario;
 import alquilervehiculos.modelo.usuario.Usuario;
 import alquilervehiculos.modelo.vehiculo.AbstractVehiculo;
@@ -17,10 +17,12 @@ import com.csvreader.CsvReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -134,8 +136,8 @@ public class ImportarCSV {
                 // String userID, String matricula, LocalDate fechaInicial, 
                 // LocalDate fechaFinal, String tipoPago 
                 listadoClientes.add(new Cliente(leerClientes.get(0), leerClientes.get(1),
-                        LocalDate.parse(leerClientes.get(2)),
-                        LocalDate.parse(leerClientes.get(3)), leerClientes.get(4)));
+                        LocalDateTime.parse(leerClientes.get(2)),
+                        LocalDateTime.parse(leerClientes.get(3)), leerClientes.get(4)));
             }
             leerClientes.close();           // Cerrar el archivo
         } catch (FileNotFoundException ex) {
@@ -145,5 +147,67 @@ public class ImportarCSV {
         }
 
         return listadoClientes;
+    }
+
+// ---------------------------CARGAR CSV EXTERNO -------------------------------       
+    public static void cargarVehiculosExtra(List<AbstractVehiculo> vehiculos, 
+            List<TipoMarca> marcas, String tipo, String archivo) {
+        try {
+            // Para encontrar el archivo CSV:
+            CsvReader leer = new CsvReader(archivo);
+            leer.readHeaders();
+
+            // Se cargan los datos de los vehiculos mientras existan líneas:
+            while (leer.readRecord()) {
+                boolean estado = Boolean.parseBoolean(leer.get(0));
+                String matricula = leer.get(1);
+                String anio = leer.get(3);
+                int kilometraje = Integer.parseInt(leer.get(4));
+                int[] valorAlquiler = {Integer.parseInt(leer.get(5)),
+                    Integer.parseInt(leer.get(6))};
+                int contAlquiler = Integer.parseInt(leer.get(8));
+                boolean activado = Boolean.parseBoolean(leer.get(9));
+
+                // Valores que dependen del Vehiculo: 
+                switch (tipo) {
+                    case "Auto": {
+                        boolean extras = Boolean.parseBoolean(leer.get(7));
+
+                        vehiculos.add(new Auto(extras, matricula,
+                                kilometraje, estado, marcas.get(marcas
+                                        .indexOf(new TipoMarca("Auto", leer.get(2)))),
+                                anio, valorAlquiler, contAlquiler, activado));
+                        break;
+                    }
+                    case "Moto": {
+                        boolean casco = Boolean.parseBoolean(leer.get(7));
+
+                        vehiculos.add(new Moto(casco, matricula,
+                                kilometraje, estado, marcas.get(marcas
+                                        .indexOf(new TipoMarca("Moto", leer.get(2)))),
+                                anio, valorAlquiler, contAlquiler, activado));
+                        break;
+                    }
+                    case "Furgoneta": {
+                        short capacidad = Short.parseShort(leer.get(7));
+
+                        vehiculos.add(new Furgoneta(capacidad, matricula,
+                                kilometraje, estado, marcas.get(marcas
+                                        .indexOf(new TipoMarca("Furgoneta", leer.get(2)))),
+                                anio, valorAlquiler, contAlquiler, activado));
+                        break;
+                    }
+                }
+            }
+            leer.close();           // Cerrar el archivo
+            
+            // Finalmente, carga los nuevos vehiculos al CSV madre:
+            ExportarCSV.vehiculoCSV(vehiculos);
+        } catch (FileNotFoundException ex) {
+            System.out.println("Archivo" + ex.getMessage());
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "El archivo no tiene el formato"
+                    + " apropiado para cargar los vehiculos", "Error en archivo", 0);
+        }
     }
 }
