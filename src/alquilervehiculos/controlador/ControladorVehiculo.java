@@ -38,7 +38,7 @@ public class ControladorVehiculo implements Serializable {
     }
 
     public List<AbstractVehiculo> getVehiculos(String tipo) {
-        // Me obtiene la lista correspondiente de vehículos:       
+        // Me obtiene la lista correspondiente de vehículos (activado/desactivado):       
         List<AbstractVehiculo> listaTemp = new ArrayList<>();
 
         for (AbstractVehiculo seleccionado : this.vehiculos) {
@@ -56,15 +56,18 @@ public class ControladorVehiculo implements Serializable {
 
     public List<AbstractVehiculo> getVehiculosFiltro(byte estado, String tipo,
             String marca) {
-        // Me obtiene la lista correspondiente de vehículos:  
+        List<AbstractVehiculo> listaTemp = new ArrayList<>();
         if (estado == 0 && tipo.compareTo("Seleccionar") == 0) {
-            return vehiculos;
-        } else {
-            List<AbstractVehiculo> listaTemp = new ArrayList<>();
-
+            // Ningún filtro ha sido seleccionado, retorna los vehiculos activos:
             for (AbstractVehiculo vehiculo : vehiculos) {
-
-                if (estado == 0) {                                  // TODOS
+                if (vehiculo.isActivar()) {
+                    listaTemp.add(vehiculo);
+                }
+            }
+        } else {
+            // Me obtiene lista de vehículos ACTIVADOS con filtros:              
+            vehiculos.forEach((vehiculo) -> {
+                if (estado == 0 && vehiculo.isActivar()) {           // TODOS
 
                     // Vehiculo y marca seleccionado:
                     if (vehiculo.getClass().getSimpleName().compareTo(tipo) == 0
@@ -75,8 +78,8 @@ public class ControladorVehiculo implements Serializable {
                             && marca.compareTo("Seleccionar") == 0) {
                         listaTemp.add(vehiculo);
                     }
-
-                } else if (estado == 1 && vehiculo.isEstado()) {    // DISPONIBLES
+                } else if (estado == 1 && vehiculo.isEstado() && vehiculo.isEstado()) {
+                    // DISPONIBLES
 
                     // Vehiculo y marca seleccionado:
                     if (vehiculo.getClass().getSimpleName().compareTo(tipo) == 0
@@ -90,8 +93,8 @@ public class ControladorVehiculo implements Serializable {
                         // Solo que esté disponible:
                         listaTemp.add(vehiculo);
                     }
-
-                } else if (estado == 2 && !vehiculo.isEstado()) {   // ALQUILADOS
+                } else if (estado == 2 && !vehiculo.isEstado() && vehiculo.isActivar()) {
+                    // ALQUILADOS
 
                     // Vehiculo y marca seleccionado:
                     if (vehiculo.getClass().getSimpleName().compareTo(tipo) == 0
@@ -106,9 +109,9 @@ public class ControladorVehiculo implements Serializable {
                         listaTemp.add(vehiculo);
                     }
                 }
-            }
-            return listaTemp;
+            });
         }
+        return listaTemp;
     }
 
     private void llenarMarcas() {
@@ -172,11 +175,10 @@ public class ControladorVehiculo implements Serializable {
     }
 
     public Object[] buscarValoresVehiculo(String matricula) {
-
+        // Retorna los valores del vehiculo,
         for (AbstractVehiculo vehiculo : this.vehiculos) {
             // Encuentra el vehiculo comparando con la matricula:
             if (vehiculo.getMatricula().compareTo(matricula) == 0) {
-                // Retorna los valores del vehiculo,
 
                 Object[] obj = {vehiculo.toString(), vehiculo.getMatricula(),
                     vehiculo.getKilometraje(), vehiculo.getMarca(),
@@ -208,7 +210,8 @@ public class ControladorVehiculo implements Serializable {
             // Encuentra el vehiculo comparando con la matricula:
             if (vehiculo.getMatricula().compareTo((String) valores[1]) == 0) {
                 vehiculo.setKilometraje((int) valores[2]);
-                String marca = valores[3].toString();
+                vehiculo.setMarca(marcas.get(marcas.indexOf(
+                        new TipoMarca((String) valores[0], (String) valores[3]))));
                 vehiculo.setAnio(valores[4].toString());
 
                 int[] valoresAlquiler = {(int) valores[5], (int) valores[6]};
@@ -219,35 +222,32 @@ public class ControladorVehiculo implements Serializable {
                 switch ((String) valores[0]) {
                     case "Auto": {
                         ((Auto) vehiculo).setExtras((boolean) valores[7]);
-                        vehiculo.setMarca(marcas.get(marcas.indexOf(
-                                new TipoMarca("Auto", marca))));
-                        ExportarCSV.vehiculoCSV(getVehiculos("Auto"));
                         break;
                     }
                     case "Moto": {
                         ((Moto) vehiculo).setCasco((boolean) valores[7]);
-                        vehiculo.setMarca(marcas.get(marcas.indexOf(
-                                new TipoMarca("Moto", marca))));
-                        ExportarCSV.vehiculoCSV(getVehiculos("Moto"));
                         break;
                     }
                     case "Furgoneta": {
                         ((Furgoneta) vehiculo).setCapacidad((short) valores[7]);
-                        vehiculo.setMarca(marcas.get(marcas.indexOf(
-                                new TipoMarca("Furgoneta", marca))));
-                        ExportarCSV.vehiculoCSV(getVehiculos("Furgoneta"));
                         break;
                     }
                 }
             }
         }
+        // Finalmente, sobreescribe en el CSV los cambios en el vehiculo:
+        ExportarCSV.vehiculoCSV(getVehiculos((String) valores[0]));
     }
 
     public boolean eliminarVehiculo(String matricula) {
         for (AbstractVehiculo vehiculo : this.vehiculos) {
             // Encuentra el vehiculo comparando con la matricula:
-            if (vehiculo.getMatricula().compareTo(matricula) == 0) {
-                return this.vehiculos.remove(vehiculo);
+            if (vehiculo.getMatricula().compareTo(matricula) == 0
+                    && vehiculo.getContAlquiler() != 0) {
+                boolean opc = this.vehiculos.remove(vehiculo);
+                // Finalmente, sobreescribe en el CSV el cambio:
+                ExportarCSV.vehiculoCSV(getVehiculos(vehiculo.toString()));
+                return opc;
             }
         }
         return false;
@@ -256,10 +256,29 @@ public class ControladorVehiculo implements Serializable {
     public boolean estadoVehiculo(String matricula) {
         for (AbstractVehiculo vehiculo : this.vehiculos) {
             // Valida el estado del vehiculo:
-            if (vehiculo.getMatricula().compareTo(matricula) == 0 && vehiculo.isEstado()) {
+            if (vehiculo.getMatricula().compareTo(matricula) == 0
+                    && vehiculo.isEstado()) {
                 return true;
             }
         }
         return false;
+    }
+
+    public void desactivarVehiculo(String matricula, boolean tipo) 
+            throws VehiculoException{
+        for (AbstractVehiculo vehiculo : this.vehiculos) {
+            // Encuentra el vehiculo comparando con la matricula 
+            // y que esté disponible:
+            if (vehiculo.getMatricula().compareTo(matricula) == 0 && 
+                    vehiculo.isEstado()==true) {
+                vehiculo.setActivar(tipo);
+                // Finalmente, sobreescribe en el CSV el cambio:
+                ExportarCSV.vehiculoCSV(getVehiculos(vehiculo.toString()));
+                break;
+            } else if(vehiculo.getMatricula().compareTo(matricula) == 0 && 
+                    vehiculo.isEstado()==false) {
+                throw new VehiculoException("No se puede desactivar este vehiculo");
+            }
+        }
     }
 }

@@ -23,10 +23,12 @@ public class AlquilarVehiculo {
     // Relaciona la clase "AbstractVehiculo" con "Usuario",
     private List<AbstractVehiculo> vehiculos;
     private List<Cliente> clientes;
+    private final LocalDate fechaActual = LocalDate.now();
 
     public AlquilarVehiculo() {
         llenarClientes();
     }
+// -------------------------** LISTA CLIENTES ** -------------------------------
 
     private void llenarClientes() {
         if (clientes == null || clientes.isEmpty()) {
@@ -48,15 +50,17 @@ public class AlquilarVehiculo {
         return null;
     }
 
+// ------------------------** MÉTODOS ** ---------------------------------------
     public void alquilarVehiculo(AbstractVehiculo vehiculo, Usuario user,
             LocalDate fechaInicial, LocalDate fechaFinal, String pago) {
-        // Ingresa al sistema el nuevo cliente y actualizar estado vehiculo:
-        vehiculo.alquilar();
-        Cliente nuevoCliente = new Cliente(user.getUserID(),
-                vehiculo.getMatricula(), fechaInicial, fechaFinal, pago);
-
-        clientes.add(nuevoCliente);
-        actualizarVehiculo(vehiculo,false);
+        // Actualizar estado vehiculo, si la fecha es ahora:
+        if (fechaActual.isEqual(fechaInicial)) {
+            vehiculo.alquilar();
+            actualizarVehiculo(vehiculo, false);
+        }
+        // Ingresa al sistema el nuevo cliente:
+        clientes.add(new Cliente(user.getUserID(), vehiculo.getMatricula(),
+                fechaInicial, fechaFinal, pago));
         ExportarCSV.clienteCSV(clientes);
     }
 
@@ -64,11 +68,10 @@ public class AlquilarVehiculo {
             int kilometrajeNuevo, String[] datos) {
 
         Cliente user = buscarCliente(vehiculo.getMatricula());
-        LocalDate fechaDevolucion = LocalDate.now();
 
         // Indicar si la devolución es prematura o tardía:
         int opcion = 0;
-        if (fechaDevolucion.isBefore(user.getFechaDevolucion())) {
+        if (fechaActual.isBefore(user.getFechaDevolucion())) {
             // Entrega prematura
             opcion = JOptionPane.showConfirmDialog(null, "¿Está seguro de "
                     + "validar este vehiculo?",
@@ -76,10 +79,10 @@ public class AlquilarVehiculo {
             if (opcion == 1) {
                 return 0;
             } else if (opcion == 0 && datos[7].isEmpty()) {
-                datos[7] = "Entrega prematura";
+                datos[9] = "Entrega prematura";
             }
 
-        } else if (fechaDevolucion.isAfter(user.getFechaDevolucion())) {
+        } else if (fechaActual.isAfter(user.getFechaDevolucion())) {
             // Entrega tardía
             opcion = JOptionPane.showConfirmDialog(null, "¿Está seguro de "
                     + "validar este vehiculo?",
@@ -87,7 +90,7 @@ public class AlquilarVehiculo {
             if (opcion == 1) {
                 return 0;
             } else if (opcion == 0 && datos[7].isEmpty()) {
-                datos[7] = "Entrega tardia";
+                datos[9] = "Entrega tardia";
             }
         }
 
@@ -96,7 +99,7 @@ public class AlquilarVehiculo {
             int valor = 0;
             switch (user.getTipoPago()) {
                 case "Dia": {
-                    valor = fechaDevolucion.compareTo(user.getFechaAlquiler());
+                    valor = fechaActual.compareTo(user.getFechaAlquiler());
                     break;
                 }
                 case "Km": {
@@ -108,7 +111,8 @@ public class AlquilarVehiculo {
             // Crear el CSV de registro:
             datos[0] = vehiculo.getClass().getSimpleName();
             datos[2] = user.getUserID();
-            datos[7] = Double.toString(vehiculo.calcularAlquiler(user.getTipoPago(), valor));
+            datos[7] = user.getTipoPago();
+            datos[8] = Double.toString(vehiculo.calcularAlquiler(user.getTipoPago(), valor));
             ExportarCSV.generarReporte(datos);
 
             // Eliminar el cliente de la lista y sobreescribir en el CSV:
@@ -119,7 +123,7 @@ public class AlquilarVehiculo {
                 }
             }
             vehiculo.devolver(kilometrajeNuevo);
-            actualizarVehiculo(vehiculo,true);
+            actualizarVehiculo(vehiculo, true);
             ExportarCSV.clienteCSV(clientes);
 
             return vehiculo.calcularAlquiler(user.getTipoPago(), valor);
@@ -132,9 +136,9 @@ public class AlquilarVehiculo {
         // Sobreescribir en el CSV, que el vehiculo está disponible/ocupado:
         ControladorVehiculo control = new ControladorVehiculo();
         vehiculos = control.getVehiculos(vehiculo.getClass().getSimpleName());
-        
-        for (AbstractVehiculo seleccionado: vehiculos) {
-            if (seleccionado.getMatricula().compareTo(vehiculo.getMatricula())==0) {
+
+        for (AbstractVehiculo seleccionado : vehiculos) {
+            if (seleccionado.getMatricula().compareTo(vehiculo.getMatricula()) == 0) {
                 // Cambiar el estado del vehiculo a disponible/ocupado:
                 seleccionado.setEstado(estado);
                 break;
@@ -143,4 +147,28 @@ public class AlquilarVehiculo {
         ExportarCSV.vehiculoCSV(vehiculos);
     }
 
+    public void actualizarEstadoVehiculos() {
+        // Actualizar el estado del vehiculo en la fecha estipulada:
+        for (Cliente seleccionado : this.clientes) {
+            if (fechaActual.isEqual(seleccionado.getFechaAlquiler())) {
+                String matricula = seleccionado.getMatricula();
+                ControladorVehiculo control = new ControladorVehiculo();
+                actualizarVehiculo(control.encontrarVehiculo(matricula), false);
+            }
+        }
+    }
+
+    public boolean validarEstadoVehiculo(String matricula,
+            LocalDate fechaInicial, LocalDate fechaFinal) {
+        // Valida que se pueda alquilar el vehiculo en las fechas dadas:
+        for (Cliente seleccionado : this.clientes) {
+            if (seleccionado.getMatricula().compareTo(matricula) == 0
+                    && (fechaFinal.isAfter(seleccionado.getFechaAlquiler())
+                    || fechaInicial.isBefore(seleccionado.getFechaDevolucion()))) {
+                return false;
+            }
+        }
+        // Vehiculo no se encuentra en la lista de clientes:
+        return true;
+    }
 }

@@ -16,7 +16,7 @@ import alquilervehiculos.modelo.vehiculo.Furgoneta;
 import alquilervehiculos.modelo.vehiculo.Moto;
 import alquilervehiculos.modelo.vehiculo.TipoMarca;
 import alquilervehiculos.utilidades.ConvertirFecha;
-import alquilervehiculos.utilidades.GenerarPDF;
+import alquilervehiculos.utilidades.CrearPDF;
 import java.time.LocalDate;
 import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
@@ -34,7 +34,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private final ControladorUsuario controlUsuario;
     private ControladorVehiculo controlVehiculo;
     private AlquilarVehiculo alquilar;
-    private GenerarPDF pdfs;
+    private CrearPDF pdfs;
 
     private boolean editarUsuario = false;
     private boolean editarVehiculo = false;
@@ -113,11 +113,17 @@ public class MDIPrincipal extends javax.swing.JFrame {
         tblVehiculosAdmin = new javax.swing.JTable();
         mnuBarAdmin = new javax.swing.JMenuBar();
         jmnuArchivo = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jmnuPDF = new javax.swing.JMenu();
         mnuAutosPDF = new javax.swing.JMenuItem();
         mnuMotosPDF = new javax.swing.JMenuItem();
         mnuFurgonetasPDF = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
         mnuReporte = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jmnuEditar = new javax.swing.JMenu();
         mnuEditarUsuarios = new javax.swing.JMenuItem();
         mnuEditarVehiculos = new javax.swing.JMenuItem();
@@ -253,6 +259,12 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         jLabel2.setText("* Contraseña:");
 
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCorreosKeyTyped(evt);
+            }
+        });
+
         btnIngresar.setText("INGRESAR");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -329,7 +341,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                         .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnInvitado, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         desktopPane.add(jfrmLogin);
@@ -375,12 +387,14 @@ public class MDIPrincipal extends javax.swing.JFrame {
         txtNuevoNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCamposRegistroKeyTyped(evt);
+                txtNombresKeyTyped(evt);
             }
         });
 
         txtNuevoApellido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCamposRegistroKeyTyped(evt);
+                txtNombresKeyTyped(evt);
             }
         });
 
@@ -518,7 +532,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                             .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtConfirmarPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                 .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -583,6 +597,9 @@ public class MDIPrincipal extends javax.swing.JFrame {
         txtMatriculaAdmin.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtMatriculaAdminKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMatriculasKeyTyped(evt);
             }
         });
 
@@ -653,7 +670,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 .addGroup(jpFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnValidarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpiarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         tblVehiculosAdmin.setModel(new javax.swing.table.DefaultTableModel(
@@ -709,10 +726,23 @@ public class MDIPrincipal extends javax.swing.JFrame {
         );
         jpTablaAdminLayout.setVerticalGroup(
             jpTablaAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
         );
 
         jmnuArchivo.setText("Archivo");
+
+        jMenu2.setText("Cargar CSV");
+
+        jMenuItem2.setText("Autos");
+        jMenu2.add(jMenuItem2);
+
+        jMenuItem3.setText("Motos");
+        jMenu2.add(jMenuItem3);
+
+        jMenuItem4.setText("Furgonetas");
+        jMenu2.add(jMenuItem4);
+
+        jmnuArchivo.add(jMenu2);
 
         jmnuPDF.setText("Generar PDF");
 
@@ -742,8 +772,15 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         jmnuArchivo.add(jmnuPDF);
 
-        mnuReporte.setText("Reporte");
-        jmnuArchivo.add(mnuReporte);
+        jMenu1.setText("Reportes");
+
+        mnuReporte.setText("Actual");
+        jMenu1.add(mnuReporte);
+
+        jMenuItem1.setText("Entre Fechas");
+        jMenu1.add(jMenuItem1);
+
+        jmnuArchivo.add(jMenu1);
 
         mnuBarAdmin.add(jmnuArchivo);
 
@@ -1008,28 +1045,31 @@ public class MDIPrincipal extends javax.swing.JFrame {
         txtNombreUsuario.setNextFocusableComponent(txtApellidoUsuario);
         txtNombreUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCamposCrudUsuario(evt);
+                txtCamposUsuarioCRUDKeyTyped(evt);
+                txtNombresKeyTyped(evt);
             }
         });
 
         txtApellidoUsuario.setNextFocusableComponent(txtCorreoUsuario);
         txtApellidoUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCamposCrudUsuario(evt);
+                txtCamposUsuarioCRUDKeyTyped(evt);
+                txtNombresKeyTyped(evt);
             }
         });
 
         txtPasswordUsuario.setNextFocusableComponent(spnEdadUsuario);
         txtPasswordUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCamposCrudUsuario(evt);
+                txtCamposUsuarioCRUDKeyTyped(evt);
             }
         });
 
         txtCorreoUsuario.setNextFocusableComponent(txtPasswordUsuario);
         txtCorreoUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCamposCrudUsuario(evt);
+                txtCamposUsuarioCRUDKeyTyped(evt);
+                txtCorreosKeyTyped(evt);
             }
         });
 
@@ -1116,7 +1156,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                                 .addComponent(jLabel45)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtPasswordUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                 .addGroup(jpDatosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDatosUsuarioLayout.createSequentialGroup()
                         .addComponent(jLabel47)
@@ -1210,12 +1250,12 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jpUsuarioCRUD.setLayout(jpUsuarioCRUDLayout);
         jpUsuarioCRUDLayout.setHorizontalGroup(
             jpUsuarioCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+            .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
         );
         jpUsuarioCRUDLayout.setVerticalGroup(
             jpUsuarioCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpUsuarioCRUDLayout.createSequentialGroup()
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1278,6 +1318,11 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 tblAutoCRUDFocusGained(evt);
             }
         });
+        tblAutoCRUD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblVehiculosCRUDMouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(tblAutoCRUD);
 
         javax.swing.GroupLayout jpAutoCRUDLayout = new javax.swing.GroupLayout(jpAutoCRUD);
@@ -1326,6 +1371,11 @@ public class MDIPrincipal extends javax.swing.JFrame {
         tblMotoCRUD.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 tblMotoCRUDFocusGained(evt);
+            }
+        });
+        tblMotoCRUD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblVehiculosCRUDMouseClicked(evt);
             }
         });
         jScrollPane10.setViewportView(tblMotoCRUD);
@@ -1378,6 +1428,11 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 tblFurgonetaCRUDFocusGained(evt);
             }
         });
+        tblFurgonetaCRUD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblVehiculosCRUDMouseClicked(evt);
+            }
+        });
         jScrollPane9.setViewportView(tblFurgonetaCRUD);
 
         javax.swing.GroupLayout jpFurgonetaCRUDLayout = new javax.swing.GroupLayout(jpFurgonetaCRUD);
@@ -1401,14 +1456,15 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         txtMatriculaCRUD.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCamposCrudVehiculo(evt);
+                txtCamposVehiculoCRUDKeyTyped(evt);
+                txtMatriculasKeyTyped(evt);
             }
         });
 
         combobxMarcaCRUD.setEnabled(false);
         combobxMarcaCRUD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combosbxVehiculoActionPerformed(evt);
+                combobxMarcaCRUDActionPerformed(evt);
             }
         });
 
@@ -1418,7 +1474,8 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         txtKilometrajeCRUD.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCamposCrudVehiculo(evt);
+                txtCamposVehiculoCRUDKeyTyped(evt);
+                txtKilometrajesKeyTyped(evt);
             }
         });
 
@@ -1447,6 +1504,11 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 combobxVehiculoCRUDItemStateChanged(evt);
             }
         });
+        combobxVehiculoCRUD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combobxVehiculoCRUDActionPerformed(evt);
+            }
+        });
 
         jLabel49.setText("* Tipo:");
 
@@ -1467,10 +1529,11 @@ public class MDIPrincipal extends javax.swing.JFrame {
             }
         });
 
-        sldTarifaKmCRUD.setMajorTickSpacing(5000);
-        sldTarifaKmCRUD.setMaximum(25000);
+        sldTarifaKmCRUD.setMajorTickSpacing(500);
+        sldTarifaKmCRUD.setMaximum(3000);
+        sldTarifaKmCRUD.setMinimum(1000);
         sldTarifaKmCRUD.setPaintTicks(true);
-        sldTarifaKmCRUD.setValue(10000);
+        sldTarifaKmCRUD.setValue(2000);
         sldTarifaKmCRUD.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 sldTarifaKmCRUDStateChanged(evt);
@@ -1479,7 +1542,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         jLabel36.setText("Tarifas:");
 
-        jLabelTarifaKm.setText("$10000 COP/km");
+        jLabelTarifaKm.setText("$2000 COP/km");
 
         jLabel37.setText("* Día:");
 
@@ -1795,7 +1858,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                     .addComponent(jdcInicialAlquilar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jdcFinalAlquilar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addGroup(jpDatosAlquilarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptarAlquilar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelarAlquilar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1910,7 +1973,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jLabel16.setText("* Matrícula:");
 
         txtMatriculaValidar.setEditable(false);
-        txtMatriculaValidar.setEnabled(false);
 
         jLabel17.setText("* Estado del Vehículo:");
 
@@ -1920,12 +1982,17 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 combobxEstadoValidarItemStateChanged(evt);
             }
         });
+        combobxEstadoValidar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combobxEstadoValidarActionPerformed(evt);
+            }
+        });
 
         jLabel18.setText("* Kilometraje:");
 
         txtKilometrajevalidar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtKilometrajevalidarKeyTyped(evt);
+                txtKilometrajesKeyTyped(evt);
             }
         });
 
@@ -2151,7 +2218,8 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 case 1:
                     // ADMINISTRADOR:
                     alquilar = new AlquilarVehiculo();
-                    pdfs = new GenerarPDF();
+                    pdfs = new CrearPDF();
+                    alquilar.actualizarEstadoVehiculos();
 
                     jfrmPrincipalAdmin.show();
                     llenarTablaPrincipal("Administrador", tblVehiculosAdmin);
@@ -2160,7 +2228,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                     // USUARIO REGULAR:
                     jfrmPrincipalUsuario.show();
                     llenarTablaPrincipal("Usuario", tblVehiculosUsuario);
-                    
+
                     jdcInicialUsuario.setDate(fechaActual);
                     jdcInicialUsuario.setMinSelectableDate(fechaActual);
                     jdcFinalUsuario.setMinSelectableDate(fechaActual);
@@ -2218,18 +2286,18 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAceptarRegistroActionPerformed
 
     private void txtCamposRegistroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCamposRegistroKeyTyped
-        habilitarBotones();
+        habilitarBotones("Registro");
     }//GEN-LAST:event_txtCamposRegistroKeyTyped
 
     private void cbxTerminosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTerminosActionPerformed
-        habilitarBotones();
+        habilitarBotones("Registro");
     }//GEN-LAST:event_cbxTerminosActionPerformed
 
 // --------------------------- CRUD USUARIO -----------------------------------
     private void mnuEditarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuEditarUsuariosActionPerformed
         jfrmUsuariosCRUD.show();
         llenarUsuariosCRUD();
-        habilitarBotones();
+        habilitarBotones("Usuario CRUD");
     }//GEN-LAST:event_mnuEditarUsuariosActionPerformed
 
     private void btnGuardarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarUsuarioActionPerformed
@@ -2255,7 +2323,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 if (ex.getMessage().compareTo("Usuario ingresado ya existe") == 0) {
                     int opc = JOptionPane.showConfirmDialog(this, "¿Desea revisar el "
                             + "usuario en cuestión?", "Usuario existente",
-                            JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+                            JOptionPane.YES_NO_OPTION);
                     if (opc == 0) {
                         // El Administrador ingresó SI:
                         obtenerUsuarioExistente(correo);
@@ -2295,12 +2363,12 @@ public class MDIPrincipal extends javax.swing.JFrame {
         btnGuardarUsuario.setSelected(false);
     }
 
-    private void txtCamposCrudUsuario(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCamposCrudUsuario
-        habilitarBotones();
-    }//GEN-LAST:event_txtCamposCrudUsuario
+    private void txtCamposUsuarioCRUDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCamposUsuarioCRUDKeyTyped
+        habilitarBotones("Usuario CRUD");
+    }//GEN-LAST:event_txtCamposUsuarioCRUDKeyTyped
 
     private void combobxTipoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combobxTipoUsuarioActionPerformed
-        habilitarBotones();
+        habilitarBotones("Usuario CRUD");
     }//GEN-LAST:event_combobxTipoUsuarioActionPerformed
 
     private void btnEditarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarUsuarioActionPerformed
@@ -2354,30 +2422,36 @@ public class MDIPrincipal extends javax.swing.JFrame {
         int kilometraje = Integer.parseInt(txtKilometrajeCRUD.getText());
         int[] valorAlquiler = {sldTarifaDiaCRUD.getValue(), sldTarifaKmCRUD.getValue()};
 
+        // adicional, String matricula, int kilometraje, boolean estado, 
+        // TipoMarca marca, String año, int [] valorAlquiler, 
+        // int contAlquiler, boolean activado
         if (!editarVehiculo) {
             // Primero, va a instanciar nuevo vehiculo e intentar guardarlo:
             try {
                 switch (tipo) {
                     case "Auto": {
-                        Auto vehiculo = new Auto(cbxExtrasCRUD.isSelected(), matricula,
-                                kilometraje, true, controlVehiculo.getMarcas().get(index),
-                                anio, valorAlquiler);
+                        Auto vehiculo = new Auto(cbxExtrasCRUD.isSelected(),
+                                matricula, kilometraje, true,
+                                controlVehiculo.getMarcas().get(index),
+                                anio, valorAlquiler, 0, true);
 
                         controlVehiculo.agregarVehiculo((AbstractVehiculo) vehiculo);
                         break;
                     }
                     case "Moto": {
-                        Moto vehiculo = new Moto(cbxCascoCRUD.isSelected(), matricula,
-                                kilometraje, true, controlVehiculo.getMarcas().get(index),
-                                anio, valorAlquiler);
+                        Moto vehiculo = new Moto(cbxCascoCRUD.isSelected(),
+                                matricula, kilometraje, true,
+                                controlVehiculo.getMarcas().get(index),
+                                anio, valorAlquiler, 0, true);
 
                         controlVehiculo.agregarVehiculo((AbstractVehiculo) vehiculo);
                         break;
                     }
                     case "Furgoneta": {
-                        Furgoneta vehiculo = new Furgoneta((short) sldCapacidadCRUD.getValue(),
-                                matricula, kilometraje, true, controlVehiculo.getMarcas().get(index),
-                                anio, valorAlquiler);
+                        short capacidad = (short) sldCapacidadCRUD.getValue();
+                        Furgoneta vehiculo = new Furgoneta(capacidad, matricula,
+                                kilometraje, true, controlVehiculo.getMarcas().get(index),
+                                anio, valorAlquiler, 0, true);
 
                         controlVehiculo.agregarVehiculo((AbstractVehiculo) vehiculo);
                         break;
@@ -2391,7 +2465,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 if (ex.getMessage().compareTo("Vehiculo ingresado ya existe") == 0) {
                     int opc = JOptionPane.showConfirmDialog(this, "¿Desea revisar el "
                             + "vehiculo en cuestión?", "Vehiculo existente",
-                            JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+                            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                     if (opc == 0) {
                         // El Administrador ingresó SI:
                         obtenerVehiculoExistente(matricula);
@@ -2429,7 +2503,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
             btnEditarUsuario.setEnabled(false);
             resetearVehiculoCRUD();
         }
-        btnGuardarVehiculo.setSelected(false);
     }//GEN-LAST:event_btnGuardarVehiculoActionPerformed
 
     private void resetearVehiculoCRUD() {
@@ -2437,7 +2510,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         llenarVehiculosCRUD();
         limpiarCampos("Vehiculo CRUD");
         btnGuardarVehiculo.setEnabled(false);
-
+        btnGuardarVehiculo.setSelected(false);
         llenarTablaPrincipal("Administrador", tblVehiculosAdmin);
     }
 
@@ -2488,9 +2561,9 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jLabelCapacidad.setEnabled(capacidad);
     }
 
-    private void combosbxVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combosbxVehiculoActionPerformed
-        habilitarBotones();
-    }//GEN-LAST:event_combosbxVehiculoActionPerformed
+    private void combobxMarcaCRUDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combobxMarcaCRUDActionPerformed
+        habilitarBotones("Vehiculo CRUD");
+    }//GEN-LAST:event_combobxMarcaCRUDActionPerformed
 
     private void btnEditarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarVehiculoActionPerformed
         try {
@@ -2512,19 +2585,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEditarVehiculoActionPerformed
 
-    private JTable obtenerTablaSeleccionada() throws VehiculoException {
-        // Puedo saber con certeza que la tabla mostrada es la del vehiculo:
-        if (tblAutoCRUD.isShowing()) {
-            return tblAutoCRUD;
-        } else if (tblMotoCRUD.isShowing()) {
-            return tblMotoCRUD;
-        } else if (tblFurgonetaCRUD.isShowing()) {
-            return tblFurgonetaCRUD;
-        }
-        // Si llega acá, el usuario no seleccionó algo de las tablas:
-        throw new VehiculoException("Debe seleccionar alguna tabla");
-    }
-
     private void btnEliminarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarVehiculoActionPerformed
         try {
             JTable table = obtenerTablaSeleccionada();
@@ -2535,14 +2595,29 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 int opcion = JOptionPane.showConfirmDialog(this,
                         "¿Está seguro de borrar este vehiculo?",
                         "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
-                if (opcion == 1) {
-                    // Usuario confirma eliminar el vehiculo,
+                if (opcion == 0) {
+                    // Admin confirma eliminar el vehiculo,
                     String matricula = (String) table.getValueAt(seleccionado, 0);
                     boolean confirmo = controlVehiculo.eliminarVehiculo(matricula);
                     if (confirmo) {
-                        JOptionPane.showMessageDialog(this, "Vehiculo eliminado con éxito");
+                        JOptionPane.showMessageDialog(this, "Vehiculo seleccionado "
+                                + "ha sido eliminado con éxito",
+                                "Eliminación exitosa", 1);
+                    } else {
+                        // No se puede eliminar, ya tiene algún registro:
+                        int opc = JOptionPane.showConfirmDialog(this,
+                                "El vehiculo no se puede eliminar, ¿Desea en "
+                                + "cambio desactivarlo?", "Confirmar desactivar",
+                                JOptionPane.YES_NO_OPTION);
+                        if (opc == 0) {
+                            // Admin confirma desactivar el vehiculo:
+                            controlVehiculo.desactivarVehiculo(matricula, false);
+                            JOptionPane.showMessageDialog(this, "Vehiculo seleccionado "
+                                    + "ha sido \n desactivado con éxito",
+                                    "Desactivación exitosa", 1);
+                        }
                     }
-
+                    // Actualizar tablas para observar cambios:
                     llenarVehiculosCRUD();
                     llenarTablaPrincipal("Administrador", tblVehiculosAdmin);
                 }
@@ -2557,7 +2632,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
     private void btnLimpiarUsuarioCRUDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarUsuarioCRUDActionPerformed
         limpiarCampos("Usuario CRUD");
-        habilitarBotones();
+        habilitarBotones("Usuario CRUD");
         btnLimpiarUsuarioCRUD.setSelected(false);
     }//GEN-LAST:event_btnLimpiarUsuarioCRUDActionPerformed
 
@@ -2608,6 +2683,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         int index = tblUsuarioAlquilar.getSelectedRow();
         String cliente = (String) tblUsuarioAlquilar.getValueAt(index, 0);
         txtClienteAlquilar.setText(cliente);
+        habilitarBotones("Alquilar");
     }//GEN-LAST:event_tblUsuarioAlquilarMouseDragged
 
     private void tblUsuarioAlquilarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsuarioAlquilarMouseClicked
@@ -2615,6 +2691,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         int index = tblUsuarioAlquilar.getSelectedRow();
         String cliente = (String) tblUsuarioAlquilar.getValueAt(index, 0);
         txtClienteAlquilar.setText(cliente);
+        habilitarBotones("Alquilar");
     }//GEN-LAST:event_tblUsuarioAlquilarMouseClicked
 
     private void btnCancelarAlquilarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarAlquilarActionPerformed
@@ -2624,44 +2701,49 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarAlquilarActionPerformed
 
     private void btnAceptarAlquilarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarAlquilarActionPerformed
-        String userID = txtClienteAlquilar.getText();
-        Usuario user = controlUsuario.encontrarUsuarioID(userID);
-
         String matricula = txtMatriculaAlquilar.getText();
-
         LocalDate fechaInicial = convertir.ConvertirFecha(jdcInicialAlquilar.getDate());
         LocalDate fechaFinal = convertir.ConvertirFecha(jdcFinalAlquilar.getDate());
 
-        String pago = "";
-        if (rbtnTarifaDiaAlquilar.isSelected()) {
-            pago = "Dia";
-        } else if (rbtnTarifaKmAlquilar.isSelected()) {
-            pago = "Km";
+        if (alquilar.validarEstadoVehiculo(matricula, fechaInicial, fechaFinal)) {
+            // Se puede alquilar el vehiculo en esas fechas:
+            String userID = txtClienteAlquilar.getText();
+            Usuario user = controlUsuario.encontrarUsuarioID(userID);
+            String pago = "";
+            if (rbtnTarifaDiaAlquilar.isSelected()) {
+                pago = "Dia";
+            } else if (rbtnTarifaKmAlquilar.isSelected()) {
+                pago = "Km";
+            }
+
+            alquilar.alquilarVehiculo(controlVehiculo.encontrarVehiculo(matricula),
+                    user, fechaInicial, fechaFinal, pago);
+
+            JOptionPane.showMessageDialog(this, "Vehiculo alquilado con éxito");
+
+            // Borrar todos los valores y campos:
+            jfrmAlquilarVehiculo.hide();
+            limpiarCampos("Alquilar");
+            limpiarCampos("Administrador");
+            llenarTablaPrincipal("Administrador", tblVehiculosAdmin);
+        } else {
+            JOptionPane.showMessageDialog(this, "Vehiculo no  se puede alquilar" 
+                    + " en esas fechas", "Error de sistema", 0);
         }
 
-        alquilar.alquilarVehiculo(controlVehiculo.encontrarVehiculo(matricula),
-                user, fechaInicial, fechaFinal, pago);
-
-        JOptionPane.showMessageDialog(this, "Vehiculo alquilado con éxito");
-
-        // Borrar todos los valores y campos:
-        jfrmAlquilarVehiculo.hide();
-        limpiarCampos("Alquilar");
-        limpiarCampos("Administrador");
-        llenarTablaPrincipal("Administrador", tblVehiculosAdmin);
     }//GEN-LAST:event_btnAceptarAlquilarActionPerformed
 
     private void txtClienteAlquilarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClienteAlquilarKeyReleased
-        habilitarBotones();
+        habilitarBotones("Alquilar");
     }//GEN-LAST:event_txtClienteAlquilarKeyReleased
 
     private void jdcInicialAlquilarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdcInicialAlquilarPropertyChange
-        habilitarBotones();
+        habilitarBotones("Alquilar");
         jdcFinalAlquilar.setMinSelectableDate(jdcInicialAlquilar.getDate());
     }//GEN-LAST:event_jdcInicialAlquilarPropertyChange
 
     private void jdcFinalAlquilarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdcFinalAlquilarPropertyChange
-        habilitarBotones();
+        habilitarBotones("Alquilar");
     }//GEN-LAST:event_jdcFinalAlquilarPropertyChange
 
 //---------------------------- FILTROS ADMIN ----------------------------------- 
@@ -2735,11 +2817,11 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
     private void jdcInicialUsuarioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdcInicialUsuarioPropertyChange
         jdcFinalUsuario.setMinSelectableDate(jdcInicialUsuario.getDate());
-        habilitarBotones();
+        habilitarBotones("Usuario");
     }//GEN-LAST:event_jdcInicialUsuarioPropertyChange
 
     private void jdcFinalUsuarioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdcFinalUsuarioPropertyChange
-        habilitarBotones();
+        habilitarBotones("Usuario");
     }//GEN-LAST:event_jdcFinalUsuarioPropertyChange
 
     private void cbxDisponibleUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxDisponibleUsuarioActionPerformed
@@ -2756,26 +2838,26 @@ public class MDIPrincipal extends javax.swing.JFrame {
             jfrmValidarVehiculo.show();
             String matricula = txtMatriculaAdmin.getText();
             txtMatriculaValidar.setText(matricula);
-            atxtDatosAlquilar.setText(controlVehiculo.encontrarVehiculo(matricula)
+            atxtDatosValidar.setText(controlVehiculo.encontrarVehiculo(matricula)
                     .getArrayDatosValidar());
         }
     }//GEN-LAST:event_btnValidarAdminActionPerformed
 
     private void combobxEstadoValidarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combobxEstadoValidarItemStateChanged
-        habilitarBotones();
+        habilitarBotones("Validar");
     }//GEN-LAST:event_combobxEstadoValidarItemStateChanged
-
-    private void txtKilometrajevalidarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKilometrajevalidarKeyTyped
-        habilitarBotones();
-    }//GEN-LAST:event_txtKilometrajevalidarKeyTyped
 
     private void btnAceptarValidacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarValidacionActionPerformed
         String matricula = txtMatriculaValidar.getText();
+
+        // tipo, matricula, usuario, estadoVehiculo, gasolina, limpieza, 
+        // espejos, tipoPago, valorPago, observaciones
         String[] datos = {"", matricula, "",
             combobxEstadoValidar.getSelectedItem().toString(),
             Boolean.toString(checkbxGasolina.isSelected()),
             Boolean.toString(checkbvLimpieza.isSelected()),
-            Boolean.toString(checkbxEspejos.isSelected()), "", atxtObservaciones.getText()};
+            Boolean.toString(checkbxEspejos.isSelected()), "", "",
+            atxtObservaciones.getText()};
 
         double valor = alquilar.devolverVehiculo(controlVehiculo.encontrarVehiculo(matricula),
                 Integer.parseInt(txtKilometrajevalidar.getText()), datos);
@@ -2832,19 +2914,115 @@ public class MDIPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_mnuFurgonetasPDFActionPerformed
 
-// -------------------------- VALIDACIONES VARIAS ------------------------------
+// -------------------------- VALIDACIONES FALTANTES ---------------------------
 
-    private void txtCamposCrudVehiculo(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCamposCrudVehiculo
-        habilitarBotones();
-    }//GEN-LAST:event_txtCamposCrudVehiculo
+    private void txtCamposVehiculoCRUDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCamposVehiculoCRUDKeyTyped
+        habilitarBotones("Vehiculo CRUD");
+    }//GEN-LAST:event_txtCamposVehiculoCRUDKeyTyped
 
     private void txtMatriculaAdminKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMatriculaAdminKeyReleased
-        habilitarBotones();
+        habilitarBotones("Administrador");
     }//GEN-LAST:event_txtMatriculaAdminKeyReleased
 
     private void btnLimpiarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarUsuarioActionPerformed
         limpiarCampos("Usuario");
     }//GEN-LAST:event_btnLimpiarUsuarioActionPerformed
+
+    private void combobxEstadoValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combobxEstadoValidarActionPerformed
+        habilitarBotones("Validar");
+    }//GEN-LAST:event_combobxEstadoValidarActionPerformed
+
+    private void combobxVehiculoCRUDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combobxVehiculoCRUDActionPerformed
+        habilitarBotones("Vehiculo CRUD");
+    }//GEN-LAST:event_combobxVehiculoCRUDActionPerformed
+
+    private void tblVehiculosCRUDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblVehiculosCRUDMouseClicked
+        try {
+            JTable table = obtenerTablaSeleccionada();
+            if (table.getSelectedColumn() == 4) {
+                // Está en la columna de activar/desactivar un vehiculo:
+                String matricula = (String) table.getValueAt(table.getSelectedRow(), 0);
+                boolean activado = (boolean) table.getValueAt(table.getSelectedRow(), 4);
+                // false ----> lo va a desactivar.
+                // true  ----> lo va a activar.
+                String adicional = "";
+                if (activado == true) {
+                    adicional = "activar";
+                } else if (activado == false) {
+                    adicional = "desactivar";
+                }
+                int opc = JOptionPane.showConfirmDialog(this,
+                        "¿Seguro que desea " + adicional + " el vehiculo seleccionado?",
+                        "Confirmar " + adicional, JOptionPane.YES_NO_OPTION);
+                if (opc == 0) {
+                    // Admin confirma desactivar el vehiculo:
+                    controlVehiculo.desactivarVehiculo(matricula, activado);
+                    JOptionPane.showMessageDialog(this, "Vehiculo seleccionado "
+                            + "ha sido \n activado/desactivado con éxito",
+                            "Confirmación", 1);
+                    llenarTablaPrincipal("Administrador", tblVehiculosAdmin);
+                } else {
+                    // Admin rechaza la desactivación:
+                    table.setValueAt((boolean) !activado, table.getSelectedRow(), 4);
+                }
+            }
+        } catch (VehiculoException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error en CRUD", 0);
+            // Por si no se puede desactivar el vehiculo:
+            try {
+                JTable table = obtenerTablaSeleccionada();
+                int fila = table.getSelectedRow();
+                boolean activado = (boolean) table.getValueAt(fila, 4);
+                table.setValueAt(!activado, fila, 4);
+            } catch (VehiculoException ex1) {
+                JOptionPane.showMessageDialog(this, ex1.getMessage(),
+                        "Error en CRUD", 0);
+            }
+        }
+    }//GEN-LAST:event_tblVehiculosCRUDMouseClicked
+
+    private void txtMatriculasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMatriculasKeyTyped
+        char validar = evt.getKeyChar();
+        // Validar que solo se pueda ingresar máximo 6 letras en matricula:
+        if (txtMatriculaAdmin.getText().length() == 6
+                || txtMatriculaCRUD.getText().length() == 6
+                || Character.isWhitespace(validar)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtMatriculasKeyTyped
+
+    private void txtKilometrajesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKilometrajesKeyTyped
+        if (txtKilometrajevalidar.isFocusOwner()) {
+            habilitarBotones("Validar");
+        }
+        char validar = evt.getKeyChar();
+        // Validar que solo se pueda ingresar números y máximo hasta 999.999:
+        if (txtKilometrajeCRUD.getText().length() == 6
+                || txtKilometrajevalidar.getText().length() == 6
+                || Character.isLetter(validar) || Character.isWhitespace(validar)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtKilometrajesKeyTyped
+
+    private void txtNombresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyTyped
+        char validar = evt.getKeyChar();
+        // Validar que solo pueda ingresar letras y sin espacios:
+        if (Character.isDigit(validar) || Character.isWhitespace(validar)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombresKeyTyped
+
+    private void txtCorreosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreosKeyTyped
+        char validar = evt.getKeyChar();
+        // Validar que no pueda ingresar espacios:
+        if (Character.isWhitespace(validar)) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCorreosKeyTyped
 
 // ----------------------- LLENAR TABLAS ---------------------------------------
     private void llenarTablaPrincipal(String tipo, JTable table) {
@@ -2937,6 +3115,19 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }
 
 // ------------------------------ MÉTODOS VARIOS ------------------------------
+    private JTable obtenerTablaSeleccionada() throws VehiculoException {
+        // Puedo saber con certeza que la tabla mostrada es la del vehiculo:
+        if (tblAutoCRUD.isShowing()) {
+            return tblAutoCRUD;
+        } else if (tblMotoCRUD.isShowing()) {
+            return tblMotoCRUD;
+        } else if (tblFurgonetaCRUD.isShowing()) {
+            return tblFurgonetaCRUD;
+        }
+        // Si llega acá, el usuario no seleccionó algo de las tablas:
+        throw new VehiculoException("Debe seleccionar alguna tabla");
+    }
+
     private void obtenerUsuarioExistente(String tipo) {
         Usuario user = controlUsuario.encontrarUsuarioCorreo(tipo);
         // Si retorna null, significa que ingresó un userID:
@@ -2957,7 +3148,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         combobxTipoUsuario.setEnabled(false);
         txtCorreoUsuario.setEnabled(false);
 
-        habilitarBotones();
+        habilitarBotones("Usuario CRUD");
     }
 
     private void obtenerVehiculoExistente(String matricula) {
@@ -2992,14 +3183,15 @@ public class MDIPrincipal extends javax.swing.JFrame {
         combobxVehiculoCRUD.setEnabled(false);
         txtMatriculaCRUD.setEnabled(false);
 
-        habilitarBotones();
+        habilitarBotones("Vehiculo CRUD");
     }
 
     private boolean verificarVehiculo() {
-        // Verificar que el vehiculo sea válido:
+        // Verificar que la MATRICULA ingresada sea de un vehiculo ACTIVO:
         String matricula = txtMatriculaAdmin.getText();
 
-        for (AbstractVehiculo vehiculo : controlVehiculo.getVehiculos("")) {
+        for (AbstractVehiculo vehiculo
+                : controlVehiculo.getVehiculosFiltro((byte) 0, "Seleccionar", "")) {
             if (vehiculo.getMatricula().compareTo(matricula) == 0) {
                 return true;
             }
@@ -3010,7 +3202,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private boolean verificarUsuario() {
         // Verificar que el usuario sea válido:
         String cliente = txtClienteAlquilar.getText();
-        for (Usuario user : controlUsuario.getUsuarios("")) {
+        for (Usuario user : controlUsuario.getUsuarios("Usuario")) {
             if (user.getUserID().compareTo(cliente) == 0) {
                 return true;
             }
@@ -3018,9 +3210,10 @@ public class MDIPrincipal extends javax.swing.JFrame {
         return false;
     }
 
-    private void habilitarBotones() {
+    private void habilitarBotones(String tipo) {
         // Cuando el usuario/admin documenta TODOS los campos necesarios:
-        if (!txtNuevoNombre.getText().isEmpty()
+        if (tipo.compareTo("Registro") == 0
+                && !txtNuevoNombre.getText().isEmpty()
                 && !txtNuevoApellido.getText().isEmpty()
                 && !txtNuevoCorreo.getText().isEmpty()
                 && cbxTerminos.isSelected() == true
@@ -3028,36 +3221,40 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 && txtConfirmarPassword.getPassword().length != 0) {
 
             btnAceptarRegistro.setEnabled(true);
-        } else if (bandera && verificarVehiculo()
+        } else if (tipo.compareTo("Administrador") == 0
+                && bandera && verificarVehiculo()
                 && !txtMatriculaAdmin.getText().isEmpty()) {
 
             btnAlquilarAdmin.setEnabled(true);
             btnValidarAdmin.setEnabled(true);
-        } else if (!txtNombreUsuario.getText().isEmpty()
+        } else if (tipo.compareTo("Usuario CRUD") == 0
+                && !txtNombreUsuario.getText().isEmpty()
                 && !txtApellidoUsuario.getText().isEmpty()
                 && !txtCorreoUsuario.getText().isEmpty()
                 && combobxTipoUsuario.getSelectedIndex() != 0
                 && txtPasswordUsuario.getPassword().length != 0) {
 
             btnGuardarUsuario.setEnabled(true);
-        } else if (combobxVehiculoCRUD.getSelectedIndex() != 0
+        } else if (tipo.compareTo("Vehiculo CRUD") == 0
+                && combobxVehiculoCRUD.getSelectedIndex() != 0
                 && !txtMatriculaCRUD.getText().isEmpty()
                 && combobxMarcaCRUD.getSelectedIndex() != 0
                 && !txtKilometrajeCRUD.getText().isEmpty()) {
 
             btnGuardarVehiculo.setEnabled(true);
-        } else if (banderaAlquilar && verificarUsuario()
+        } else if (tipo.compareTo("Alquilar") == 0
+                && banderaAlquilar && verificarUsuario()
                 && jdcInicialAlquilar.getDate() != null
                 && jdcFinalAlquilar.getDate() != null) {
 
             btnAceptarAlquilar.setEnabled(true);
-        } else if (combobxEstadoValidar.getSelectedIndex() != 0
+        } else if (tipo.compareTo("Validar") == 0
+                && combobxEstadoValidar.getSelectedIndex() != 0
                 && !txtKilometrajevalidar.getText().isEmpty()) {
 
             btnAceptarValidacion.setEnabled(true);
         } else {
             btnAceptarRegistro.setEnabled(false);
-
             btnGuardarUsuario.setEnabled(false);
             btnGuardarVehiculo.setEnabled(false);
             btnAlquilarAdmin.setEnabled(false);
@@ -3128,7 +3325,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 cbxCascoCRUD.setSelected(false);
                 sldCapacidadCRUD.setValue(800);
                 sldTarifaDiaCRUD.setValue(100000);
-                sldTarifaKmCRUD.setValue(10000);
+                sldTarifaKmCRUD.setValue(1000);
 
                 tblAutoCRUD.clearSelection();
                 tblMotoCRUD.clearSelection();
@@ -3136,7 +3333,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
                 combobxVehiculoCRUD.setEnabled(true);
                 txtMatriculaCRUD.setEnabled(true);
-                combobxMarcaCRUD.setEnabled(true);
+                combobxMarcaCRUD.setEnabled(false);
                 editarVehiculo = false;
                 break;
             }
@@ -3291,6 +3488,12 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelCapacidad;
     private javax.swing.JLabel jLabelTarifaDia;
     private javax.swing.JLabel jLabelTarifaKm;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;

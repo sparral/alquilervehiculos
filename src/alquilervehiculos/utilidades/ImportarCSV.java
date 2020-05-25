@@ -37,21 +37,17 @@ public class ImportarCSV {
 
             // Se cargan los datos de los usuarios mientras existan líneas:
             while (leerUsuarios.readRecord()) {
-                String correo = leerUsuarios.get(0);
-                String password = leerUsuarios.get(1);
-
                 // Se obtiene el valor del tipo y se convierte a TipoUsuario:
                 byte tipo = Byte.parseByte(leerUsuarios.get(2));
 
-                String nombre = leerUsuarios.get(3);
-                String apellido = leerUsuarios.get(4);
-                byte edad = Byte.parseByte(leerUsuarios.get(5));
-                boolean vision = Boolean.parseBoolean(leerUsuarios.get(6));
-                boolean auditivo = Boolean.parseBoolean(leerUsuarios.get(7));
-
-                listadoUsuarios.add(new Usuario(correo, password, tipos[tipo - 1],
-                        nombre, apellido, edad, vision, auditivo));
-
+                // String correo, String password, TipoUsuario tipo, String nombre,
+                // String apellido, byte edad, boolean vision, boolean auditivo 
+                listadoUsuarios.add(new Usuario(leerUsuarios.get(0),
+                        leerUsuarios.get(1), tipos[tipo - 1],
+                        leerUsuarios.get(3), leerUsuarios.get(4),
+                        Byte.parseByte(leerUsuarios.get(5)),
+                        Boolean.parseBoolean(leerUsuarios.get(6)),
+                        Boolean.parseBoolean(leerUsuarios.get(7))));
             }
             leerUsuarios.close();           // Cerrar el archivo
         } catch (FileNotFoundException ex) {
@@ -78,36 +74,38 @@ public class ImportarCSV {
                     String matricula = leer.get(1);
                     String anio = leer.get(3);
                     int kilometraje = Integer.parseInt(leer.get(4));
-                    int [] valorAlquiler = {Integer.parseInt(leer.get(5)),
+                    int[] valorAlquiler = {Integer.parseInt(leer.get(5)),
                         Integer.parseInt(leer.get(6))};
-                    
+                    int contAlquiler = Integer.parseInt(leer.get(8));
+                    boolean activado = Boolean.parseBoolean(leer.get(9));
+
                     // Valores que dependen del Vehiculo: 
                     switch (ubicacion) {
                         case "src/Autos.csv": {
                             boolean extras = Boolean.parseBoolean(leer.get(7));
 
                             listadoVehiculos.add(new Auto(extras, matricula,
-                                    kilometraje, estado, 
-                                    marcas.get(marcas.indexOf(new TipoMarca("Auto",leer.get(2)))), 
-                                    anio, valorAlquiler));
+                                    kilometraje, estado, marcas.get(marcas
+                                            .indexOf(new TipoMarca("Auto", leer.get(2)))),
+                                    anio, valorAlquiler, contAlquiler, activado));
                             break;
                         }
                         case "src/Motos.csv": {
                             boolean casco = Boolean.parseBoolean(leer.get(7));
 
                             listadoVehiculos.add(new Moto(casco, matricula,
-                                    kilometraje, estado, 
-                                    marcas.get(marcas.indexOf(new TipoMarca("Moto",leer.get(2)))), 
-                                    anio, valorAlquiler));
+                                    kilometraje, estado, marcas.get(marcas
+                                            .indexOf(new TipoMarca("Moto", leer.get(2)))),
+                                    anio, valorAlquiler, contAlquiler, activado));
                             break;
                         }
                         case "src/Furgonetas.csv": {
                             short capacidad = Short.parseShort(leer.get(7));
 
                             listadoVehiculos.add(new Furgoneta(capacidad, matricula,
-                                    kilometraje, estado, 
-                                    marcas.get(marcas.indexOf(new TipoMarca("Furgoneta",leer.get(2)))), 
-                                    anio, valorAlquiler));
+                                    kilometraje, estado, marcas.get(marcas
+                                            .indexOf(new TipoMarca("Furgoneta", leer.get(2)))),
+                                    anio, valorAlquiler, contAlquiler, activado));
                             break;
                         }
                     }
@@ -123,8 +121,8 @@ public class ImportarCSV {
 
         return listadoVehiculos;
     }
-    
-        public static List<Cliente> cargarClientes() {
+
+    public static List<Cliente> cargarClientes() {
         List<Cliente> listadoClientes = new ArrayList<>();
         try {
             // Para encontrar el archivo CSV:
@@ -133,15 +131,11 @@ public class ImportarCSV {
 
             // Se cargan los datos de los usuarios mientras existan líneas:
             while (leerClientes.readRecord()) {
-                String userID = leerClientes.get(0);
-                String matricula = leerClientes.get(1);
-                LocalDate fechaInicial = LocalDate.parse(leerClientes.get(2));
-                LocalDate fechaFinal = LocalDate.parse(leerClientes.get(3));
-                String pago= leerClientes.get(4);
-                
-                listadoClientes.add(new Cliente(userID, matricula, fechaInicial, 
-                                                fechaFinal,pago));
-
+                // String userID, String matricula, LocalDate fechaInicial, 
+                // LocalDate fechaFinal, String tipoPago 
+                listadoClientes.add(new Cliente(leerClientes.get(0), leerClientes.get(1),
+                        LocalDate.parse(leerClientes.get(2)),
+                        LocalDate.parse(leerClientes.get(3)), leerClientes.get(4)));
             }
             leerClientes.close();           // Cerrar el archivo
         } catch (FileNotFoundException ex) {

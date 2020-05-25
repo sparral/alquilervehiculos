@@ -10,12 +10,16 @@ package alquilervehiculos.modelo.vehiculo;
  * @author Santy
  */
 public class Furgoneta extends AbstractVehiculo {
+
     // Furgoneta ES UN Vehículo, y se añaden las variables de Furgoneta:
     private short capacidad;
 
     // Contructor:
-    public Furgoneta(short capacidad, String matricula, int kilometraje, boolean estado, TipoMarca marca, String anio, int[] valorAlquiler) {
-        super(matricula, kilometraje, estado, marca, anio, valorAlquiler);
+    public Furgoneta(short capacidad, String matricula, int kilometraje,
+            boolean estado, TipoMarca marca, String anio, int[] valorAlquiler,
+            int contAlquiler, boolean activar) {
+        super(matricula, kilometraje, estado, marca, anio, valorAlquiler,
+                contAlquiler, activar);
         this.capacidad = capacidad;
     }
 
@@ -36,7 +40,8 @@ public class Furgoneta extends AbstractVehiculo {
         String[] datos = {Boolean.toString(isEstado()), getMatricula(),
             marca, getAnio(), Integer.toString(getKilometraje()),
             Integer.toString(getValorAlquiler()[0]),
-            Integer.toString(getValorAlquiler()[1]), Short.toString(capacidad)};
+            Integer.toString(getValorAlquiler()[1]), Short.toString(capacidad),
+            Integer.toString(getContAlquiler()), Boolean.toString(isActivar())};
         return datos;
     }
 
@@ -61,6 +66,6 @@ public class Furgoneta extends AbstractVehiculo {
     @Override
     public void alquilar() {
         setEstado(false);
+        setContAlquiler(getContAlquiler() + 1);
     }
-
 }

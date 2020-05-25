@@ -1,7 +1,7 @@
-Estado,Matricula,Marca,Anio,Kilometraje,ValorDia,ValorKm,Capacidad
-true,GMJ584,Fiat,2009,62673,140000,9000,1200
-false,KVT923,Ford,2018,13745,210000,12000,1340
-false,DMR946,Mercedes,2017,24934,195000,10000,1320
-true,HMK329,Mercedes,2019,12986,140764,11000,1100
-true,FKL540,Renault,2014,72193,112102,9500,800
+Estado,Matricula,Marca,Anio,Kilometraje,ValorDia,ValorKm,Capacidad,NumAlquiler,Activado
+true,GMJ584,Fiat,2009,62673,140000,1934,1200,0,true
+true,KVT923,Ford,2018,13745,210000,2423,1340,1,true
+true,DMR946,Mercedes,2017,24934,195000,2314,1320,1,true
+true,HMK329,Mercedes,2019,12986,140764,2572,1100,0,true
+true,FKL540,Renault,2014,72193,112102,2128,800,0,true
 

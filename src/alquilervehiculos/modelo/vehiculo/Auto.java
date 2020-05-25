@@ -10,12 +10,16 @@ package alquilervehiculos.modelo.vehiculo;
  * @author Santy
  */
 public class Auto extends AbstractVehiculo {
+
     // Auto ES UN Vehículo, y se añade las variables del auto:
     private boolean extras;
 
     // Contructor:
-    public Auto(boolean extras, String matricula, int kilometraje, boolean estado, TipoMarca marca, String anio, int[] valorAlquiler) {
-        super(matricula, kilometraje, estado, marca, anio, valorAlquiler);
+    public Auto(boolean extras, String matricula, int kilometraje, boolean estado,
+            TipoMarca marca, String anio, int[] valorAlquiler, int contAlquiler,
+            boolean activar) {
+        super(matricula, kilometraje, estado, marca, anio, valorAlquiler,
+                contAlquiler, activar);
         this.extras = extras;
     }
 
@@ -36,7 +40,8 @@ public class Auto extends AbstractVehiculo {
         String[] datos = {Boolean.toString(isEstado()), getMatricula(),
             marca, getAnio(), Integer.toString(getKilometraje()),
             Integer.toString(getValorAlquiler()[0]),
-            Integer.toString(getValorAlquiler()[1]), Boolean.toString(extras)};
+            Integer.toString(getValorAlquiler()[1]), Boolean.toString(extras),
+            Integer.toString(getContAlquiler()), Boolean.toString(isActivar())};
         return datos;
     }
 
@@ -61,6 +66,6 @@ public class Auto extends AbstractVehiculo {
     @Override
     public void alquilar() {
         setEstado(false);
+        setContAlquiler(getContAlquiler() + 1);
     }
-
 }

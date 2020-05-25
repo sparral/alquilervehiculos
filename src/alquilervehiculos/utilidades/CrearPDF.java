@@ -34,7 +34,7 @@ import java.util.Locale;
  *
  * @author santi
  */
-public class GenerarPDF {
+public class CrearPDF {
 
     public void generarVehiculoPDF(List<AbstractVehiculo> vehiculos, String tipo)
             throws Exception {

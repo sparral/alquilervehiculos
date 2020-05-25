@@ -10,12 +10,16 @@ package alquilervehiculos.modelo.vehiculo;
  * @author Santy
  */
 public class Moto extends AbstractVehiculo {
+
     // Moto ES UN Vehículo, y se añade las variables de Moto:
     private boolean casco;
 
     // Contructor:
-    public Moto(boolean casco, String matricula, int kilometraje, boolean estado, TipoMarca marca, String anio, int[] valorAlquiler) {
-        super(matricula, kilometraje, estado, marca, anio, valorAlquiler);
+    public Moto(boolean casco, String matricula, int kilometraje, boolean estado,
+            TipoMarca marca, String anio, int[] valorAlquiler, int contAlquiler,
+            boolean activar) {
+        super(matricula, kilometraje, estado, marca, anio, valorAlquiler,
+                contAlquiler, activar);
         this.casco = casco;
     }
 
@@ -23,7 +27,7 @@ public class Moto extends AbstractVehiculo {
     public boolean isCasco() {
         return casco;
     }
-
+    
     public void setCasco(boolean casco) {
         this.casco = casco;
     }
@@ -36,10 +40,11 @@ public class Moto extends AbstractVehiculo {
         String[] datos = {Boolean.toString(isEstado()), getMatricula(),
             marca, getAnio(), Integer.toString(getKilometraje()),
             Integer.toString(getValorAlquiler()[0]),
-            Integer.toString(getValorAlquiler()[1]), Boolean.toString(casco)};
+            Integer.toString(getValorAlquiler()[1]), Boolean.toString(casco),
+            Integer.toString(getContAlquiler()), Boolean.toString(isActivar())};
         return datos;
     }
-
+    
     @Override
     public double calcularAlquiler(String tipo, int valor) {
         switch (tipo) {
@@ -51,16 +56,16 @@ public class Moto extends AbstractVehiculo {
         // Si no es ninguno de los dos, no lo calcula:
         return 0;
     }
-
+    
     @Override
     public void devolver(int kilometraje) {
         setKilometraje(kilometraje);
         setEstado(true);
     }
-
+    
     @Override
     public void alquilar() {
         setEstado(false);
+        setContAlquiler(getContAlquiler() + 1);
     }
-
 }

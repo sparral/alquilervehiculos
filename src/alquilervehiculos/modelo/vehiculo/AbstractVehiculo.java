@@ -22,14 +22,21 @@ public abstract class AbstractVehiculo implements VehiculoAble {
     private String anio;
     private int[] valorAlquiler;
 
+    // Variables para generar reporte y validaciones:
+    private int contAlquiler;
+    private boolean activar;
+
     // Contructor:
-    public AbstractVehiculo(String matricula, int kilometraje, boolean estado, TipoMarca marca, String anio, int[] valorAlquiler) {
+    public AbstractVehiculo(String matricula, int kilometraje, boolean estado,
+            TipoMarca marca, String anio, int[] valorAlquiler, int contAlquiler, boolean activar) {
         this.matricula = matricula;
         this.kilometraje = kilometraje;
         this.estado = estado;
         this.marca = marca;
         this.anio = anio;
         this.valorAlquiler = valorAlquiler;
+        this.contAlquiler = contAlquiler;
+        this.activar = activar;
     }
 
     // Métodos (Getter&Setter):
@@ -77,6 +84,22 @@ public abstract class AbstractVehiculo implements VehiculoAble {
         this.valorAlquiler = valorAlquiler;
     }
 
+    public int getContAlquiler() {
+        return contAlquiler;
+    }
+
+    public void setContAlquiler(int contAlquiler) {
+        this.contAlquiler = contAlquiler;
+    }
+
+    public boolean isActivar() {
+        return activar;
+    }
+
+    public void setActivar(boolean activar) {
+        this.activar = activar;
+    }
+
     // Para obtener los datos de las tabla:  
     public Object[] getObjectAdmin() {
         String cliente = "";
@@ -94,13 +117,15 @@ public abstract class AbstractVehiculo implements VehiculoAble {
     }
 
     public Object[] getObjectUsuario() {
-        Object[] datos = {isEstado(), getClass().getSimpleName(), getMarca(), getAnio()};
+        Object[] datos = {isEstado(), getClass().getSimpleName(), getMarca(),
+            getAnio()};
         return datos;
     }
 
     public Object[] getObjectCRUD() {
         // MODIFICAR ESTO:
-        Object[] datos = {getMatricula(), getMarca(), getAnio(), getKilometraje(), true};
+        Object[] datos = {getMatricula(), getMarca(), getAnio(), getKilometraje(),
+            isActivar()};
         return datos;
     }
 
@@ -114,9 +139,9 @@ public abstract class AbstractVehiculo implements VehiculoAble {
     public String getArrayDatosValidar() {
         AlquilarVehiculo buscar = new AlquilarVehiculo();
         Cliente user = buscar.buscarCliente(matricula);
-        String fechaInicio= user.getFechaAlquiler().toString();
+        String fechaInicio = user.getFechaAlquiler().toString();
         String fechaFinal = user.getFechaDevolucion().toString();
-        
+
         String datos = "Datos de " + getClass().getSimpleName() + ": \n"
                 + marca.getMarca() + ", " + anio
                 + " \n" + Integer.toString(kilometraje) + " km \n"
