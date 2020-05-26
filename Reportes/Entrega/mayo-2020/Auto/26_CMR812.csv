@@ -1,0 +1,13 @@
+Vehiculo   : Auto
+Matricula  : CMR812
+Cliente    : dfer_98
+Estado     : Bueno
+Gasolina   : true
+Limpieza   : false
+Espejos    : true
+FechaInicio: 2020-05-25T22:50
+FechaFinal : 2020-05-26T13:16
+TipoPago   : Km
+ValorPago  : $195810.0 COP
+
+Observaciones: Entrega prematura

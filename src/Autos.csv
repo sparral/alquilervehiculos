@@ -1,8 +1,13 @@
 Estado,Matricula,Marca,Anio,Kilometraje,ValorDia,ValorKm,Extras,NumAlquiler,Activado
-false,CMR812,Mazda,2018,40305,120000,1830,true,1,true
-false,DGS934,Kia,2017,4571,125478,1723,true,2,true
-true,FKM639,Chevrolet,2014,50127,99682,1429,true,1,true
-true,HKS594,Nissan,2017,34943,117834,1920,false,0,true
+true,CMR812,Mazda,2018,40412,120000,1830,true,2,true
+true,FKM639,Chevrolet,2014,50127,115924,1429,true,1,true
+false,HKS594,Nissan,2017,34943,117834,1920,false,30,true
 true,DLK173,Mazda,2015,55230,104459,1626,false,0,true
 true,DKR967,Mazda,2017,34087,114013,1852,true,1,true
+true,DGS934,Nissan,2018,3934,102346,1634,true,19,true
+false,HMS476,Chevrolet,2016,34298,93589,1769,false,4,true
+true,FRM387,Nissan,2018,20145,92194,1845,true,0,true
+false,GLT476,Mazda,2017,16034,103498,1887,true,6,true
+true,DSR658,Nissan,2019,3967,106583,1923,true,0,true
+true,CRM928,Chevrolet,2018,8167,103753,1902,false,0,true
 

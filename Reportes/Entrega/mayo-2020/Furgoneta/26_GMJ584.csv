@@ -1,0 +1,11 @@
+Vehiculo   : Furgoneta
+Matricula  : GMJ584
+Cliente    : ferkgomez
+Estado     : Bueno
+Gasolina   : true
+Limpieza   : true
+Espejos    : true
+FechaInicio: 2020-05-21T08:50
+FechaFinal : 2020-05-26T15:46
+TipoPago   : Dia
+ValorPago  : $700000.0 COP

@@ -57,7 +57,7 @@ public class CrearGraficas {
         return new ChartPanel(grafica);
     }
     
-    public ChartPanel generarPromedioHoras(int[] promedios) {
+    public ChartPanel generarPromedioHoras(float[] promedios) {
         DefaultCategoryDataset datos = new DefaultCategoryDataset();
         datos.addValue(promedios[0], "Auto", "Promedio");
         datos.addValue(promedios[1], "Moto", "Promedio");

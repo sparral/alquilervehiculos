@@ -275,9 +275,14 @@ public class AlquilarVehiculo {
         // Valida que se pueda alquilar el vehiculo en las fechas dadas:
         for (Cliente seleccionado : this.clientes) {
             if (seleccionado.getMatricula().compareTo(matricula) == 0
-                    && (fechaFinal.compareTo(seleccionado.getFechaAlquiler().
-                            toLocalDate()) >= 0 || fechaInicial.compareTo(seleccionado
-                            .getFechaDevolucion().toLocalDate()) <= 0)) {
+                    // Dado que se desee alquilar antes:
+                    && ((fechaInicial.compareTo(seleccionado.getFechaAlquiler()
+                            .toLocalDate()) < 0 && fechaFinal.compareTo(seleccionado
+                            .getFechaAlquiler().toLocalDate()) >= 0)
+                    // Dado que se desee alquilar después:
+                    || (fechaInicial.compareTo(seleccionado.getFechaDevolucion()
+                            .toLocalDate()) <= 0 && fechaFinal.compareTo(seleccionado
+                            .getFechaDevolucion().toLocalDate()) > 0))) {
                 return false;
             }
         }

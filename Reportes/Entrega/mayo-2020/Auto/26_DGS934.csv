@@ -1,0 +1,11 @@
+Vehiculo   : Auto
+Matricula  : DGS934
+Cliente    : mfpatnio
+Estado     : Bueno
+Gasolina   : true
+Limpieza   : true
+Espejos    : true
+FechaInicio: 2020-05-22T10:50
+FechaFinal : 2020-05-26T15:10
+TipoPago   : Km
+ValorPago  : $181374.0 COP

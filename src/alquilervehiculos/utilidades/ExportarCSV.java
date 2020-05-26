@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.time.temporal.ChronoUnit;
@@ -227,9 +228,14 @@ public class ExportarCSV {
 
     public static void generarReporteHoras(LocalDateTime fechaInicial,
             LocalDateTime fechaFinal, String tipo, List<String> datosAnteriores) {
-        int dif = (int) fechaInicial.until(fechaFinal, ChronoUnit.DAYS);
+        int dif = (int) fechaInicial.until(fechaFinal, ChronoUnit.HOURS);
+        if (dif <= 24) {
+            dif = 1;                                  // Menos de un día
+        } else {
+            dif = (int) Math.floor(dif / 24);          // Al menos un día
+        }
         // Para conocer los nuevos datos:
-        String difInicial = String.valueOf(fechaInicial.toLocalTime().getHour());
+        String difInicial = String.valueOf(24 - fechaInicial.toLocalTime().getHour());
         String difFinal = String.valueOf(fechaFinal.toLocalTime().getHour());
 
         int lugar = 0;
@@ -238,7 +244,7 @@ public class ExportarCSV {
             LocalDate fecha = LocalDate.ofYearDay(fechaInicial.getYear(),
                     fechaInicial.getDayOfYear() + i);
             String fechaString = fecha.format(DateTimeFormatter
-                    .ofPattern("dd/MM/yy"));
+                    .ofPattern("dd/MM/yyyy"));
             switch (tipo) {
                 case "Auto": {
                     if (i == 0) {
@@ -277,24 +283,28 @@ public class ExportarCSV {
         }
 
         // Ahora, para escribir en el archivo:
-        String salidaArchivo = "Reportes/Promedio/" + tipo + ".csv";
+        String salidaArchivo = "Reportes/PromedioHoras.csv";
         File archivo = new File(salidaArchivo);
         archivo.getParentFile().mkdirs();
 
         try {
             CsvWriter salidaCSV = new CsvWriter(salidaArchivo);
             salidaCSV.write("Fecha");
-            salidaCSV.write("Horas");
+            salidaCSV.write("HorasAuto");
+            salidaCSV.write("HorasMoto");
+            salidaCSV.write("HorasFurgoneta");
             salidaCSV.endRecord();
 
-            String fechaN = fechaInicial.toLocalDate().format(DateTimeFormatter
-                    .ofPattern("dd/MM/yy"));
+            LocalDate fechaN = fechaInicial.toLocalDate();
             int cont = 0;
             String[] z = new String[4];
 
             for (String dato : datosAnteriores) {
                 String[] x = dato.split(",");                   // Datos antiguos.
-                if (fechaN.compareTo(x[0]) <= 0) {
+                String[] datosFecha = x[0].split("/");
+                LocalDate fecha = LocalDate.of(Integer.parseInt(datosFecha[2]),
+                        Integer.parseInt(datosFecha[1]), Integer.parseInt(datosFecha[0]));
+                if (fecha.isAfter(fechaN) || fecha.isEqual(fechaN)) {
                     String[] y = datosNuevos[cont].split(",");   // Datos nuevos.
                     cont++;
                     if (y[0].compareTo(x[0]) == 0) {
@@ -305,15 +315,21 @@ public class ExportarCSV {
                             case "Auto": {
                                 z[0] = x[0];
                                 z[1] = String.valueOf(suma);
+                                z[2] = x[2];
+                                z[3] = x[3];
                                 break;
                             }
                             case "Moto": {
                                 z[0] = x[0];
+                                z[1] = x[1];
                                 z[2] = String.valueOf(suma);
+                                z[3] = x[3];
                                 break;
                             }
                             case "Furgoneta": {
                                 z[0] = x[0];
+                                z[1] = x[1];
+                                z[2] = x[2];
                                 z[3] = String.valueOf(suma);
                                 break;
                             }
@@ -322,14 +338,13 @@ public class ExportarCSV {
                     }
                 } else {
                     salidaCSV.writeRecord(x);
-                    salidaCSV.endRecord();
                 }
             }
             // Finalmente, si faltó por escribir algunos datos nuevos:
             if (cont <= dif) {
                 for (int i = cont; i <= dif; i++) {
-                    salidaCSV.write(datosNuevos[cont]);
-                    salidaCSV.endRecord();
+                    String[] x= datosNuevos[cont].split(",");
+                    salidaCSV.writeRecord(x);
                 }
             }
             salidaCSV.close();

@@ -243,7 +243,7 @@ public class ControladorVehiculo implements Serializable {
         for (AbstractVehiculo vehiculo : this.vehiculos) {
             // Encuentra el vehiculo comparando con la matricula:
             if (vehiculo.getMatricula().compareTo(matricula) == 0
-                    && vehiculo.getContAlquiler() != 0) {
+                    && vehiculo.getContAlquiler() == 0) {
                 boolean opc = this.vehiculos.remove(vehiculo);
                 // Finalmente, sobreescribe en el CSV el cambio:
                 ExportarCSV.vehiculoCSV(getVehiculos(vehiculo.toString()));

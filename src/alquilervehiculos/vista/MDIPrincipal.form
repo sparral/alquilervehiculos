@@ -170,7 +170,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnInvitado" min="-2" pref="32" max="-2" attributes="0"/>
-                      <EmptySpace pref="25" max="32767" attributes="0"/>
+                      <EmptySpace pref="21" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -349,7 +349,7 @@
                           </Group>
                           <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="115" max="32767" attributes="0"/>
+                      <EmptySpace pref="111" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnAceptarRegistro" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                           <Component id="btnCancelarRegistro" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
@@ -617,7 +617,7 @@
                               <Component id="btnValidarAdmin" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                               <Component id="btnLimpiarAdmin" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="58" max="32767" attributes="0"/>
+                          <EmptySpace pref="46" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -741,7 +741,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" alignment="0" pref="500" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" alignment="0" pref="488" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1549,7 +1549,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jScrollPane8" pref="191" max="32767" attributes="0"/>
+                          <Component id="jScrollPane8" pref="187" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -2066,7 +2066,7 @@
                                           <Component id="jLabelCapacidad" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
-                                          <EmptySpace min="0" pref="40" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="38" max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="btnGuardarVehiculo" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                               <Component id="btnLimpiarVehiculoCRUD" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
@@ -2100,7 +2100,7 @@
                                       <Component id="jycVehiculoCRUD" pref="30" max="32767" attributes="0"/>
                                       <Component id="jLabel39" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="36" max="32767" attributes="0"/>
+                                  <EmptySpace pref="35" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="txtKilometrajeCRUD" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel40" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -2112,7 +2112,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="22" max="32767" attributes="0"/>
+                          <EmptySpace pref="20" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2439,7 +2439,7 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jdcFinalAlquilar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="81" max="32767" attributes="0"/>
+                          <EmptySpace pref="77" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btnAceptarAlquilar" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                               <Component id="btnCancelarAlquilar" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
@@ -2971,7 +2971,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jpDatosPromedio" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="20" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="8" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
@@ -3054,9 +3054,9 @@
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="4" rowCount="3">
                                     <Column editable="false" title="Fecha" type="java.lang.String"/>
-                                    <Column editable="false" title="Auto" type="java.lang.Integer"/>
-                                    <Column editable="false" title="Moto" type="java.lang.Integer"/>
-                                    <Column editable="false" title="Furgoneta" type="java.lang.Integer"/>
+                                    <Column editable="false" title="Auto" type="java.lang.Float"/>
+                                    <Column editable="false" title="Moto" type="java.lang.Float"/>
+                                    <Column editable="false" title="Furgoneta" type="java.lang.Float"/>
                                   </Table>
                                 </Property>
                                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -3082,6 +3082,9 @@
                                       <Renderer/>
                                     </Column>
                                   </TableColumnModel>
+                                </Property>
+                                <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
+                                  <JTableSelectionModel selectionMode="0"/>
                                 </Property>
                                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
@@ -3159,7 +3162,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="418" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="406" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>

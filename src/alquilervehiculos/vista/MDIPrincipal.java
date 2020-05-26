@@ -383,7 +383,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                         .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnInvitado, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         desktopPane.add(jfrmLogin);
@@ -574,7 +574,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                             .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtConfirmarPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                 .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -713,7 +713,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 .addGroup(jpFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnValidarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpiarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         tblVehiculosAdmin.setModel(new javax.swing.table.DefaultTableModel(
@@ -771,7 +771,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         );
         jpTablaAdminLayout.setVerticalGroup(
             jpTablaAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
         );
 
         jmnuArchivo.setText("Archivo");
@@ -1321,7 +1321,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jpUsuarioCRUDLayout.setVerticalGroup(
             jpUsuarioCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpUsuarioCRUDLayout.createSequentialGroup()
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1741,7 +1741,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabelCapacidad))
                             .addGroup(jpDatosVehiculoLayout.createSequentialGroup()
-                                .addGap(0, 40, Short.MAX_VALUE)
+                                .addGap(0, 38, Short.MAX_VALUE)
                                 .addGroup(jpDatosVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(btnGuardarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnLimpiarVehiculoCRUD, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1766,7 +1766,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                         .addGroup(jpDatosVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jycVehiculoCRUD, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                             .addComponent(jLabel39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                         .addGroup(jpDatosVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtKilometrajeCRUD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel40))
@@ -1774,7 +1774,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                         .addGroup(jpDatosVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(sldCapacidadCRUD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel48))))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jfrmVehiculosCRUDLayout = new javax.swing.GroupLayout(jfrmVehiculosCRUD.getContentPane());
@@ -1924,7 +1924,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                     .addComponent(jdcInicialAlquilar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jdcFinalAlquilar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addGroup(jpDatosAlquilarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptarAlquilar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelarAlquilar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2220,7 +2220,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
@@ -2234,6 +2234,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblReportePromedio.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane4.setViewportView(tblReportePromedio);
         if (tblReportePromedio.getColumnModel().getColumnCount() > 0) {
             tblReportePromedio.getColumnModel().getColumn(0).setResizable(false);
@@ -2330,7 +2331,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
             jpPromediosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPromediosLayout.createSequentialGroup()
                 .addComponent(jpDatosPromedio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 20, Short.MAX_VALUE))
+                .addGap(0, 8, Short.MAX_VALUE))
             .addGroup(jpPromediosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpPromediosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -2352,7 +2353,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         );
         jpDisponiblesLayout.setVerticalGroup(
             jpDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 418, Short.MAX_VALUE)
+            .addGap(0, 406, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Disponibilidad", jpDisponibles);
@@ -3354,7 +3355,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private void mnuAutosPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAutosPDFActionPerformed
         try {
             pdfs.generarVehiculoPDF(controlVehiculo.getVehiculosFiltro((byte) 0,
-                    "Auto", ""), "Autos");
+                    "Auto", "Seleccionar"), "Autos");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(),
                     ex.getCause().toString(), 0);
@@ -3364,7 +3365,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private void mnuMotosPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuMotosPDFActionPerformed
         try {
             pdfs.generarVehiculoPDF(controlVehiculo.getVehiculosFiltro((byte) 0,
-                    "Moto", ""), "Motos");
+                    "Moto", "Seleccionar"), "Motos");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this,
                     ex.getMessage(), ex.getCause().toString(), 0);
@@ -3374,7 +3375,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private void mnuFurgonetasPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuFurgonetasPDFActionPerformed
         try {
             pdfs.generarVehiculoPDF(controlVehiculo.getVehiculosFiltro((byte) 0,
-                    "Furgoneta", ""), "Furgonetas");
+                    "Furgoneta", "Seleccionar"), "Furgonetas");
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(),
                     ex.getCause().toString(), 0);
@@ -3497,7 +3498,10 @@ public class MDIPrincipal extends javax.swing.JFrame {
         String archivo = obtenerArchivo();
         if (!archivo.isEmpty()) {
             ImportarCSV.cargarVehiculosExtra(controlVehiculo.getVehiculos("Auto"),
-                    controlVehiculo.getMarcas(), archivo, "Auto");
+                    controlVehiculo.getMarcas(), "Auto", archivo);
+            llenarTablaPrincipal("Administrador", tblVehiculosAdmin);
+            JOptionPane.showMessageDialog(this, "Autos cargados con éxito "
+                    + "al sistema", "Carga exitosa", 1);
         }
     }//GEN-LAST:event_mnuCargarAutosActionPerformed
 
@@ -3505,7 +3509,10 @@ public class MDIPrincipal extends javax.swing.JFrame {
         String archivo = obtenerArchivo();
         if (!archivo.isEmpty()) {
             ImportarCSV.cargarVehiculosExtra(controlVehiculo.getVehiculos("Moto"),
-                    controlVehiculo.getMarcas(), archivo, "Moto");
+                    controlVehiculo.getMarcas(), "Moto", archivo);
+            llenarTablaPrincipal("Administrador", tblVehiculosAdmin);
+            JOptionPane.showMessageDialog(this, "Motos cargados con éxito "
+                    + "al sistema", "Carga exitosa", 1);
         }
     }//GEN-LAST:event_mnuCargarMotosActionPerformed
 
@@ -3513,7 +3520,10 @@ public class MDIPrincipal extends javax.swing.JFrame {
         String archivo = obtenerArchivo();
         if (!archivo.isEmpty()) {
             ImportarCSV.cargarVehiculosExtra(controlVehiculo.getVehiculos("Furgoneta"),
-                    controlVehiculo.getMarcas(), archivo, "Furgoneta");
+                    controlVehiculo.getMarcas(), "Furgoneta", archivo);
+            llenarTablaPrincipal("Administrador", tblVehiculosAdmin);
+            JOptionPane.showMessageDialog(this, "Furgonetas cargadas con éxito "
+                    + "al sistema", "Carga exitosa", 1);
         }
     }//GEN-LAST:event_mnuCargarFurgonetasActionPerformed
 // ------------------------ ** CLIENTES **--------------------------------------
@@ -3567,8 +3577,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
         llenarTablaClientes();
         JOptionPane.showMessageDialog(this, "Hora de entrega actualizada",
                 "Vehiculo entregado", 1);
-
-
     }//GEN-LAST:event_btnAlquilarClienteActionPerformed
 
     private void btnValidarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarClienteActionPerformed
@@ -3718,8 +3726,10 @@ public class MDIPrincipal extends javax.swing.JFrame {
         List<String> datos = ImportarCSV.cargarReporteHoras();
         for (String seleccionado : datos) {
             String[] x = seleccionado.split(",");
-            Object[] obj = {x[0], Integer.parseInt(x[1]), Integer.parseInt(x[2]),
-                Integer.parseInt(x[3])};
+            Object[] obj = {x[0],
+                Float.parseFloat(x[1]) / controlVehiculo.getVehiculos("Auto").size(),
+                Float.parseFloat(x[2]) / controlVehiculo.getVehiculos("Moto").size(),
+                Float.parseFloat(x[3]) / controlVehiculo.getVehiculos("Furgoneta").size()};
 
             // Para encontrar la fecha del array:
             String[] datosFecha = x[0].split("/");
@@ -3751,13 +3761,13 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
 // ------------------------------ MÉTODOS VARIOS -------------------------------
     private void obtenerPromedios() {
-        int[] valores = new int[3];
-        int[] suma = {0, 0, 0};
+        float[] valores = new float[3];
+        float[] suma = {0, 0, 0};
         int cont = tblReportePromedio.getRowCount();
         for (int i = 0; i < cont; i++) {
-            suma[0] = (int) tblReportePromedio.getValueAt(i, 1) + suma[0];      // Autos
-            suma[1] = (int) tblReportePromedio.getValueAt(i, 2) + suma[1];      // Motos
-            suma[2] = (int) tblReportePromedio.getValueAt(i, 3) + suma[2];      // Furgonetas
+            suma[0] = (float) tblReportePromedio.getValueAt(i, 1) + suma[0];      // Autos
+            suma[1] = (float) tblReportePromedio.getValueAt(i, 2) + suma[1];      // Motos
+            suma[2] = (float) tblReportePromedio.getValueAt(i, 3) + suma[2];      // Furgonetas
         }
         valores[0] = suma[0] / cont;
         valores[1] = suma[1] / cont;

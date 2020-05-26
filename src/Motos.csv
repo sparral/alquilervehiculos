@@ -1,6 +1,15 @@
 Estado,Matricula,Marca,Anio,Kilometraje,ValorDia,ValorKm,Casco,NumAlquiler,Activado
 true,KTB64M,Susuki,2014,32150,80000,1200,false,0,true
-false,FDN98A,Honda,2017,18320,98000,1303,true,3,true
+true,FDN98A,Honda,2017,18452,98000,1303,true,9,true
 true,LMG23S,AKT,2019,3212,110000,1523,true,0,true
 true,JFK34L,Honda,2018,4923,77707,1467,true,1,true
+true,FDS45W,Kawasaki,2020,459,103231,1593,true,0,true
+true,DLE29A,Yamaha,2016,21782,72320,1428,false,0,true
+true,FER93W,Susuki,2015,23087,101320,1489,false,0,true
+true,GFE25E,Yamaha,2017,3276,93412,1523,true,0,true
+true,HRJ34C,AKT,2018,4823,108230,1596,false,0,true
+true,KRS37D,Honda,2018,3743,92302,1492,true,0,true
+false,JRM34L,AKT,2017,10624,83834,1268,true,14,true
+false,KMR29D,Honda,2019,743,104230,1523,true,14,true
+true,FMI53W,Kawasaki,2018,4582,94378,1503,false,0,true
 
