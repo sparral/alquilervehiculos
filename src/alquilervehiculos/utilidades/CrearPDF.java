@@ -43,8 +43,8 @@ public class CrearPDF {
         String mes = fecha.getMonth().getDisplayName(TextStyle.FULL,
                 new Locale("es", "ES")) + "-" + fecha.getYear();
 
-        // Nombre del archivo: "src/Reportes/PDFs/Mayo-2020/05_Autos.pdf"
-        String salidaArchivo = "src/Reportes/PDFs/" + mes + "/"
+        // Nombre del archivo: "Reportes/PDFs/Mayo-2020/05_Autos.pdf"
+        String salidaArchivo = "Reportes/PDFs/" + mes + "/"
                 + fecha.getDayOfMonth() + "_" + tipo + ".pdf";
         File archivo = new File(salidaArchivo);
         archivo.getParentFile().mkdirs();

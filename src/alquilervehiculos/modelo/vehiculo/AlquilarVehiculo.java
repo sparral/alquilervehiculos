@@ -148,6 +148,8 @@ public class AlquilarVehiculo {
                     LocalDateTime.of(fechaFinal, horaActual), pago));
         } else {
             // Cliente existente:
+            vehiculo.alquilar();
+            actualizarVehiculo(vehiculo, false, 0);
             cliente.setFechaAlquiler(LocalDateTime.of(fechaActual, horaActual));
         }
         ExportarCSV.clienteCSV(clientes);
@@ -156,6 +158,10 @@ public class AlquilarVehiculo {
     public double devolverVehiculo(AbstractVehiculo vehiculo, String userID,
             int kilometrajeNuevo, String[] datos) {
 
+        if (kilometrajeNuevo <= vehiculo.getKilometraje()) {
+            // No puede generarse una validación de un menor kilometraje:
+            return 0;
+        }
         Cliente user = obtenerCliente(vehiculo, userID);
         LocalDate fechaSupuesta = user.getFechaDevolucion().toLocalDate();
 
@@ -169,7 +175,7 @@ public class AlquilarVehiculo {
             if (opcion == 1) {
                 return 0;
             } else if (opcion == 0 && datos[7].isEmpty()) {
-                datos[9] = "Entrega prematura";
+                datos[11] = "Entrega prematura";
             }
 
         } else if (fechaActual.isAfter(fechaSupuesta)) {
@@ -180,7 +186,7 @@ public class AlquilarVehiculo {
             if (opcion == 1) {
                 return 0;
             } else if (opcion == 0 && datos[7].isEmpty()) {
-                datos[9] = "Entrega tardia";
+                datos[11] = "Entrega tardia";
             }
         }
 
@@ -206,8 +212,11 @@ public class AlquilarVehiculo {
             datos[8] = user.getFechaDevolucion().toString();
             datos[9] = user.getTipoPago();
             datos[10] = Double.toString(vehiculo.calcularAlquiler(user.getTipoPago(), valor));
-            ExportarCSV.generarReporte(datos);
+            ExportarCSV.generarReporteEntrega(datos);
+            ExportarCSV.generarReporteHoras(user.getFechaAlquiler(),
+                    user.getFechaDevolucion(), datos[0], ImportarCSV.cargarReporteHoras());
 
+            double pago = vehiculo.calcularAlquiler(user.getTipoPago(), valor);
             // Eliminar el cliente de la lista y sobreescribir en el CSV:
             for (Cliente seleccionado : this.clientes) {
                 if (seleccionado.getUserID().compareTo(user.getUserID()) == 0) {
@@ -219,7 +228,7 @@ public class AlquilarVehiculo {
             actualizarVehiculo(vehiculo, true, kilometrajeNuevo);
             ExportarCSV.clienteCSV(clientes);
 
-            return vehiculo.calcularAlquiler(user.getTipoPago(), valor);
+            return pago;
         }
         // Admin no aceptó devolver el vehiculo:
         return 0;
@@ -238,6 +247,7 @@ public class AlquilarVehiculo {
                     seleccionado.setKilometraje(kilometrajeNuevo);
                 } // Cambiar el estado de activado, si se está alquilando:
                 else if (estado == false) {
+                    seleccionado.setContAlquiler(seleccionado.getContAlquiler() + 1);
                     seleccionado.setActivar(true);
                 }
                 // Cambiar el estado del vehiculo a disponible/ocupado:

@@ -16,7 +16,6 @@ import alquilervehiculos.modelo.vehiculo.TipoMarca;
 import com.csvreader.CsvReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -150,7 +149,7 @@ public class ImportarCSV {
     }
 
 // ---------------------------CARGAR CSV EXTERNO -------------------------------       
-    public static void cargarVehiculosExtra(List<AbstractVehiculo> vehiculos, 
+    public static void cargarVehiculosExtra(List<AbstractVehiculo> vehiculos,
             List<TipoMarca> marcas, String tipo, String archivo) {
         try {
             // Para encontrar el archivo CSV:
@@ -200,7 +199,7 @@ public class ImportarCSV {
                 }
             }
             leer.close();           // Cerrar el archivo
-            
+
             // Finalmente, carga los nuevos vehiculos al CSV madre:
             ExportarCSV.vehiculoCSV(vehiculos);
         } catch (FileNotFoundException ex) {
@@ -209,5 +208,28 @@ public class ImportarCSV {
             JOptionPane.showMessageDialog(null, "El archivo no tiene el formato"
                     + " apropiado para cargar los vehiculos", "Error en archivo", 0);
         }
+    }
+
+// ---------------------- ** CARGAR REPORTE HORAS ** ---------------------------
+    public static List<String> cargarReporteHoras() {
+        List<String> listaTemp = new ArrayList<>();
+        try {
+            String salidaArchivo = "Reportes/PromedioHoras.csv";
+            CsvReader leerReporte = new CsvReader(salidaArchivo);
+            leerReporte.readHeaders();
+
+            // Se cargan los reportes mientras existan lineas:
+            while (leerReporte.readRecord()) {
+                String txt = leerReporte.get(0) + "," + leerReporte.get(1) + ","
+                        + leerReporte.get(2) + "," + leerReporte.get(3);
+                listaTemp.add(txt);
+            }
+            leerReporte.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ImportarCSV.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ImportarCSV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaTemp;
     }
 }

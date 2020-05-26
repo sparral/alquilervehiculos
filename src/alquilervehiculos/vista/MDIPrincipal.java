@@ -16,11 +16,13 @@ import alquilervehiculos.modelo.vehiculo.Furgoneta;
 import alquilervehiculos.modelo.vehiculo.Moto;
 import alquilervehiculos.modelo.vehiculo.TipoMarca;
 import alquilervehiculos.utilidades.ConvertirFecha;
+import alquilervehiculos.utilidades.CrearGraficas;
 import alquilervehiculos.utilidades.CrearPDF;
 import alquilervehiculos.utilidades.ImportarCSV;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -28,6 +30,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.ChartPanel;
 
 /**
  *
@@ -39,12 +42,15 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private ControladorVehiculo controlVehiculo;
     private AlquilarVehiculo alquilar;
     private CrearPDF pdfs;
+    private CrearGraficas graficas;
 
     private boolean editarUsuario = false;
     private boolean editarVehiculo = false;
     private boolean bandera = false;
     private boolean banderaMarcas = false;
     private boolean banderaAlquilar = false;
+    private boolean banderaFecha = false;
+
     private final ConvertirFecha convertir = new ConvertirFecha();
     Date fechaActual = new Date();
     String fechaLocal = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM"));
@@ -253,17 +259,18 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jLabel32 = new javax.swing.JLabel();
         jfrmReportes = new javax.swing.JInternalFrame();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
+        jpPromedios = new javax.swing.JPanel();
         jpDatosPromedio = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblReportePromedio = new javax.swing.JTable();
-        combobxTipoReporte = new javax.swing.JComboBox<>();
-        jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jdcFechaInicialReporte = new com.toedter.calendar.JDateChooser();
         jdcFechaFinalReporte = new com.toedter.calendar.JDateChooser();
         jpGraficaPromedio = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        txtPromedioAutos = new javax.swing.JTextField();
+        txtPromedioMotos = new javax.swing.JTextField();
+        txtPromedioFurgonetas = new javax.swing.JTextField();
+        jpDisponibles = new javax.swing.JPanel();
         jfrmClientes = new javax.swing.JInternalFrame();
         jpTablaClientes = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -286,6 +293,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jfrmLogin.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         jfrmLogin.setTitle("LogIn");
         jfrmLogin.setVisible(true);
 
@@ -375,7 +383,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                         .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnInvitado, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         desktopPane.add(jfrmLogin);
@@ -566,7 +574,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                             .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtConfirmarPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                 .addGroup(jfrmRegistrarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -576,6 +584,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         desktopPane.add(jfrmRegistrarUsuario);
         jfrmRegistrarUsuario.setBounds(200, 10, 470, 440);
 
+        jfrmPrincipalAdmin.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         jfrmPrincipalAdmin.setMaximizable(true);
         jfrmPrincipalAdmin.setTitle("Principal Administrador");
         jfrmPrincipalAdmin.setVisible(false);
@@ -704,7 +713,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 .addGroup(jpFiltrosAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnValidarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpiarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         tblVehiculosAdmin.setModel(new javax.swing.table.DefaultTableModel(
@@ -762,7 +771,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         );
         jpTablaAdminLayout.setVerticalGroup(
             jpTablaAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
         );
 
         jmnuArchivo.setText("Archivo");
@@ -824,6 +833,11 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jmnuArchivo.add(jmnuPDF);
 
         mnuReportes.setText("Reportes");
+        mnuReportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuReportesActionPerformed(evt);
+            }
+        });
         jmnuArchivo.add(mnuReportes);
 
         mnuClientes.setText("Clientes");
@@ -879,6 +893,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         desktopPane.add(jfrmPrincipalAdmin);
         jfrmPrincipalAdmin.setBounds(10, 0, 840, 550);
 
+        jfrmPrincipalUsuario.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         jfrmPrincipalUsuario.setMaximizable(true);
         jfrmPrincipalUsuario.setTitle("Principal Usuario");
         jfrmPrincipalUsuario.setVisible(false);
@@ -994,20 +1009,15 @@ public class MDIPrincipal extends javax.swing.JFrame {
             .addGroup(jpFiltrosUsuarioLayout.createSequentialGroup()
                 .addGroup(jpFiltrosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpFiltrosUsuarioLayout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addGroup(jpFiltrosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel22))
+                        .addGap(18, 18, 18)
                         .addGroup(jpFiltrosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpFiltrosUsuarioLayout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addComponent(btnLimpiarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpFiltrosUsuarioLayout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addGroup(jpFiltrosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel22))
-                                .addGap(18, 18, 18)
-                                .addGroup(jpFiltrosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(combobxMarcaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(combobxVehiculoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cbxDisponibleUsuario))))
+                            .addComponent(combobxMarcaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(combobxVehiculoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbxDisponibleUsuario))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jpFiltrosUsuarioLayout.createSequentialGroup()
                         .addGap(5, 5, 5)
@@ -1016,14 +1026,18 @@ public class MDIPrincipal extends javax.swing.JFrame {
                             .addComponent(jLabel30))
                         .addGap(18, 18, 18)
                         .addGroup(jpFiltrosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jdcFinalUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jdcInicialUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jpFiltrosUsuarioLayout.createSequentialGroup()
                                 .addComponent(rbtnTarifaDiaUsuario)
                                 .addGap(18, 18, 18)
                                 .addComponent(rbtnTarifaKmUsuario)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jdcFinalUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jdcInicialUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
+            .addGroup(jpFiltrosUsuarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnLimpiarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpFiltrosUsuarioLayout.setVerticalGroup(
             jpFiltrosUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1051,9 +1065,9 @@ public class MDIPrincipal extends javax.swing.JFrame {
                     .addComponent(jdcInicialUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jdcFinalUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnLimpiarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jfrmPrincipalUsuarioLayout = new javax.swing.GroupLayout(jfrmPrincipalUsuario.getContentPane());
@@ -1307,7 +1321,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jpUsuarioCRUDLayout.setVerticalGroup(
             jpUsuarioCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpUsuarioCRUDLayout.createSequentialGroup()
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1727,7 +1741,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabelCapacidad))
                             .addGroup(jpDatosVehiculoLayout.createSequentialGroup()
-                                .addGap(0, 38, Short.MAX_VALUE)
+                                .addGap(0, 40, Short.MAX_VALUE)
                                 .addGroup(jpDatosVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(btnGuardarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnLimpiarVehiculoCRUD, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1752,7 +1766,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                         .addGroup(jpDatosVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jycVehiculoCRUD, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                             .addComponent(jLabel39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                         .addGroup(jpDatosVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtKilometrajeCRUD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel40))
@@ -1760,7 +1774,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                         .addGroup(jpDatosVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(sldCapacidadCRUD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel48))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jfrmVehiculosCRUDLayout = new javax.swing.GroupLayout(jfrmVehiculosCRUD.getContentPane());
@@ -1910,7 +1924,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
                     .addComponent(jdcInicialAlquilar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jdcFinalAlquilar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addGroup(jpDatosAlquilarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptarAlquilar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelarAlquilar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2143,7 +2157,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jfrmValidarVehiculoLayout.setVerticalGroup(
             jfrmValidarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jfrmValidarVehiculoLayout.createSequentialGroup()
-                .addGap(18, 19, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jfrmValidarVehiculoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jfrmValidarVehiculoLayout.createSequentialGroup()
                         .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2188,6 +2202,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jfrmValidarVehiculo.setBounds(20, 20, 620, 410);
 
         jfrmReportes.setClosable(true);
+        jfrmReportes.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         jfrmReportes.setIconifiable(true);
         jfrmReportes.setTitle("Reportes");
         jfrmReportes.setVisible(false);
@@ -2196,19 +2211,19 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         tblReportePromedio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Matricula", "Horas"
+                "Fecha", "Auto", "Moto", "Furgoneta"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -2223,97 +2238,124 @@ public class MDIPrincipal extends javax.swing.JFrame {
         if (tblReportePromedio.getColumnModel().getColumnCount() > 0) {
             tblReportePromedio.getColumnModel().getColumn(0).setResizable(false);
             tblReportePromedio.getColumnModel().getColumn(1).setResizable(false);
+            tblReportePromedio.getColumnModel().getColumn(2).setResizable(false);
+            tblReportePromedio.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        combobxTipoReporte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Auto", "Moto", "Furgoneta" }));
-
-        jLabel12.setText("Tipo:");
-
         jLabel13.setText("Fechas:");
+
+        jdcFechaInicialReporte.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jdcFechaInicialReportePropertyChange(evt);
+            }
+        });
+
+        jdcFechaFinalReporte.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jdcFechaFinalReportePropertyChange(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpDatosPromedioLayout = new javax.swing.GroupLayout(jpDatosPromedio);
         jpDatosPromedio.setLayout(jpDatosPromedioLayout);
         jpDatosPromedioLayout.setHorizontalGroup(
             jpDatosPromedioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpDatosPromedioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpDatosPromedioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel13))
                 .addGroup(jpDatosPromedioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDatosPromedioLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jpDatosPromedioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jdcFechaFinalReporte, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                            .addComponent(jdcFechaInicialReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jpDatosPromedioLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(combobxTipoReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(60, Short.MAX_VALUE))
-            .addGroup(jpDatosPromedioLayout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGroup(jpDatosPromedioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpDatosPromedioLayout.createSequentialGroup()
+                                .addGap(66, 66, 66)
+                                .addComponent(jdcFechaFinalReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpDatosPromedioLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel13)
+                                .addGap(18, 18, 18)
+                                .addComponent(jdcFechaInicialReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 89, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jpDatosPromedioLayout.setVerticalGroup(
             jpDatosPromedioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDatosPromedioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpDatosPromedioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(combobxTipoReporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
-                .addGap(20, 20, 20)
-                .addGroup(jpDatosPromedioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(24, 24, 24)
+                .addGroup(jpDatosPromedioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13)
                     .addComponent(jdcFechaInicialReporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jdcFechaFinalReporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jpGraficaPromedioLayout = new javax.swing.GroupLayout(jpGraficaPromedio);
         jpGraficaPromedio.setLayout(jpGraficaPromedioLayout);
         jpGraficaPromedioLayout.setHorizontalGroup(
             jpGraficaPromedioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 325, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jpGraficaPromedioLayout.setVerticalGroup(
             jpGraficaPromedioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        txtPromedioAutos.setEditable(false);
+        txtPromedioAutos.setEnabled(false);
+
+        txtPromedioMotos.setEditable(false);
+        txtPromedioMotos.setEnabled(false);
+
+        txtPromedioFurgonetas.setEditable(false);
+        txtPromedioFurgonetas.setEnabled(false);
+
+        javax.swing.GroupLayout jpPromediosLayout = new javax.swing.GroupLayout(jpPromedios);
+        jpPromedios.setLayout(jpPromediosLayout);
+        jpPromediosLayout.setHorizontalGroup(
+            jpPromediosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpPromediosLayout.createSequentialGroup()
                 .addComponent(jpDatosPromedio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpGraficaPromedio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jpPromediosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jpPromediosLayout.createSequentialGroup()
+                        .addComponent(txtPromedioAutos, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
+                        .addComponent(txtPromedioMotos, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(txtPromedioFurgonetas, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jpGraficaPromedio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jpGraficaPromedio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpDatosPromedio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 1, Short.MAX_VALUE))
+        jpPromediosLayout.setVerticalGroup(
+            jpPromediosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpPromediosLayout.createSequentialGroup()
+                .addComponent(jpDatosPromedio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
+            .addGroup(jpPromediosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpPromediosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPromedioAutos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPromedioMotos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPromedioFurgonetas, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addComponent(jpGraficaPromedio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Promedios", jPanel2);
+        jTabbedPane1.addTab("Promedios", jpPromedios);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 659, Short.MAX_VALUE)
+        javax.swing.GroupLayout jpDisponiblesLayout = new javax.swing.GroupLayout(jpDisponibles);
+        jpDisponibles.setLayout(jpDisponiblesLayout);
+        jpDisponiblesLayout.setHorizontalGroup(
+            jpDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 698, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 402, Short.MAX_VALUE)
+        jpDisponiblesLayout.setVerticalGroup(
+            jpDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 418, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Disponibilidad", jPanel3);
+        jTabbedPane1.addTab("Disponibilidad", jpDisponibles);
 
         javax.swing.GroupLayout jfrmReportesLayout = new javax.swing.GroupLayout(jfrmReportes.getContentPane());
         jfrmReportes.getContentPane().setLayout(jfrmReportesLayout);
@@ -2598,6 +2640,8 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jfrmAlquilarVehiculo.hide();
         jfrmUsuariosCRUD.hide();
         jfrmVehiculosCRUD.hide();
+        jfrmReportes.hide();
+        jfrmClientes.hide();
 
         jfrmPrincipalUsuario.hide();
         jfrmLogin.show();
@@ -3120,7 +3164,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarAlquilarActionPerformed
 
     private void btnAceptarAlquilarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarAlquilarActionPerformed
-
         String matricula = txtMatriculaAlquilar.getText();
         LocalDate fechaInicial = convertir.ConvertirFecha(jdcInicialAlquilar.getDate());
         LocalDate fechaFinal = convertir.ConvertirFecha(jdcFinalAlquilar.getDate());
@@ -3273,7 +3316,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         String matricula = txtMatriculaValidar.getText();
         String userID = txtClienteValidar.getText();
         // tipo, matricula, usuario, estadoVehiculo, gasolina, limpieza, 
-        // espejos, tipoPago, valorPago, fechaInicio, fechaFinal, observaciones
+        // espejos, fechaInicio, fechaFinal, tipoPago, valorPago, observaciones
         String[] datos = {"", matricula, userID,
             combobxEstadoValidar.getSelectedItem().toString(),
             Boolean.toString(checkbxGasolina.isSelected()),
@@ -3291,12 +3334,12 @@ public class MDIPrincipal extends javax.swing.JFrame {
             // Vehiculo validado:
             JOptionPane.showMessageDialog(this, "Vehiculo validado con éxito, \n"
                     + " Debe recibir $" + valor, "Vehiculo validado", 1);
+            // Borrar todos los valores y campos:
+            jfrmValidarVehiculo.hide();
+            limpiarCampos("Validar");
+            limpiarCampos("Administrador");
+            llenarTablaPrincipal("Administrador", tblVehiculosAdmin);
         }
-        // Borrar todos los valores y campos:
-        jfrmValidarVehiculo.hide();
-        limpiarCampos("Validar");
-        limpiarCampos("Administrador");
-        llenarTablaPrincipal("Administrador", tblVehiculosAdmin);
     }//GEN-LAST:event_btnAceptarValidacionActionPerformed
 
     private void btnCancelarValidacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarValidacionActionPerformed
@@ -3410,6 +3453,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         // Validar que solo se pueda ingresar máximo 6 letras en matricula:
         if (txtMatriculaAdmin.getText().length() == 6
                 || txtMatriculaCRUD.getText().length() == 6
+                || txtMatriculaValidar.getText().length() == 6
                 || Character.isWhitespace(validar)) {
             getToolkit().beep();
             evt.consume();
@@ -3474,7 +3518,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuCargarFurgonetasActionPerformed
 // ------------------------ ** CLIENTES **--------------------------------------
     private void mnuClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuClientesActionPerformed
-        // TODO add your handling code here:
         jfrmClientes.show();
         llenarTablaClientes();
     }//GEN-LAST:event_mnuClientesActionPerformed
@@ -3521,6 +3564,11 @@ public class MDIPrincipal extends javax.swing.JFrame {
         Usuario user = controlUsuario.encontrarUsuarioID(txtCliente.getText());
         alquilar.alquilarVehiculo(controlVehiculo.encontrarVehiculo(matricula),
                 user, null, null, "");
+        llenarTablaClientes();
+        JOptionPane.showMessageDialog(this, "Hora de entrega actualizada",
+                "Vehiculo entregado", 1);
+
+
     }//GEN-LAST:event_btnAlquilarClienteActionPerformed
 
     private void btnValidarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarClienteActionPerformed
@@ -3533,6 +3581,43 @@ public class MDIPrincipal extends javax.swing.JFrame {
         atxtDatosValidar.setText(controlVehiculo.encontrarVehiculo(matricula)
                 .getArrayDatosValidar());
     }//GEN-LAST:event_btnValidarClienteActionPerformed
+
+    private void mnuReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuReportesActionPerformed
+        jfrmReportes.show();
+
+        // Validaciones de fechas:
+        jdcFechaInicialReporte.setMaxSelectableDate(fechaActual);
+        jdcFechaInicialReporte.setDate(new Date(fechaActual.getYear(),
+                fechaActual.getMonth() + 1, fechaActual.getDay() - 15));
+        jdcFechaFinalReporte.setMaxSelectableDate(fechaActual);
+        jdcFechaFinalReporte.setDate(fechaActual);
+
+        banderaFecha = true;
+        llenarTablaReporte();
+        obtenerPromedios();
+
+        // Para mostrar la gráfica de vehiculos disponibles/ocupados:
+        graficas = new CrearGraficas();
+        ChartPanel contenedor = graficas.
+                generarGraficaDisponible(controlVehiculo.getVehiculos(""));
+        jpDisponibles.add(contenedor);
+        jpDisponibles.setVisible(true);
+        contenedor.setSize(670, 350);
+    }//GEN-LAST:event_mnuReportesActionPerformed
+
+    private void jdcFechaInicialReportePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdcFechaInicialReportePropertyChange
+        if (banderaFecha) {
+            llenarTablaReporte();
+            obtenerPromedios();
+        }
+    }//GEN-LAST:event_jdcFechaInicialReportePropertyChange
+
+    private void jdcFechaFinalReportePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdcFechaFinalReportePropertyChange
+        if (banderaFecha) {
+            llenarTablaReporte();
+            obtenerPromedios();
+        }
+    }//GEN-LAST:event_jdcFechaFinalReportePropertyChange
 
 // ----------------------- LLENAR TABLAS ---------------------------------------
     private void llenarTablaPrincipal(String tipo, JTable table) {
@@ -3624,6 +3709,32 @@ public class MDIPrincipal extends javax.swing.JFrame {
         tblClientes.repaint();
     }
 
+    private void llenarTablaReporte() {
+        DefaultTableModel model = (DefaultTableModel) tblReportePromedio.getModel();
+        model.getDataVector().removeAllElements();
+        // Obtener los filtros:
+        LocalDate fechaInicial = convertir.ConvertirFecha(jdcFechaInicialReporte.getDate());
+        LocalDate fechaFinal = convertir.ConvertirFecha(jdcFechaFinalReporte.getDate());
+        List<String> datos = ImportarCSV.cargarReporteHoras();
+        for (String seleccionado : datos) {
+            String[] x = seleccionado.split(",");
+            Object[] obj = {x[0], Integer.parseInt(x[1]), Integer.parseInt(x[2]),
+                Integer.parseInt(x[3])};
+
+            // Para encontrar la fecha del array:
+            String[] datosFecha = x[0].split("/");
+            LocalDate fecha = LocalDate.of(LocalDate.now().getYear(),
+                    Integer.parseInt(datosFecha[1]), Integer.parseInt(datosFecha[0]));
+            // Si las dos fechas están especificadas:
+            if (banderaFecha && fecha.compareTo(fechaInicial) >= 0
+                    && fecha.compareTo(fechaFinal) <= 0) {
+                model.addRow(obj);
+            }
+        }
+        tblReportePromedio.setModel(model);
+        tblReportePromedio.repaint();
+    }
+
     private void llenarCombobxMarcas(JComboBox combobx, JComboBox tipo) {
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         model.removeAllElements();
@@ -3639,6 +3750,30 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }
 
 // ------------------------------ MÉTODOS VARIOS -------------------------------
+    private void obtenerPromedios() {
+        int[] valores = new int[3];
+        int[] suma = {0, 0, 0};
+        int cont = tblReportePromedio.getRowCount();
+        for (int i = 0; i < cont; i++) {
+            suma[0] = (int) tblReportePromedio.getValueAt(i, 1) + suma[0];      // Autos
+            suma[1] = (int) tblReportePromedio.getValueAt(i, 2) + suma[1];      // Motos
+            suma[2] = (int) tblReportePromedio.getValueAt(i, 3) + suma[2];      // Furgonetas
+        }
+        valores[0] = suma[0] / cont;
+        valores[1] = suma[1] / cont;
+        valores[2] = suma[2] / cont;
+        txtPromedioAutos.setText(String.valueOf(valores[0]));
+        txtPromedioMotos.setText(String.valueOf(valores[1]));
+        txtPromedioFurgonetas.setText(String.valueOf(valores[2]));
+
+        // Para generar la gráfica:
+        graficas = new CrearGraficas();
+        ChartPanel contenedor = graficas.generarPromedioHoras(valores);
+        jpGraficaPromedio.add(contenedor);
+        jpGraficaPromedio.setVisible(true);
+        contenedor.setSize(310, 310);
+    }
+
     private String obtenerArchivo() {
         // Creamos un filtro para que se reconozcan los csv's:
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivo CSV", "csv");
@@ -3727,7 +3862,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private boolean verificarVehiculo() {
         // Verificar que la MATRICULA ingresada sea de un vehiculo ACTIVO:
         String matricula = txtMatriculaAdmin.getText();
-
         for (AbstractVehiculo vehiculo
                 : controlVehiculo.getVehiculosFiltro((byte) 0, "Seleccionar", "")) {
             if (vehiculo.getMatricula().compareTo(matricula) == 0) {
@@ -3799,7 +3933,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
             btnAlquilarCliente.setEnabled(true);
         } else if (tipo.compareTo("Cliente") == 0
                 && fechaLocal.compareTo((String) tblClientes.
-                        getValueAt(tblClientes.getSelectedRow(), 3)) == 0) {
+                        getValueAt(tblClientes.getSelectedRow(), 2)) >= 0) {
 
             btnAlquilarCliente.setEnabled(false);
             btnValidarCliente.setEnabled(true);
@@ -4005,7 +4139,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> combobxMarcaCRUD;
     private javax.swing.JComboBox<String> combobxMarcaUsuario;
     private javax.swing.JComboBox<String> combobxTipoCliente;
-    private javax.swing.JComboBox<String> combobxTipoReporte;
     private javax.swing.JComboBox<String> combobxTipoUsuario;
     private javax.swing.JComboBox<String> combobxVehiculoAdmin;
     private javax.swing.JComboBox<String> combobxVehiculoCRUD;
@@ -4014,7 +4147,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -4064,8 +4196,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTarifaKm;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
@@ -4109,11 +4239,13 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jpDatosPromedio;
     private javax.swing.JPanel jpDatosUsuario;
     private javax.swing.JPanel jpDatosVehiculo;
+    private javax.swing.JPanel jpDisponibles;
     private javax.swing.JPanel jpFiltrosAdmin;
     private javax.swing.JPanel jpFiltrosUsuario;
     private javax.swing.JPanel jpFurgonetaCRUD;
     private javax.swing.JPanel jpGraficaPromedio;
     private javax.swing.JPanel jpMotoCRUD;
+    private javax.swing.JPanel jpPromedios;
     private javax.swing.JPanel jpTablaAdmin;
     private javax.swing.JPanel jpTablaClientes;
     private javax.swing.JPanel jpTablaUsuario;
@@ -4173,6 +4305,9 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField txtNuevoNombre;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JPasswordField txtPasswordUsuario;
+    private javax.swing.JTextField txtPromedioAutos;
+    private javax.swing.JTextField txtPromedioFurgonetas;
+    private javax.swing.JTextField txtPromedioMotos;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 

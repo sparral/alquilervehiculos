@@ -1,6 +1,6 @@
 Estado,Matricula,Marca,Anio,Kilometraje,ValorDia,ValorKm,Casco,NumAlquiler,Activado
 true,KTB64M,Susuki,2014,32150,80000,1200,false,0,true
-false,FDN98A,Honda,2017,18320,98000,1303,true,1,true
+false,FDN98A,Honda,2017,18320,98000,1303,true,3,true
 true,LMG23S,AKT,2019,3212,110000,1523,true,0,true
-false,JFK34L,Honda,2018,4523,77707,1467,true,0,true
+true,JFK34L,Honda,2018,4923,77707,1467,true,1,true
 

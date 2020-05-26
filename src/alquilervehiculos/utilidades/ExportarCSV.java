@@ -15,7 +15,10 @@ import com.csvreader.CsvWriter;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -168,12 +171,12 @@ public class ExportarCSV {
         }
     }
 
-    public static void generarReporte(String[] datos) {
+    public static void generarReporteEntrega(String[] datos) {
         LocalDate fecha = LocalDate.now();
         String mes = fecha.getMonth().getDisplayName(TextStyle.FULL,
                 new Locale("es", "ES")) + "-" + fecha.getYear();
-        // Nombre del archivo :"src/Reportes/CSVs/julio_2020/Auto/23_CMR534.csv"
-        String salidaArchivo = "src/Reportes/CSVs/" + mes + "/" + datos[0] + "/"
+        // Nombre del archivo :"Reportes/CSVs/julio_2020/Auto/23_CMR534.csv"
+        String salidaArchivo = "Reportes/Entrega/" + mes + "/" + datos[0] + "/"
                 + fecha.getDayOfMonth() + "_" + datos[1] + ".csv";
         File archivo = new File(salidaArchivo);
         archivo.getParentFile().mkdirs();
@@ -203,18 +206,131 @@ public class ExportarCSV {
             salidaCSV.endRecord();          // Deja de escribir en el archivo
             salidaCSV.write("Espejos    : " + datos[6]);
             salidaCSV.endRecord();          // Deja de escribir en el archivo
-            salidaCSV.write("FechaInicio: $" + datos[7]);
+            salidaCSV.write("FechaInicio: " + datos[7]);
             salidaCSV.endRecord();          // Deja de escribir en el archivo
-            salidaCSV.write("FechaFinal : $" + datos[8]);
+            salidaCSV.write("FechaFinal : " + datos[8]);
             salidaCSV.endRecord();          // Deja de escribir en el archivo
             salidaCSV.write("TipoPago   : " + datos[9]);
             salidaCSV.endRecord();          // Deja de escribir en el archivo
             salidaCSV.write("ValorPago  : $" + datos[10] + " COP");
             salidaCSV.endRecord();          // Deja de escribir en el archivo
 
-            if (!datos[8].isEmpty()) {
+            if (!datos[11].isEmpty()) {
                 salidaCSV.endRecord();
-                salidaCSV.write("Observaciones: " + datos[8]);
+                salidaCSV.write("Observaciones: " + datos[11]);
+            }
+            salidaCSV.close();
+        } catch (IOException ex) {
+            Logger.getLogger(ExportarCSV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public static void generarReporteHoras(LocalDateTime fechaInicial,
+            LocalDateTime fechaFinal, String tipo, List<String> datosAnteriores) {
+        int dif = (int) fechaInicial.until(fechaFinal, ChronoUnit.DAYS);
+        // Para conocer los nuevos datos:
+        String difInicial = String.valueOf(fechaInicial.toLocalTime().getHour());
+        String difFinal = String.valueOf(fechaFinal.toLocalTime().getHour());
+
+        int lugar = 0;
+        String[] datosNuevos = new String[dif + 1];
+        for (int i = 0; i <= dif; i++) {
+            LocalDate fecha = LocalDate.ofYearDay(fechaInicial.getYear(),
+                    fechaInicial.getDayOfYear() + i);
+            String fechaString = fecha.format(DateTimeFormatter
+                    .ofPattern("dd/MM/yy"));
+            switch (tipo) {
+                case "Auto": {
+                    if (i == 0) {
+                        datosNuevos[i] = fechaString + "," + difInicial + ",0,0";
+                    } else if (i == dif) {
+                        datosNuevos[i] = fechaString + "," + difFinal + ",0,0";
+                    } else {
+                        datosNuevos[i] = fechaString + ",24,0,0";
+                    }
+                    lugar = 1;
+                    break;
+                }
+                case "Moto": {
+                    if (i == 0) {
+                        datosNuevos[i] = fechaString + ",0," + difInicial + ",0";
+                    } else if (i == dif) {
+                        datosNuevos[i] = fechaString + ",0," + difFinal + ",0";
+                    } else {
+                        datosNuevos[i] = fechaString + ",0,24,0";
+                    }
+                    lugar = 2;
+                    break;
+                }
+                case "Furgoneta": {
+                    if (i == 0) {
+                        datosNuevos[i] = fechaString + ",0,0," + difInicial;
+                    } else if (i == dif) {
+                        datosNuevos[i] = fechaString + ",0,0," + difFinal;
+                    } else {
+                        datosNuevos[i] = fechaString + ",0,0,24";
+                    }
+                    lugar = 3;
+                    break;
+                }
+            }
+        }
+
+        // Ahora, para escribir en el archivo:
+        String salidaArchivo = "Reportes/Promedio/" + tipo + ".csv";
+        File archivo = new File(salidaArchivo);
+        archivo.getParentFile().mkdirs();
+
+        try {
+            CsvWriter salidaCSV = new CsvWriter(salidaArchivo);
+            salidaCSV.write("Fecha");
+            salidaCSV.write("Horas");
+            salidaCSV.endRecord();
+
+            String fechaN = fechaInicial.toLocalDate().format(DateTimeFormatter
+                    .ofPattern("dd/MM/yy"));
+            int cont = 0;
+            String[] z = new String[4];
+
+            for (String dato : datosAnteriores) {
+                String[] x = dato.split(",");                   // Datos antiguos.
+                if (fechaN.compareTo(x[0]) <= 0) {
+                    String[] y = datosNuevos[cont].split(",");   // Datos nuevos.
+                    cont++;
+                    if (y[0].compareTo(x[0]) == 0) {
+                        // Fecha ya existía, deben sumarse las horas:
+                        int suma = Integer.parseInt(x[lugar])
+                                + Integer.parseInt(y[lugar]);
+                        switch (tipo) {
+                            case "Auto": {
+                                z[0] = x[0];
+                                z[1] = String.valueOf(suma);
+                                break;
+                            }
+                            case "Moto": {
+                                z[0] = x[0];
+                                z[2] = String.valueOf(suma);
+                                break;
+                            }
+                            case "Furgoneta": {
+                                z[0] = x[0];
+                                z[3] = String.valueOf(suma);
+                                break;
+                            }
+                        }
+                        salidaCSV.writeRecord(z);
+                    }
+                } else {
+                    salidaCSV.writeRecord(x);
+                    salidaCSV.endRecord();
+                }
+            }
+            // Finalmente, si faltó por escribir algunos datos nuevos:
+            if (cont <= dif) {
+                for (int i = cont; i <= dif; i++) {
+                    salidaCSV.write(datosNuevos[cont]);
+                    salidaCSV.endRecord();
+                }
             }
             salidaCSV.close();
         } catch (IOException ex) {
